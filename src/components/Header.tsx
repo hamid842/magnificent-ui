@@ -16,6 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from "next/image";
 import {useRouter} from "next/router";
+import logo from "../../public/logo.png";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -34,7 +35,7 @@ export const ColorButton = styled(Button)<ButtonProps>({
 });
 
 export default function Header() {
-   const router = useRouter();
+    const router = useRouter();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -45,9 +46,10 @@ export default function Header() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (e:any) => {
+    const handleCloseNavMenu = (e: any) => {
         setAnchorElNav(null);
-        router.push(e.target.value).then(() => {});
+        router.push(e.target.value).then(() => {
+        });
     };
 
     const handleCloseUserMenu = () => {
@@ -57,25 +59,12 @@ export default function Header() {
     return (
         <AppBar position="static" sx={{paddingX: 1, background: "transparent", boxShadow: "none"}}>
             <Toolbar disableGutters>
-                <AdbIcon fontSize={'large'} sx={{display: {xs: 'none', md: 'flex'}, mr: 1, color: "#A47C30"}}/>
-                <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
-                    href="/"
-                    sx={{
-                        mr: 2,
-                        display: {xs: 'none', md: 'flex'},
-                        fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
-                        textDecoration: 'none',
-                        color: "#A47C30"
-                    }}
-                >
-                    LOGO
-                </Typography>
-
+                <Image
+                    src={logo}
+                    alt={'Logo'}
+                    width={100}
+                    height={60}
+                />
                 <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                     <IconButton
                         size="large"
@@ -136,7 +125,7 @@ export default function Header() {
                             key={page.label}
                             value={page.path}
                             onClick={handleCloseNavMenu}
-                            sx={{my: 2, display: 'block', textTransform: "capitalize",color:'black'}}
+                            sx={{my: 2, display: 'block', textTransform: "capitalize", color: 'black'}}
                         >
                             {page.label}
                         </Button>
