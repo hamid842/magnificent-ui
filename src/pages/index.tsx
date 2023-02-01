@@ -20,7 +20,7 @@ export default function Home() {
                         borderBottomLeftRadius: 25,
                         borderBottomRightRadius: 25,
                     }}/>
-                <SearchDestination/>
+                <SearchDestination position={'absolute'}/>
                 <Typography variant={'h3'} sx={{paddingY: 9}}>Special Offers</Typography>
             </Box>
             <SpecialOffers/>

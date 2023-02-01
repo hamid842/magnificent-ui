@@ -3,11 +3,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import Grid from "@mui/material/Unstable_Grid2";
 import {CalendarTodayOutlined, LocationOnOutlined} from "@mui/icons-material";
 
-const SearchDestination = () => {
+type Props = {
+    position:string
+}
+
+const SearchDestination = ({position}:Props) => {
     return (
         <Box
             sx={{
-                position: 'absolute',
+                position,
                 top: "70%",
                 width: 500,
                 height: 60,
@@ -18,7 +22,8 @@ const SearchDestination = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-                padding: 1
+                padding: 1,
+                boxShadow:'0px 0 2px 2px lightgray'
             }}>
             <Grid container alignItems={'center'} spacing={2}>
                 <Grid xs={6}>
