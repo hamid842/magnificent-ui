@@ -5,13 +5,19 @@ import AirlineSeatFlatOutlinedIcon from '@mui/icons-material/AirlineSeatFlatOutl
 import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import SellIcon from '@mui/icons-material/Sell';
+import {Property} from "@/utils/property-type";
 
-const SpecialOffersItem = (props: any) => {
-    const {data} = props;
+type Props = {
+    data:Property
+}
+
+const SpecialOffersItem = ({data}:Props) => {
+    const {attributes} = data;
     return (
         <>
             <Box sx={{position: 'relative'}}>
-                <Image src={data.imageUrl} alt={'Pic'} width={370} height={250} style={{borderRadius: 10}}/>
+                <Image src={attributes.images[0].url} width={100} height={100} alt={'Pic'} sizes={'100%'} style={{width:'100%',height:300,borderRadius: 10}}/>
                 <Box sx={{
                     position: 'absolute',
                     display: 'flex',
@@ -29,37 +35,37 @@ const SpecialOffersItem = (props: any) => {
                 <Box sx={{position: 'absolute', backgroundColor: 'white', width: 55,height:30,top:10,left:10,borderRadius:1}}>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
                        <StarOutlinedIcon sx={{color: "#A47C30"}}/>
-                        <Typography>{data.stars}</Typography>
+                        <Typography>4.8</Typography>
                     </Stack>
                 </Box>
             </Box>
             <Box sx={{paddingTop: 2}}>
-                <Typography variant={'h5'}>{data.title}</Typography>
-                <Typography variant={'body2'} sx={{color: 'gray'}}>{data.subtitle}</Typography>
-                <Typography variant={'h6'}>{data.fromDate} - {data.toDate}</Typography>
-                <Typography variant={'h6'}
-                            sx={{color: "#A47C30", paddingTop: 1}}>${data.price} /{data.nights}</Typography>
+                <Typography variant={'subtitle1'} sx={{fontSize:20}} noWrap><b>{attributes.Title}</b></Typography>
+                <Typography variant={'body2'} sx={{color: 'gray'}}>{attributes.bedroomsNumber} Bedroom/s Combined Lodge</Typography>
+                <Typography variant={'subtitle1'}>28 October - 1 November</Typography>
+                <Typography variant={'subtitle1'}
+                            sx={{color: "#A47C30", paddingTop: 1}}><SellIcon sx={{pt:1}}/>{attributes.price} AED/ per night</Typography>
             </Box>
             <Grid container alignItems={'center'} spacing={2} sx={{paddingTop: 1}}>
                 <Grid item xs={4} sm={4} lg={4}>
                     <Stack direction={'row'} alignItems={'center'}>
                         <BedOutlinedIcon sx={{color: "#A47C30"}}/>
                         <Typography variant={'caption'}
-                                    sx={{color: 'gray', paddingLeft: 1}}>{data.bedsNo} Beds</Typography>
+                                    sx={{color: 'gray', paddingLeft: 1}}>{attributes.bedsNumber} Beds</Typography>
                     </Stack>
                 </Grid>
                 <Grid item xs={4} sm={4} lg={4}>
                     <Stack direction={'row'} alignItems={'center'}>
                         <AirlineSeatFlatOutlinedIcon sx={{color: "#A47C30"}}/>
                         <Typography variant={'caption'}
-                                    sx={{color: 'gray', paddingLeft: 1}}>{data.personsNo} Sleeps</Typography>
+                                    sx={{color: 'gray', paddingLeft: 1}}>{attributes.bedsNumber} Sleeps</Typography>
                     </Stack>
                 </Grid>
                 <Grid item xs={4} sm={4} lg={4}>
                     <Stack direction={'row'} alignItems={'center'}>
                         <AspectRatioOutlinedIcon sx={{color: "#A47C30"}} fontSize={'small'}/>
                         <Typography variant={'caption'}
-                                    sx={{color: 'gray', paddingLeft: 1}}>{data.bedsNo} Beds</Typography>
+                                    sx={{color: 'gray', paddingLeft: 1}}>1350 Sq Ft</Typography>
                     </Stack>
                 </Grid>
             </Grid>

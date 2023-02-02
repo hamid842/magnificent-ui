@@ -15,7 +15,7 @@ const Pagination = () => {
     const handleChangeRowsPerPage = (
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
+        setRowsPerPage(parseInt(event.target.value, 9));
         setPage(0);
     };
 

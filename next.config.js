@@ -4,7 +4,14 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['iili.io']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hostaway-platform.s3.us-west-2.amazonaws.com',
+        port: '',
+        pathname: '/listing/**'
+      }
+    ]
   }
 }
 

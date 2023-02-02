@@ -6,10 +6,11 @@ import SortByDropdown from "@/components/last-minute-deals/SortByDropdown";
 import axios from "axios";
 import SpecialOffersItem from "@/components/SpecialOffersItem";
 import Pagination from "@/components/last-minute-deals/Pagination";
+import {Property} from "@/utils/property-type";
 
 export async function getServerSideProps() {
-    const properties = await axios('https://localhost:1337/api/properties').then(({data}) => data)
-
+    const {data} = await axios('http://localhost:1337/api/properties?populate=*')
+    const properties = data.data;
     return {
         props: {
             properties
@@ -18,7 +19,7 @@ export async function getServerSideProps() {
 }
 
 type Props = {
-    properties: any,
+    properties: Property[],
 }
 
 const LastMinuteDeals = ({properties}: Props) => {
@@ -45,9 +46,9 @@ const LastMinuteDeals = ({properties}: Props) => {
                         </Stack>
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={5}>
                     {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
-                        Loading... </Grid> : properties?.map((property: any) => {
+                        Loading... </Grid> : properties?.map((property: Property) => {
                         return (
                             <Grid key={property.id} item xs={12} sm={6} lg={4}>
                                 <SpecialOffersItem data={property}/>
