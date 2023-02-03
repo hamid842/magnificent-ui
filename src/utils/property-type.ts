@@ -58,7 +58,7 @@ export interface Geolocation {
     longitude: number;
 }
 
-export interface Image {
+export interface ImageType {
     id: number;
     caption:string;
     url:string;
@@ -89,8 +89,8 @@ export interface Attributes {
     bathroomsNumber: number;
     createdAt: Date;
     updatedAt: Date;
-    publishedAt: Date;
-    images: Image[];
+    publishedAt: string;
+    images: ImageType[];
     address: Address;
     contact: Contact;
     amenities: Amenities;
