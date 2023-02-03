@@ -55,7 +55,7 @@ const LastMinuteDeals = ({properties}: Props) => {
                                   onClick={() => router.push({
                                       pathname: `/last-minute-deals/${property.id}`,
                                       query: {propertyItem: JSON.stringify(property)}
-                                  })}>
+                                  },`/last-minute-deals/${property.id}`)}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
                         )

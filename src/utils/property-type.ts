@@ -58,6 +58,13 @@ export interface Geolocation {
     longitude: number;
 }
 
+export interface Image {
+    id: number;
+    caption:string;
+    url:string;
+    sortOrder:number;
+}
+
 export interface Attributes {
     Title: string;
     generalInformation: GeneralInformation;
@@ -83,7 +90,7 @@ export interface Attributes {
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
-    images: any[];
+    images: Image[];
     address: Address;
     contact: Contact;
     amenities: Amenities;
