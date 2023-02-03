@@ -64,6 +64,7 @@ export default function Header() {
                     alt={'Logo'}
                     width={100}
                     height={60}
+                    onClick={()=>router.push('/')}
                 />
                 <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                     <IconButton

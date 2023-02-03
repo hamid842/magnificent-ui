@@ -7,6 +7,7 @@ import axios from "axios";
 import SpecialOffersItem from "@/components/SpecialOffersItem";
 import Pagination from "@/components/last-minute-deals/Pagination";
 import {Property} from "@/utils/property-type";
+import {useRouter} from "next/router";
 
 export async function getServerSideProps() {
     const {data} = await axios('http://localhost:1337/api/properties?populate=*')
@@ -23,7 +24,7 @@ type Props = {
 }
 
 const LastMinuteDeals = ({properties}: Props) => {
-    console.log(properties)
+    const router = useRouter();
     return (
         <Layout>
             <Typography variant={'h3'} py={10} align={'center'} sx={{fontWeight: 700}}>Last Minute Deals</Typography>
@@ -50,7 +51,11 @@ const LastMinuteDeals = ({properties}: Props) => {
                     {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
                         Loading... </Grid> : properties?.map((property: Property) => {
                         return (
-                            <Grid key={property.id} item xs={12} sm={6} lg={4}>
+                            <Grid key={property.id} item xs={12} sm={6} lg={4}
+                                  onClick={() => router.push({
+                                      pathname: `/last-minute-deals/${property.id}`,
+                                      query: {propertyItem: JSON.stringify(property)}
+                                  })}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
                         )

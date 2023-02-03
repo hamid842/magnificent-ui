@@ -1,12 +1,12 @@
 import Layout from '@/components/Layout'
 import Image from 'next/image';
 import homePagePicture from '../../public/home-page-pic.png'
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import SearchDestination from "@/components/SearchDestination";
-import SpecialOffers from "@/components/SpecialOffers";
 import axios from "axios";
 import {Property} from "@/utils/property-type";
 import SpecialOffersItem from "@/components/SpecialOffersItem";
+import {useRouter} from "next/router";
 
 const qs = require('qs');
 const query = qs.stringify({
@@ -31,10 +31,11 @@ export async function getServerSideProps() {
 }
 
 type Props = {
-    properties:Property[]
+    properties: Property[]
 }
 
-const HomePage = ({properties}:Props) => {
+const HomePage = ({properties}: Props) => {
+    const router = useRouter();
     return (
         <Layout>
             <Box sx={{textAlign: 'center', position: 'relative'}}>
@@ -52,7 +53,7 @@ const HomePage = ({properties}:Props) => {
                 <SearchDestination position={'absolute'}/>
                 <Typography variant={'h3'} sx={{paddingY: 9}}>Special Offers</Typography>
             </Box>
-            <Grid container spacing={5} px={20}>
+            <Grid container spacing={5} px={20} pb={15}>
                 {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
                     Loading... </Grid> : properties?.map((property: Property) => {
                     return (
@@ -61,7 +62,12 @@ const HomePage = ({properties}:Props) => {
                         </Grid>
                     )
                 })}
-
+                <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center'}}>
+                    <Button variant={'contained'}
+                            sx={{backgroundColor: "#A47C30", width: 120, borderRadius: 25, textTransform: 'none'}}
+                            onClick={() => router.push('/last-minute-deals')}>See
+                        more</Button>
+                </Grid>
             </Grid>
         </Layout>
     )
