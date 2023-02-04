@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import {Box, Button, Grid, Stack, Typography} from "@mui/material";
 import SearchDestination from "@/components/SearchDestination";
 import FilterDialog from "@/components/last-minute-deals/FilterDialog";
@@ -26,7 +25,7 @@ type Props = {
 const LastMinuteDeals = ({properties}: Props) => {
     const router = useRouter();
     return (
-        <Layout>
+        <>
             <Typography variant={'h3'} py={10} align={'center'} sx={{fontWeight: 700}}>Last Minute Deals</Typography>
             <SearchDestination position={'relative'}/>
             <Box px={15}>
@@ -55,7 +54,7 @@ const LastMinuteDeals = ({properties}: Props) => {
                                   onClick={() => router.push({
                                       pathname: `/last-minute-deals/${property.id}`,
                                       query: {propertyItem: JSON.stringify(property)}
-                                  },`/last-minute-deals/${property.id}`)}>
+                                  }, `/last-minute-deals/${property.id}`)} sx={{cursor:'pointer'}}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
                         )
@@ -66,7 +65,7 @@ const LastMinuteDeals = ({properties}: Props) => {
                     <Pagination/>
                 </Stack>
             </Box>
-        </Layout>
+        </>
     )
 }
 export default LastMinuteDeals;

@@ -1,9 +1,14 @@
-import { AppProps } from 'next/app'
+import {AppProps} from 'next/app'
+import NextNProgress from 'nextjs-progressbar';
+import Layout from "@/components/Layout";
 
-function Magnificent({ Component, pageProps }: AppProps) {
+function Magnificent({Component, pageProps}: AppProps) {
     return (
         <>
-            <Component {...pageProps} />
+            <NextNProgress color={'"#A47C30"'}/>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </>
     )
 }

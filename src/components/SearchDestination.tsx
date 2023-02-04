@@ -12,7 +12,7 @@ const SearchDestination = ({position}:Props) => {
         <Box
             sx={{
                 position,
-                top: "70%",
+                top: "60%",
                 width: 500,
                 height: 60,
                 background: 'white',

@@ -1,6 +1,5 @@
 // noinspection JSUnusedGlobalSymbols
 
-import Layout from "@/components/Layout";
 import Image from "next/image";
 import homePagePicture from "../../public/home-page-pic.png";
 import {Box, Grid, Typography} from "@mui/material";
@@ -15,7 +14,7 @@ import OurServices from "@/components/about/OurServices";
 
 const About = () => {
     return (
-        <Layout>
+        <>
             <Box sx={{textAlign: 'center', position: 'relative'}}>
                 <Image
                     src={homePagePicture}
@@ -51,9 +50,9 @@ const About = () => {
                 <Facilities/>
             </Box>
             <Box sx={{py: 15, px: 10}}>
-                <OurServices />
+                <OurServices/>
             </Box>
-        </Layout>
+        </>
     )
 }
 export default About;

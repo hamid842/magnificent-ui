@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout'
 import Image from 'next/image';
 import homePagePicture from '../../public/home-page-pic.png'
 import {Box, Button, Grid, Typography} from "@mui/material";
@@ -7,11 +6,13 @@ import axios from "axios";
 import {Property} from "@/utils/property-type";
 import SpecialOffersItem from "@/components/SpecialOffersItem";
 import {useRouter} from "next/router";
+import ActivityList from "@/components/home/ActivityList";
+import RentPlaceSection from "@/components/home/RentPlaceSection";
+import ReviewsSection from "@/components/home/ReviewsSection";
 
 const qs = require('qs');
 const query = qs.stringify({
     populate: '*',
-    fields: ['title'],
     pagination: {
         pageSize: 3,
         page: 1,
@@ -37,7 +38,7 @@ type Props = {
 const HomePage = ({properties}: Props) => {
     const router = useRouter();
     return (
-        <Layout>
+        <>
             <Box sx={{textAlign: 'center', position: 'relative'}}>
                 <Image
                     src={homePagePicture}
@@ -53,7 +54,7 @@ const HomePage = ({properties}: Props) => {
                 <SearchDestination position={'absolute'}/>
                 <Typography variant={'h3'} sx={{paddingY: 9}}>Special Offers</Typography>
             </Box>
-            <Grid container spacing={5} px={20} pb={15}>
+            <Grid container spacing={5} px={20} pb={10}>
                 {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
                     Loading... </Grid> : properties?.map((property: Property) => {
                     return (
@@ -69,7 +70,17 @@ const HomePage = ({properties}: Props) => {
                         more</Button>
                 </Grid>
             </Grid>
-        </Layout>
+            <Box mt={8} sx={{textAlign:'center'}} px={5} mb={3}>
+                <div style={{
+                    height: 1,
+                    background: "repeating-linear-gradient(to right,transparent,transparent 10px,gray 10px,gray 20px)",
+                    width: '100%',
+                }}/>
+            </Box>
+            <ActivityList />
+            <RentPlaceSection />
+            <ReviewsSection />
+        </>
     )
 }
 export default HomePage;

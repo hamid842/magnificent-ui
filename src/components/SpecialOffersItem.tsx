@@ -17,7 +17,7 @@ const SpecialOffersItem = ({data}:Props) => {
     return (
         <>
             <Box sx={{position: 'relative'}}>
-                <Image src={attributes.images[0].url} width={100} height={100} alt={'Pic'} sizes={'100%'} style={{width:'100%',height:300,borderRadius: 10}}/>
+                <Image src={attributes.images[0].url} width={100} height={100} alt={'Pic'} sizes={'100%'} style={{width:'100%',height:220,borderRadius: 10}}/>
                 <Box sx={{
                     position: 'absolute',
                     display: 'flex',
@@ -32,7 +32,7 @@ const SpecialOffersItem = ({data}:Props) => {
                 }}>
                     <FavoriteBorderOutlinedIcon sx={{color: "#A47C30"}}/>
                 </Box>
-                <Box sx={{position: 'absolute', backgroundColor: 'white', width: 55,height:30,top:10,left:10,borderRadius:1}}>
+                <Box sx={{position: 'absolute', backgroundColor: 'white', width: 55,height:25,top:10,left:10,borderRadius:1}}>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
                        <StarOutlinedIcon sx={{color: "#A47C30"}}/>
                         <Typography>4.8</Typography>
@@ -40,7 +40,7 @@ const SpecialOffersItem = ({data}:Props) => {
                 </Box>
             </Box>
             <Box sx={{paddingTop: 2}}>
-                <Typography variant={'subtitle1'} sx={{fontSize:20}} noWrap><b>{attributes.Title}</b></Typography>
+                <Typography variant={'subtitle1'} sx={{fontSize:16}} noWrap><b>{attributes.Title}</b></Typography>
                 <Typography variant={'body2'} sx={{color: 'gray'}}>{attributes.bedroomsNumber} Bedroom/s Combined Lodge</Typography>
                 <Typography variant={'subtitle1'}>28 October - 1 November</Typography>
                 <Typography variant={'subtitle1'}
@@ -65,7 +65,7 @@ const SpecialOffersItem = ({data}:Props) => {
                     <Stack direction={'row'} alignItems={'center'}>
                         <AspectRatioOutlinedIcon sx={{color: "#A47C30"}} fontSize={'small'}/>
                         <Typography variant={'caption'}
-                                    sx={{color: 'gray', paddingLeft: 1}}>1350 Sq Ft</Typography>
+                                    sx={{color: 'gray', paddingLeft: 1}}>{attributes.squareMeters} Sq Ft</Typography>
                     </Stack>
                 </Grid>
             </Grid>

@@ -17,7 +17,7 @@ const LivingSpaceItem = () => {
     const propertyItem: Property = JSON.parse(getPropertyFromRouter);
     const {attributes} = propertyItem;
     return (
-        <Layout>
+        <>
             <Box px={20}>
                 <Typography variant={'h6'}>{attributes?.Title}</Typography>
                 <Stack direction={'row'} justifyContent={'space-between'} pb={2}>
@@ -42,7 +42,7 @@ const LivingSpaceItem = () => {
                 <Features amenities={propertyItem.attributes.amenities}/>
                 {/*<Location />*/}
             </Box>
-        </Layout>
+        </>
     )
 }
 export default LivingSpaceItem;
