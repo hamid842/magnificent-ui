@@ -135,7 +135,7 @@ export default function Header() {
                 </Box>
 
                 <Box sx={{flexGrow: 0}}>
-                    <ColorButton variant={'contained'} sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}>Rent
+                    <ColorButton size={'small'} variant={'contained'} sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}>Rent
                         your place</ColorButton>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>

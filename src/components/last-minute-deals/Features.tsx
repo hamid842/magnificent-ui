@@ -21,7 +21,6 @@ const externalFeatures = [
 const Features = ({amenities}: Props) => {
     const {data} = amenities;
     const mapped = data.map(el => el.attributes.name).join(",")
-    console.log(mapped)
     return (
         <Paper elevation={3} sx={{p: 2, my: 2, borderRadius: 2}}>
             <Grid container spacing={3}>

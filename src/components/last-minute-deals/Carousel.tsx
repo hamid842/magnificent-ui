@@ -41,7 +41,7 @@ const AppCarousel = ({images}:Props)=>{
                 images?.map(image =>
                     <div key={image.id}>
                         <Image
-                            src={image.url} width={400} height={400} alt={image.caption}/>
+                            src={image.url} width={350} height={350} alt={image.caption}/>
                     </div>)
             }
         </Carousel>

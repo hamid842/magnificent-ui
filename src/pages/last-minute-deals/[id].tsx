@@ -1,7 +1,6 @@
-import Layout from "@/components/Layout";
 import {useRouter} from "next/router";
 import {Property} from "@/utils/property-type";
-import {Box, Button, Stack, Typography} from "@mui/material";
+import {Box, Button, Grid, Stack, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {SellOutlined} from "@mui/icons-material";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,6 +8,7 @@ import AppCarousel from "@/components/last-minute-deals/Carousel";
 import GeneralInformation from "@/components/last-minute-deals/GeneralInformation";
 import Explanation from "@/components/last-minute-deals/Explanation";
 import Features from "@/components/last-minute-deals/Features";
+import BookingCalculationSection from "@/components/last-minute-deals/BookingCalculationSection";
 
 
 const LivingSpaceItem = () => {
@@ -31,7 +31,14 @@ const LivingSpaceItem = () => {
                         <Typography variant={'subtitle1'} sx={{fontWeight: 600}}>{attributes.price} AED</Typography>
                     </Stack>
                 </Stack>
-                <AppCarousel images={attributes?.images}/>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={9} lg={8} >
+                        <AppCarousel images={attributes?.images}/>
+                    </Grid>
+                    <Grid item xs={12} sm={3} lg={4}>
+                        <BookingCalculationSection/>
+                    </Grid>
+                </Grid>
                 <GeneralInformation data={propertyItem}/>
                 <Explanation explanation={attributes.explanation}/>
                 <Stack alignItems={'center'}>
@@ -40,7 +47,7 @@ const LivingSpaceItem = () => {
                     >Confirm Booking</Button>
                 </Stack>
                 <Features amenities={propertyItem.attributes.amenities}/>
-                {/*<Location />*/}
+                {/*<LocationInformation />*/}
             </Box>
         </>
     )
