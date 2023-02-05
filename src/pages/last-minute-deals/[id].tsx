@@ -9,6 +9,8 @@ import GeneralInformation from "@/components/last-minute-deals/GeneralInformatio
 import Explanation from "@/components/last-minute-deals/Explanation";
 import Features from "@/components/last-minute-deals/Features";
 import BookingCalculationSection from "@/components/last-minute-deals/BookingCalculationSection";
+import AccessibleInformation from "@/components/last-minute-deals/AccessibleInformation";
+import LocationInformation from "@/components/last-minute-deals/LocationInformation";
 
 
 const LivingSpaceItem = () => {
@@ -47,7 +49,8 @@ const LivingSpaceItem = () => {
                     >Confirm Booking</Button>
                 </Stack>
                 <Features amenities={propertyItem.attributes.amenities}/>
-                {/*<LocationInformation />*/}
+                <LocationInformation />
+                <AccessibleInformation />
             </Box>
         </>
     )
