@@ -8,8 +8,8 @@ import {ImageType} from "@/utils/property-type";
 
 const arrowStyles: CSSProperties = {
     position: 'absolute',
-    backgroundColor:'white',
-    opacity:0.5,
+    backgroundColor: 'white',
+    opacity: 0.5,
     zIndex: 2,
     top: 'calc(50% - 15px)',
     width: 40,
@@ -17,31 +17,41 @@ const arrowStyles: CSSProperties = {
     cursor: 'pointer',
 };
 
-type Props ={
-    images:ImageType[]
+type Props = {
+    images: ImageType[]
 }
 
-const AppCarousel = ({images}:Props)=>{
+const AppCarousel = ({images}: Props) => {
     return (
         <Carousel
+            autoPlay
+            infiniteLoop
+            transitionTime={1000}
             showIndicators={false}
-            renderArrowNext={(onClickHandler, hasNext, label) =>
+            thumbWidth={80}
+            renderArrowNext={(onClickHandler, hasNext) =>
                 hasNext && (
-                    <IconButton sx={{...arrowStyles, right: 15}} onClick={onClickHandler}><ArrowForwardIosIcon/></IconButton>
+                    <IconButton sx={{...arrowStyles, right: 15}}
+                                onClick={onClickHandler}><ArrowForwardIosIcon/></IconButton>
                 )
             }
-            renderArrowPrev={(onClickHandler, hasPrev, label) =>
+            renderArrowPrev={(onClickHandler, hasPrev) =>
                 hasPrev && (
                     <IconButton sx={{...arrowStyles, left: 15}} onClick={onClickHandler}><ArrowBackIosNewIcon/></IconButton>
                 )
             }
-            showThumbs={false}
+            showThumbs={true}
+            renderThumbs={() => images?.map(image =>
+                <div key={image.id}>
+                    <Image
+                        src={image.url} width={80} height={50} alt={image.caption}/>
+                </div>)}
         >
             {
                 images?.map(image =>
                     <div key={image.id}>
                         <Image
-                            src={image.url} width={350} height={350} alt={image.caption}/>
+                            src={image.url} width={300} height={320} alt={image.caption}/>
                     </div>)
             }
         </Carousel>

@@ -21,7 +21,7 @@ const BookingCalculationSection = (props: any) => {
 
     return (
         <>
-            <Paper elevation={3} sx={{p: 1,height:'100%'}}>
+            <Paper elevation={3} sx={{p: 1,height:320}}>
                 <Stack direction={'column'} alignItems={'center'}>
                     <Typography variant={'subtitle2'} p={2}>Booking Calculation</Typography>
                     <DateRangePicker
@@ -43,7 +43,7 @@ const BookingCalculationSection = (props: any) => {
                         onDatesChange={onDateChange}
                         onFocusChange={onFocusChange}
                     />
-                    <Box sx={{width: '100%', pt: 3,pb:2}}>
+                    <Box sx={{width: '100%', pt: 2,pb:1}}>
                         <TextField fullWidth size={'small'} type={'number'} label="Guests" defaultValue={1} variant="outlined" InputLabelProps={{
                             shrink: true,
                         }}/>
