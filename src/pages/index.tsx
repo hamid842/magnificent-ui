@@ -44,6 +44,7 @@ const HomePage = ({properties}: Props) => {
                     src={homePagePicture}
                     alt={'Pic'}
                     sizes="90vw"
+                    priority
                     style={{
                         width: '90%',
                         height: '75vh',

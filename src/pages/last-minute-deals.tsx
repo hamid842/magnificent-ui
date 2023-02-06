@@ -61,9 +61,9 @@ const LastMinuteDeals = ({properties}: Props) => {
                     })}
 
                 </Grid>
-                <Stack alignItems={'center'} py={10}>
-                    <Pagination/>
-                </Stack>
+                {/*<Stack alignItems={'center'} py={10}>*/}
+                {/*    <Pagination/>*/}
+                {/*</Stack>*/}
             </Box>
         </>
     )

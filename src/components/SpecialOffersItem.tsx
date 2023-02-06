@@ -40,7 +40,7 @@ const SpecialOffersItem = ({data}:Props) => {
                 </Box>
             </Box>
             <Box sx={{paddingTop: 2}}>
-                <Typography variant={'subtitle1'} sx={{fontSize:16}} noWrap><b>{attributes.Title}</b></Typography>
+                <Typography variant={'subtitle1'} sx={{fontSize:16}}><b>{attributes.Title}</b></Typography>
                 <Typography variant={'body2'} sx={{color: 'gray'}}>{attributes.bedroomsNumber} Bedroom/s Combined Lodge</Typography>
                 <Typography variant={'subtitle1'}>28 October - 1 November</Typography>
                 <Typography variant={'subtitle1'}
