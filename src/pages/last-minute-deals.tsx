@@ -4,7 +4,6 @@ import FilterDialog from "@/components/last-minute-deals/FilterDialog";
 import SortByDropdown from "@/components/last-minute-deals/SortByDropdown";
 import axios from "axios";
 import SpecialOffersItem from "@/components/SpecialOffersItem";
-import Pagination from "@/components/last-minute-deals/Pagination";
 import {Property} from "@/utils/property-type";
 import {useRouter} from "next/router";
 
@@ -54,7 +53,7 @@ const LastMinuteDeals = ({properties}: Props) => {
                                   onClick={() => router.push({
                                       pathname: `/last-minute-deals/${property.id}`,
                                       query: {propertyItem: JSON.stringify(property)}
-                                  }, `/last-minute-deals/${property.id}`)} sx={{cursor:'pointer'}}>
+                                  }, `/last-minute-deals/${property.id}`)} sx={{cursor: 'pointer'}}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
                         )

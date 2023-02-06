@@ -49,7 +49,7 @@ const SearchDestination = ({position}:Props) => {
                                        label={'Select Date'}/>
                         </FormControl>
                         <IconButton sx={{backgroundColor: "#A47C30"}}>
-                            <SearchIcon/>
+                            <SearchIcon sx={{color:'white'}}/>
                         </IconButton>
                     </Box>
                 </Grid>
