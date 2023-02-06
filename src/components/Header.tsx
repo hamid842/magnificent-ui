@@ -64,8 +64,8 @@ export default function Header() {
                     alt={'Logo'}
                     width={100}
                     height={60}
-                    style={{cursor:'pointer'}}
-                    onClick={()=>router.push('/')}
+                    style={{cursor: 'pointer'}}
+                    onClick={() => router.push('/')}
                 />
                 <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                     <IconButton
@@ -135,7 +135,9 @@ export default function Header() {
                 </Box>
 
                 <Box sx={{flexGrow: 0}}>
-                    <ColorButton size={'small'} variant={'contained'} sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}>Rent
+                    <ColorButton size={'small'} variant={'contained'}
+                                 sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}
+                                 onClick={() => router.push('/rent-your-place')}>Rent
                         your place</ColorButton>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
