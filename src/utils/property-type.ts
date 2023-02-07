@@ -20,20 +20,20 @@ export interface Contact {
     contactAddress?: any;
 }
 
-export interface Attributes2 {
+export interface AmenitiesAttributes {
     name: string;
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
 }
 
-export interface Datum {
+export interface AmmenitiesData {
     id: number;
-    attributes: Attributes2;
+    attributes: AmenitiesAttributes;
 }
 
 export interface Amenities {
-    data: Datum[];
+    data: AmmenitiesData[];
 }
 
 export interface Attributes3 {
@@ -101,4 +101,16 @@ export interface Attributes {
 export interface Property {
     id:string;
     attributes:Attributes;
+}
+
+export interface PropertyTypeAttributes {
+    name:string;
+    createdAt?:Date;
+    updatedAt?:Date;
+    publishedAt?:Date
+}
+
+export interface PropertyType {
+    id:number;
+    attributes:PropertyTypeAttributes
 }

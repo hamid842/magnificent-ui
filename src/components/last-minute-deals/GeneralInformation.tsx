@@ -1,5 +1,5 @@
 import {Grid, Paper, Typography} from "@mui/material";
-import GeneralInfoTitleAndValue from "@/components/last-minute-deals/GeneralInfoTitleAndValue";
+import GeneralInfoTitleAndValue from "@/components/GeneralInfoTitleAndValue";
 import dayjs from "dayjs";
 import {Property} from "@/utils/property-type";
 

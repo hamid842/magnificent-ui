@@ -10,9 +10,9 @@ import {StepIconProps} from "@mui/material/StepIcon";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import FirstStep from "@/components/rent-your-place/FirstStep";
-import SecondStep from "@/components/rent-your-place/SecondStep";
-import ThirdStep from "@/components/rent-your-place/ThirdStep";
+import FirstStep from "@/components/rent-your-place/first-step/FirstStep";
+import SecondStep from "@/components/rent-your-place/second-step/SecondStep";
+import ThirdStep from "@/components/rent-your-place/third-step/ThirdStep";
 import {Button} from "@mui/material";
 
 const steps = ["Step 1", "Step 2", "Step 3"]
@@ -102,7 +102,7 @@ export default function HorizontalLinearStepper() {
                     disabled={activeStep === 0}
                     onClick={handleBack}
                     sx={{
-                        mr: 1,
+                        my:2,
                         textTransform: 'capitalize',
                         backgroundColor: activeStep === 0 ? 'gray' : '#A47C30',
                         display: activeStep === 0 ? 'none' : 'normal',
@@ -120,7 +120,7 @@ export default function HorizontalLinearStepper() {
                 </Button>
                 <Button variant={'outlined'} onClick={handleNext}
                         sx={{
-                            mr: 1,
+                            my: 2,
                             textTransform: 'capitalize',
                             backgroundColor: '#A47C30',
                             color: 'white',
