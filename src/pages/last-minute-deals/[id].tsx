@@ -17,7 +17,7 @@ const LivingSpaceItem = () => {
     const router = useRouter();
     const getPropertyFromRouter = router?.query?.propertyItem as string;
     const propertyItem: Property = JSON.parse(getPropertyFromRouter);
-    const {attributes} = propertyItem;
+    const { id: propertyId, attributes } = propertyItem;
     return (
         <>
             <Box px={20}>
@@ -38,7 +38,7 @@ const LivingSpaceItem = () => {
                         <AppCarousel images={attributes?.images}/>
                     </Grid>
                     <Grid item xs={12} sm={3} lg={4}>
-                        <BookingCalculationSection/>
+                        <BookingCalculationSection propertyId={propertyId} />
                     </Grid>
                 </Grid>
                 <GeneralInformation data={propertyItem}/>
