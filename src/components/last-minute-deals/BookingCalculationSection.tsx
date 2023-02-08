@@ -1,8 +1,9 @@
-import { FC, useEffect, useState, ChangeEvent } from 'react';
+import { FC, useEffect, useState, ChangeEvent, useRef, MutableRefObject } from 'react';
+import { Property } from "@/utils/property-type";
 import 'react-dates/initialize';
 import {Box, Button, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
-import {DateRangePicker} from 'react-dates';
+import {CalendarDay, DateRangePicker} from 'react-dates';
 import {CalendarMonthRounded} from "@mui/icons-material";
 import axios from 'axios';
 import moment from 'moment';
@@ -22,10 +23,16 @@ type TPrice = {
 }
 
 type Props = {
-    propertyId: string,
+    property: Property,
+    blockedDates: string[]
 };
 
-const BookingCalculationSection: FC<Props> = ({ propertyId }) => {
+const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
+    const { id: propertyId } = property;
+    const { minNights, maxNights, personCapacity } = property.attributes;
+    // TODO: Q: Can we book for more than personCapacity?
+    //=======================================================================================================================================
+
     const [focusedInput, setFocusedInput] = useState(null)
 
     const onFocusChange = (focusedInput: any) => {
@@ -64,6 +71,15 @@ const BookingCalculationSection: FC<Props> = ({ propertyId }) => {
         setEndDate(endDate)
     }
 
+    //=======================================================================================================================================
+
+    /**
+     * This function will be passed to date-picker to check for each day's availability 
+     * @returns is the day blocked?
+     */
+    const isDayBlocked = (day: moment.Moment) => {
+        return blockedDates.some(blockedDate => day.isSame(blockedDate, 'day'));
+    }
     //=======================================================================================================================================
     //=======================================================================================================================================
 
@@ -132,6 +148,7 @@ const BookingCalculationSection: FC<Props> = ({ propertyId }) => {
                         endDate={endDate}
                         onDatesChange={onDateChange}
                         onFocusChange={onFocusChange}
+                        isDayBlocked={isDayBlocked}
                     />
                     {/* Guest Count Input------------------------------------------------------------------------------- */}
                     <Box sx={{width: '100%', pt: 2,pb:1}}>

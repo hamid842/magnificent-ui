@@ -11,13 +11,64 @@ import Features from "@/components/last-minute-deals/Features";
 import BookingCalculationSection from "@/components/last-minute-deals/BookingCalculationSection";
 import AccessibleInformation from "@/components/last-minute-deals/AccessibleInformation";
 import LocationInformation from "@/components/last-minute-deals/LocationInformation";
+import moment from "moment";
+import axios from "axios";
+import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 
+//============================================================================================
+const BASE_URL: string = 'http://localhost:1337/';
+const DATE_FORMAT = 'YYYY-MM-DD';
+
+type TCalendarDay = { date: string, isAvailable: 0 | 1 };
+
+/**
+ * This function retrieves the list of dates on which the property is not available
+ * @returns an array of dates on which the property is not available
+ */
+const getBlockedDates = async (propertyId: string): Promise<string[]> => {
+    let blockedDates: string[] = [];
+    // Get calendar data
+    const startDate: moment.Moment = moment(new Date()); // Now
+    const endDate: moment.Moment = moment(new Date()).add(1, 'year'); // Next Year
+    //------------------------------------------------------------------------------------
+    const priceRequestURL: URL = new URL(`/api/properties/${propertyId}/calendar`, BASE_URL);
+    priceRequestURL.searchParams.set('startDate', startDate.format(DATE_FORMAT));
+    priceRequestURL.searchParams.set('endDate', endDate.format(DATE_FORMAT));
+    // Just get the calendar dates which are blocked (not available)
+    priceRequestURL.searchParams.set('onlyBlocked', 'true');
+
+    try {
+        const result = await axios.get(priceRequestURL.toString());
+        const { data } = result;
+        if (data) {
+            // NOTE: Because we are just getting blocked dates from API, we can add all of them to 'blockedDates' array
+            blockedDates = data.map((item: TCalendarDay) => item.date);
+        }
+    } catch (error) {
+        console.log(`[ERROR: while retrieving calendar details] ->\n ${error}`); 
+    }
+    return blockedDates;
+}
+//============================================================================================
 
 const LivingSpaceItem = () => {
     const router = useRouter();
     const getPropertyFromRouter = router?.query?.propertyItem as string;
     const propertyItem: Property = JSON.parse(getPropertyFromRouter);
-    const { id: propertyId, attributes } = propertyItem;
+    const { attributes } = propertyItem;
+
+    //============================================================================================
+    // TODO: The current procedure of handling calendar and blockedDates must change
+    const [blockedDates, setBlockedDates] = useState<string[]>([]);
+    useEffect(() => {
+        (async () => {
+            setBlockedDates(
+                await getBlockedDates(propertyItem.id)
+            );
+        })();
+    }, []);
+    //============================================================================================
+
     return (
         <>
             <Box px={20}>
@@ -38,7 +89,7 @@ const LivingSpaceItem = () => {
                         <AppCarousel images={attributes?.images}/>
                     </Grid>
                     <Grid item xs={12} sm={3} lg={4}>
-                        <BookingCalculationSection propertyId={propertyId} />
+                    <BookingCalculationSection property={propertyItem} blockedDates={blockedDates} />
                     </Grid>
                 </Grid>
                 <GeneralInformation data={propertyItem}/>
