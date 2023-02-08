@@ -119,8 +119,8 @@ const BookingCalculationSection: FC<Props> = ({ propertyId }) => {
                         small
                         showClearDates
                         hideKeyboardShortcutsPanel
-                        minimumNights={2}
-                        orientation={'vertical'}
+                        minimumNights={3}
+                        orientation={'horizontal'}
                         customInputIcon={<CalendarMonthRounded fontSize={'small'} sx={{color: "#A47C30"}}/>}
                         displayFormat={'YYYY-MM-DD'}
                         startDatePlaceholderText={'Check in'}
