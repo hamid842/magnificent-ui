@@ -1,7 +1,11 @@
-import Head from 'next/head'
-import Header from '@/components/Header'
 import React from "react";
-import Footer from "./Footer";
+// Next.js
+import Head from 'next/head'
+// Project imports
+import Header from '@/components/Header'
+import AppFooter from "./AppFooter";
+
+//======================|| Main Layout ||===========================
 
 export default function Layout({children}: { children: React.ReactNode }) {
     return (
@@ -18,15 +22,14 @@ export default function Layout({children}: { children: React.ReactNode }) {
 
               body {
                 margin: 0;
+                padding: 0;
                 color: #333;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-                'Helvetica Neue', Arial, Noto Sans, sans-serif, 'Apple Color Emoji',
-                'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+                background-color: #FEFDF8;
               }
             `}</style>
             <Header/>
             <div>{children}</div>
-            <Footer />
+            <AppFooter />
         </>
     )
 }
