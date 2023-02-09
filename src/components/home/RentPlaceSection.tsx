@@ -1,21 +1,22 @@
-import {Box, Button, Grid, Stack, Typography} from "@mui/material";
+// Next.js
 import Image from "next/image";
-import rentImage from '../../../public/rent.png'
 import {useRouter} from "next/router";
+// Material-ui
+import {Box, Button, Grid, Typography} from "@mui/material";
+// Project imports
+import rentImage from '../../../public/rent.png'
+import TitleSeparator from "@/components/TitleSeparator";
+
+//======================|| Rent Your Place Section ||==========================
 
 const RentPlaceSection = () => {
     const router = useRouter();
     return (
-        <Box pt={10} px={8}>
-            <Stack alignItems={'center'}>
-                <Box sx={{width: '1px', height: 40, backgroundColor: "#A47C30"}}/>
-            </Stack>
-            <Typography align={'center'} variant={'h5'} py={2}>Rent your place </Typography>
-            <Typography align={'center'} variant={'subtitle2'} pt={2} color={'#A47C30'}
-                        sx={{letterSpacing: 5, fontSize: 10}}>LOREM IPSUM</Typography>
-            <Grid container spacing={5} mt={1}>
+        <Box>
+           <TitleSeparator separatorTitle={'With us'} title={'Rent Your Place'}/>
+            <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} lg={6}>
-                    <Image src={rentImage} alt={"Pic"} width={500} height={400} style={{background: "transparent"}}/>
+                    <Image src={rentImage} alt={"Pic"} width={450} height={400} style={{background: "transparent"}}/>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
                     <Typography sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.

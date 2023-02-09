@@ -1,13 +1,19 @@
+// Next.js
+import Image from "next/image";
+// Material-ui
 import {Box, Grid, Stack, Typography} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+// Project imports
 import profileImage from '../../../public/profile.png'
-import Image from "next/image";
+import TitleSeparator from "@/components/TitleSeparator";
+
+//=========================|| Reviews Section ||=========================
 
 const ReviewsSection = () => {
     return (
-        <Box px={8} pt={8}>
-            <Typography align={'center'} variant={'h5'}>Reviews</Typography>
+        <Box>
+            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'}/>
             <Stack direction={'row'} sx={{width: '100%', height: 300}} alignItems={'center'} justifyContent={'center'}>
                 <Box sx={{
                     display: 'flex',
@@ -26,7 +32,7 @@ const ReviewsSection = () => {
                         <Stack direction={'column'} alignItems={'center'} p={2}>
                             <Image src={profileImage} alt={'Profile'} width={50} height={50}
                                    style={{borderRadius: 50}}/>
-                            <Typography variant={'caption'} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
+                            <Typography variant={'caption'} pt={1} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit. Accusantium asperiores
                                 corporis distinctio iste laudantium minus nulla quo, repudiandae soluta suscipit!
                                 Accusantium deleniti eligendi enim ex fugiat hic nihil nostrum officia!</Typography>
@@ -37,7 +43,7 @@ const ReviewsSection = () => {
                         <Stack direction={'column'} alignItems={'center'} p={2}>
                             <Image src={profileImage} alt={'Profile'} width={50} height={50}
                                    style={{borderRadius: 50}}/>
-                            <Typography variant={'caption'} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
+                            <Typography variant={'caption'} pt={1} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit. Accusantium asperiores
                                 corporis distinctio iste laudantium minus nulla quo, repudiandae soluta suscipit!
                                 Accusantium deleniti eligendi enim ex fugiat hic nihil nostrum officia!</Typography>
@@ -48,7 +54,7 @@ const ReviewsSection = () => {
                         <Stack direction={'column'} alignItems={'center'} p={2}>
                             <Image src={profileImage} alt={'Profile'} width={50} height={50}
                                    style={{borderRadius: 50}}/>
-                            <Typography variant={'caption'} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
+                            <Typography variant={'caption'} pt={1} sx={{textAlign: 'justify'}}>Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit. Accusantium asperiores
                                 corporis distinctio iste laudantium minus nulla quo, repudiandae soluta suscipit!
                                 Accusantium deleniti eligendi enim ex fugiat hic nihil nostrum officia!</Typography>

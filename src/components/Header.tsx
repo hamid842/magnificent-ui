@@ -1,4 +1,8 @@
 import {MouseEvent, useState} from "react";
+// next.js
+import Image from "next/image";
+import {useRouter} from "next/router";
+// material-ui
 import {
     AppBar,
     Box,
@@ -9,14 +13,14 @@ import {
     MenuItem,
     Toolbar,
     Tooltip,
-    Typography,
+    Typography
 } from "@mui/material";
 import {styled} from '@mui/material/styles';
-import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
-import Image from "next/image";
-import {useRouter} from "next/router";
+// project imports
 import logo from "../../public/logo.png";
+import colors from '../assets/colors'
+import {switzerFont} from "@/assets/fonts";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -28,11 +32,13 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const ColorButton = styled(Button)<ButtonProps>({
     color: "white",
-    backgroundColor: "#A47C30",
+    backgroundColor: colors.mainColor,
     '&:hover': {
-        backgroundColor: "#A47C30",
+        backgroundColor: colors.mainColor,
     },
 });
+
+//========================|| Header ||=============================//
 
 export default function Header() {
     const router = useRouter();
@@ -46,10 +52,8 @@ export default function Header() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (e: any) => {
+    const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-        router.push(e.target.value).then(() => {
-        });
     };
 
     const handleCloseUserMenu = () => {
@@ -57,17 +61,29 @@ export default function Header() {
     };
 
     return (
-        <AppBar position="static" sx={{paddingX: 1, background: "transparent", boxShadow: "none"}}>
+        <AppBar position="static" sx={{
+            width: '100%',
+            px: 1,
+            py: 2,
+            position: 'absolute',
+            top: 0,
+            zIndex: 1000,
+            background: "transparent",
+            boxShadow: "none"
+
+        }}>
             <Toolbar disableGutters>
-                <Image
-                    src={logo}
-                    alt={'Logo'}
-                    width={100}
-                    height={60}
-                    style={{cursor: 'pointer'}}
-                    onClick={() => router.push('/')}
-                />
-                <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                <Box sx={{display: {xs: 'none', sm: 'none', lg: 'flex'}}}>
+                    <Image
+                        src={logo}
+                        alt={'Logo'}
+                        width={150}
+                        height={70}
+                        style={{cursor: 'pointer'}}
+                        onClick={() => router.push('/')}
+                    />
+                </Box>
+                <Box sx={{flexGrow:1,display: {xs: 'flex', md: 'none'}}}>
                     <IconButton
                         size="large"
                         aria-label="account of current user"
@@ -91,49 +107,49 @@ export default function Header() {
                         }}
                         open={Boolean(anchorElNav)}
                         onClose={handleCloseNavMenu}
-                        sx={{
-                            display: {xs: 'block', md: 'none'},
-                        }}
                     >
                         {pages.map((page) => (
                             <MenuItem key={page.label} value={page.path} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{page.label}</Typography>
+                                <Typography textAlign="center" sx={{fontSize: 18}}>{page.label}</Typography>
                             </MenuItem>
                         ))}
                     </Menu>
                 </Box>
-                <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
-                <Typography
-                    variant="h5"
-                    noWrap
-                    component="a"
-                    href=""
-                    sx={{
-                        mr: 2,
-                        display: {xs: 'flex', md: 'none'},
-                        flexGrow: 1,
-                        fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
-                        textDecoration: 'none',
-                        color: "#A47C30"
-                    }}
-                >
-                    LOGO
-                </Typography>
-                <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+                <Box sx={{
+                    flexGrow: 1,
+                    display: {xs: 'none', md: 'flex'},
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
                     {pages.map((page) => (
                         <Button
                             key={page.label}
+                            size={'small'}
                             value={page.path}
                             onClick={handleCloseNavMenu}
-                            sx={{my: 2, display: 'block', textTransform: "capitalize", color: 'black'}}
+                            className={switzerFont.className}
+                            sx={{
+                                fontSize: 14,
+                                fontWeight:400,
+                                ml: 1,
+                                display: 'block',
+                                textTransform: "capitalize",
+                                color: colors.navMenuColor,
+                                borderBottom: `2px solid transparent`,
+                                '&:hover': {
+                                    color: colors.mainColor,
+                                    borderRadius: 0,
+                                    background: 'transparent',
+                                    borderBottom: `2px solid ${colors.mainColor}`,
+
+                                }
+                            }}
                         >
                             {page.label}
                         </Button>
                     ))}
                 </Box>
-
+                {/* ========================= || Setting || ====================== */}
                 <Box sx={{flexGrow: 0}}>
                     <ColorButton size={'small'} variant={'contained'}
                                  sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}
