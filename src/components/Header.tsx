@@ -21,6 +21,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import logo from "../../public/logo.png";
 import colors from '../assets/colors'
 import {switzerFont} from "@/assets/fonts";
+import AppButton from "@/components/AppButton";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -45,6 +46,23 @@ export default function Header() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
+    const menuItemsStyles = {
+        fontSize: 14,
+        fontWeight: 400,
+        ml: 1,
+        display: 'block',
+        textTransform: "capitalize",
+        color: colors.navMenuColor,
+        borderBottom: `2px solid transparent`,
+        '&:hover': {
+            color: colors.mainColor,
+            borderRadius: 0,
+            background: 'transparent',
+            borderBottom: `2px solid ${colors.mainColor}`,
+
+        }
+    }
+
     const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -52,9 +70,10 @@ export default function Header() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (e:any) => {
+    const handleCloseNavMenu = (e: any) => {
         setAnchorElNav(null);
-        router.push(e.target.value).then(() => {});
+        router.push(e.target.value).then(() => {
+        });
     };
 
     const handleCloseUserMenu = () => {
@@ -71,10 +90,9 @@ export default function Header() {
             zIndex: 1000,
             background: "transparent",
             boxShadow: "none"
-
         }}>
             <Toolbar disableGutters>
-                <Box sx={{display: {xs: 'none', sm: 'none', lg: 'flex'}}}>
+                <Box sx={{display: {xs: 'none', sm: 'none', md: 'flex'}}}>
                     <Image
                         src={logo}
                         alt={'Logo'}
@@ -84,7 +102,7 @@ export default function Header() {
                         onClick={() => router.push('/')}
                     />
                 </Box>
-                <Box sx={{flexGrow:1,display: {xs: 'flex', md: 'none'}}}>
+                <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                     <IconButton
                         size="large"
                         aria-label="account of current user"
@@ -118,9 +136,8 @@ export default function Header() {
                 </Box>
                 <Box sx={{
                     flexGrow: 1,
-                    display: {xs: 'none', md: 'flex'},
-                    justifyContent: 'center',
-                    alignItems: 'center'
+                    ml: 2,
+                    display: {xs: 'none', md: 'flex'}
                 }}>
                     {pages.map((page) => (
                         <Button
@@ -129,35 +146,17 @@ export default function Header() {
                             value={page.path}
                             onClick={handleCloseNavMenu}
                             className={switzerFont.className}
-                            sx={{
-                                fontSize: 14,
-                                fontWeight:400,
-                                ml: 1,
-                                display: 'block',
-                                textTransform: "capitalize",
-                                color: colors.navMenuColor,
-                                borderBottom: `2px solid transparent`,
-                                '&:hover': {
-                                    color: colors.mainColor,
-                                    borderRadius: 0,
-                                    background: 'transparent',
-                                    borderBottom: `2px solid ${colors.mainColor}`,
-
-                                }
-                            }}
+                            sx={menuItemsStyles}
                         >
                             {page.label}
                         </Button>
                     ))}
                 </Box>
-                {/* ========================= || Setting || ====================== */}
+                {/* ========================= || Setting (when click on header image) || ====================== */}
                 <Box sx={{flexGrow: 0}}>
-                    <ColorButton size={'small'} variant={'contained'}
-                                 sx={{borderRadius: 25, m: 1, textTransform: "capitalize"}}
-                                 onClick={() => router.push('/rent-your-place')}>Rent
-                        your place</ColorButton>
+                    <AppButton label={'Rent Your Place'} sx={{mr:1}} onClick={() => router.push('/rent-your-place')}/>
                     <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                        <IconButton onClick={handleOpenUserMenu}>
                             <Image src={'/profile.png'} alt={"Profile Image"} width={40} height={40}
                                    style={{borderRadius: 25}}/>
                         </IconButton>

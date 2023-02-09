@@ -42,7 +42,7 @@ const AppFooter = () => {
         <Box sx={{backgroundColor: "#000000"}}>
             <AppContainer>
                 <Grid container spacing={4} alignItems={'center'}>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
                         <Stack direction={'column'}>
                             <Image
                                 src={logo}
@@ -57,7 +57,7 @@ const AppFooter = () => {
                             />
                         </Stack>
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
                         <EuclidText sx={footerTitleStyle} text={'Quick Links'}/>
                         <Box my={2}>
                             <Stack className={switzerFont.className}>
@@ -74,7 +74,7 @@ const AppFooter = () => {
                             </Stack>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
                         <EuclidText sx={footerTitleStyle} text={'Information'}/>
                         <Box my={2}>
                             <Stack className={switzerFont.className}>
@@ -89,7 +89,7 @@ const AppFooter = () => {
                             </Stack>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
                         <EuclidText sx={footerTitleStyle} text={'Contact Details'}/>
                         <Box my={2}>
                             <Stack direction={'row'} alignItems={'center'}>

@@ -1,5 +1,9 @@
 {
   "footer": {
     "about": "Magnificent Holiday Home Rental is a trusted marketplace where guests can rent fully equipped luxury holiday homes in the prime locations of Dubai, with easy access to local amenities and the added benefit of space and freedom to live a home-from-home experience."
+  },
+  "homePage": {
+    "rentExplanation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!",
+    "reviews": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!"
   }
 }

@@ -7,7 +7,7 @@ type AppContainerProps = {
 
 const AppContainer = ({children}:AppContainerProps)=>{
     return (
-        <Box sx={{px:{xs:1,sm:2,lg:20}}}>{children}</Box>
+        <Box sx={{px:{xs:1,sm:2,md:18,lg:25}}}>{children}</Box>
     )
 }
 export default AppContainer;

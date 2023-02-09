@@ -15,6 +15,7 @@ import {instance} from "@/config/axiosConfig";
 import TitleSeparator from "@/components/TitleSeparator";
 import AppContainer from "@/components/AppContainer";
 import colors from "@/assets/colors";
+import AppButton from "@/components/AppButton";
 
 const qs = require('qs');
 const query = qs.stringify({
@@ -28,8 +29,9 @@ const query = qs.stringify({
 });
 
 export async function getServerSideProps() {
-    const {data} = await instance(`/properties?${query}`)
+    const {data} = await instance.get(`/properties?${query}`)
     const properties = data.data;
+    console.log("HOme page data fetched",data)
     return {
         props: {
             properties
@@ -37,11 +39,11 @@ export async function getServerSideProps() {
     }
 }
 
-type Props = {
+type HomePageProps = {
     properties: Property[]
 }
 
-const HomePage = ({properties}: Props) => {
+const HomePage = ({properties}: HomePageProps) => {
     const router = useRouter();
     return (
         <>
@@ -61,20 +63,17 @@ const HomePage = ({properties}: Props) => {
             </Box>
             <AppContainer>
                 <TitleSeparator separatorTitle={'Get our'} title={'Special Offers'}/>
-                <Grid container spacing={5}>
+                <Grid container spacing={3}>
                     {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
                         Loading... </Grid> : properties?.map((property: Property) => {
                         return (
-                            <Grid key={property.id} item xs={12} sm={6} lg={4}>
+                            <Grid key={property.id} item xs={12} sm={6} md={4} lg={4}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
                         )
                     })}
                     <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center'}}>
-                        <Button variant={'contained'}
-                                sx={{backgroundColor: colors.mainColor, width: 120, borderRadius: 25, textTransform: 'none'}}
-                                onClick={() => router.push('/last-minute-deals')}>See
-                            more</Button>
+                        <AppButton label={'See more'} sx={{width: 120,mt:2}} onClick={() => router.push('/last-minute-deals')}/>
                     </Grid>
                 </Grid>
                 <ActivityList/>

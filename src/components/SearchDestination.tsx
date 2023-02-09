@@ -10,11 +10,13 @@ import colors from '../assets/colors'
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
-        color: colors.mainColor
+        color: colors.mainColor,
+        background: 'transparent'
     },
-    '& .MuiTextFilled-root': {
+    '& .MuiFilledInput-root': {
+        background: 'transparent',
         '&:hover fieldset': {
-            background: 'transparent',
+            background: 'transparent'
         },
     },
 });
