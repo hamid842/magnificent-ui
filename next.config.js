@@ -1,16 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextTranslate = require("next-translate");
-module.exports = nextTranslate();
+
 const nextConfig = {
-  i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US'
-  },
   experimental: {
     appDir: true,
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } }
-    ],
+    ]
   },
   images: {
     remotePatterns: [
