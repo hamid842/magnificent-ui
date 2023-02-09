@@ -52,8 +52,9 @@ export default function Header() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (e:any) => {
         setAnchorElNav(null);
+        router.push(e.target.value).then(() => {});
     };
 
     const handleCloseUserMenu = () => {
