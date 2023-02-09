@@ -1,12 +1,29 @@
 import { FC, useEffect, useState, ChangeEvent, useRef, MutableRefObject } from 'react';
 import { Property } from "@/utils/property-type";
 import 'react-dates/initialize';
-import {Box, Button, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
+import {Box, Button, InputAdornment, Paper, Stack, TextField, Typography, Divider} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
 import {CalendarDay, DateRangePicker} from 'react-dates';
 import {CalendarMonthRounded} from "@mui/icons-material";
 import axios from 'axios';
 import moment from 'moment';
+
+// Capitalize every word
+const capitalize = (input: string): string => {
+    const words = input.split(" ");
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    return words.join(" ");
+}
+
+// Comma separate numbers
+const commaSeparate = (input: number): string => {
+    let x = String(input);
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
 
 const BASE_URL: string = 'http://localhost:1337/';
 const DATE_FORMAT = 'YYYY-MM-DD';
@@ -221,14 +238,22 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
                         Book now
                     </Button>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
-                    <Box>
+                    <Box sx={{ width: 1 }}>
                         {
                             price && price.components?.map((item) => {
-                                return <div key={item.name}> { item.total } </div>
+                                return (<div className="price-item" key={item.name}>
+                                            <span className="price-title">{ capitalize(item.title) }:</span>
+                                            <span>{ commaSeparate(item.total) } AED</span>
+                                        </div>)
                             })
                         }
-                        <hr />
-                        { price && <div>{ price.totalPrice }</div>}
+                        <Divider />
+                        { 
+                            price && (<div className="price-item">
+                                        <span className="price-title">Total: </span>
+                                        <span className="price-total">{ commaSeparate(price.totalPrice) } AED</span>
+                                    </div>)
+                        }
                     </Box>
                     {/* /END -----------------------------------------------------------------------------------------------*/}
                 </Stack>
@@ -238,6 +263,19 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
                     background: #A47C30; //background
                     color: white; //text
                     border: 1px solid red; //default styles include a border
+                }
+                .price-item {
+                    margin: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .price-title {
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+                .price-total {
+                    font-weight: bold;
                 }
             `}</style>
 
