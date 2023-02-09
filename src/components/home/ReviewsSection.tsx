@@ -14,7 +14,7 @@ const ReviewsSection = () => {
     return (
         <Box>
             <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'}/>
-            <Stack direction={'row'} sx={{width: '100%', height: 300}} alignItems={'center'} justifyContent={'center'}>
+            <Stack direction={'row'} sx={{width: '100%', height: 250,pb:10}} alignItems={'center'}>
                 <Box sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -27,7 +27,7 @@ const ReviewsSection = () => {
                 }}>
                     <KeyboardArrowLeftIcon sx={{color: 'white'}}/>
                 </Box>
-                <Grid container spacing={4}>
+                <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} lg={4}>
                         <Stack direction={'column'} alignItems={'center'} p={2}>
                             <Image src={profileImage} alt={'Profile'} width={50} height={50}
