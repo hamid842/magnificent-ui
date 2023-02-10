@@ -31,7 +31,6 @@ const query = qs.stringify({
 export async function getServerSideProps() {
     const {data} = await instance.get(`/properties?${query}`)
     const properties = data.data;
-    console.log("HOme page data fetched",data)
     return {
         props: {
             properties

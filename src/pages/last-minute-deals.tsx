@@ -13,20 +13,26 @@ import colors from "@/assets/colors";
 import {IPagination, Property} from "@/utils/property-type";
 import {instance} from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
+import {GetServerSideProps} from "next";
 
-const qs = require('qs');
-const query = qs.stringify({
-    populate: '*',
-    pagination: {
-        pageSize: 9,
-        page: 1,
-    }
-});
+// const qs = require('qs');
+// const query = qs.stringify({
+//     populate: '*',
+//     pagination: {
+//         pageSize: 9,
+//         page: 1
+//     }
+// }, {
+//     encodeValuesOnly: true, // prettify URL
+// });
 
-export async function getServerSideProps() {
-    const response = await instance(`/properties?${query}`)
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
+    console.log("==============",query)
+    const page = query.page || 1;
+    const response = await instance(`/properties?populate=*&pagination[page]=${page}&pagination[pageSize]=9`)
     const properties = response.data?.data;
     const pagination = response.data.meta.pagination;
+    console.log("Fetching Data for: ",pagination)
     return {
         props: {
             properties,
@@ -35,14 +41,14 @@ export async function getServerSideProps() {
     }
 }
 
-type Props = {
+type LastMinuteDealsProps = {
     properties: Property[],
-    pagination:IPagination
+    pagination: IPagination
 }
 
 //======================|| Last Minute Deals ||============================
 
-const LastMinuteDeals = ({properties,pagination}: Props) => {
+const LastMinuteDeals = ({properties, pagination}: LastMinuteDealsProps) => {
     const [isLoading, setLoading] = useState(false);
     const startLoading = () => setLoading(true);
     const stopLoading = () => setLoading(false);
@@ -58,18 +64,15 @@ const LastMinuteDeals = ({properties,pagination}: Props) => {
         }
     }, [])
 
+
     const paginationHandler = (event: ChangeEvent<unknown>, value: number) => {
-
-        const currentPath = router.pathname;
-        const currentQuery:any = router.query;
-        currentQuery.page =value;
-        console.log("Current query",currentQuery)
-
+        const path = router.pathname
+        const query = router.query
+        query.page = value.toString()
         router.push({
-            pathname: currentPath,
-            query: currentQuery,
-        }).then(() =>{});
-
+            pathname: path,
+            query: query,
+        }).then(()=>{})
     };
 
 
