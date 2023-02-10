@@ -1,5 +1,5 @@
 import {Grid, Paper, Typography} from "@mui/material";
-import AppTextField from "@/components/AppTextField";
+import AppTextField from "@/components/global/AppTextField";
 import {ChangeEvent} from "react";
 
 type Props = {

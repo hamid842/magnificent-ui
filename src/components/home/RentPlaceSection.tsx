@@ -5,9 +5,9 @@ import {useRouter} from "next/router";
 import {Box, Grid} from "@mui/material";
 // Project imports
 import rentImage from '../../../public/rent.png'
-import TitleSeparator from "@/components/TitleSeparator";
+import TitleSeparator from "@/components/global/TitleSeparator";
 import dictionaries from '../../../dictionaries/en.json';
-import AppButton from "@/components/AppButton";
+import AppButton from "@/components/global/AppButton";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 
 //======================|| Rent Your Place Section ||==========================

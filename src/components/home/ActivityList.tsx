@@ -1,30 +1,32 @@
 // Next.js
 import Image from "next/image";
 // Material-ui
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Grid, Stack, Typography} from "@mui/material";
 // Project imports
 import activityOne from '../../../public/activity-1.png'
 import activityTwo from '../../../public/activity-2.png'
 import activityThree from '../../../public/activity-3.png'
 import activityMain from '../../../public/activity-main.png'
-import OurPartnership from "@/components/OurPartnership";
-import TitleSeparator from "@/components/TitleSeparator";
+import OurPartnership from "@/components/global/OurPartnership";
+import TitleSeparator from "@/components/global/TitleSeparator";
 import colors from '../../assets/colors'
-import {switzerFont} from "@/assets/fonts";
+import SwitzerText from "@/components/css-texts/SwitzerText";
 
 //======================|| Activities Section ||========================
 
 const ActivityList = () => {
+
+    const imageTitleStyle = {fontWeight: 600,color: 'white'}
+    const headerTextStyle = {fontStyle: 'italic'}
+
     return (
         <>
             <TitleSeparator separatorTitle={'Spend your'} title={'Vacation with our activities'}/>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} lg={6}>
-                    <Typography variant={'body2'} sx={{fontStyle: 'italic'}}>The traveller where you can select
-                        your</Typography>
-                    <Typography variant={'body2'} sx={{fontStyle: 'italic'}}>desired activity destinations of
-                        your</Typography>
-                    <Typography variant={'body2'} sx={{fontStyle: 'italic'}}>choice for vacations.</Typography>
+                    <SwitzerText variant={'body2'} sx={headerTextStyle} text={'The traveller where you can select your'} />
+                    <SwitzerText variant={'body2'} sx={headerTextStyle} text={'desired activity destinations of your'}/>
+                    <SwitzerText variant={'body2'} sx={headerTextStyle} text={'choice for vacations.'}/>
                     <Typography variant={'body2'} mt={3} sx={{fontWeight: 600}}>ACTIVITY LIST</Typography>
                     <Grid container spacing={1} pt={2}>
                         <Grid item xs={12} sm={4} lg={4}>
@@ -44,10 +46,9 @@ const ActivityList = () => {
                                     borderTopRightRadius: 46,
                                     borderBottomLeftRadius: 46
                                 }}/>
-                                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                                    <Typography variant={'caption'} className={switzerFont.className}
-                                                sx={{fontWeight: 600, color: 'white'}}>Flying</Typography>
-                                </Box>
+                                <Stack alignItems={'center'} pt={1}>
+                                    <SwitzerText variant={'caption'} sx={imageTitleStyle} text={'Flying'}/>
+                                </Stack>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={4} lg={4}>
@@ -68,8 +69,9 @@ const ActivityList = () => {
                                     borderBottomLeftRadius: 5,
                                     borderBottomRightRadius: 46
                                 }}/>
-                                <Typography variant={'caption'} className={switzerFont.className}
-                                            sx={{fontWeight: 600, ml: 3, color: 'white'}}>Fun Activities</Typography>
+                                <Stack alignItems={'center'} pt={1}>
+                                    <SwitzerText variant={'caption'} sx={imageTitleStyle} text={'Fun Activities'}/>
+                                </Stack>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={4} lg={4}>
@@ -89,8 +91,9 @@ const ActivityList = () => {
                                     borderTopLeftRadius: 46,
                                     borderBottomRightRadius: 46
                                 }}/>
-                                <Typography variant={'caption'} className={switzerFont.className}
-                                            sx={{fontWeight: 600, ml: 2, color: 'white'}}>Beach Walking</Typography>
+                                <Stack alignItems={'center'} pt={1}>
+                                    <SwitzerText variant={'caption'} sx={imageTitleStyle} text={'Beach Walking'}/>
+                                </Stack>
                             </Box>
                         </Grid>
                     </Grid>

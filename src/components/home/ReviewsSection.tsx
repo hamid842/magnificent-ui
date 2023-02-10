@@ -6,7 +6,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // Project imports
 import profileImage from '../../../public/profile.png';
-import TitleSeparator from "@/components/TitleSeparator";
+import TitleSeparator from "@/components/global/TitleSeparator";
 import dictionaries from '../../../dictionaries/en.json';
 import SwitzerText from "@/components/css-texts/SwitzerText";
 

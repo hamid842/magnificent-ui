@@ -5,17 +5,17 @@ import {useRouter} from "next/router";
 import {Box, Button, Container, Grid} from "@mui/material";
 // Project imports
 import {Property} from "@/utils/property-type";
-import SpecialOffersItem from "@/components/SpecialOffersItem";
+import SpecialOffersItem from "@/components/global/SpecialOffersItem";
 import ActivityList from "@/components/home/ActivityList";
-import SearchDestination from "@/components/SearchDestination";
+import SearchDestination from "@/components/global/SearchDestination";
 import RentPlaceSection from "@/components/home/RentPlaceSection";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import homePagePicture from '../../public/home-page.png';
 import {instance} from "@/config/axiosConfig";
-import TitleSeparator from "@/components/TitleSeparator";
-import AppContainer from "@/components/AppContainer";
+import TitleSeparator from "@/components/global/TitleSeparator";
+import AppContainer from "@/components/global/AppContainer";
 import colors from "@/assets/colors";
-import AppButton from "@/components/AppButton";
+import AppButton from "@/components/global/AppButton";
 
 const qs = require('qs');
 const query = qs.stringify({

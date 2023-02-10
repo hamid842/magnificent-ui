@@ -1,14 +1,14 @@
 import {Box, Grid, Stack, Typography} from "@mui/material";
 import Image from "next/image";
 import rentImage from '../../public/rent-main.png'
-import OurPartnership from "@/components/OurPartnership";
+import OurPartnership from "@/components/global/OurPartnership";
 import RentSlider from "@/components/rent-your-place/RentSlider";
 import rentMiddleImage from '../../public/rent-page-middle.png'
 import travelPic from '../../public/ship.png';
 import cityPic from '../../public/city.png';
 import islandPic from '../../public/beach.png';
 import explorePic from '../../public/explore.png';
-import {ColorButton} from "@/components/Header";
+import {ColorButton} from "@/components/global/Header";
 import {useRouter} from "next/router";
 
 const RentYourPlace = () => {

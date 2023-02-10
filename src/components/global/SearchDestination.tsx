@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {CalendarTodayOutlined, PeopleAlt} from "@mui/icons-material";
 import {styled} from "@mui/material/styles";
 // Project imports
-import colors from '../assets/colors'
+import colors from '../../assets/colors'
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -15,7 +15,7 @@ const CssTextField = styled(TextField)({
     },
     '& .MuiFilledInput-root': {
         background: 'transparent',
-        '&:hover fieldset': {
+        '&:hover': {
             background: 'transparent'
         },
     },

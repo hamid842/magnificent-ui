@@ -6,7 +6,7 @@ import {SellOutlined} from "@mui/icons-material";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AppCarousel from "@/components/last-minute-deals/Carousel";
 import GeneralInformation from "@/components/last-minute-deals/GeneralInformation";
-import Explanation from "@/components/Explanation";
+import Explanation from "@/components/global/Explanation";
 import Features from "@/components/last-minute-deals/Features";
 import BookingCalculationSection from "@/components/last-minute-deals/BookingCalculationSection";
 import AccessibleInformation from "@/components/last-minute-deals/AccessibleInformation";

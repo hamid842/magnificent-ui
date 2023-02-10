@@ -1,6 +1,6 @@
 import {Grid, MenuItem, Paper, SelectChangeEvent, Typography} from "@mui/material";
-import AppTextField from "@/components/AppTextField";
-import SelectField from "@/components/SelectField";
+import AppTextField from "@/components/global/AppTextField";
+import SelectField from "@/components/global/SelectField";
 import {ChangeEvent, useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import {PropertyType} from "@/utils/property-type";

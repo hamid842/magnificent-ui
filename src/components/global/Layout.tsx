@@ -2,7 +2,7 @@ import React from "react";
 // Next.js
 import Head from 'next/head'
 // Project imports
-import Header from '@/components/Header'
+import Header from '@/components/global/Header'
 import AppFooter from "./AppFooter";
 
 //======================|| Main Layout ||===========================

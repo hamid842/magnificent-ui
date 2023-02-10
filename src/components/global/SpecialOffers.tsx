@@ -1,7 +1,7 @@
 import {Container, Grid, Stack} from "@mui/material";
-import data from '../data/data'
-import SpecialOffersItem from "@/components/SpecialOffersItem";
-import {ColorButton} from "@/components/Header";
+import data from '../../data/data'
+import SpecialOffersItem from "@/components/global/SpecialOffersItem";
+import {ColorButton} from "@/components/global/Header";
 
 const SpecialOffers = () => {
     return (

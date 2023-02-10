@@ -13,12 +13,12 @@ import {
     WhatsApp
 } from "@mui/icons-material";
 // Project imports
-import logo from "../../public/logo.png";
-import AppContainer from "@/components/AppContainer";
+import logo from "../../../public/logo.png";
+import AppContainer from "@/components/global/AppContainer";
 import colors from "@/assets/colors";
 import PoppinsText from "@/components/css-texts/PoppinsText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
-import dictionaries from '../../dictionaries/en.json'
+import dictionaries from '../../../dictionaries/en.json'
 import EuclidText from "@/components/css-texts/EuclidText";
 import {switzerFont} from "@/assets/fonts";
 
@@ -93,29 +93,29 @@ const AppFooter = () => {
                         <EuclidText sx={footerTitleStyle} text={'Contact Details'}/>
                         <Box my={2}>
                             <Stack direction={'row'} alignItems={'center'}>
-                                <LocationCityOutlined sx={{mr: 1, color: 'white'}}/>
+                                <LocationCityOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
                                 <SwitzerText sx={{color: 'white', fontSize: 10}}
                                              text={'Business Bay, OPUS by Omniyat, Dubai, UAE'}/>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} py={1}>
-                                <LocalPhoneOutlined sx={{mr: 1, color: 'white'}}/>
+                                <LocalPhoneOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
                                 <Link href={'tel:045547294'}
                                       style={linkStyles}>(04) 554
                                     7294</Link>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} className={switzerFont.className}>
-                                <EmailOutlined sx={{mr: 1, color: 'white'}}/>
+                                <EmailOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
                                 <Link href={`mailto:${process.env.NEXT_PUBLIC_MAIL_ADDRESS}`}
                                       style={linkStyles}>info@magnificent.ae</Link>
                             </Stack>
                             <Stack direction={'row'} py={1}>
-                                <Facebook fontSize={'large'} sx={{mr: 2, color: '#395590', cursor: 'pointer'}}
+                                <Facebook fontSize={'small'} sx={{mr: 2, color: '#395590', cursor: 'pointer'}}
                                           onClick={() => window.open(process.env.NEXT_PUBLIC_FACEBOOK_LINK)}/>
-                                <Instagram fontSize={'large'} sx={{mr: 2, color: '#F20299', cursor: 'pointer'}}
+                                <Instagram fontSize={'small'} sx={{mr: 2, color: '#F20299', cursor: 'pointer'}}
                                            onClick={() => window.open(process.env.NEXT_PUBLIC_INSTAGRAM_LINK)}/>
-                                <WhatsApp fontSize={'large'} sx={{mr: 2, color: '#41BA4F', cursor: 'pointer'}}
+                                <WhatsApp fontSize={'small'} sx={{mr: 2, color: '#41BA4F', cursor: 'pointer'}}
                                           onClick={() => window.open(process.env.NEXT_PUBLIC_WHATSAPP_LINK)}/>
-                                <LinkedIn fontSize={'large'} sx={{color: '#0B5FBB', cursor: 'pointer'}}
+                                <LinkedIn fontSize={'small'} sx={{color: '#0B5FBB', cursor: 'pointer'}}
                                           onClick={() => window.open(process.env.NEXT_PUBLIC_LINKEDIN_LINK)}/>
                             </Stack>
                         </Box>

@@ -1,7 +1,7 @@
 import {Container, Grid, Paper, Stack, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import GeneralInfoTitleAndValue from "@/components/GeneralInfoTitleAndValue";
-import Explanation from "@/components/Explanation";
+import GeneralInfoTitleAndValue from "@/components/global/GeneralInfoTitleAndValue";
+import Explanation from "@/components/global/Explanation";
 import AdvertiseFeatures from "@/components/rent-your-place/first-step/AdvertiseFeatures";
 
 const SecondStep = () => {

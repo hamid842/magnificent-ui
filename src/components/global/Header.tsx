@@ -18,10 +18,10 @@ import {
 import {styled} from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 // project imports
-import logo from "../../public/logo.png";
-import colors from '../assets/colors'
+import logo from "../../../public/logo.png";
+import colors from '../../assets/colors'
 import {switzerFont} from "@/assets/fonts";
-import AppButton from "@/components/AppButton";
+import AppButton from "@/components/global/AppButton";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -48,7 +48,7 @@ export default function Header() {
 
     const menuItemsStyles = {
         fontSize: 14,
-        fontWeight: 400,
+        fontWeight: 500,
         ml: 1,
         display: 'block',
         textTransform: "capitalize",
