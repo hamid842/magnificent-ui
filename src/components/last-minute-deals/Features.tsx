@@ -1,5 +1,7 @@
 import {IAmenities} from "@/utils/property-type";
 import {Grid, Paper, Typography} from "@mui/material";
+import AmenitiesRendering from "@/components/global/AmenitiesRendering";
+import EuclidText from "@/components/css-texts/EuclidText";
 
 type Props = {
     amenities: IAmenities
@@ -23,28 +25,30 @@ const Features = ({amenities}: Props) => {
     const mapped = data.map(el => el.attributes.name).join(",")
     return (
         <Paper elevation={3} sx={{p: 2, my: 2, borderRadius: 2}}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={9} lg={9}>
-                    <Typography variant={'subtitle2'} sx={{fontWeight: 600,fontSize:10}}>Interior Features</Typography>
-                    <Grid container spacing={1}>
-                        {interiorFeatures.map(feature=>
-                            <Grid key={feature} item xs={6} sm={6} lg={6}>
-                                <Typography variant={'caption'} sx={{fontSize:9}}>{feature}</Typography>
-                            </Grid>
-                        )}
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} sm={3} lg={3}>
-                    <Typography variant={'subtitle2'} sx={{fontWeight: 600,fontSize:10}}>External Features</Typography>
-                    <Grid container>
-                    {externalFeatures.map(feature=>
-                        <Grid key={feature} item xs={12} sm={12} lg={12}>
-                            <Typography variant={'caption'} sx={{fontSize:9}}>{feature}</Typography>
-                        </Grid>
-                    )}
-                    </Grid>
-                </Grid>
-            </Grid>
+            {/*<Grid container spacing={3}>*/}
+            {/*    <Grid item xs={12} sm={9} lg={9}>*/}
+            {/*        <Typography variant={'subtitle2'} sx={{fontWeight: 600,fontSize:10}}>Interior Features</Typography>*/}
+            {/*        <Grid container spacing={1}>*/}
+            {/*            {interiorFeatures.map(feature=>*/}
+            {/*                <Grid key={feature} item xs={6} sm={6} lg={6}>*/}
+            {/*                    <Typography variant={'caption'} sx={{fontSize:9}}>{feature}</Typography>*/}
+            {/*                </Grid>*/}
+            {/*            )}*/}
+            {/*        </Grid>*/}
+            {/*    </Grid>*/}
+            {/*    <Grid item xs={12} sm={3} lg={3}>*/}
+            {/*        <Typography variant={'subtitle2'} sx={{fontWeight: 600,fontSize:10}}>External Features</Typography>*/}
+            {/*        <Grid container>*/}
+            {/*        {externalFeatures.map(feature=>*/}
+            {/*            <Grid key={feature} item xs={12} sm={12} lg={12}>*/}
+            {/*                <Typography variant={'caption'} sx={{fontSize:9}}>{feature}</Typography>*/}
+            {/*            </Grid>*/}
+            {/*        )}*/}
+            {/*        </Grid>*/}
+            {/*    </Grid>*/}
+            {/*</Grid>*/}
+            <EuclidText sx={{fontWeight:600,mb:1}} text={'This place features'}/>
+            <AmenitiesRendering />
         </Paper>
     )
 }

@@ -1,12 +1,15 @@
-import { FC, useEffect, useState, ChangeEvent, useRef, MutableRefObject } from 'react';
-import { IProperty } from "@/utils/property-type";
+import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {IProperty} from "@/utils/property-type";
 import 'react-dates/initialize';
-import {Box, Button, InputAdornment, Paper, Stack, TextField, Typography, Divider} from "@mui/material";
+import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
-import {CalendarDay, DateRangePicker} from 'react-dates';
+import {DateRangePicker} from 'react-dates';
 import {CalendarMonthRounded} from "@mui/icons-material";
 import axios from 'axios';
 import moment from 'moment';
+import colors from "@/assets/colors";
+import EuclidText from "@/components/css-texts/EuclidText";
+import SwitzerText from "@/components/css-texts/SwitzerText";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -44,9 +47,9 @@ type Props = {
     blockedDates: string[]
 };
 
-const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
-    const { id: propertyId } = property;
-    const { minNights, maxNights, personCapacity } = property.attributes;
+const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
+    const {id: propertyId} = property;
+    const {minNights, maxNights, personCapacity} = property.attributes;
     // TODO: Q: Can we book for more than personCapacity?
     //=======================================================================================================================================
 
@@ -83,7 +86,7 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
     const [endDate, setEndDate] = useState<moment.Moment | null>(null)
 
     const onDateChange = (arg: { startDate: moment.Moment | null; endDate: moment.Moment | null }) => {
-        const { startDate, endDate } = arg;
+        const {startDate, endDate} = arg;
         setStartDate(startDate);
         setEndDate(endDate)
     }
@@ -91,7 +94,7 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
     //=======================================================================================================================================
 
     /**
-     * This function will be passed to date-picker to check for each day's availability 
+     * This function will be passed to date-picker to check for each day's availability
      * @returns is the day blocked?
      */
     const isDayBlocked = (day: moment.Moment) => {
@@ -110,11 +113,11 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
         priceRequestURL.searchParams.set('startDate', startDate.format(DATE_FORMAT));
         priceRequestURL.searchParams.set('endDate', endDate.format(DATE_FORMAT));
         if (couponName && couponName.trim()) priceRequestURL.searchParams.set('couponName', couponName);
-        
+
         (async () => {
             try {
                 const result = await axios.get(priceRequestURL.toString());
-                const { data } = result;
+                const {data} = result;
                 if (data) {
                     const price: TPrice = {
                         totalPrice: data.totalPrice,
@@ -136,16 +139,16 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
                 console.log(`[ERROR: while retrieving pricing details] ->\n ${error}`);
             }
         })();
-        
+
     }, [startDate, endDate, guestCount, couponName]);
 
     //=======================================================================================================================================
 
     return (
         <>
-            <Paper elevation={3} sx={{p: 1}}>
+            <Paper sx={{p: 1, minHeight: 340, height: 'auto', borderRadius: 2, position: 'sticky', top: 10}}>
                 <Stack direction={'column'} alignItems={'center'}>
-                    <Typography variant={'subtitle2'} p={2}>Booking Calculation</Typography>
+                    <EuclidText variant={'subtitle2'} p={2} text={'Booking Calculation'}/>
                     {/* Date Picker-------------------------------------------------------------------------------------- */}
                     <DateRangePicker
                         required
@@ -154,10 +157,15 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
                         hideKeyboardShortcutsPanel
                         minimumNights={3}
                         orientation={'horizontal'}
-                        customInputIcon={<CalendarMonthRounded fontSize={'small'} sx={{color: "#A47C30"}}/>}
-                        displayFormat={'YYYY-MM-DD'}
-                        startDatePlaceholderText={'Check in'}
-                        endDatePlaceholderText={'Check out'}
+                        customInputIcon={<CalendarMonthRounded fontSize={'small'}
+                                                               sx={{
+                                                                   fontSize: 15,
+                                                                   padding: 0,
+                                                                   color: colors.mainColor
+                                                               }}/>}
+                        displayFormat={DATE_FORMAT}
+                        startDatePlaceholderText={'check-in'}
+                        endDatePlaceholderText={'check-out'}
                         startDateId={'start-date'}
                         endDateId={'end-date'}
                         focusedInput={focusedInput}
@@ -168,115 +176,122 @@ const BookingCalculationSection: FC<Props> = ({ property, blockedDates }) => {
                         isDayBlocked={isDayBlocked}
                     />
                     {/* Guest Count Input------------------------------------------------------------------------------- */}
-                    <Box sx={{width: '100%', pt: 2,pb:1}}>
-                        <TextField 
-                            fullWidth 
+                    <Box sx={{width: '100%', pt: 2, pb: 1}}>
+                        <TextField
+                            fullWidth
                             value={guestCount}
                             onChange={onGuestCountChange}
-                            size={'small'} 
-                            type={'number'} 
-                            label="Guests" 
-                            defaultValue={1} 
-                            variant="outlined" 
-                            InputLabelProps={{ 
+                            size={'small'}
+                            type={'number'}
+                            label="Guests"
+                            defaultValue={1}
+                            variant="outlined"
+                            InputLabelProps={{
                                 shrink: true,
                             }}
                         />
                     </Box>
                     {/* Coupon Name Input------------------------------------------------------------------------------ */}
                     <Box>
-                        <Typography variant={'caption'} sx={{marginBottom:2}}>Do you have a discount coupon?</Typography>
-                        <TextField 
+                        <Typography variant={'caption'} sx={{marginBottom: 2}}>Do you have a discount
+                            coupon?</Typography>
+                        <TextField
                             value={couponNameInputValue}
                             onChange={onCouponNameChange}
-                            fullWidth 
-                            size={'small'} 
-                            label="Coupon name" 
+                            fullWidth
+                            size={'small'}
+                            label="Coupon name"
                             variant="outlined"
                             InputProps={{
-                                endAdornment: 
-                                        <InputAdornment 
-                                            position="end">
-                                                <Button 
-                                                    onClick={onCouponNameApply}
-                                                    variant={'outlined'} 
-                                                    size={'small'} 
-                                                    sx={{
-                                                        backgroundColor: "#A47C30",
-                                                        textTransform: 'capitalize',
-                                                        color: 'white',
-                                                        border: 'none',
-                                                        '&:hover': {
-                                                            backgroundColor: "#A47C30",
-                                                            border:'none'
-                                                        }
-                                                    }}>
-                                                    Apply
-                                                </Button>
-                                        </InputAdornment>,
-                                    }}
+                                endAdornment:
+                                    <InputAdornment
+                                        position="end">
+                                        <Button
+                                            onClick={onCouponNameApply}
+                                            size={'small'}
+                                            sx={{
+                                                textTransform: 'capitalize',
+                                                color: colors.mainColor,
+                                                border: 'none',
+                                                '&:hover': {
+                                                    height: 20,
+                                                    width: 40,
+                                                    backgroundColor: colors.mainColor,
+                                                    border: 'none',
+                                                    color: 'white'
+                                                }
+                                            }}>
+                                            Apply
+                                        </Button>
+                                    </InputAdornment>,
+                            }}
                             sx={{
-                                my:1
+                                my: 1
                             }}
                         />
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
-                    <Button 
-                        fullWidth 
-                        variant={'outlined'} 
-                        size={'small'} 
+                    <Button
+                        fullWidth
+                        variant={'outlined'}
+                        size={'small'}
                         sx={{
                             backgroundColor: "#A47C30",
                             textTransform: 'capitalize',
                             color: 'white',
-                            my:2,
+                            my: 2,
                             border: 'none',
                             '&:hover': {
                                 backgroundColor: "#A47C30",
-                                border:'none'
-                        }}}>
+                                border: 'none'
+                            }
+                        }}>
                         Book now
                     </Button>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
-                    <Box sx={{ width: 1 }}>
+                    <Box sx={{width: 1}}>
+                        {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'}
+                                                                             text={'Select dates to see the price'}/></Stack>}
                         {
                             price && price.components?.map((item) => {
                                 return (<div className="price-item" key={item.name}>
-                                            <span className="price-title">{ capitalize(item.title) }:</span>
-                                            <span>{ commaSeparate(item.total) } AED</span>
-                                        </div>)
+                                    <span className="price-title">{capitalize(item.title)}:</span>
+                                    <span>{commaSeparate(item.total)} AED</span>
+                                </div>)
                             })
                         }
-                        <Divider />
-                        { 
+                        {price && <Divider/>}
+                        {
                             price && (<div className="price-item">
-                                        <span className="price-title">Total: </span>
-                                        <span className="price-total">{ commaSeparate(price.totalPrice) } AED</span>
-                                    </div>)
+                                <span className="price-title">Total: </span>
+                                <span className="price-total">{commaSeparate(price.totalPrice)} AED</span>
+                            </div>)
                         }
                     </Box>
-                    {/* /END -----------------------------------------------------------------------------------------------*/}
                 </Stack>
             </Paper>
             <style jsx>{`
-                .DateRangePicker__selected_span {
-                    background: #A47C30; //background
-                    color: white; //text
-                    border: 1px solid red; //default styles include a border
-                }
-                .price-item {
-                    margin: 5px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
-                .price-title {
-                    font-weight: bold;
-                    text-decoration: underline;
-                }
-                .price-total {
-                    font-weight: bold;
-                }
+              .DateRangePicker__selected_span {
+                background: #A47C30; //background
+                color: white; //text
+                border: 1px solid red; //default styles include a border
+              }
+
+              .price-item {
+                margin: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              }
+
+              .price-title {
+                font-weight: bold;
+                text-decoration: underline;
+              }
+
+              .price-total {
+                font-weight: bold;
+              }
             `}</style>
 
         </>

@@ -1,8 +1,8 @@
 import {CSSProperties} from "react";
-import {IconButton} from "@mui/material";
+import Image from "next/image";
+import {Box, IconButton} from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import Image from "next/image";
 import {Carousel} from "react-responsive-carousel";
 import {IImageType} from "@/utils/property-type";
 
@@ -28,7 +28,7 @@ const AppCarousel = ({images}: Props) => {
             infiniteLoop
             transitionTime={1000}
             showIndicators={false}
-            thumbWidth={80}
+            thumbWidth={100}
             renderArrowNext={(onClickHandler, hasNext) =>
                 hasNext && (
                     <IconButton sx={{...arrowStyles, right: 15}}
@@ -51,7 +51,7 @@ const AppCarousel = ({images}: Props) => {
                 images?.map(image =>
                     <div key={image.id}>
                         <Image
-                            src={image.url} width={300} height={320} alt={image.caption}/>
+                            src={image.url} width={200} height={340} alt={image.caption}/>
                     </div>)
             }
         </Carousel>
