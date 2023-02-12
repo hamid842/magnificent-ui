@@ -25,7 +25,7 @@ import AppButton from "@/components/global/AppButton";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
-    {label: 'Blog', path: '/blog'},
+    {label: 'Blog', path: '/blogs'},
     {label: 'About us', path: '/about'},
     {label: 'Contacts', path: '/contacts'}
 ];
