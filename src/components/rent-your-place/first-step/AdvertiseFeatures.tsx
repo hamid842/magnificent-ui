@@ -1,17 +1,17 @@
 import {useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import {Checkbox, FormControlLabel, FormGroup, Grid, Paper, Typography} from "@mui/material";
-import {AmmenitiesData} from "@/utils/property-type";
+import {IAmenitiesData} from "@/utils/property-type";
 
 const AdvertiseFeatures = () => {
-    const [amenities, setAmenities] = useState<AmmenitiesData[]>([]);
+    const [amenities, setAmenities] = useState<IAmenitiesData[]>([]);
 
     useEffect(() => {
         axios('http://localhost:1337/api/amenities').then(res => setAmenities(res?.data?.data)).catch(err => console.log(err))
     }, [])
 
     const features = useMemo(
-        () => amenities.map((amenity: AmmenitiesData) => amenity.attributes.name )
+        () => amenities.map((amenity: IAmenitiesData) => amenity.attributes.name )
         , [amenities])
 
     return (

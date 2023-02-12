@@ -28,7 +28,7 @@ export default function Layout({children}: { children: React.ReactNode }) {
               }
             `}</style>
             <Header/>
-            <div>{children}</div>
+            <div style={{minHeight:'100vh'}}>{children}</div>
             <AppFooter />
         </>
     )

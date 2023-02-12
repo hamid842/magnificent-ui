@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 // Material-ui
 import {Box, Button, Container, Grid} from "@mui/material";
 // Project imports
-import {Property} from "@/utils/property-type";
+import {IProperty} from "@/utils/property-type";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
 import ActivityList from "@/components/home/ActivityList";
 import SearchDestination from "@/components/global/SearchDestination";
@@ -39,7 +39,7 @@ export async function getServerSideProps() {
 }
 
 type HomePageProps = {
-    properties: Property[]
+    properties: IProperty[]
 }
 
 const HomePage = ({properties}: HomePageProps) => {
@@ -64,7 +64,7 @@ const HomePage = ({properties}: HomePageProps) => {
                 <TitleSeparator separatorTitle={'Get our'} title={'Special Offers'}/>
                 <Grid container spacing={3}>
                     {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center', py: 10}}>
-                        Loading... </Grid> : properties?.map((property: Property) => {
+                        Loading... </Grid> : properties?.map((property: IProperty) => {
                         return (
                             <Grid key={property.id} item xs={12} sm={6} md={4} lg={4}>
                                 <SpecialOffersItem data={property}/>

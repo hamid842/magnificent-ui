@@ -1,8 +1,8 @@
-import {Amenities} from "@/utils/property-type";
+import {IAmenities} from "@/utils/property-type";
 import {Grid, Paper, Typography} from "@mui/material";
 
 type Props = {
-    amenities: Amenities
+    amenities: IAmenities
 }
 
 const interiorFeatures = [

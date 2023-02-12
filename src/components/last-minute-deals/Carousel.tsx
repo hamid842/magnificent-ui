@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Image from "next/image";
 import {Carousel} from "react-responsive-carousel";
-import {ImageType} from "@/utils/property-type";
+import {IImageType} from "@/utils/property-type";
 
 const arrowStyles: CSSProperties = {
     position: 'absolute',
@@ -18,7 +18,7 @@ const arrowStyles: CSSProperties = {
 };
 
 type Props = {
-    images: ImageType[]
+    images: IImageType[]
 }
 
 const AppCarousel = ({images}: Props) => {

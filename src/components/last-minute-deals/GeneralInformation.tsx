@@ -1,10 +1,10 @@
 import {Grid, Paper, Typography} from "@mui/material";
 import GeneralInfoTitleAndValue from "@/components/global/GeneralInfoTitleAndValue";
 import dayjs from "dayjs";
-import {Property} from "@/utils/property-type";
+import {IProperty} from "@/utils/property-type";
 
 type Props = {
-    data: Property
+    data: IProperty
 }
 
 const GeneralInformation = ({data}: Props) => {

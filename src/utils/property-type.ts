@@ -1,7 +1,7 @@
-export interface GeneralInformation {
+export interface IGeneralInformation {
 }
 
-export interface Address {
+export interface IAddress {
     id: number;
     address: string;
     country: string;
@@ -10,7 +10,7 @@ export interface Address {
     zipcode: string;
 }
 
-export interface Contact {
+export interface IContact {
     id: number;
     contactName: string;
     contactSurName: string;
@@ -20,54 +20,54 @@ export interface Contact {
     contactAddress?: any;
 }
 
-export interface AmenitiesAttributes {
+export interface IAmenitiesAttributes {
     name: string;
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
 }
 
-export interface AmmenitiesData {
+export interface IAmenitiesData {
     id: number;
-    attributes: AmenitiesAttributes;
+    attributes: IAmenitiesAttributes;
 }
 
-export interface Amenities {
-    data: AmmenitiesData[];
+export interface IAmenities {
+    data: IAmenitiesData[];
 }
 
-export interface Attributes3 {
+export interface IBedTypeAttributes {
     name: string;
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
 }
 
-export interface Datum2 {
+export interface IBedTypeData {
     id: number;
-    attributes: Attributes3;
+    attributes: IBedTypeAttributes;
 }
 
-export interface BedTypes {
-    data: Datum2[];
+export interface IBedTypes {
+    data: IBedTypeData[];
 }
 
-export interface Geolocation {
+export interface IGeolocation {
     id: number;
     latitude: number;
     longitude: number;
 }
 
-export interface ImageType {
+export interface IImageType {
     id: number;
     caption:string;
     url:string;
     sortOrder:number;
 }
 
-export interface Attributes {
+export interface IPropertyAttributes {
     Title: string;
-    generalInformation: GeneralInformation;
+    generalInformation: IGeneralInformation;
     explanation: string;
     locationAndAccessibleInformation?: any;
     frequentTravelers?: any;
@@ -90,20 +90,20 @@ export interface Attributes {
     createdAt: Date;
     updatedAt: Date;
     publishedAt: string;
-    images: ImageType[];
-    address: Address;
-    contact: Contact;
-    amenities: Amenities;
-    bed_types: BedTypes;
-    geolocation: Geolocation;
+    images: IImageType[];
+    address: IAddress;
+    contact: IContact;
+    amenities: IAmenities;
+    bed_types: IBedTypes;
+    geolocation: IGeolocation;
 }
 
-export interface Property {
+export interface IProperty {
     id:string;
-    attributes:Attributes;
+    attributes:IPropertyAttributes;
 }
 
-export interface PropertyTypeAttributes {
+export interface IPropertyTypeAttributes {
     name:string;
     createdAt?:Date;
     updatedAt?:Date;
@@ -112,12 +112,6 @@ export interface PropertyTypeAttributes {
 
 export interface PropertyType {
     id:number;
-    attributes:PropertyTypeAttributes
+    attributes:IPropertyTypeAttributes
 }
 
-export interface IPagination {
-    page:number;
-    pageSize:number;
-    pageCount:number;
-    total:number
-}

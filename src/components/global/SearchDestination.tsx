@@ -33,9 +33,9 @@ const SearchDestination = ({position}: Props) => {
         <Box
             sx={{
                 position,
-                bottom: 30,
+                bottom: 20,
                 width: 500,
-                height: 50,
+                height: 45,
                 background: 'white',
                 borderRadius: 25,
                 left: '50%',

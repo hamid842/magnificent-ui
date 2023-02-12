@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, ChangeEvent, useRef, MutableRefObject } from 'react';
-import { Property } from "@/utils/property-type";
+import { IProperty } from "@/utils/property-type";
 import 'react-dates/initialize';
 import {Box, Button, InputAdornment, Paper, Stack, TextField, Typography, Divider} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
@@ -40,7 +40,7 @@ type TPrice = {
 }
 
 type Props = {
-    property: Property,
+    property: IProperty,
     blockedDates: string[]
 };
 

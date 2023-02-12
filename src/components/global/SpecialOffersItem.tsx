@@ -8,14 +8,14 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import SellIcon from '@mui/icons-material/Sell';
 // Project imports
-import {Property} from "@/utils/property-type";
+import {IProperty} from "@/utils/property-type";
 import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import ImageWithHoverZoom from "@/components/global/ZoomableImage";
 
 type Props = {
-    data: Property
+    data: IProperty
 }
 
 //=======================|| Special Offers Each Item Component ||==========================

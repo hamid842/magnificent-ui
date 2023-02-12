@@ -2,53 +2,37 @@ import {ChangeEvent, useEffect, useState} from "react";
 // Next.js
 import {Router, useRouter} from "next/router";
 // Material ui
-import {Button, Grid, Pagination, Stack, Typography} from "@mui/material";
+import {Box, Grid, Pagination, Stack, Typography} from "@mui/material";
 // Project imports
 import SearchDestination from "@/components/global/SearchDestination";
 import FilterDialog from "@/components/last-minute-deals/FilterDialog";
 import SortByDropdown from "@/components/last-minute-deals/SortByDropdown";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
 import EuclidText from "@/components/css-texts/EuclidText";
-import colors from "@/assets/colors";
-import {IPagination, Property} from "@/utils/property-type";
+import {IProperty} from "@/utils/property-type";
 import {instance} from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
 import {GetServerSideProps} from "next";
 
-// const qs = require('qs');
-// const query = qs.stringify({
-//     populate: '*',
-//     pagination: {
-//         pageSize: 9,
-//         page: 1
-//     }
-// }, {
-//     encodeValuesOnly: true, // prettify URL
-// });
-
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-    console.log("==============",query)
+    console.log("==============", query)
     const page = query.page || 1;
     const response = await instance(`/properties?populate=*&pagination[page]=${page}&pagination[pageSize]=9`)
     const properties = response.data?.data;
-    const pagination = response.data.meta.pagination;
-    console.log("Fetching Data for: ",pagination)
     return {
         props: {
-            properties,
-            pagination
+            properties
         }
     }
 }
 
 type LastMinuteDealsProps = {
-    properties: Property[],
-    pagination: IPagination
+    properties: IProperty[],
 }
 
 //======================|| Last Minute Deals ||============================
 
-const LastMinuteDeals = ({properties, pagination}: LastMinuteDealsProps) => {
+const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
     const [isLoading, setLoading] = useState(false);
     const startLoading = () => setLoading(true);
     const stopLoading = () => setLoading(false);
@@ -72,23 +56,24 @@ const LastMinuteDeals = ({properties, pagination}: LastMinuteDealsProps) => {
         router.push({
             pathname: path,
             query: query,
-        }).then(()=>{})
+        }).then(() => {
+        })
     };
 
 
     return (
-        <>
-            <EuclidText variant={'h4'} py={10} align={'center'} sx={{fontWeight: 700}} text={'Last Minute Deals'}/>
+        <Box mt={15}>
+            <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Last Minute Deals'}/>
             <SearchDestination position={'relative'}/>
             <AppContainer>
                 <Grid container justifyContent={'space-between'}>
                     <Grid item xs={6} sm={6} lg={6}>
-                        <Button variant={"outlined"} sx={{
-                            border: "solid 1px #A47C30",
-                            color: colors.mainColor,
-                            borderRadius: 2,
-                            textTransform: 'none'
-                        }}>Show on map</Button>
+                        {/*<Button variant={"outlined"} sx={{*/}
+                        {/*    border: "solid 1px #A47C30",*/}
+                        {/*    color: colors.mainColor,*/}
+                        {/*    borderRadius: 2,*/}
+                        {/*    textTransform: 'none'*/}
+                        {/*}}>Show on map</Button>*/}
                     </Grid>
                     <Grid item xs={6} sm={6} lg={6}>
                         <Stack direction={'row'} alignItems={'center'} justifyContent={'flex-end'}>
@@ -100,12 +85,12 @@ const LastMinuteDeals = ({properties, pagination}: LastMinuteDealsProps) => {
                 </Grid>
                 <Grid container spacing={3} pb={8}>
                     {!properties?.length ? <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center'}}>
-                        Loading... </Grid> : properties?.map((property: Property) => {
+                        Loading... </Grid> : properties?.map((property: IProperty) => {
                         return (
                             <Grid key={property.id} item xs={12} sm={6} md={4} lg={4}
                                   onClick={() => router.push({
                                       pathname: `/last-minute-deals/${property.id}`,
-                                      query: {propertyItem: JSON.stringify(property)}
+                                      query: {propertyId: JSON.stringify(property.id)}
                                   }, `/last-minute-deals/${property.id}`)} sx={{cursor: 'pointer'}}>
                                 <SpecialOffersItem data={property}/>
                             </Grid>
@@ -117,7 +102,7 @@ const LastMinuteDeals = ({properties, pagination}: LastMinuteDealsProps) => {
                     <Pagination shape="rounded" onChange={paginationHandler} count={2}/>
                 </Stack>
             </AppContainer>
-        </>
+        </Box>
     )
 }
 export default LastMinuteDeals;

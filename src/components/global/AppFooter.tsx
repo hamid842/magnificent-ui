@@ -39,7 +39,7 @@ const AppFooter = () => {
         fontSize: 12
     }
     return (
-        <Box sx={{backgroundColor: "#000000"}}>
+        <Box sx={{backgroundColor: "#000000"}} mt={10}>
             <AppContainer>
                 <Grid container spacing={4} alignItems={'center'}>
                     <Grid item xs={12} sm={6} md={3} lg={3}>

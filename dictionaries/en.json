@@ -5,5 +5,10 @@
   "homePage": {
     "rentExplanation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!",
     "reviews": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!"
+  },
+  "aboutUs": {
+    "income": "Leverage our local market expertise and tried and tested strategies to increase your rental income X4 times without lifting a finger.",
+    "safe": "Property listing, refurbishing, thorough guest screening, worry-free maintenance, and immaculate cleaning; we take care of it all.",
+    "flexible": "Back in town? Want to use the vacation house yourself? Just let us know and we will make sure it is all yours!"
   }
 }
