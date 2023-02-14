@@ -21,6 +21,9 @@ import AppContainer from "@/components/global/AppContainer";
 import {instance} from "@/config/axiosConfig";
 import {IProperty} from "@/utils/property-type";
 import colors from "@/assets/colors";
+import { ReactElement } from "react-markdown/lib/react-markdown";
+import Layout from "@/components/global/Layout";
+import { Box } from "@mui/system";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`)
@@ -89,7 +92,8 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 
     return (
         <AppContainer>
-            <Typography variant={'h6'} sx={{mt:15}}>{attributes?.Title}</Typography>
+            <Box mx = {25}>
+            <Typography variant={'h6'} sx={{mt:20}}>{attributes?.Title}</Typography>
             <Stack direction={'row'} justifyContent={'space-between'} pb={2}>
                 <Stack direction={'row'} alignItems={'center'}>
                     <LocationOnIcon sx={{color: colors.mainColor}} fontSize={'large'}/>
@@ -119,8 +123,10 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
                     <BookingCalculationSection property={property} blockedDates={blockedDates}/>
                 </Grid>
             </Grid>
-
+            </Box>
         </AppContainer>
     )
 }
 export default LivingSpaceItem;
+
+LivingSpaceItem.getLayout = (page:ReactElement) => <Layout> {page}</Layout>
