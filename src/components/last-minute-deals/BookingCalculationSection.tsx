@@ -275,6 +275,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                 background: #A47C30; //background
                 color: white; //text
                 border: 1px solid red; //default styles include a border
+                z-index: 1;
               }
 
               .price-item {

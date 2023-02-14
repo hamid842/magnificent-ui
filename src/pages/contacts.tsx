@@ -21,19 +21,19 @@ import HomePage from "@/pages/index";
 const Contacts = () => {
     return (
         <>
-            <Box sx={{textAlign: 'center', position: 'relative'}}>
-                <Image
-                    src={homePagePicture}
-                    alt={'Pic'}
-                    sizes="90vw"
-                    style={{
-                        width: '100%',
-                        height: 250
-                    }}/>
-                <Typography variant={'h3'} sx={{position: 'absolute', bottom: 30, left: 40, color: 'white'}}>Contact
-                    Us</Typography>
-            </Box>
-            <Grid container px={20} py={10} spacing={5}>
+            {/*<Box sx={{textAlign: 'center', position: 'relative'}}>*/}
+            {/*    <Image*/}
+            {/*        src={homePagePicture}*/}
+            {/*        alt={'Pic'}*/}
+            {/*        sizes="90vw"*/}
+            {/*        style={{*/}
+            {/*            width: '100%',*/}
+            {/*            height: 250*/}
+            {/*        }}/>*/}
+            {/*    <Typography variant={'h3'} sx={{position: 'absolute', bottom: 30, left: 40, color: 'white'}}>Contact*/}
+            {/*        Us</Typography>*/}
+            {/*</Box>*/}
+            <Grid container px={20} py={10} spacing={5} pt={20}>
                 <Grid item xs={12} sm={12} lg={8}>
                     <Typography variant={'h4'} sx={{fontWeight: 700}}>About blah blah</Typography>
                     <Typography sx={{textAlign: 'justify'}}>
@@ -56,14 +56,15 @@ const Contacts = () => {
                         alt={'Pic'}
                         style={{
                             width: '100%',
-                            height: '50vh'
+                            height: '50vh',
+                            boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                         }}/>
                 </Grid>
             </Grid>
             <Grid container px={20} py={10} spacing={5}>
                 <Grid item xs={12} sm={12} lg={12}>
-                    <Typography variant={'h4'} sx={{fontWeight: 700}}>Our team</Typography>
-                    <Typography variant={'body2'}>Lorem ipsum dolor sit amet</Typography>
+                    <Typography variant={'h4'} textAlign={'center'} sx={{fontWeight: 700}}>Our team</Typography>
+
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>
                     <Grid container spacing={5}>
@@ -74,7 +75,8 @@ const Contacts = () => {
                                 sizes="90vw"
                                 style={{
                                     width: '100%',
-                                    height: '80%'
+                                    height: '80%',
+                                    boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                                 }}/>
                             <Typography sx={{fontWeight: 600}}>John Doe</Typography>
                             <Typography variant={'caption'} sx={{color: "gray"}}>John Doe</Typography>
@@ -86,7 +88,8 @@ const Contacts = () => {
                                 sizes="90vw"
                                 style={{
                                     width: '100%',
-                                    height: '80%'
+                                    height: '80%',
+                                    boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                                 }}/>
                             <Typography sx={{fontWeight: 600}}>John Doe</Typography>
                             <Typography variant={'caption'} sx={{color: "gray"}}>John Doe</Typography>
@@ -98,7 +101,8 @@ const Contacts = () => {
                                 sizes="90vw"
                                 style={{
                                     width: '100%',
-                                    height: '80%'
+                                    height: '80%',
+                                    boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                                 }}/>
                             <Typography sx={{fontWeight: 600}}>John Doe</Typography>
                             <Typography variant={'caption'} sx={{color: "gray"}}>John Doe</Typography>
@@ -110,7 +114,8 @@ const Contacts = () => {
                                 sizes="90vw"
                                 style={{
                                     width: '100%',
-                                    height: '80%'
+                                    height: '80%',
+                                    boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                                 }}/>
                             <Typography sx={{fontWeight: 600}}>John Doe</Typography>
                             <Typography variant={'caption'} sx={{color: "gray"}}>John Doe</Typography>
@@ -122,7 +127,8 @@ const Contacts = () => {
                                 sizes="90vw"
                                 style={{
                                     width: '100%',
-                                    height: '80%'
+                                    height: '80%',
+                                    boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
                                 }}/>
                             <Typography sx={{fontWeight: 600}}>John Doe</Typography>
                             <Typography variant={'caption'} sx={{color: "gray"}}>John Doe</Typography>
@@ -130,52 +136,7 @@ const Contacts = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container px={20} py={10} spacing={5}>
-                <Grid item xs={12} sm={12} lg={12}>
-                    <Typography align={'center'} variant={'h4'} sx={{fontWeight: 600}}>Why choose us?</Typography>
-                    <Typography align={'center'}>These popular destinations have a lot to offer?</Typography>
-                </Grid>
-                <Grid item xs={12} sm={12} lg={12}>
-                    <Grid container spacing={5}>
-                        <Grid item xs={12} sm={4} lg={4}>
-                            <Stack direction={'column'} alignItems={'center'}>
-                                <VerifiedUserOutlinedIcon sx={{color: "#A47C30", fontSize: 100}}/>
-                                <Typography variant={'subtitle1'} sx={{fontWeight: 600, py: 2}}>Best Price
-                                    Guarantee</Typography>
-                                <Typography variant={'body2'} align={'center'}>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.
-                                    Ab at consectetur consequatur corporis, cum dolorum et ex illo illum,
-                                    in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi
-                                    voluptatum!</Typography>
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} sm={4} lg={4}>
-                            <Stack direction={'column'} alignItems={'center'}>
-                                <ScheduleSendOutlinedIcon sx={{color: "#A47C30", fontSize: 100}}/>
-                                <Typography variant={'subtitle1'} sx={{fontWeight: 600, py: 2}}>Best Price
-                                    Guarantee</Typography>
-                                <Typography variant={'body2'} align={'center'}>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.
-                                    Ab at consectetur consequatur corporis, cum dolorum et ex illo illum,
-                                    in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi
-                                    voluptatum!</Typography>
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} sm={4} lg={4}>
-                            <Stack direction={'column'} alignItems={'center'}>
-                                <SupportAgentOutlinedIcon sx={{color: "#A47C30", fontSize: 100}}/>
-                                <Typography variant={'subtitle1'} sx={{fontWeight: 600, py: 2}}>Customer Service
-                                    24h/7d</Typography>
-                                <Typography variant={'body2'} align={'center'}>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.
-                                    Ab at consectetur consequatur corporis, cum dolorum et ex illo illum,
-                                    in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi
-                                    voluptatum!</Typography>
-                            </Stack>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
+
         </>
     )
 }

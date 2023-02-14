@@ -42,7 +42,7 @@ const Blogs = ({blogPosts}: BlogProps) => {
                               query: {id: JSON.stringify(post.id)}
                           }, `/blogs/${post.id}`)} sx={{cursor: 'pointer'}}
                     >
-                        <BlogItem blogData={post}/>
+                        <BlogItem blogData={post} />
                     </Grid>
                 )}
             </Grid>

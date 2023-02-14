@@ -1,3 +1,4 @@
+import {ReactElement} from "react";
 // Next.js
 import {GetServerSideProps} from "next";
 import {useRouter} from "next/router";
@@ -16,6 +17,7 @@ import blogOneImage from "../../../public/blogs-1.jpg";
 import blogTwoImage from "../../../public/blogs-2.jpg";
 import blogThreeImage from "../../../public/blogs-3.jpg";
 import blogFourImage from "../../../public/blogs-4.jpg";
+import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const {data} = await instance.get(`/blog-posts/${query.id}`)
@@ -69,3 +71,5 @@ const BlogTitle = ({blogPosts}: BlogProps) => {
     )
 }
 export default BlogTitle;
+
+BlogTitle.getLayout = (page:ReactElement) => <Layout>{page}</Layout>
