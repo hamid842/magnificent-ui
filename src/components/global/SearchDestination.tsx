@@ -33,7 +33,7 @@ const SearchDestination = ({position}: Props) => {
         <Box
             sx={{
                 position,
-                bottom: 20,
+                bottom: 200,
                 width: 500,
                 height: 45,
                 background: 'white',

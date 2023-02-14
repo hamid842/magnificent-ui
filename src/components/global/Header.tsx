@@ -98,8 +98,8 @@ export default function Header() {
                     <Image
                         src={logo}
                         alt={'Logo'}
-                        width={150}
-                        height={70}
+                        width={300}
+                        height={140}
                         style={{cursor: 'pointer'}}
                         onClick={() => router.push('/')}
                     />

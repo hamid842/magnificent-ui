@@ -4,7 +4,7 @@ import {Router, useRouter} from "next/router";
 // Material ui
 import {Box, Grid, Pagination, Stack, Typography} from "@mui/material";
 // Project imports
-import SearchDestination from "@/components/global/SearchDestination";
+import SearchDestinationLastMin from "@/components/global/SearchDestinationLastMin";
 import FilterDialog from "@/components/last-minute-deals/FilterDialog";
 import SortByDropdown from "@/components/last-minute-deals/SortByDropdown";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
@@ -66,7 +66,7 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
     return (
         <Box mt={15}>
             <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Last Minute Deals'}/>
-            <SearchDestination position={'relative'}/>
+            <SearchDestinationLastMin position={'relative'}/>
             <AppContainer>
                 <Grid container justifyContent={'space-between'}>
                     <Grid item xs={6} sm={6} lg={6}>

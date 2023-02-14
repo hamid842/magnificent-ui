@@ -75,7 +75,7 @@ const SpecialOffersItem = ({data}: Props) => {
                 <EuclidText text={attributes.Title} sx={{fontWeight: 600, fontSize: 14}}/>
                 <SwitzerText variant={'body2'} sx={{color: 'gray'}}
                              text={`${attributes.bedroomsNumber} Bedroom/s Combined Lodge`}/>
-                <SwitzerText variant={'subtitle1'} text={'28 October - 1 November'}/>
+                {/* <SwitzerText variant={'subtitle1'} text={'28 October - 1 November'}/> */}
                 <Typography variant={'subtitle1'} sx={{color: colors.mainColor, paddingTop: 1}}>
                     <SellIcon sx={{pt: 1}}/>{attributes.price} AED/ per night</Typography>
             </Box>
