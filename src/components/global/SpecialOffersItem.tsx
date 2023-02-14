@@ -46,11 +46,11 @@ const SpecialOffersItem = ({data}: Props) => {
                     sizes={'100%'}
                     src={attributes.images[0].url}
                     width={100}
-                    height={100}
+                    height={140}
                     style={{
                         width: '100%',
                         transition: '0.3s all ease-in-out',
-                        height: 'auto',
+                        height: '100%',
                         borderRadius: 10,
                     }}/>
                 <Box sx={favoriteIconStyles}>

@@ -28,6 +28,7 @@ import { Box } from "@mui/system";
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`)
     const property = response.data?.data;
+    console.log(property)
     return {
         props: {
             property
@@ -92,7 +93,7 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 
     return (
         <AppContainer>
-            <Box mx = {25}>
+
             <Typography variant={'h6'} sx={{mt:20}}>{attributes?.Title}</Typography>
             <Stack direction={'row'} justifyContent={'space-between'} pb={2}>
                 <Stack direction={'row'} alignItems={'center'}>
@@ -123,7 +124,6 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
                     <BookingCalculationSection property={property} blockedDates={blockedDates}/>
                 </Grid>
             </Grid>
-            </Box>
         </AppContainer>
     )
 }

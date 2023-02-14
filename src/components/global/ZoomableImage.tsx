@@ -5,12 +5,11 @@ const ImageWithHoverZoom = (props: ImageProps) => {
     return (
         <Box sx={{
             width: '100%',
-            height: '100%',
+            height: {xs:160,sm:160,lg:170},
             overflow: 'hidden',
             margin: '0 auto',
             borderRadius: 3,
-            background:'transparent',
-            boxShadow:'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
+            boxShadow:'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
             '& :hover': {transform: 'scale(1.1)'}
         }}>
             <Image {...props} />

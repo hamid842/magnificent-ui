@@ -33,7 +33,7 @@ const Blogs = ({blogPosts}: BlogProps) => {
     const router = useRouter();
     return (
         <AppContainer>
-            <TitleSeparator separatorTitle={'Get our'} title={'Special Offers'} mt={8}/>
+            <TitleSeparator separatorTitle={''} title={'Blogs'} mt={8}/>
             <Grid container spacing={2}>
                 {blogPosts?.map(post =>
                     <Grid key={post.id} item xs={12} sm={6} lg={6}
