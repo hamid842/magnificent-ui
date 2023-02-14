@@ -1,14 +1,22 @@
+// Next.js
 import Image from "next/image";
+// Material ui
 import {Box, Grid, Stack, Typography} from "@mui/material";
+import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
+import ScheduleSendOutlinedIcon from '@mui/icons-material/ScheduleSendOutlined';
+import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
+// Project imports
 import homePagePicture from "../../public/home-page-pic.png";
 import manager from "../../public/general-manager.jpg";
 import specialist from "../../public/specialist.jpg";
 import chief from '../../public/chief.jpg';
 import officer from '../../public/officer.jpg';
 import sales from '../../public/sales.jpg'
-import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import ScheduleSendOutlinedIcon from '@mui/icons-material/ScheduleSendOutlined';
-import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
+import {ReactElement} from "react";
+import Layout from "@/components/global/Layout";
+import HomePage from "@/pages/index";
+
+//=========================|| Contact us ||===========================
 
 const Contacts = () => {
     return (
@@ -20,9 +28,9 @@ const Contacts = () => {
                     sizes="90vw"
                     style={{
                         width: '100%',
-                        height: '25vh'
+                        height: 250
                     }}/>
-                <Typography variant={'h3'} sx={{position: 'absolute', bottom: 40, left: 40, color: 'white'}}>Contact
+                <Typography variant={'h3'} sx={{position: 'absolute', bottom: 30, left: 40, color: 'white'}}>Contact
                     Us</Typography>
             </Box>
             <Grid container px={20} py={10} spacing={5}>
@@ -172,3 +180,5 @@ const Contacts = () => {
     )
 }
 export default Contacts;
+
+Contacts.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

@@ -16,6 +16,8 @@ import TitleSeparator from "@/components/global/TitleSeparator";
 import AppContainer from "@/components/global/AppContainer";
 import colors from "@/assets/colors";
 import AppButton from "@/components/global/AppButton";
+import {ReactElement} from "react";
+import Layout from "@/components/global/Layout";
 
 const qs = require('qs');
 const query = qs.stringify({
@@ -83,3 +85,5 @@ const HomePage = ({properties}: HomePageProps) => {
     )
 }
 export default HomePage;
+
+HomePage.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

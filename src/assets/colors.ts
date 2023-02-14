@@ -3,5 +3,6 @@ export default {
     //https://flatuicolors.com/palette/au
     navMenuColor: '#535c68',
     yellow: '#FEBE1E',
-    brown: '#A47C2F'
+    brown: '#A47C2F',
+    footerBgColor:"#000000"
 }

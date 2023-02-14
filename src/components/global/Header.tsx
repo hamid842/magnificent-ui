@@ -18,10 +18,12 @@ import {
 import {styled} from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 // project imports
-import logo from "../../../public/logo.png";
+import logo from "../../../public/main-logo.png";
 import colors from '../../assets/colors'
 import {switzerFont} from "@/assets/fonts";
 import AppButton from "@/components/global/AppButton";
+import LoginDialog from "@/auth/login/LoginDialog";
+import RegisterDialog from "@/auth/register/RegisterDialog"
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -29,7 +31,7 @@ const pages = [
     {label: 'About us', path: '/about'},
     {label: 'Contacts', path: '/contacts'}
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const loggedInSettings = ['Dashboard', 'Logout'];
 
 export const ColorButton = styled(Button)<ButtonProps>({
     color: "white",
@@ -82,7 +84,7 @@ export default function Header() {
 
     return (
         <AppBar position="static" sx={{
-            width: '100%',
+            width: '100vw',
             px: 1,
             py: 2,
             position: 'absolute',
@@ -154,9 +156,9 @@ export default function Header() {
                 </Box>
                 {/* ========================= || Setting (when click on header image) || ====================== */}
                 <Box sx={{flexGrow: 0}}>
-                    <AppButton label={'Rent Your Place'} sx={{mr:1}} onClick={() => router.push('/rent-your-place')}/>
+                    <AppButton label={'Rent Your Place'} onClick={() => router.push('/rent-your-place')}/>
                     <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu}>
+                        <IconButton onClick={handleOpenUserMenu} aria-haspopup={true}>
                             <Image src={'/profile.png'} alt={"Profile Image"} width={40} height={40}
                                    style={{borderRadius: 25}}/>
                         </IconButton>
@@ -177,11 +179,12 @@ export default function Header() {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">{setting}</Typography>
-                            </MenuItem>
-                        ))}
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            <LoginDialog/>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            <RegisterDialog/>
+                        </MenuItem>
                     </Menu>
                 </Box>
             </Toolbar>

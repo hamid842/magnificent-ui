@@ -10,12 +10,16 @@ import islandPic from '../../public/beach.png';
 import explorePic from '../../public/explore.png';
 import {ColorButton} from "@/components/global/Header";
 import {useRouter} from "next/router";
+import LastMinuteDeals from "@/pages/last-minute-deals";
+import {ReactElement} from "react";
+import Layout from "@/components/global/Layout";
+import AppContainer from "@/components/global/AppContainer";
 
 const RentYourPlace = () => {
     const router = useRouter()
     return (
         <>
-            <Grid container spacing={5} pl={5}>
+            <Grid container spacing={5} pl={5} mt={10}>
                 <Grid item xs={12} sm={6} lg={5}>
                     <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
                         <Typography variant={'h4'} sx={{fontWeight: 600, mt: 12}}>Rent it !</Typography>
@@ -37,11 +41,12 @@ const RentYourPlace = () => {
                     <Image src={rentImage} width={600} height={500} alt={'Rent'}/>
                 </Grid>
             </Grid>
-            <Grid container spacing={2} px={20} py={15}>
-                <Grid item xs={12} sm={6} lg={7}>
-                    <Image src={rentMiddleImage} width={500} height={400} alt={'Rent'}/>
+            <AppContainer>
+            <Grid container spacing={2} my={5}>
+                <Grid item xs={12} sm={6} md={7} lg={7}>
+                    <Image src={rentMiddleImage} width={450} height={400} alt={'Rent'}/>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={5}>
+                <Grid item xs={12} sm={6} md={5} lg={5}>
                     <Typography variant={'caption'} sx={{fontWeight: 600}}>Rent your place</Typography>
                     <Typography variant={'h6'} sx={{fontWeight: 700, marginY: 2}}>One-to-one guidance from a
                         superhost</Typography>
@@ -74,7 +79,7 @@ const RentYourPlace = () => {
                         your place</ColorButton>
                 </Grid>
             </Grid>
-            <Stack direction={'row'} px={20} justifyContent={'space-between'} pb={10}>
+            <Stack direction={'row'} justifyContent={'space-between'} pb={5}>
                 <Stack direction={'column'} alignItems={'center'} sx={{color: '#A8A7AB'}}>
                     <Image src={travelPic} alt={'Travel'} width={100} height={100}/>
                     <Typography mt={1}>TRAVEL</Typography>
@@ -92,7 +97,10 @@ const RentYourPlace = () => {
                     <Typography mt={1}>EXPLORE WORLD</Typography>
                 </Stack>
             </Stack>
+            </AppContainer>
         </>
     )
 }
 export default RentYourPlace;
+
+RentYourPlace.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

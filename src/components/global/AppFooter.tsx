@@ -13,7 +13,8 @@ import {
     WhatsApp
 } from "@mui/icons-material";
 // Project imports
-import logo from "../../../public/logo.png";
+import logo from "../../../public/main-logo.png";
+import grayLogo from "../../../public/png1.png"
 import AppContainer from "@/components/global/AppContainer";
 import colors from "@/assets/colors";
 import PoppinsText from "@/components/css-texts/PoppinsText";
@@ -39,7 +40,11 @@ const AppFooter = () => {
         fontSize: 12
     }
     return (
-        <Box sx={{backgroundColor: "#000000"}} mt={10}>
+        <Box sx={{backgroundColor: colors.footerBgColor,position:'relative',overflow:'hidden'}} mt={10}>
+            <Box>
+                <Image src={grayLogo} alt={"Logo"} width={250} height={150} style={{position:'absolute',bottom:-20,right:-30,zIndex:1}}/>
+            </Box>
+            <Box sx={{position:'relative',zIndex:1000}} pt={5}>
             <AppContainer>
                 <Grid container spacing={4} alignItems={'center'}>
                     <Grid item xs={12} sm={6} md={3} lg={3}>
@@ -47,7 +52,7 @@ const AppFooter = () => {
                             <Image
                                 src={logo}
                                 alt={'Logo'}
-                                width={150}
+                                width={160}
                                 height={80}
                             />
                             <SwitzerText
@@ -129,6 +134,7 @@ const AppFooter = () => {
                                  text={', Magnificent Property Management.'}/>
                 </Stack>
             </AppContainer>
+            </Box>
         </Box>
     )
 }

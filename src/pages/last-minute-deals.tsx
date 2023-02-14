@@ -1,4 +1,4 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 // Next.js
 import {Router, useRouter} from "next/router";
 // Material ui
@@ -13,6 +13,8 @@ import {IProperty} from "@/utils/property-type";
 import {instance} from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
 import {GetServerSideProps} from "next";
+import Contacts from "@/pages/contacts";
+import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     console.log("==============", query)
@@ -106,3 +108,5 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
     )
 }
 export default LastMinuteDeals;
+
+LastMinuteDeals.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

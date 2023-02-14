@@ -1,13 +1,16 @@
-import {AppProps} from 'next/app'
-import Layout from "@/components/global/Layout";
-import 'font-awesome/css/font-awesome.min.css';
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
 
-function Magnificent({Component, pageProps}: AppProps) {
-    return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
-    )
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: (page: ReactElement) => ReactNode
 }
 
-export default Magnificent
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout
+}
+
+export default function Magnificent({ Component, pageProps }: AppPropsWithLayout) {
+    const getLayout = Component.getLayout ?? ((page) => page)
+    return getLayout(<Component {...pageProps} />)
+}

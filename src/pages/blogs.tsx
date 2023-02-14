@@ -9,6 +9,9 @@ import {IBlogPostsData} from "@/utils/blog-post-type";
 import BlogItem from "@/components/blog/BlogItem";
 import AppContainer from "@/components/global/AppContainer";
 import TitleSeparator from "@/components/global/TitleSeparator";
+import {ReactElement} from "react";
+import Layout from "@/components/global/Layout";
+import HomePage from "@/pages/index";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const {data} = await instance.get(`/blog-posts`)
@@ -47,3 +50,5 @@ const Blogs = ({blogPosts}: BlogProps) => {
     )
 }
 export default Blogs;
+
+Blogs.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

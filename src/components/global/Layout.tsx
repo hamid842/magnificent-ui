@@ -24,6 +24,7 @@ export default function Layout({children}: { children: React.ReactNode }) {
                 margin: 0;
                 padding: 0;
                 color: #333;
+                overflow-x: hidden;
                 background-color: #FEFDF8;
               }
             `}</style>
