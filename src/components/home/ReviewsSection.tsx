@@ -1,7 +1,7 @@
 // Next.js
 import Image from "next/image";
 // Material-ui
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // Project imports
@@ -15,8 +15,8 @@ import SwitzerText from "@/components/css-texts/SwitzerText";
 const ReviewsSection = () => {
     return (
         <Box>
-            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'} />
-            <Stack direction={'row'} sx={{width: '100%', height: 250,pb:10}} alignItems={'center'}>
+            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'}/>
+            <Stack direction={'row'} sx={{width: '100%', height: 250, pb: 10}} alignItems={'center'}>
                 <Box sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -25,34 +25,44 @@ const ReviewsSection = () => {
                     height: 30,
                     borderRadius: 1,
                     backgroundColor: "#A47C30",
-                    border: 'none'
+                    border: 'none',
+                    mx:2
                 }}>
                     <KeyboardArrowLeftIcon sx={{color: 'white'}}/>
                 </Box>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
-                        <Stack direction={'column'} alignItems={'center'} p={2}>
-                            <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                   style={{borderRadius: 50}}/>
-                            <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}} text={dictionaries.homePage.reviews} />
-                            <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
-                        </Stack>
+                        <Paper elevation={5} sx={{borderRadius: 3}}>
+                            <Stack direction={'column'} alignItems={'center'} p={2}>
+                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
+                                       style={{borderRadius: 50}}/>
+                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
+                                             text={dictionaries.homePage.reviews}/>
+                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
+                            </Stack>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
-                        <Stack direction={'column'} alignItems={'center'} p={2}>
-                            <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                   style={{borderRadius: 50}}/>
-                            <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}} text={dictionaries.homePage.reviews} />
-                            <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
-                        </Stack>
+                        <Paper elevation={5} sx={{borderRadius: 3}}>
+                            <Stack direction={'column'} alignItems={'center'} p={2}>
+                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
+                                       style={{borderRadius: 50}}/>
+                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
+                                             text={dictionaries.homePage.reviews}/>
+                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
+                            </Stack>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
-                        <Stack direction={'column'} alignItems={'center'} p={2}>
-                            <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                   style={{borderRadius: 50}}/>
-                            <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}} text={dictionaries.homePage.reviews} />
-                            <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
-                        </Stack>
+                        <Paper elevation={5} sx={{borderRadius: 3}}>
+                            <Stack direction={'column'} alignItems={'center'} p={2}>
+                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
+                                       style={{borderRadius: 50}}/>
+                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
+                                             text={dictionaries.homePage.reviews}/>
+                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
+                            </Stack>
+                        </Paper>
                     </Grid>
                 </Grid>
                 <Box sx={{
@@ -63,7 +73,8 @@ const ReviewsSection = () => {
                     height: 30,
                     borderRadius: 1,
                     backgroundColor: "#A47C30",
-                    border: 'none'
+                    border: 'none',
+                    mx:2
                 }}>
                     <KeyboardArrowRightIcon sx={{color: 'white'}}/>
                 </Box>

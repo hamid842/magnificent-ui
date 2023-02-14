@@ -49,7 +49,7 @@ export default function Header() {
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const menuItemsStyles = {
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 500,
         ml: 1,
         display: 'block',

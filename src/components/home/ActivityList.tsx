@@ -37,7 +37,8 @@ const ActivityList = () => {
                                 backgroundColor: colors.yellow,
                                 borderTopLeftRadius: 6,
                                 borderTopRightRadius: 50,
-                                borderBottomRightRadius: 6
+                                borderBottomRightRadius: 6,
+                                boxShadow:'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
                             }}>
                                 <Image src={activityOne} alt={"Pic"} style={{
                                     width: '100%',
@@ -59,7 +60,8 @@ const ActivityList = () => {
                                 backgroundColor: '#000000',
                                 borderTopRightRadius: 6,
                                 borderTopLeftRadius: 6,
-                                borderBottomRightRadius: 46
+                                borderBottomRightRadius: 46,
+                                boxShadow:'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
                             }}>
                                 <Image src={activityTwo} alt={"Pic"} style={{
                                     width: '100%',
@@ -82,7 +84,8 @@ const ActivityList = () => {
                                 backgroundColor: colors.brown,
                                 borderTopRightRadius: 6,
                                 borderTopLeftRadius: 50,
-                                borderBottomLeftRadius: 6
+                                borderBottomLeftRadius: 6,
+                                boxShadow:'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
                             }}>
                                 <Image src={activityThree} alt={"Pic"} style={{
                                     width: '100%',

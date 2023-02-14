@@ -51,7 +51,7 @@ const SpecialOffersItem = ({data}: Props) => {
                         width: '100%',
                         transition: '0.3s all ease-in-out',
                         height: 'auto',
-                        borderRadius: 10
+                        borderRadius: 10,
                     }}/>
                 <Box sx={favoriteIconStyles}>
                     <FavoriteBorderOutlinedIcon sx={iconsStyle}/>
