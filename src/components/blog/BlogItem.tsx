@@ -2,11 +2,11 @@ import Image from "next/image";
 import {Box, Button, Grid, Paper, Stack, Typography} from "@mui/material";
 import {IBlogPostsData} from "@/utils/blog-post-type";
 import EuclidText from "@/components/css-texts/EuclidText";
-import blogOneImage from '../../../public/blogs-1.jpg'
-import blogTwoImage from '../../../public/blogs-2.jpg'
-import blogThreeImage from '../../../public/blogs-3.jpg'
-import blogFourImage from '../../../public/blogs-4.jpg'
-import blogImageFive from '../../../public/1-b.jpg'
+import blogOneImage from '../../../public/Blogs/11/02-S.jpg'
+import blogTwoImage from '../../../public/Blogs/11/3-b.jpg'
+import blogThreeImage from '../../../public/Blogs/11/4-b.jpg'
+import blogFourImage from '../../../public/Blogs/11/04-S.jpg'
+import blogImageFive from '../../../public/Blogs/11/1-b.jpg'
 import colors from "@/assets/colors";
 
 type BlogItemProps = {

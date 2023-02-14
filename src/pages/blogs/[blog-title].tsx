@@ -13,10 +13,11 @@ import AppContainer from "@/components/global/AppContainer";
 import {IBlogPostsData} from "@/utils/blog-post-type";
 import {instance} from "@/config/axiosConfig";
 import Image from "next/image";
-import blogOneImage from "../../../public/blogs-1.jpg";
-import blogTwoImage from "../../../public/blogs-2.jpg";
-import blogThreeImage from "../../../public/blogs-3.jpg";
-import blogFourImage from "../../../public/blogs-4.jpg";
+import blogOneImage from "../../../public/Blogs/11/02.jpg";
+import blogTwoImage from "../../../public/Blogs/11/3-b.jpg";
+import blogThreeImage from "../../../public/Blogs/11/4-b.jpg";
+import blogFourImage from "../../../public/Blogs/11/04-1170x280.jpg";
+import blogFiveImage from "../../../public/Blogs/11/1-b.jpg";
 import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
@@ -38,13 +39,13 @@ type BlogProps = {
 const BlogTitle = ({blogPosts}: BlogProps) => {
     const router = useRouter();
     const {attributes} = blogPosts
-    const IMAGE_WIDTH = 100;
-    const IMAGE_HEIGHT = 200;
-    const imageStyles = {width: '100%', height: 200}
+    const IMAGE_WIDTH = 500;
+    const IMAGE_HEIGHT = 500;
+    const imageStyles = {width: '100%', height: 'auto'}
     return (
         <AppContainer>
-            <Stack mt={15} alignItems={'center'}>
-                <EuclidText variant={'h4'} align={'center'} text={attributes.title} sx={{fontWeight: 700, mb:3}}/>
+            <Stack mt={20} alignItems={'center'}>
+                <EuclidText variant={'h5'} align={'center'} text={attributes.title} sx={{fontWeight: 700, mb:3}}/>
                 <Box sx={{width:'100%'}}>
                     {router.query.id === '1' &&
                         <Image src={blogOneImage} alt={'Pic'} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
@@ -59,7 +60,7 @@ const BlogTitle = ({blogPosts}: BlogProps) => {
                         <Image src={blogFourImage} alt={'Pic'} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
                                style={imageStyles}/>}
                     {router.query.id === '5' &&
-                        <Image src={blogOneImage} alt={'Pic'} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
+                        <Image src={blogFiveImage} alt={'Pic'} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
                                style={imageStyles}/>}
                 </Box>
                 <Stack alignItems={'center'} className={switzerFont.className}

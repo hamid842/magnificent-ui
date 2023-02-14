@@ -23,7 +23,7 @@ const RentPlaceSection = () => {
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
                     <SwitzerText sx={{textAlign: 'justify'}}
-                                 text={`${dictionaries.homePage.rentExplanation} ${dictionaries.homePage.rentExplanation} ${dictionaries.homePage.rentExplanation}`}/>
+                                 text={`${dictionaries.homePage.rentExplanation}`}/>
                     <AppButton label={'See more'} sx={{width: 120, mt: 2}}
                                onClick={() => router.push('/rent-your-place')}/>
                 </Grid>
