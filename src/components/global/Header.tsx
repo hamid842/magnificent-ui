@@ -155,7 +155,7 @@ export default function Header() {
                     ))}
                 </Box>
                 {/* ========================= || Setting (when click on header image) || ====================== */}
-                <Box sx={{flexGrow: 0}}>
+                <Box sx={{flexGrow: 0,mr:2}}>
                     <AppButton label={'Rent Your Place'} onClick={() => router.push('/rent-your-place')}/>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} aria-haspopup={true}>

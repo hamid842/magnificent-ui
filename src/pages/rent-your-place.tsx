@@ -19,6 +19,7 @@ const RentYourPlace = () => {
     const router = useRouter()
     return (
         <>
+            <AppContainer>
             <Grid container spacing={5} pl={5} mt={10}>
                 <Grid item xs={12} sm={6} lg={5}>
                     <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
@@ -41,7 +42,6 @@ const RentYourPlace = () => {
                     <Image src={rentImage} width={600} height={500} alt={'Rent'}/>
                 </Grid>
             </Grid>
-            <AppContainer>
             <Grid container spacing={2} my={5}>
                 <Grid item xs={12} sm={6} md={7} lg={7}>
                     <Image src={rentMiddleImage} width={450} height={400} alt={'Rent'}/>

@@ -44,7 +44,7 @@ const ReSlider = styled(Slider)({
 
 const RentSlider = ()=>{
     return(
-        <ReSlider />
+        <ReSlider min={0} max={10} />
     )
 }
 export default RentSlider;
