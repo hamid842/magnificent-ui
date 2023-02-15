@@ -12,6 +12,7 @@ export default function Layout({children}: { children: React.ReactNode }) {
         <>
             <Head>
                 <title>Magnificent</title>
+                <link rel="shortcut icon" href="/public/favicon.ico" />
             </Head>
             <style jsx global>{`
               *,

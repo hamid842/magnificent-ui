@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 // Next.js
 import {GetServerSideProps} from "next";
 // Material ui
-import {Button, Grid, Stack, Typography} from "@mui/material";
+import {Grid, Stack, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {SellOutlined} from "@mui/icons-material";
 // Third party
@@ -21,9 +21,8 @@ import AppContainer from "@/components/global/AppContainer";
 import {instance} from "@/config/axiosConfig";
 import {IProperty} from "@/utils/property-type";
 import colors from "@/assets/colors";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import {ReactElement} from "react-markdown/lib/react-markdown";
 import Layout from "@/components/global/Layout";
-import { Box } from "@mui/system";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`)
@@ -93,15 +92,13 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 
     return (
         <AppContainer>
-
-            <Typography variant={'h6'} sx={{mt:20}}>{attributes?.Title}</Typography>
+            <Typography variant={'h6'} sx={{mt: 20}}>{attributes?.Title}</Typography>
             <Stack direction={'row'} justifyContent={'space-between'} pb={2}>
                 <Stack direction={'row'} alignItems={'center'}>
                     <LocationOnIcon sx={{color: colors.mainColor}} fontSize={'large'}/>
                     <Typography variant={'caption'}>UAE, Dubai</Typography>
                 </Stack>
                 <Stack direction={'row'} alignItems={'center'}>
-                    {/* <Typography variant={'body2'}>15 October - 1 November</Typography> */}
                     <SellOutlined fontSize={'small'} sx={{color: colors.mainColor, ml: 1}}/>
                     <Typography variant={'subtitle1'} sx={{fontWeight: 600}}>{attributes.price} AED</Typography>
                 </Stack>
@@ -111,17 +108,12 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
                     <AppCarousel images={attributes?.images}/>
                     <GeneralInformation data={property}/>
                     <Explanation explanation={attributes.explanation}/>
-                    {/* <Stack alignItems={'center'}>
-                        <Button variant={'contained'} size={'small'}
-                                sx={{backgroundColor: colors.mainColor, width: 150, borderRadius: 2, textTransform: 'none'}}
-                        >Confirm Booking</Button>
-                    </Stack> */}
                     <Features amenities={property.attributes.amenities}/>
                     <LocationInformation/>
                     <AccessibleInformation/>
                 </Grid>
                 <Grid item xs={12} sm={4.5} lg={4.5}>
-                    <BookingCalculationSection property={property} blockedDates={blockedDates}/>
+                    <BookingCalculationSection property={property} blockedDates={blockedDates} />
                 </Grid>
             </Grid>
         </AppContainer>
@@ -129,4 +121,4 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 }
 export default LivingSpaceItem;
 
-LivingSpaceItem.getLayout = (page:ReactElement) => <Layout> {page}</Layout>
+LivingSpaceItem.getLayout = (page: ReactElement) => <Layout> {page}</Layout>

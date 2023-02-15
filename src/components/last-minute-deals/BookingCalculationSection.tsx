@@ -10,6 +10,7 @@ import moment from 'moment';
 import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
+import BookingDialog from "@/components/last-minute-deals/BookingDialog";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -28,10 +29,10 @@ const commaSeparate = (input: number): string => {
     return parts.join(".");
 }
 
-const BASE_URL: string = 'http://localhost:1337/';
+const BASE_URL: string = 'http://localhost:1337/api';
 const DATE_FORMAT = 'YYYY-MM-DD';
 
-type TPrice = {
+export type TPrice = {
     totalPrice: number,
     components?: {
         type: string,
@@ -108,7 +109,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
 
     useEffect(() => {
         if (!startDate || !endDate) return;
-        const priceRequestURL: URL = new URL(`/api/properties/${propertyId}/price`, BASE_URL);
+        const priceRequestURL: URL = new URL(`/properties/${propertyId}/price`, BASE_URL);
         priceRequestURL.searchParams.set('guestCount', String(guestCount));
         priceRequestURL.searchParams.set('startDate', startDate.format(DATE_FORMAT));
         priceRequestURL.searchParams.set('endDate', endDate.format(DATE_FORMAT));
@@ -155,7 +156,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         small
                         showClearDates
                         hideKeyboardShortcutsPanel
-                        minimumNights={3}
+                        minimumNights={minNights || 1}
                         orientation={'horizontal'}
                         customInputIcon={<CalendarMonthRounded fontSize={'small'}
                                                                sx={{
@@ -231,23 +232,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         />
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
-                    <Button
-                        fullWidth
-                        variant={'outlined'}
-                        size={'small'}
-                        sx={{
-                            backgroundColor: "#A47C30",
-                            textTransform: 'capitalize',
-                            color: 'white',
-                            my: 2,
-                            border: 'none',
-                            '&:hover': {
-                                backgroundColor: "#A47C30",
-                                border: 'none'
-                            }
-                        }}>
-                        Book now
-                    </Button>
+                   <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate} price={price}/>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
                         {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'}

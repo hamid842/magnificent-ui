@@ -1,9 +1,6 @@
 // Material-ui
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 // Next.js
-import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
-import AirlineSeatFlatOutlinedIcon from '@mui/icons-material/AirlineSeatFlatOutlined';
-import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import SellIcon from '@mui/icons-material/Sell';
@@ -13,6 +10,7 @@ import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import ImageWithHoverZoom from "@/components/global/ZoomableImage";
+import SpecialOffersIconDetails from "@/components/global/SpecialOffersIconDetails";
 
 type Props = {
     data: IProperty
@@ -79,30 +77,7 @@ const SpecialOffersItem = ({data}: Props) => {
                 <Typography variant={'subtitle1'} sx={{color: colors.mainColor, paddingTop: 1}}>
                     <SellIcon sx={{pt: 1}}/>{attributes.price} AED/ per night</Typography>
             </Box>
-            <Grid container alignItems={'center'} spacing={1} sx={{paddingTop: 1}}>
-                <Grid item xs={4} sm={4} lg={4}>
-                    <Stack direction={'row'} alignItems={'center'}>
-                        <BedOutlinedIcon sx={iconsStyle}/>
-                        <SwitzerText variant={'caption'} sx={detailsStyles}
-                                     text={`${attributes.bedsNumber ? attributes.bedsNumber : "-"} Beds`}/>
-                    </Stack>
-                </Grid>
-                <Grid item xs={4} sm={4} lg={4}>
-                    <Stack direction={'row'} alignItems={'center'}>
-                        <AirlineSeatFlatOutlinedIcon sx={iconsStyle}/>
-                        <SwitzerText variant={'caption'} sx={detailsStyles}
-                                     text={`${attributes.bedsNumber ? attributes.bedsNumber : "-"} Sleeps`}/>
-                    </Stack>
-                </Grid>
-                <Grid item xs={4} sm={4} lg={4}>
-                    <Stack direction={'row'} alignItems={'center'}>
-                        <AspectRatioOutlinedIcon sx={iconsStyle} fontSize={'small'}/>
-                        <SwitzerText variant={'caption'} sx={detailsStyles}
-                                     text={`${attributes.squareMeters ? attributes.squareMeters : "-"} Sq Ft`}/>
-                    </Stack>
-                </Grid>
-            </Grid>
-
+            <SpecialOffersIconDetails bedsNumber={attributes.bedsNumber} squareMeters={attributes.squareMeters}/>
         </>
     )
 }

@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 // Material-ui
 import {Box, Grid} from "@mui/material";
 // Project imports
-import rentImage from '../../../public/8/8-2-1-768x568.jpg'
+import rentImage from '../../../public/8/8-2-1.jpg'
 import TitleSeparator from "@/components/global/TitleSeparator";
 import dictionaries from '../../../dictionaries/en.json';
 import AppButton from "@/components/global/AppButton";
