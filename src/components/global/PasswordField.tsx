@@ -3,7 +3,9 @@ import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,FormC
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type PasswordFieldProps = {
-    label:string
+    label:string,
+    value?: string,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
@@ -33,6 +35,8 @@ const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
                     </InputAdornment>
                 }
                 label={props.label}
+                onChange={props.onChange}
+                value={props.value}
             />
         </FormControl>
     )
