@@ -1,9 +1,12 @@
 import {MouseEvent, useState} from "react";
-import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,FormControlProps} from "@mui/material";
+import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,FormControlProps, FormHelperText} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type PasswordFieldProps = {
-    label:string
+    label:string,
+    value?: string,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    helperText?: string
 }
 
 const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
@@ -33,7 +36,14 @@ const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
                     </InputAdornment>
                 }
                 label={props.label}
+                onChange={props.onChange}
+                value={props.value}
             />
+            { !!props.helperText && (
+                <FormHelperText error>
+                    {props.helperText}
+                </FormHelperText>
+            )}
         </FormControl>
     )
 }

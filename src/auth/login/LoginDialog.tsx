@@ -10,31 +10,189 @@ import AuthWrapper from "@/auth/AuthWrapper";
 import AppButton from "@/components/global/AppButton";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import PasswordField from "@/components/global/PasswordField";
+import { useState } from 'react';
+import { instance as axios} from "@/config/axiosConfig";
+import { AxiosError, AxiosResponse, isAxiosError } from 'axios';
+
+type TAxiosErrorResponse = {
+    status: number,
+    name: 'ValidationError',
+    message: string,
+};
+
+// The id of form fields
+enum EForm {
+    IDENTIFIER = 'identifier', // Note: The login route accepts Email or Username as identifier
+    PASS = 'password'
+};
+
+// Type of state that holds the form data
+// NOTE: Make sure all the fields in the below type, are the same as values in the above enum
+type TForm = {
+    identifier: string,
+    password: string,
+};
+
+// NOTE: Make sure all the fields in the below type, are the same as values in the above enum
+type TFormError = {
+    identifier?: string,
+    password?: string
+};
+
+/**
+ * Used to make errors returned by API prettier
+ */
+const prettyMessage = (input: string): string => {
+    // Capitalize each word (Title Case)
+    let output = input
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    // Note: The login route accepts Email or Username as identifier
+    output = output.replaceAll('Identifier', 'Username / Email');
+    return output;
+}
 
 
 const LoginDialog = () => {
+
+    
+    const [formError, setFormError] = useState<TFormError>({});
+
+    // -----------------------------------------------------------------------------------
+
+    const [form, setForm] = useState<TForm>({
+        identifier: '',
+        password: ''
+    });
+
+    // -----------------------------------------------------------------------------------
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: EForm) => {
+        const value = e.target.value;
+        setForm((prevForm) => {
+            return {
+                ...prevForm,
+                [id]: value
+            };
+        });
+    };
+
+    // -----------------------------------------------------------------------------------
+
+    const handleLogin = async (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        //--------------------------------------------
+        setFormError({});
+        //--------------------------------------------
+        const postData = {
+            identifier: form.identifier,
+            password: form.password
+        };
+        axios.post('/auth/local', postData)
+        .then((response: AxiosResponse) => {
+            const { jwt, user } = response.data;
+            console.log(`${user.username} Logged in`);
+            // TODO: Save JWT in local storage
+            localStorage.setItem('JWT', jwt);
+        })
+        .catch((err) => {
+            if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);
+            //------------------------------------------------------------------------------
+            // For Validation Errors, the path to error messages is: err.response.data.error.details.errors
+            const error: TAxiosErrorResponse = err.response?.data.error;
+            if (!error) return;
+            if (error.name === 'ValidationError') {
+                // There was a Validation problem with one of the fields
+                setFormError((prev) => {
+                    return {
+                        identifier: prettyMessage(error.message),
+                        password: prettyMessage(error.message)
+                    };
+                });
+            }
+        });
+    };
+    
+    // -----------------------------------------------------------------------------------
+
     return (
         <AuthWrapper buttonTitle={'Login'} icon={<InputIcon/>}>
+            {/* ------------------------------------------------------------------------------------- */}
+            {/* Title */}
             <EuclidText variant={'h5'} text={'Login'} sx={{fontWeight: 700}} color={colors.navMenuColor}/>
-            <Box sx={{width: '100%', my: 2}}>
-                <AppTextField label={'Username'} id={'username'} value={""} onChange={() => {
-                }}/>
-            </Box>
-            <PasswordField label={"Password"} sx={{mb:2}}/>
-            <AppButton label={"Login"} sx={{borderRadius: 1, width: 100}}
-                       startIcon={<LoginIcon fontSize={'small'}/>}/>
-            <Button sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}}>Forgot password?</Button>
+            {/* ------------------------------------------------------------------------------------- */}
+            {/* Login Form */}
+            <form onSubmit={handleLogin}>
+            {/* ------------------------------------------------------------------------------------- */}
+                {/* Username */}
+                <Box sx={{width: '100%', my: 2}}>
+                    {/* Input Field */}
+                    <AppTextField 
+                        label={'Email / Username'} 
+                        required 
+                        error={!!formError.identifier} 
+                        helperText={formError.identifier || ''}
+                        id={EForm.IDENTIFIER} 
+                        value={form.identifier} 
+                        onChange={(e) => { handleChange(e, EForm.IDENTIFIER); }}
+                        />
+                </Box>
+                {/* ------------------------------------------------------------------------------------- */}
+                {/* Password */}
+                <PasswordField 
+                    label={"Password"} 
+                    required 
+                    error={!!formError.password} 
+                    helperText={formError.password || ''}
+                    id={EForm.PASS} 
+                    value={form.password} 
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS); }}
+                    sx={{mb:2}}
+                    />
+                {/* ------------------------------------------------------------------------------------- */}
+                {/* Login Button */}
+                <AppButton 
+                    label={"Login"} 
+                    type={'submit'}
+                    sx={{borderRadius: 1, width: 100}} 
+                    startIcon={
+                        <LoginIcon fontSize={'small'}/>
+                    }/>
+            {/* ------------------------------------------------------------------------------------- */}
+            </form>
+            {/* ------------------------------------------------------------------------------------- */}
+            {/* Forgot Password */}
+            <Button 
+                sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}}>
+                    Forgot password?
+            </Button>
+            {/* ------------------------------------------------------------------------------------- */}
             <Divider orientation={'vertical'} sx={{height: 20}}/>
+            {/* ------------------------------------------------------------------------------------- */}
+            {/* OR */}
             <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
-            <Stack direction={'row'} alignItems={'center'}>
-                <SwitzerText text={"Don't have an account?"} sx={{fontSize: 10}}/>
+            {/* ------------------------------------------------------------------------------------- */}
+            {/* Register */}
+            <Stack 
+                direction={'row'} 
+                alignItems={'center'}>
+                {/* Title */}
+                <SwitzerText 
+                    text={"Don't have an account?"} 
+                    sx={{fontSize: 10}}/>
+                {/* Register Button */}
                 <Button sx={{
                     color: colors.mainColor,
                     textTransform: 'none',
                     fontSize: 10,
                     fontWeight: 600
-                }}>Register</Button>
+                    }}>
+                    Register
+                </Button>
             </Stack>
+            {/* ------------------------------------------------------------------------------------- */}
         </AuthWrapper>
     );
 }
