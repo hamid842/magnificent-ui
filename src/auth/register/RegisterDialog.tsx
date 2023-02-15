@@ -10,14 +10,27 @@ import PasswordField from "@/components/global/PasswordField";
 import {switzerFont} from "@/assets/fonts";
 import { useState } from 'react';
 import { instance as axios} from "@/config/axiosConfig";
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse, isAxiosError } from 'axios';
+
+type TAxiosErrorResponse = {
+    status: number,
+    name: 'ValidationError' | 'ApplicationError',
+    message: string,
+    details: {
+        errors: {
+            path: string[],
+            message: string,
+            name: string
+        }[]
+    }
+};
 
 // The id of form fields
 enum EForm {
     USERNAME = 'username',
     FULL_NAME = 'fullName',
     EMAIL = 'email',
-    PHONE = 'phone',
+    PHONE = 'phoneNumber',
     PASS = 'password',
     PASS_CONFIRM = 'password_confirm',
     AGREE = 'agree'
@@ -29,15 +42,40 @@ type TForm = {
     username: string,
     fullName: string,
     email: string,
-    phone: string,
+    phoneNumber: string,
     password: string,
     password_confirm: string,
     agree: boolean
 };
 
+// NOTE: Make sure all the fields in the below type, are the same as values in the above enum
+type TFormError = {
+    username?: string,
+    fullName?: string,
+    email?: string,
+    phoneNumber?: string,
+    password?: string,
+    password_confirm?: string,
+};
+
+/**
+ * Used to make errors returned by API prettier
+ */
+const prettyMessage = (input: string): string => {
+    // Capitalize each word (Title Case)
+    let output = input
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    output = output.replaceAll('Fullname', 'Full Name');
+    output = output.replaceAll('Phonenumber', 'Phone Number');
+    return output;
+}
+
 const RegisterDialog = () => {
 
-    const [errors, setErrors] = useState<string[]>([]);
+    const [formError, setFormError] = useState<TFormError>({});
 
     // -----------------------------------------------------------------------------------
 
@@ -45,7 +83,7 @@ const RegisterDialog = () => {
         username: '',
         fullName: '',
         email: '',
-        phone: '',
+        phoneNumber: '',
         password: '',
         password_confirm: '',
         agree: false
@@ -74,37 +112,68 @@ const RegisterDialog = () => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         //--------------------------------------------
-        // If there are any errors, skip
-        if (errors.length) return;
+        setFormError({});
         //--------------------------------------------
         // Check passwords
         if (form.password !== form.password_confirm) {
-            return setErrors((prev) => [...prev, 'Passwords Don\'t Match'])
+            return setFormError((prev) => {
+                return {
+                    ...prev, 
+                    [EForm.PASS_CONFIRM]: 'Passwords Don\'t Match'
+                };
+            });
         }
         //--------------------------------------------
-        try {
-            const postData = {
-                email: form.email,
-                username: form.username,
-                password: form.password,
-                fullName: form.fullName,
-                // phoneNumber: form.phone
-            };
-            const { data } = await axios.post('/auth/local/register', postData);
-            console.log(JSON.stringify(data, null, 2));
-        } catch (err) {
-            // Is the error an AxiosError?
-            if (err instanceof AxiosError) {
-                // For Validation Errors, the path to error messages is: err.response.data.error.details.errors
-                const { error } = err.response?.data;
-                if (error && error.name === 'ValidationError') {
-                    for (const e of error.details.errors) {
-                        // Add errors to state
-                        setErrors((prev) => [...prev, e.message])
-                    }
+        const postData = {
+            email: form.email,
+            username: form.username,
+            password: form.password,
+            fullName: form.fullName,
+            phoneNumber: form.phoneNumber
+        };
+        axios.post('/auth/local/register', postData)
+        .then((response: AxiosResponse) => {
+            const { data } = response;
+            // console.log(JSON.stringify(data, null, 2));
+            // TODO: Save JWT in local storage
+            localStorage.setItem('JWT', data['jwt']);
+        })
+        .catch((err) => {
+            if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);
+            //------------------------------------------------------------------------------
+            // For Validation Errors, the path to error messages is: err.response.data.error.details.errors
+            const error: TAxiosErrorResponse = err.response?.data.error;
+            if (!error) return;
+            if (error.name === 'ValidationError') {
+                // There was a Validation problem with one of the fields
+                let fieldErrors = {};
+                for (const e of error.details.errors) {
+                    const fieldId = e.path[0];
+                    fieldErrors = {
+                        ...fieldErrors,
+                        [fieldId]: prettyMessage(e.message)
+                    };
                 }
+                // Now, set all the errors to the state
+                setFormError((prev) => {
+                    return {
+                        ...prev, 
+                        ...fieldErrors
+                    };
+                });
+            } else if (error.name === 'ApplicationError')  {
+                // Happends when we use an already existing username or email
+                setFormError((prev) => {
+                    return {
+                        ...prev, 
+                        [EForm.EMAIL]: error.message,
+                        [EForm.USERNAME]: error.message
+                    };
+                });
             }
-        }
+        });
+        
+
     };
 
     // -----------------------------------------------------------------------------------
@@ -115,40 +184,78 @@ const RegisterDialog = () => {
             {/* Title */}
             <EuclidText variant={'h5'} text={'Create a Magnificent account'} sx={{fontSize: 18, fontWeight: 700}} color={colors.navMenuColor}/>
             {/* ------------------------------------------------------------------------------------- */}
-            {/* Error */}
-            <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                This is an error alert — <strong>check it out!</strong>
-            </Alert>
-            {/* ------------------------------------------------------------------------------------- */}
             <form onSubmit={handleSubmit}>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Username */}
                 <Box sx={{width: '100%', my: 2}}>
-                    <AppTextField required label={'Username'} id={EForm.USERNAME} value={form.username} onChange={(e) => { handleChange(e, EForm.USERNAME); }}/>
+                    <AppTextField 
+                        required 
+                        error={!!formError.username} 
+                        helperText={formError.username || ''}
+                        label={'Username'} 
+                        id={EForm.USERNAME} 
+                        value={form.username} 
+                        onChange={(e) => { handleChange(e, EForm.USERNAME); }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Full Name */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField required label={'Full Name'} id={EForm.FULL_NAME} value={form.fullName} onChange={(e) => { handleChange(e, EForm.FULL_NAME); }}/>
+                    <AppTextField 
+                        required 
+                        error={!!formError.fullName} 
+                        helperText={formError.fullName || ''}
+                        label={'Full Name'} 
+                        id={EForm.FULL_NAME} 
+                        value={form.fullName} 
+                        onChange={(e) => { handleChange(e, EForm.FULL_NAME); }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Email */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField required label={'Email'} type={'email'} id={EForm.EMAIL} value={form.email} onChange={(e) => { handleChange(e, EForm.EMAIL); }}/>
+                    <AppTextField 
+                        required 
+                        error={!!formError.email} 
+                        helperText={formError.email || ''}
+                        label={'Email'} 
+                        type={'email'} 
+                        id={EForm.EMAIL} 
+                        value={form.email} 
+                        onChange={(e) => { handleChange(e, EForm.EMAIL); }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Phone Number */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField required label={'Phone Number'} type={'tel'} id={EForm.PHONE} value={form.phone} onChange={(e) => { handleChange(e, EForm.PHONE); }}/>
+                    <AppTextField 
+                        required 
+                        error={!!formError.phoneNumber} 
+                        helperText={formError.phoneNumber || ''}
+                        label={'Phone Number'} 
+                        type={'tel'} 
+                        id={EForm.PHONE} 
+                        value={form.phoneNumber} 
+                        onChange={(e) => { handleChange(e, EForm.PHONE); }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Password */}
                 <Stack sx={{mb:2}} direction={'row'} spacing={2}>
                     {/* Main Password */}
-                    <PasswordField required label={"Password"} id={EForm.PASS} value={form.password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS); }} />
+                    <PasswordField 
+                        required 
+                        error={!!formError.password} 
+                        helperText={formError.password || ''}
+                        label={"Password"} 
+                        id={EForm.PASS} 
+                        value={form.password} 
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS); }} />
                     {/* Password Confirm */}
-                    <PasswordField required label={"Confirm Password"} id={EForm.PASS_CONFIRM} value={form.password_confirm} onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS_CONFIRM); }} />
+                    <PasswordField 
+                        required 
+                        error={!!formError.password_confirm} 
+                        helperText={formError.password_confirm || ''}
+                        label={"Confirm Password"} 
+                        id={EForm.PASS_CONFIRM} 
+                        value={form.password_confirm} 
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS_CONFIRM); }} />
                 </Stack>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* I Agree... */}
