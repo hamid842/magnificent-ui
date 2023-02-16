@@ -1,8 +1,9 @@
+import {ReactElement} from "react";
 // Next.js
 import Image from 'next/image';
 import {useRouter} from "next/router";
 // Material-ui
-import {Box, Button, Container, Grid} from "@mui/material";
+import {Box, Grid} from "@mui/material";
 // Project imports
 import {IProperty} from "@/utils/property-type";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
@@ -14,9 +15,7 @@ import homePagePicture from '../../public/home-page.png';
 import {instance} from "@/config/axiosConfig";
 import TitleSeparator from "@/components/global/TitleSeparator";
 import AppContainer from "@/components/global/AppContainer";
-import colors from "@/assets/colors";
 import AppButton from "@/components/global/AppButton";
-import {ReactElement} from "react";
 import Layout from "@/components/global/Layout";
 
 const qs = require('qs');
@@ -46,6 +45,8 @@ type HomePageProps = {
 
 const HomePage = ({properties}: HomePageProps) => {
     const router = useRouter();
+
+
     return (
         <>
             <Box sx={{textAlign: 'center', position: 'relative'}}>
@@ -74,7 +75,8 @@ const HomePage = ({properties}: HomePageProps) => {
                         )
                     })}
                     <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center'}}>
-                        <AppButton label={'See more'} sx={{width: 120,mt:2}} onClick={() => router.push('/last-minute-deals')}/>
+                        <AppButton label={'See more'} sx={{width: 120, mt: 2}}
+                                   onClick={() => router.push('/last-minute-deals')}/>
                     </Grid>
                 </Grid>
                 <ActivityList/>
@@ -86,4 +88,4 @@ const HomePage = ({properties}: HomePageProps) => {
 }
 export default HomePage;
 
-HomePage.getLayout = (page:ReactElement)=><Layout>{page}</Layout>
+HomePage.getLayout = (page: ReactElement) => <Layout>{page}</Layout>

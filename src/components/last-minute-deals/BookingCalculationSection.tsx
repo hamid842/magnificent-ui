@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {ChangeEvent, FC, useContext, useEffect, useState} from 'react';
 import {IProperty} from "@/utils/property-type";
 import 'react-dates/initialize';
 import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
@@ -11,6 +11,8 @@ import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/last-minute-deals/BookingDialog";
+import {AuthContext} from "../../../context/contexts";
+import AuthWrapper from "@/auth/AuthWrapper";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -51,6 +53,9 @@ type Props = {
 const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
     const {id: propertyId} = property;
     const {minNights, maxNights, personCapacity} = property.attributes;
+
+    const {user} = useContext(AuthContext)
+
     // TODO: Q: Can we book for more than personCapacity?
     //=======================================================================================================================================
 
@@ -158,12 +163,16 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         hideKeyboardShortcutsPanel
                         minimumNights={minNights || 1}
                         orientation={'horizontal'}
-                        customInputIcon={<CalendarMonthRounded fontSize={'small'}
-                                                               sx={{
-                                                                   fontSize: 15,
-                                                                   padding: 0,
-                                                                   color: colors.mainColor
-                                                               }}/>}
+                        customInputIcon={
+                            <CalendarMonthRounded
+                                fontSize={'small'}
+                                sx={{
+                                    fontSize: 15,
+                                    padding: 0,
+                                    color: colors.mainColor
+                                }}
+                            />
+                        }
                         displayFormat={DATE_FORMAT}
                         startDatePlaceholderText={'check-in'}
                         endDatePlaceholderText={'check-out'}
@@ -232,7 +241,10 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         />
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
-                   <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate} price={price}/>
+                    <Box sx={{width:'100%'}}>
+                    {user ? <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
+                                           price={price}/> : <AuthWrapper isHeader={false}/>}
+                    </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
                         {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'}

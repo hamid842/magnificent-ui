@@ -27,7 +27,6 @@ import Layout from "@/components/global/Layout";
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`)
     const property = response.data?.data;
-    console.log(property)
     return {
         props: {
             property

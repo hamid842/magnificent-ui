@@ -21,6 +21,8 @@ import SwitzerText from "@/components/css-texts/SwitzerText";
 import moment from "moment";
 import AppTextField from "@/components/global/AppTextField";
 import {TPrice} from "@/components/last-minute-deals/BookingCalculationSection";
+import {useContext} from "react";
+import {AuthContext, LoginDialogContext} from "../../../context/contexts";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -39,15 +41,17 @@ type BookingDialogProps = {
 }
 
 const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDialogProps) => {
+    // const {user} = useContext(AuthContext);
+    // const {openLoginDialog,setOpenLoginDialog} = useContext(LoginDialogContext);
     const {attributes} = property
-    const [open, setOpen] = React.useState(false);
+    const [openPayDialog, setOpenPayDialog] = React.useState(false);
 
     const handleClickOpen = () => {
-        setOpen(true);
+         setOpenPayDialog(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenPayDialog(false);
     };
 
     const calculateNightsOfSelectedDateRange = (startDate: moment.Moment | null | undefined, endDate: moment.Moment | null | undefined): number => {
@@ -60,19 +64,19 @@ const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDial
     }
 
     return (
-        <Stack sx={{width: '100%'}}>
+        <Stack >
             <Button
                 fullWidth
                 variant={'outlined'}
                 size={'small'}
                 sx={{
-                    backgroundColor: "#A47C30",
+                    backgroundColor: colors.mainColor,
                     textTransform: 'capitalize',
                     color: 'white',
                     my: 2,
                     border: 'none',
                     '&:hover': {
-                        backgroundColor: "#A47C30",
+                        backgroundColor: colors.mainColor,
                         border: 'none'
                     }
                 }} onClick={handleClickOpen}>
@@ -80,7 +84,7 @@ const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDial
             </Button>
             <Dialog
                 fullScreen
-                open={open}
+                open={openPayDialog}
                 onClose={handleClose}
                 TransitionComponent={Transition}
             >

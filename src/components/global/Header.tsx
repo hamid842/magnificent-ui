@@ -1,4 +1,4 @@
-import {MouseEvent, useState} from "react";
+import {MouseEvent, useContext, useState} from "react";
 // next.js
 import Image from "next/image";
 import {useRouter} from "next/router";
@@ -24,6 +24,8 @@ import {switzerFont} from "@/assets/fonts";
 import AppButton from "@/components/global/AppButton";
 import LoginDialog from "@/auth/login/LoginDialog";
 import RegisterDialog from "@/auth/register/RegisterDialog"
+import AuthWrapper from "@/auth/AuthWrapper";
+import {AuthContext} from "../../../context/contexts";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -45,6 +47,7 @@ export const ColorButton = styled(Button)<ButtonProps>({
 
 export default function Header() {
     const router = useRouter();
+    const {user} = useContext(AuthContext)
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -179,12 +182,14 @@ export default function Header() {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                        <MenuItem onClick={handleCloseUserMenu}>
-                            <LoginDialog/>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                            <RegisterDialog/>
-                        </MenuItem>
+                        {!user ? <MenuItem onClick={handleCloseUserMenu}>
+                            <AuthWrapper isHeader={true}/>
+                        </MenuItem> : <>
+                        <Button>Logout</Button>
+                        </>}
+                        {/*<MenuItem onClick={handleCloseUserMenu}>*/}
+                        {/*    <RegisterDialog/>*/}
+                        {/*</MenuItem>*/}
                     </Menu>
                 </Box>
             </Toolbar>

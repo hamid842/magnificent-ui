@@ -16,7 +16,7 @@ type Props = {
 const AppTextField = ({label, id, type='text', value,multiline, onChange, required, error, helperText}: Props) => {
     return (
         <TextField fullWidth type={type} multiline={multiline} variant={'outlined'} size={'small'} id={id} name={id} label={label} value={value}
-                   onChange={onChange} required={required} error={error} helperText={helperText} />
+                   onChange={onChange} required={required} error={error} helperText={helperText} sx={{height:35}}/>
     )
 }
 export default AppTextField;

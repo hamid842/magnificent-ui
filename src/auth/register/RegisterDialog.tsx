@@ -1,16 +1,17 @@
+import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState} from 'react';
+// Material ui
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import AuthWrapper from "@/auth/AuthWrapper";
-import {Alert, AlertTitle, Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Radio, RadioGroup, Stack} from "@mui/material";
+import {Box, Button, Checkbox, FormControlLabel, FormGroup, Stack} from "@mui/material";
+// Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
 import colors from "@/assets/colors";
 import AppTextField from "@/components/global/AppTextField";
 import AppButton from "@/components/global/AppButton";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import PasswordField from "@/components/global/PasswordField";
-import {switzerFont} from "@/assets/fonts";
-import { useState } from 'react';
-import { instance as axios} from "@/config/axiosConfig";
-import { AxiosError, AxiosResponse, isAxiosError } from 'axios';
+import {instance as axios} from "@/config/axiosConfig";
+// Third party
+import {AxiosResponse, isAxiosError} from 'axios';
 
 type TAxiosErrorResponse = {
     status: number,
@@ -34,7 +35,7 @@ enum EForm {
     PASS = 'password',
     PASS_CONFIRM = 'password_confirm',
     AGREE = 'agree'
-};
+}
 
 // Type of state that holds the form data
 // NOTE: Make sure all the fields in the below type, are the same as values in the above enum
@@ -73,7 +74,11 @@ const prettyMessage = (input: string): string => {
     return output;
 }
 
-const RegisterDialog = () => {
+type RegisterDialogProps = {
+    setValue: Dispatch<SetStateAction<number>>
+}
+
+const RegisterDialog = ({setValue}: RegisterDialogProps) => {
 
     const [formError, setFormError] = useState<TFormError>({});
 
@@ -91,11 +96,11 @@ const RegisterDialog = () => {
 
     // -----------------------------------------------------------------------------------
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: EForm) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>, id: EForm) => {
         const value = e.target.value;
         setForm((prevForm) => {
             if (id === EForm.AGREE) {
-                return { 
+                return {
                     ...prevForm,
                     [EForm.AGREE]: !prevForm.agree
                 };
@@ -109,7 +114,7 @@ const RegisterDialog = () => {
 
     // -----------------------------------------------------------------------------------
 
-    const handleSubmit = async (e: React.SyntheticEvent) => {
+    const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         //--------------------------------------------
         setFormError({});
@@ -118,7 +123,7 @@ const RegisterDialog = () => {
         if (form.password !== form.password_confirm) {
             return setFormError((prev) => {
                 return {
-                    ...prev, 
+                    ...prev,
                     [EForm.PASS_CONFIRM]: 'Passwords Don\'t Match'
                 };
             });
@@ -132,160 +137,176 @@ const RegisterDialog = () => {
             phoneNumber: form.phoneNumber
         };
         axios.post('/auth/local/register', postData)
-        .then((response: AxiosResponse) => {
-            const { data } = response;
-            // console.log(JSON.stringify(data, null, 2));
-            // TODO: Save JWT in local storage
-            localStorage.setItem('JWT', data['jwt']);
-        })
-        .catch((err) => {
-            if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);
-            //------------------------------------------------------------------------------
-            // For Validation Errors, the path to error messages is: err.response.data.error.details.errors
-            const error: TAxiosErrorResponse = err.response?.data.error;
-            if (!error) return;
-            if (error.name === 'ValidationError') {
-                // There was a Validation problem with one of the fields
-                let fieldErrors = {};
-                for (const e of error.details.errors) {
-                    const fieldId = e.path[0];
-                    fieldErrors = {
-                        ...fieldErrors,
-                        [fieldId]: prettyMessage(e.message)
-                    };
+            .then((response: AxiosResponse) => {
+                const {data} = response;
+                // console.log(JSON.stringify(data, null, 2));
+                // TODO: Save JWT in local storage
+                localStorage.setItem('JWT', data['jwt']);
+            })
+            .catch((err) => {
+                if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);
+                //------------------------------------------------------------------------------
+                // For Validation Errors, the path to error messages is: err.response.data.error.details.errors
+                const error: TAxiosErrorResponse = err.response?.data.error;
+                if (!error) return;
+                if (error.name === 'ValidationError') {
+                    // There was a Validation problem with one of the fields
+                    let fieldErrors = {};
+                    for (const e of error.details.errors) {
+                        const fieldId = e.path[0];
+                        fieldErrors = {
+                            ...fieldErrors,
+                            [fieldId]: prettyMessage(e.message)
+                        };
+                    }
+                    // Now, set all the errors to the state
+                    setFormError((prev) => {
+                        return {
+                            ...prev,
+                            ...fieldErrors
+                        };
+                    });
+                } else if (error.name === 'ApplicationError') {
+                    // Happends when we use an already existing username or email
+                    setFormError((prev) => {
+                        return {
+                            ...prev,
+                            [EForm.EMAIL]: error.message,
+                            [EForm.USERNAME]: error.message
+                        };
+                    });
                 }
-                // Now, set all the errors to the state
-                setFormError((prev) => {
-                    return {
-                        ...prev, 
-                        ...fieldErrors
-                    };
-                });
-            } else if (error.name === 'ApplicationError')  {
-                // Happends when we use an already existing username or email
-                setFormError((prev) => {
-                    return {
-                        ...prev, 
-                        [EForm.EMAIL]: error.message,
-                        [EForm.USERNAME]: error.message
-                    };
-                });
-            }
-        });
-        
+            });
+
 
     };
 
-    // -----------------------------------------------------------------------------------
-
     return (
-        <AuthWrapper buttonTitle={'Register'} icon={<AppRegistrationIcon/>}>
-            {/* ------------------------------------------------------------------------------------- */}
+        <>
             {/* Title */}
-            <EuclidText variant={'h5'} text={'Create a Magnificent account'} sx={{fontSize: 18, fontWeight: 700}} color={colors.navMenuColor}/>
+            <EuclidText variant={'h5'} text={'Create a Magnificent account'} sx={{fontSize: 18, fontWeight: 700}}
+                        color={colors.navMenuColor}/>
             {/* ------------------------------------------------------------------------------------- */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Username */}
                 <Box sx={{width: '100%', my: 2}}>
-                    <AppTextField 
-                        required 
-                        error={!!formError.username} 
+                    <AppTextField
+                        required
+                        error={!!formError.username}
                         helperText={formError.username || ''}
-                        label={'Username'} 
-                        id={EForm.USERNAME} 
-                        value={form.username} 
-                        onChange={(e) => { handleChange(e, EForm.USERNAME); }}/>
+                        label={'Username'}
+                        id={EForm.USERNAME}
+                        value={form.username}
+                        onChange={(e) => {
+                            handleChange(e, EForm.USERNAME);
+                        }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Full Name */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField 
-                        required 
-                        error={!!formError.fullName} 
+                    <AppTextField
+                        required
+                        error={!!formError.fullName}
                         helperText={formError.fullName || ''}
-                        label={'Full Name'} 
-                        id={EForm.FULL_NAME} 
-                        value={form.fullName} 
-                        onChange={(e) => { handleChange(e, EForm.FULL_NAME); }}/>
+                        label={'Full Name'}
+                        id={EForm.FULL_NAME}
+                        value={form.fullName}
+                        onChange={(e) => {
+                            handleChange(e, EForm.FULL_NAME);
+                        }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Email */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField 
-                        required 
-                        error={!!formError.email} 
+                    <AppTextField
+                        required
+                        error={!!formError.email}
                         helperText={formError.email || ''}
-                        label={'Email'} 
-                        type={'email'} 
-                        id={EForm.EMAIL} 
-                        value={form.email} 
-                        onChange={(e) => { handleChange(e, EForm.EMAIL); }}/>
+                        label={'Email'}
+                        type={'email'}
+                        id={EForm.EMAIL}
+                        value={form.email}
+                        onChange={(e) => {
+                            handleChange(e, EForm.EMAIL);
+                        }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Phone Number */}
                 <Box sx={{width: '100%', mb: 2}}>
-                    <AppTextField 
-                        required 
-                        error={!!formError.phoneNumber} 
+                    <AppTextField
+                        required
+                        error={!!formError.phoneNumber}
                         helperText={formError.phoneNumber || ''}
-                        label={'Phone Number'} 
-                        type={'tel'} 
-                        id={EForm.PHONE} 
-                        value={form.phoneNumber} 
-                        onChange={(e) => { handleChange(e, EForm.PHONE); }}/>
+                        label={'Phone Number'}
+                        type={'tel'}
+                        id={EForm.PHONE}
+                        value={form.phoneNumber}
+                        onChange={(e) => {
+                            handleChange(e, EForm.PHONE);
+                        }}/>
                 </Box>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Password */}
-                <Stack sx={{mb:2}} direction={'row'} spacing={2}>
+                <Stack sx={{mb: 2}} direction={'row'} spacing={2}>
                     {/* Main Password */}
-                    <PasswordField 
-                        required 
-                        error={!!formError.password} 
+                    <PasswordField
+                        required
+                        error={!!formError.password}
                         helperText={formError.password || ''}
-                        label={"Password"} 
-                        id={EForm.PASS} 
-                        value={form.password} 
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS); }} />
+                        label={"Password"}
+                        id={EForm.PASS}
+                        value={form.password}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            handleChange(e, EForm.PASS);
+                        }}/>
                     {/* Password Confirm */}
-                    <PasswordField 
-                        required 
-                        error={!!formError.password_confirm} 
+                    <PasswordField
+                        required
+                        error={!!formError.password_confirm}
                         helperText={formError.password_confirm || ''}
-                        label={"Confirm Password"} 
-                        id={EForm.PASS_CONFIRM} 
-                        value={form.password_confirm} 
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e, EForm.PASS_CONFIRM); }} />
+                        label={"Confirm Pass"}
+                        id={EForm.PASS_CONFIRM}
+                        value={form.password_confirm}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            handleChange(e, EForm.PASS_CONFIRM);
+                        }}/>
                 </Stack>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* I Agree... */}
                 <Stack direction={'row'}>
                     {/* Checkbox */}
                     <FormGroup>
-                        <FormControlLabel control={<Checkbox required checked={form.agree} id={EForm.AGREE}  onChange={(e) => { handleChange(e, EForm.AGREE); }} size={'small'} />} label="I agree with" />
+                        <FormControlLabel
+                            control={<Checkbox required checked={form.agree} id={EForm.AGREE} onChange={(e) => {
+                                handleChange(e, EForm.AGREE);
+                            }} size={'small'}/>} label="I agree with"/>
                     </FormGroup>
                     {/* Button */}
-                    <Button sx={{ color: colors.mainColor, textTransform: 'none', fontSize: 12, fontWeight: 600, pl:0 }}>
+                    <Button sx={{color: colors.mainColor, textTransform: 'none', fontSize: 12, fontWeight: 600, pl: 0}}>
                         terms & conditions
                     </Button>
                 </Stack>
                 {/* ------------------------------------------------------------------------------------- */}
                 {/* Button */}
-                <AppButton label={"Register"} type={'submit'} sx={{borderRadius: 1, width: 120}} startIcon={<AppRegistrationIcon fontSize={'small'}/>}/>
+                <AppButton label={"Register"} type={'submit'} sx={{borderRadius: 1, width: 120}}
+                           startIcon={<AppRegistrationIcon fontSize={'small'}/>}/>
             </form>
             {/* ------------------------------------------------------------------------------------- */}
-            {/* OR */}
-            <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
-            {/* ------------------------------------------------------------------------------------- */}
-            {/* Login Text */}
-            <Stack direction={'row'} alignItems={'center'}>
-                <SwitzerText text={"Already have an account?"} sx={{fontSize: 10}}/>
-                <Button sx={{ color: colors.mainColor, textTransform: 'none', fontSize: 10, fontWeight: 600, pl:0 }}>
-                    Login
-                </Button>
+            <Stack alignItems={'center'}>
+                {/* OR */}
+                <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
+                {/* ------------------------------------------------------------------------------------- */}
+                {/* Login Text */}
+                <Stack direction={'row'} alignItems={'center'}>
+                    <SwitzerText text={"Already have an account?"} sx={{fontSize: 10}}/>
+                    <Button sx={{color: colors.mainColor, textTransform: 'none', fontSize: 10, fontWeight: 600, pl: 0}}
+                            onClick={() => setValue(0)}>
+                        Login
+                    </Button>
+                </Stack>
             </Stack>
-            {/* ------------------------------------------------------------------------------------- */}
-        </AuthWrapper>
+        </>
     );
 }
 export default RegisterDialog;

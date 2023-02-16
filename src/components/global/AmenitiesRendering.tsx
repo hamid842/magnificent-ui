@@ -58,7 +58,6 @@ const AmenitiesRendering = ({amenitiesList}: AmenitiesRenderingProps) => {
         })
     }, [])
 
-    console.log(amenities)
     return (
         <Grid container spacing={1}>
             <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
