@@ -1,37 +1,169 @@
-import {Grid, Paper, Stack, Typography} from "@mui/material";
+import { Grid, Paper, Stack, Typography } from "@mui/material";
 import AccessibleSlider from "@/components/last-minute-deals/AccessibleSlider";
 import EuclidText from "@/components/css-texts/EuclidText";
+import SwitzerText from "../css-texts/SwitzerText";
+import colors from "@/assets/colors";
 
 const AccessibleInformation = () => {
-    return (
-        <Paper elevation={3} sx={{p: 2, my: 2, borderRadius: 2}}>
-            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600}} text={'Location and accessible information'}/>
-            <Grid container spacing={6}>
-                <Grid item xs={12} sm={6} lg={6}>
-                    <Typography variant={'caption'} sx={{fontWeight: 600, fontSize: 10}}>Distance to places</Typography>
-                    <Stack direction={'row'} py={2}>
-                        <Typography variant={'caption'} sx={{mr: 3}}>&lt;20 min</Typography>
-                        <Typography variant={'caption'} sx={{mr: 3}}>~20 min</Typography>
-                        <Typography variant={'caption'}>&gt;20 min</Typography>
-                    </Stack>
-                    <AccessibleSlider title={'Metro'} value={'38.6'} color={'#FEBE1E'}/>
-                    <AccessibleSlider title={'Dubai Mall'} value={'27.6'} color={'#FEBE1E'}/>
-                    <AccessibleSlider title={'Opera'} value={'64.6'} color={'#FEBE1E'}/>
-                </Grid>
-                <Grid item xs={12} sm={6} lg={6}>
-                    <Typography variant={'caption'} sx={{fontWeight: 600, fontSize: 10}}>Change in house rental
-                        prices</Typography>
-                    <Stack direction={'row'} py={2}>
-                        <Typography variant={'caption'} sx={{mr: 3}}>&lt;20 min</Typography>
-                        <Typography variant={'caption'} sx={{mr: 3}}>~20 min</Typography>
-                        <Typography variant={'caption'}>&gt;20 min</Typography>
-                    </Stack>
-                    <AccessibleSlider title={'Airport'} value={'38.6'} color={'#A47C30'}/>
-                    <AccessibleSlider title={'Car Rental'} value={'27.6'} color={'#A47C30'}/>
-                    <AccessibleSlider title={'Beach Walk'} value={'64.6'} color={'#A47C30'}/>
-                </Grid>
-            </Grid>
-        </Paper>
-    )
-}
+  return (
+    <Paper elevation={3} sx={{ p: 2, my: 2, borderRadius: 2 }}>
+      <EuclidText
+        variant={"subtitle1"}
+        sx={{ fontWeight: 600 }}
+        text={"Location and accessible information"}
+      />
+      <Grid container spacing={6}>
+        <Grid item xs={12} sm={6} lg={6}>
+          <Stack direction={"row"} alignItems={"center"}>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"Dubai Mall"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              local_taxi
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_bus
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_walk
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12 }}
+              text={"< 20 min"}
+            />
+          </Stack>
+
+          <Stack direction={"row"} py={2}>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"Metro"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              local_taxi
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_bus
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_walk
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12 }}
+              text={"< 20 min"}
+            />
+          </Stack>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={6}>
+          <Stack direction={"row"} alignItems={"center"}>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"Resturant"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              local_taxi
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_bus
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_walk
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12 }}
+              text={"< 20 min"}
+            />
+          </Stack>
+          <Stack direction={"row"} py={2}>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"Beach Walk"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              local_taxi
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_bus
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
+              text={"< 20 min"}
+            />
+            <span
+              style={{ fontSize: 16, color: colors.mainColor }}
+              className="material-symbols-outlined"
+            >
+              directions_walk
+            </span>
+            <SwitzerText
+              sx={{ marginLeft: 1, fontSize: 12 }}
+              text={"< 20 min"}
+            />
+          </Stack>
+        </Grid>
+      </Grid>
+    </Paper>
+  );
+};
 export default AccessibleInformation;
