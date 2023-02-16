@@ -1,8 +1,8 @@
-import {ChangeEvent, forwardRef, ReactElement, Ref, useContext, useState} from "react";
+import {ChangeEvent, forwardRef, ReactElement, Ref, useContext, useEffect, useState} from "react";
 // Next.js
 import Image from "next/image";
 // Material ui
-import {AppBar, Button, Dialog, Grid, IconButton, Paper, Stack, Toolbar, Typography} from '@mui/material';
+import {AppBar, Button, Dialog, Grid, IconButton, Paper, Stack, ToggleButton, Toolbar, Typography} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PaymentIcon from '@mui/icons-material/Payment';
 import Slide from '@mui/material/Slide';
@@ -24,6 +24,8 @@ import AppButton from "@/components/global/AppButton";
 import {AuthContext} from "../../../context/contexts";
 import AuthWrapper from "@/auth/AuthWrapper";
 
+const DATE_FORMAT = 'YYYY-MM-DD';
+
 const Transition = forwardRef(function Transition(
     props: TransitionProps & {
         children: ReactElement;
@@ -37,10 +39,27 @@ type BookingDialogProps = {
     property: IProperty,
     arrivalDate?: moment.Moment | null,
     departureDate?: moment.Moment | null,
+    guestCount: number,
     price: TPrice | null
 }
 
-const BookingDialog = ({property, arrivalDate, departureDate, price}: BookingDialogProps) => {
+// The request data sent tto host to create a booking
+type TBookingRequest = {
+    userId: number,
+    propertyId: string,
+    arrival: string,
+    departure: string,
+    numberOfGuests: number,
+    // Optional-------------
+    guest?: {
+        fullName: string,
+        email: string,
+        phoneNumber: string
+    },
+    additionalInformation?: string,
+};
+
+const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}: BookingDialogProps) => {
     const {attributes} = property
     const {user} = useContext(AuthContext);
     const [openPayDialog, setOpenPayDialog] = useState(false);
@@ -51,6 +70,22 @@ const BookingDialog = ({property, arrivalDate, departureDate, price}: BookingDia
         phoneNumber: "",
         additionalInfo: ""
     })
+
+    // Is the user booking the property for himself?
+    const [isForMe, setForMe] = useState<boolean>(true);
+    // When the user Clicks 'For Me', auto-fill the guest data
+    useEffect(() => {
+        if (!isForMe) return;
+        if (!user) return;
+        setGuest((prevGuest) => {
+            return {
+                fullName: user.fullName,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                additionalInfo: prevGuest.additionalInfo
+            }
+        });
+    }, [isForMe]);
 
     const handleChangeGuest = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
@@ -77,10 +112,49 @@ const BookingDialog = ({property, arrivalDate, departureDate, price}: BookingDia
 
     const handlePay = ()=>{
         setOpenPayDialog(true);
-        instance.post(`/test`).then(response=>{
+        if (!arrivalDate || !departureDate || !property || !guestCount || !user) return;
+
+        // Validate guest fields
+        // TODO: Display Validation Errors on the text fields
+        if (!isForMe) {
+            if (!guest.email) return alert('Guest Email is Required!');
+            if (!guest.fullName) return alert('Guest Full Name is Required!');
+            if (!guest.phoneNumber) return alert('Guest Phone Number is Required!');
+        }
+        let guestObj = undefined;
+        // If 'For Me' isn't checked, and the guest data is provided:
+        if (!isForMe && guest.email && guest.fullName && guest.phoneNumber) {
+            guestObj = {
+                fullName: guest.fullName,
+                email: guest.email,
+                phoneNumber: guest.phoneNumber
+            };
+        }
+
+        // TODO: Must make token management better
+        const accessToken = localStorage.getItem('JWT');
+        if (!accessToken) return console.log('No JWT found in local storage!');
+
+        const data: TBookingRequest = {
+            userId: user.id,
+            propertyId: property.id,
+            arrival: arrivalDate.format(DATE_FORMAT),
+            departure: departureDate.format(DATE_FORMAT),
+            numberOfGuests: guestCount,
+            additionalInformation: guest.additionalInfo || undefined,
+            guest: guestObj
+        };
+        instance.post(`/bookings`, data, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response=>{
+            console.log(response);
             if (response.status === 200) {
                 setPayLoading(false)
-                window.open(response.data.url,"_blank");
+                window.open(response.data.stripeUrl, '__self');
             }
         }).catch(error=>{
             setPayLoading(false);
@@ -155,23 +229,47 @@ const BookingDialog = ({property, arrivalDate, departureDate, price}: BookingDia
                                                                                              value={item.total}/>)}
                             </Grid>
                         </Grid>
+                        <Stack sx={{ mt: 2}} direction='column' alignItems='center' justifyContent='center'>
+                            <ToggleButton
+                                value="check"
+                                selected={isForMe}
+                                onChange={() => { setForMe((prev) => !prev); }}
+                                >
+                                {/* <CheckIcon /> */}
+                                For Me?
+                            </ToggleButton>
+                        </Stack>
                         <Grid container p={2} spacing={2}>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Guest Full Name'} id={'fullName'} value={guest.fullName}
-                                              onChange={handleChangeGuest}/>
+                                <AppTextField 
+                                    disabled={isForMe}
+                                    label={'Guest Full Name'} 
+                                    id={'fullName'} 
+                                    value={guest.fullName}
+                                    onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Email'} id={'email'} value={guest.email}
-                                              onChange={handleChangeGuest}/>
+                                <AppTextField 
+                                    disabled={isForMe}
+                                    label={'Email'} 
+                                    id={'email'} 
+                                    value={guest.email}
+                                    onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Phone Number'} id={'phoneNumber'} value={guest.phoneNumber}
-                                              onChange={handleChangeGuest}/>
+                                <AppTextField 
+                                    disabled={isForMe}
+                                    label={'Phone Number'} 
+                                    id={'phoneNumber'} 
+                                    value={guest.phoneNumber}
+                                    onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Additional Info'} id={'additionalInfo'}
-                                              value={guest.additionalInfo}
-                                              onChange={handleChangeGuest} multiline/>
+                                <AppTextField 
+                                    label={'Additional Info'} 
+                                    id={'additionalInfo'}
+                                    value={guest.additionalInfo}
+                                    onChange={handleChangeGuest} multiline/>
                             </Grid>
                         </Grid>
                     </Paper>

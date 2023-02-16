@@ -242,7 +242,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
                     <Box sx={{width: '100%',my:1}}>
                         <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
-                                       price={price}/>
+                                       price={price} guestCount={guestCount} />
                     </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
