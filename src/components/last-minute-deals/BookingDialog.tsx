@@ -1,34 +1,34 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import {ChangeEvent, forwardRef, ReactElement, Ref, useContext, useState} from "react";
+// Next.js
+import Image from "next/image";
+// Material ui
+import {AppBar, Button, Dialog, Grid, IconButton, Paper, Stack, Toolbar, Typography} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import PaymentIcon from '@mui/icons-material/Payment';
 import Slide from '@mui/material/Slide';
 import {TransitionProps} from '@mui/material/transitions';
-import {Grid, Paper, Stack} from "@mui/material";
+// Third Party
+import moment from "moment";
+// Project imports
 import colors from "@/assets/colors";
-import PaymentIcon from '@mui/icons-material/Payment';
 import EuclidText from "@/components/css-texts/EuclidText";
 import {IProperty} from "@/utils/property-type";
-import Image from "next/image";
 import AppContainer from "@/components/global/AppContainer";
 import SpecialOffersIconDetails from "@/components/global/SpecialOffersIconDetails";
 import BookingDetailsTitleAndValue from "@/components/global/BookingDetailsTitleAndValue";
 import SwitzerText from "@/components/css-texts/SwitzerText";
-import moment from "moment";
 import AppTextField from "@/components/global/AppTextField";
 import {TPrice} from "@/components/last-minute-deals/BookingCalculationSection";
-import {useContext} from "react";
-import {AuthContext, LoginDialogContext} from "../../../context/contexts";
+import {instance} from "@/config/axiosConfig";
+import AppButton from "@/components/global/AppButton";
+import {AuthContext} from "../../../context/contexts";
+import AuthWrapper from "@/auth/AuthWrapper";
 
-const Transition = React.forwardRef(function Transition(
+const Transition = forwardRef(function Transition(
     props: TransitionProps & {
-        children: React.ReactElement;
+        children: ReactElement;
     },
-    ref: React.Ref<unknown>,
+    ref: Ref<unknown>,
 ) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -37,17 +37,29 @@ type BookingDialogProps = {
     property: IProperty,
     arrivalDate?: moment.Moment | null,
     departureDate?: moment.Moment | null,
-    price:TPrice | null
+    price: TPrice | null
 }
 
-const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDialogProps) => {
-    // const {user} = useContext(AuthContext);
-    // const {openLoginDialog,setOpenLoginDialog} = useContext(LoginDialogContext);
+const BookingDialog = ({property, arrivalDate, departureDate, price}: BookingDialogProps) => {
     const {attributes} = property
-    const [openPayDialog, setOpenPayDialog] = React.useState(false);
+    const {user} = useContext(AuthContext);
+    const [openPayDialog, setOpenPayDialog] = useState(false);
+    const [payLoading,setPayLoading] = useState(false)
+    const [guest, setGuest] = useState({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        additionalInfo: ""
+    })
+
+    const handleChangeGuest = (event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setGuest({...guest, [name]: value})
+    }
 
     const handleClickOpen = () => {
-         setOpenPayDialog(true);
+        setOpenPayDialog(true);
     };
 
     const handleClose = () => {
@@ -63,25 +75,34 @@ const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDial
         return numberOfNights
     }
 
+    const handlePay = ()=>{
+        setOpenPayDialog(true);
+        instance.post(`/test`).then(response=>{
+            if (response.status === 200) {
+                setPayLoading(false)
+                window.open(response.data.url,"_blank");
+            }
+        }).catch(error=>{
+            setPayLoading(false);
+            console.log(error)
+        })
+    }
+
     return (
-        <Stack >
-            <Button
-                fullWidth
-                variant={'outlined'}
-                size={'small'}
+        <Stack alignItems={'center'}>
+            <AppButton
+              label={'Book Now'}
                 sx={{
                     backgroundColor: colors.mainColor,
                     textTransform: 'capitalize',
                     color: 'white',
-                    my: 2,
                     border: 'none',
                     '&:hover': {
                         backgroundColor: colors.mainColor,
                         border: 'none'
                     }
-                }} onClick={handleClickOpen}>
-                Book now
-            </Button>
+                }} onClick={handleClickOpen}/>
+
             <Dialog
                 fullScreen
                 open={openPayDialog}
@@ -89,30 +110,25 @@ const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDial
                 TransitionComponent={Transition}
             >
                 {/* Dialog Header*/}
-                <AppBar sx={{position: 'relative', backgroundColor: colors.mainColor}}>
+                <AppBar sx={{position: 'relative', backgroundColor: 'white'}}>
                     <Toolbar>
                         <IconButton
                             edge="start"
-                            color="inherit"
                             onClick={handleClose}
                             aria-label="close"
                         >
-                            <CloseIcon/>
+                            <CloseIcon />
                         </IconButton>
-                        <Typography sx={{ml: 2, flex: 1}} variant="h6" component="div">
+                        <Typography sx={{color:'#333333',ml: 2, flex: 1}} variant="h6" component="div">
                             Booking Details
                         </Typography>
-                        <Button size={'small'} variant={'outlined'} startIcon={<PaymentIcon/>}
-                                sx={{color: 'white', textTransform: 'none', borderColor: 'white'}}
-                                onClick={handleClose}>
-                            Pay Now
-                        </Button>
+                        { user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false}/>}
                     </Toolbar>
                 </AppBar>
                 {/* ====================== Dialog Content =======================*/}
                 <AppContainer>
-                    <Paper elevation={3} sx={{px: 2, py: 1, width: '100%', height: '100%', mt: 2}}>
-                        <Stack direction={'column'} alignItems={'center'} my={2}>
+                    <Paper elevation={3} sx={{px: 2,pt:1, width: '100%', height: '100%', mt: 2}}>
+                        <Stack direction={'column'} alignItems={'center'} my={1}>
                             <EuclidText variant={'h5'} sx={{fontWeight: 700}}
                                         text={'Reservation Information'}/>
                             <SwitzerText variant={'caption'}
@@ -134,30 +150,28 @@ const BookingDialog = ({property, arrivalDate, departureDate,price}: BookingDial
                                                              value={moment(departureDate).format('YYYY-MM-DD')}/>
                                 <BookingDetailsTitleAndValue title={'Total nights'}
                                                              value={calculateNightsOfSelectedDateRange(arrivalDate, departureDate)}/>
-                                <BookingDetailsTitleAndValue title={'Rate'} value={attributes?.price}/>
-                                <BookingDetailsTitleAndValue title={'Discount'} value={"Discount Code"}/>
-                                <BookingDetailsTitleAndValue title={'Community Fee'} value={'Community Fee'}/>
-                                <BookingDetailsTitleAndValue title={'Tax'} value={'Tax'}/>
-                                <BookingDetailsTitleAndValue title={'Total'} value={price?.totalPrice}/>
+                                {price?.components?.map(item => <BookingDetailsTitleAndValue key={item.name}
+                                                                                             title={item.title}
+                                                                                             value={item.total}/>)}
                             </Grid>
                         </Grid>
                         <Grid container p={2} spacing={2}>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Guest Full Name'} id={'fullName'} value={""} onChange={() => {
-                                }}/>
+                                <AppTextField label={'Guest Full Name'} id={'fullName'} value={guest.fullName}
+                                              onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Email'} id={'email'} value={""} onChange={() => {
-                                }}/>
+                                <AppTextField label={'Email'} id={'email'} value={guest.email}
+                                              onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Phone Number'} id={'phoneNumber'} value={""} onChange={() => {
-                                }}/>
+                                <AppTextField label={'Phone Number'} id={'phoneNumber'} value={guest.phoneNumber}
+                                              onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField label={'Additional Info'} id={'additionalInfo'} value={""}
-                                              onChange={() => {
-                                              }} multiline/>
+                                <AppTextField label={'Additional Info'} id={'additionalInfo'}
+                                              value={guest.additionalInfo}
+                                              onChange={handleChangeGuest} multiline/>
                             </Grid>
                         </Grid>
                     </Paper>

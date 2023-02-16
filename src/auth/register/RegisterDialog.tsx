@@ -1,4 +1,4 @@
-import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState} from 'react';
+import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useContext, useState} from 'react';
 // Material ui
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import {Box, Button, Checkbox, FormControlLabel, FormGroup, Stack} from "@mui/material";
@@ -12,6 +12,7 @@ import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
 import {AxiosResponse, isAxiosError} from 'axios';
+import {AuthContext} from "../../../context/contexts";
 
 type TAxiosErrorResponse = {
     status: number,
@@ -76,10 +77,11 @@ const prettyMessage = (input: string): string => {
 
 type RegisterDialogProps = {
     setValue: Dispatch<SetStateAction<number>>
+    setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const RegisterDialog = ({setValue}: RegisterDialogProps) => {
-
+const RegisterDialog = ({setValue,setOpen}: RegisterDialogProps) => {
+const {setUser} = useContext(AuthContext)
     const [formError, setFormError] = useState<TFormError>({});
 
     // -----------------------------------------------------------------------------------
@@ -138,10 +140,14 @@ const RegisterDialog = ({setValue}: RegisterDialogProps) => {
         };
         axios.post('/auth/local/register', postData)
             .then((response: AxiosResponse) => {
-                const {data} = response;
-                // console.log(JSON.stringify(data, null, 2));
-                // TODO: Save JWT in local storage
-                localStorage.setItem('JWT', data['jwt']);
+                if(response.status === 200) {
+                    const {data} = response;
+                    // console.log(JSON.stringify(data, null, 2));
+                    // TODO: Save JWT in local storage
+                    localStorage.setItem('JWT', data['jwt']);
+                    setUser(data.user);
+                    setOpen(false);
+                }
             })
             .catch((err) => {
                 if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);

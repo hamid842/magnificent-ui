@@ -19,7 +19,7 @@ type AppButtonProps = {
 
 const AppButton = (props:(AppButtonProps & ButtonProps))=>{
     return(
-        <ColorButton size={'small'} variant={'contained'} className={euclidFont.className} {...props}>{props.label}</ColorButton>
+        <ColorButton size={'small'} variant={'contained'} className={euclidFont.className} {...props} sx={{width:120,fontSize:14}}>{props.label}</ColorButton>
     )
 }
 

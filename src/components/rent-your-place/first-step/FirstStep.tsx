@@ -1,5 +1,7 @@
-import {Grid, Paper, SelectChangeEvent, Typography} from "@mui/material";
 import {ChangeEvent, useState} from "react";
+// Material ui
+import {Grid, Paper, SelectChangeEvent, Typography} from "@mui/material";
+// Project imports
 import LocationInformation from "@/components/last-minute-deals/LocationInformation";
 import GeneralInformation from "@/components/rent-your-place/first-step/GeneralInformation";
 import ContactInformation from "@/components/rent-your-place/first-step/ContactInformation";

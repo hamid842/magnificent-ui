@@ -1,12 +1,13 @@
 // Next.js
 import {useRouter} from "next/router";
 // Material-ui
-import {Box, Grid, IconButton, TextField} from "@mui/material";
+import {AppBar, Box, Grid, IconButton, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import {CalendarTodayOutlined, PeopleAlt} from "@mui/icons-material";
 import {styled} from "@mui/material/styles";
 // Project imports
 import colors from '../../assets/colors'
+import AppButton from "@/components/global/AppButton";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -47,9 +48,9 @@ const SearchDestinationLastMin = ({position}: Props) => {
                 boxShadow: '0px 0 2px 2px gray'
             }}>
             <Grid container alignItems={'center'}>
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <CalendarTodayOutlined sx={{color: 'action.active', my: 0.5}}/>
+                        <CalendarTodayOutlined sx={{color: colors.mainColor, my: 0.5}}/>
                         <CssTextField
                             label="When"
                             variant="filled"
@@ -58,9 +59,9 @@ const SearchDestinationLastMin = ({position}: Props) => {
                             }}/>
                     </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <PeopleAlt sx={{color: 'action.active', my: 0.5}}/>
+                        <PeopleAlt sx={{color: colors.mainColor, my: 0.5}}/>
                         <CssTextField
                             label="Guests"
                             variant="filled"
@@ -68,14 +69,7 @@ const SearchDestinationLastMin = ({position}: Props) => {
                                 disableUnderline: true,
                             }}
                         />
-                        <IconButton
-                            sx={{
-                                backgroundColor: colors.mainColor,
-                                '&:hover': {width: 32, height: 32, borderRadius: 25, backgroundColor: colors.mainColor}
-                            }}
-                            onClick={() => router.push('/last-minute-deals')}>
-                            <SearchIcon fontSize={'small'} sx={{color: 'white'}}/>
-                        </IconButton>
+                        <AppButton label={'Search'} />
                     </Box>
                 </Grid>
             </Grid>

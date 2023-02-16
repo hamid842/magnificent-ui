@@ -12,7 +12,6 @@ import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/last-minute-deals/BookingDialog";
 import {AuthContext} from "../../../context/contexts";
-import AuthWrapper from "@/auth/AuthWrapper";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -241,13 +240,13 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         />
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
-                    <Box sx={{width:'100%'}}>
-                    {user ? <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
-                                           price={price}/> : <AuthWrapper isHeader={false}/>}
+                    <Box sx={{width: '100%',my:1}}>
+                        <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
+                                       price={price}/>
                     </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
-                        {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'}
+                        {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'} sx={{my:1}}
                                                                              text={'Select dates to see the price'}/></Stack>}
                         {
                             price && price.components?.map((item) => {

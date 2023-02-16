@@ -65,18 +65,20 @@ const SpecialOffersItem = ({data}: Props) => {
                 }}>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
                         <StarOutlinedIcon sx={iconsStyle}/>
-                        <SwitzerText text={'4.8'}/>
+                        <SwitzerText text={'4.8'} />
                     </Stack>
                 </Box>
             </Box>
             <Box sx={{paddingTop: 2}}>
+                {/* TODO position of icons*/}
                 <EuclidText text={attributes.Title} sx={{fontWeight: 600, fontSize: 14}}/>
                 <SwitzerText variant={'body2'} sx={{color: 'gray'}}
                              text={`${attributes.bedroomsNumber} Bedroom/s Combined Lodge`}/>
                 {/* <SwitzerText variant={'subtitle1'} text={'28 October - 1 November'}/> */}
                 <Typography variant={'subtitle1'} sx={{color: colors.mainColor, paddingTop: 1}}>
-                    <SellIcon sx={{pt: 1}}/>{attributes.price} AED/ per night</Typography>
+                    <SellIcon fontSize={'medium'} sx={{pt: 1}}/>{attributes.price} AED/ per night</Typography>
             </Box>
+
             <SpecialOffersIconDetails bedsNumber={attributes.bedsNumber} squareMeters={attributes.squareMeters}/>
         </>
     )

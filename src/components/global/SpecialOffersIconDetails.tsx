@@ -22,21 +22,21 @@ const SpecialOffersIconDetails = ({bedsNumber,squareMeters}:SpecialOffersIconDet
         <Grid container alignItems={'center'} spacing={1} sx={{paddingTop: 1}}>
             <Grid item xs={4} sm={4} lg={4}>
                 <Stack direction={'row'} alignItems={'center'}>
-                    <BedOutlinedIcon sx={iconsStyle}/>
+                    <BedOutlinedIcon fontSize={'large'} sx={iconsStyle}/>
                     <SwitzerText variant={'caption'} sx={detailsStyles}
                                  text={`${bedsNumber ? bedsNumber : "-"} Beds`}/>
                 </Stack>
             </Grid>
             <Grid item xs={4} sm={4} lg={4}>
                 <Stack direction={'row'} alignItems={'center'}>
-                    <AirlineSeatFlatOutlinedIcon sx={iconsStyle}/>
+                    <AirlineSeatFlatOutlinedIcon fontSize={'large'} sx={iconsStyle}/>
                     <SwitzerText variant={'caption'} sx={detailsStyles}
                                  text={`${bedsNumber ? bedsNumber : "-"} Sleeps`}/>
                 </Stack>
             </Grid>
             <Grid item xs={4} sm={4} lg={4}>
                 <Stack direction={'row'} alignItems={'center'}>
-                    <AspectRatioOutlinedIcon sx={iconsStyle} fontSize={'small'}/>
+                    <AspectRatioOutlinedIcon fontSize={'large'} sx={iconsStyle}/>
                     <SwitzerText variant={'caption'} sx={detailsStyles}
                                  text={`${squareMeters ? squareMeters : "-"} Sq Ft`}/>
                 </Stack>

@@ -56,10 +56,11 @@ const prettyMessage = (input: string): string => {
 
 type LoginDialogProps = {
     setValue:Dispatch<SetStateAction<number>>
+    setOpen:Dispatch<SetStateAction<boolean>>
 }
 
 
-const LoginDialog = ({setValue}:LoginDialogProps) => {
+const LoginDialog = ({setValue,setOpen}:LoginDialogProps) => {
 
     const { setUser} = useContext(AuthContext)
     const [formError, setFormError] = useState<TFormError>({});
@@ -94,11 +95,14 @@ const LoginDialog = ({setValue}:LoginDialogProps) => {
         };
         axios.post('/auth/local', postData)
             .then((response: AxiosResponse) => {
-                const {jwt, user} = response.data;
-                console.log(`${user.username} Logged in`);
-                setUser(user.username);
-                // TODO: Save JWT in local storage
-                localStorage.setItem('JWT', jwt);
+                if (response.status === 200) {
+                    const {jwt, user} = response.data;
+                    console.log(`${user.username} Logged in`);
+                    setUser(user.username);
+                    // TODO: Save JWT in local storage
+                    localStorage.setItem('JWT', jwt);
+                    setOpen(false);
+                }
             })
             .catch((err) => {
                 if (!isAxiosError(err)) return console.log(`[Error in API] -> ${err}`);

@@ -1,12 +1,12 @@
 // Next.js
 import {useRouter} from "next/router";
 // Material-ui
-import {Box, Grid, IconButton, TextField} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import {Box, Grid, TextField} from "@mui/material";
 import {CalendarTodayOutlined, PeopleAlt} from "@mui/icons-material";
 import {styled} from "@mui/material/styles";
 // Project imports
 import colors from '../../assets/colors'
+import AppButton from "@/components/global/AppButton";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -30,55 +30,60 @@ type Props = {
 const SearchDestination = ({position}: Props) => {
     const router = useRouter()
     return (
-        <Box
-            sx={{
-                position,
-                bottom: 150,
-                width: 500,
-                height: 45,
-                background: 'white',
-                borderRadius: 25,
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: 1,
-                boxShadow: '0px 0 2px 2px gray'
-            }}>
-            <Grid container alignItems={'center'}>
-                <Grid item xs={6}>
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <CalendarTodayOutlined sx={{color: 'action.active', my: 0.5}}/>
-                        <CssTextField
-                            label="When"
-                            variant="filled"
-                            InputProps={{
-                                disableUnderline: true,
-                            }}/>
-                    </Box>
+        <Box sx={{
+            position,
+            p: 3.2,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 25,
+            bottom: 80,
+            left: '50%',
+            transform: 'translate(-50%,-50%)',
+            width: {xs: 380, sm: 500, lg: 600},
+            height: 100,
+            backgroundColor: 'rgba(11,11,14,0.5)',
+        }}>
+            <Box
+                sx={{
+                    width: '100%',
+                    height: '100%',
+                    background: 'white',
+                    borderRadius: 25,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    padding: 1,
+                    boxShadow: '0px 0 2px 2px gray',
+                }}>
+                <Grid container alignItems={'center'}>
+                    <Grid item xs={5}>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                            <CalendarTodayOutlined sx={{color: colors.mainColor, my: 0.5}}/>
+                            <CssTextField
+                                label="When"
+                                variant="filled"
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}/>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={7}>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                            <PeopleAlt sx={{color: colors.mainColor, my: 0.5}}/>
+                            <CssTextField
+                                label="Guests"
+                                variant="filled"
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                            />
+                            <AppButton label={'Search'} onClick={() => router.push('/last-minute-deals')}/>
+                        </Box>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <PeopleAlt sx={{color: 'action.active', my: 0.5}}/>
-                        <CssTextField
-                            label="Guests"
-                            variant="filled"
-                            InputProps={{
-                                disableUnderline: true,
-                            }}
-                        />
-                        <IconButton
-                            sx={{
-                                backgroundColor: colors.mainColor,
-                                '&:hover': {width: 32, height: 32, borderRadius: 25, backgroundColor: colors.mainColor}
-                            }}
-                            onClick={() => router.push('/last-minute-deals')}>
-                            <SearchIcon fontSize={'small'} sx={{color: 'white'}}/>
-                        </IconButton>
-                    </Box>
-                </Grid>
-            </Grid>
+            </Box>
         </Box>
     )
 }

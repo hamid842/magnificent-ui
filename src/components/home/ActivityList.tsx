@@ -103,14 +103,17 @@ const ActivityList = () => {
                     <OurPartnership/>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
-                    <Image src={activityMain}
-                           alt={'Pic'}
-                           priority
-                           style={{
-                               width: '100%',
-                               height: '100%',
-                               objectFit: 'cover'
-                           }}/>
+                    {/*<Image src={activityMain}*/}
+                    {/*       alt={'Pic'}*/}
+                    {/*       priority*/}
+                    {/*       style={{*/}
+                    {/*           width: '100%',*/}
+                    {/*           height: '100%',*/}
+                    {/*           objectFit: 'cover'*/}
+                    {/*       }}/>*/}
+                    <Box sx={{width:'100%',height:'100%'}}>
+
+                    </Box>
                 </Grid>
             </Grid>
         </>

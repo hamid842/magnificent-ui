@@ -14,6 +14,7 @@ import RegisterDialog from "@/auth/register/RegisterDialog";
 // Third Party
 import SwipeableViews from 'react-swipeable-views';
 import {AuthContext} from "../../context/contexts";
+import AppButton from "@/components/global/AppButton";
 
 const Transition = forwardRef(function Transition(
     props: TransitionProps & {
@@ -122,10 +123,8 @@ const AuthWrapper = ({isHeader}: AuthWrapperProps) => {
     };
     return (
         <div>
-            {!user && !isHeader && <Button
-                fullWidth
-                variant={'outlined'}
-                size={'small'}
+            {!user && !isHeader && <AppButton
+                label={'Pay Now'}
                 sx={{
                     backgroundColor: "#A47C30",
                     textTransform: 'capitalize',
@@ -136,9 +135,8 @@ const AuthWrapper = ({isHeader}: AuthWrapperProps) => {
                         backgroundColor: "#A47C30",
                         border: 'none'
                     }
-                }} onClick={handleClickOpen}>
-                Book now
-            </Button>}
+                }} onClick={handleClickOpen}/>
+              }
             {
                 isHeader && <Button size={'small'} onClick={handleClickOpen}
                                     sx={{textTransform: 'none', height: 15, color: colors.navMenuColor}}
@@ -168,8 +166,8 @@ const AuthWrapper = ({isHeader}: AuthWrapperProps) => {
                         index={value}
                         onChangeIndex={handleChangeIndex}
                     >
-                        <TabPanel index={0} value={value}><LoginDialog setValue={setValue}/></TabPanel>
-                        <TabPanel index={1} value={value}><RegisterDialog setValue={setValue}/></TabPanel>
+                        <TabPanel index={0} value={value}><LoginDialog setValue={setValue} setOpen={setOpen}/></TabPanel>
+                        <TabPanel index={1} value={value}><RegisterDialog setValue={setValue} setOpen={setOpen}/></TabPanel>
                     </SwipeableViews>
                 </Stack>
             </Dialog>

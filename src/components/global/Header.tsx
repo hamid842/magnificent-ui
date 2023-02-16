@@ -5,14 +5,15 @@ import {useRouter} from "next/router";
 // material-ui
 import {
     AppBar,
+    Avatar,
     Box,
     Button,
     ButtonProps,
     IconButton,
     Menu,
     MenuItem,
+    Stack,
     Toolbar,
-    Tooltip,
     Typography
 } from "@mui/material";
 import {styled} from '@mui/material/styles';
@@ -20,12 +21,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 // project imports
 import logo from "../../../public/main-logo.png";
 import colors from '../../assets/colors'
-import {switzerFont} from "@/assets/fonts";
-import AppButton from "@/components/global/AppButton";
-import LoginDialog from "@/auth/login/LoginDialog";
-import RegisterDialog from "@/auth/register/RegisterDialog"
+import {euclidFont, switzerFont} from "@/assets/fonts";
 import AuthWrapper from "@/auth/AuthWrapper";
 import {AuthContext} from "../../../context/contexts";
+import {Person} from "@mui/icons-material";
 
 const pages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -33,7 +32,6 @@ const pages = [
     {label: 'About us', path: '/about'},
     {label: 'Contacts', path: '/contacts'}
 ];
-const loggedInSettings = ['Dashboard', 'Logout'];
 
 export const ColorButton = styled(Button)<ButtonProps>({
     color: "white",
@@ -93,7 +91,7 @@ export default function Header() {
             position: 'absolute',
             top: 0,
             zIndex: 1000,
-            background: "transparent",
+            background: colors.bodyBackground,
             boxShadow: "none"
         }}>
             <Toolbar disableGutters>
@@ -158,14 +156,17 @@ export default function Header() {
                     ))}
                 </Box>
                 {/* ========================= || Setting (when click on header image) || ====================== */}
-                <Box sx={{flexGrow: 0,mr:2}}>
-                    <AppButton label={'Rent Your Place'} onClick={() => router.push('/rent-your-place')}/>
-                    <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} aria-haspopup={true}>
-                            <Image src={'/profile.png'} alt={"Profile Image"} width={40} height={40}
-                                   style={{borderRadius: 25}}/>
-                        </IconButton>
-                    </Tooltip>
+                <Box sx={{flexGrow: 0, mr: 2}}>
+                    <Stack direction={'row'}>
+                        <ColorButton size={'small'} variant={'contained'} className={euclidFont.className}
+                                     sx={{textTransform: 'none', borderRadius: 25, fontSize: 14,mr:1}}
+                                     onClick={() => router.push('/rent-your-place')}
+                        >Rent Your Place</ColorButton>
+
+                        <Avatar onClick={handleOpenUserMenu} aria-haspopup={true} sx={{cursor:'pointer'}}>
+                            <Person />
+                        </Avatar>
+                    </Stack>
                     <Menu
                         sx={{mt: '45px'}}
                         id="menu-appbar"
@@ -185,7 +186,7 @@ export default function Header() {
                         {!user ? <MenuItem onClick={handleCloseUserMenu}>
                             <AuthWrapper isHeader={true}/>
                         </MenuItem> : <>
-                        <Button>Logout</Button>
+                            <Button>Logout</Button>
                         </>}
                         {/*<MenuItem onClick={handleCloseUserMenu}>*/}
                         {/*    <RegisterDialog/>*/}

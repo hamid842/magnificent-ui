@@ -51,44 +51,45 @@ const OtherAmenitiesModal = () => {
                 <DialogTitle id="scroll-dialog-title">
                     <EuclidText align={'center'} sx={{fontWeight: 600}} text={'The other amenities this place have:'}/></DialogTitle>
                 <DialogContent dividers={scroll === 'paper'}>
-                    <EuclidText sx={{fontWeight: 600,color:colors.mainColor,fontSize:14}} text={'Interior Features:'}/>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14,mt:1}} text={'Kitchen'} />
+
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Kitchen'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
                         <AmenityIconAndTitle icon={<KitchenIcon fontSize={'small'}/>} title={'Refrigerator'}/>
                         <AmenityIconAndTitle icon={<CoffeeMakerIcon fontSize={'small'}/>} title={'Coffee/tee Maker'}/>
-                        <AmenityIconAndTitle icon={<LocalLaundryServiceIcon fontSize={'small'}/>} title={'Washing Machine'}/>
+                        <AmenityIconAndTitle icon={<LocalLaundryServiceIcon fontSize={'small'}/>}
+                                             title={'Washing Machine'}/>
                         <AmenityIconAndTitle icon={<MicrowaveIcon fontSize={'small'}/>} title={'Microwave'}/>
                     </Grid>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14}} text={'Bathroom'} />
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bathroom'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
                     </Grid>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14}} text={'Bedroom'} />
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bedroom'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
                     </Grid>
-                    <EuclidText sx={{fontWeight: 600,color:colors.mainColor,fontSize:14,mt:2}} text={'External Features:'}/>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14,mt:1}} text={'Parking and Facilities'} />
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Parking and Facilities'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
                         <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
                     </Grid>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14,mt:1}} text={'Lobby'} />
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Lobby'}/>
                     <Divider/>
-                    <SwitzerText sx={{fontWeight: 600,fontSize:14,mt:1}} text={'Outdoor'} />
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Outdoor'}/>
                     <Divider/>
                 </DialogContent>
                 <DialogActions>
-                    <Button sx={{textTransform: 'none', color: colors.mainColor, fontWeight: 600, fontSize: 14}} onClick={handleClose}>Close</Button>
+                    <Button sx={{textTransform: 'none', color: colors.mainColor, fontWeight: 600, fontSize: 14}}
+                            onClick={handleClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         </div>

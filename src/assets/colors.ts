@@ -4,5 +4,7 @@ export default {
     navMenuColor: '#313942',
     yellow: '#FEBE1E',
     brown: '#A47C2F',
-    footerBgColor:"#000000"
+    footerBgColor:"#000000",
+    bodyBackground:'#FEFDF8',
+    elementsBg:'#363533'
 }
