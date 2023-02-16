@@ -23,6 +23,7 @@ import {IProperty} from "@/utils/property-type";
 import colors from "@/assets/colors";
 import {ReactElement} from "react-markdown/lib/react-markdown";
 import Layout from "@/components/global/Layout";
+import ReviewsSectionLastMin from "@/components/last-minute-deals/ReviewsSectionLastMin";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`)
@@ -106,10 +107,11 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
                 <Grid item xs={12} sm={7.5} lg={7.5}>
                     <AppCarousel images={attributes?.images}/>
                     <GeneralInformation data={property}/>
-                    <Explanation explanation={attributes.explanation}/>
                     <Features amenities={property.attributes.amenities}/>
+                    <Explanation explanation={attributes.explanation}/>
                     <LocationInformation/>
                     <AccessibleInformation/>
+                    <ReviewsSectionLastMin />
                 </Grid>
                 <Grid item xs={12} sm={4.5} lg={4.5}>
                     <BookingCalculationSection property={property} blockedDates={blockedDates} />

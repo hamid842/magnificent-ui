@@ -7,12 +7,6 @@ import colors from "@/assets/colors";
 import {euclidFont} from "@/assets/fonts";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import AmenityIconAndTitle from "@/components/global/AmenityIconAndTitle";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faElevator, faTv, faWifi} from "@fortawesome/free-solid-svg-icons";
-import KitchenIcon from '@mui/icons-material/Kitchen';
-import CoffeeMakerIcon from '@mui/icons-material/CoffeeMaker';
-import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
-import MicrowaveIcon from '@mui/icons-material/Microwave';
 
 const OtherAmenitiesModal = () => {
     const [open, setOpen] = useState(false);
@@ -49,38 +43,39 @@ const OtherAmenitiesModal = () => {
                 aria-describedby="scroll-dialog-description"
             >
                 <DialogTitle id="scroll-dialog-title">
-                    <EuclidText align={'center'} sx={{fontWeight: 600}} text={'The other amenities this place have:'}/></DialogTitle>
+                    <EuclidText align={'center'} sx={{fontSize: 16, fontWeight: 600}}
+                                text={'The other amenities this place have:'}/></DialogTitle>
                 <DialogContent dividers={scroll === 'paper'}>
 
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Kitchen'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
-                        <AmenityIconAndTitle icon={<KitchenIcon fontSize={'small'}/>} title={'Refrigerator'}/>
-                        <AmenityIconAndTitle icon={<CoffeeMakerIcon fontSize={'small'}/>} title={'Coffee/tee Maker'}/>
-                        <AmenityIconAndTitle icon={<LocalLaundryServiceIcon fontSize={'small'}/>}
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Refrigerator'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Coffee/tee Maker'}/>
+                        <AmenityIconAndTitle icon={'kitchen'}
                                              title={'Washing Machine'}/>
-                        <AmenityIconAndTitle icon={<MicrowaveIcon fontSize={'small'}/>} title={'Microwave'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>
                     </Grid>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bathroom'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>
                     </Grid>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bedroom'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>
                     </Grid>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Parking and Facilities'}/>
                     <Divider/>
                     <Grid container my={1} spacing={1}>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faWifi}/>} title={'Wifi'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faTv}/>} title={'TV'}/>
-                        <AmenityIconAndTitle icon={<FontAwesomeIcon icon={faElevator}/>} title={'Elevator'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>
+                        <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>
                     </Grid>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Lobby'}/>
                     <Divider/>

@@ -1,5 +1,5 @@
 import {IAmenities} from "@/utils/property-type";
-import {Grid, Paper, Typography} from "@mui/material";
+import {Paper} from "@mui/material";
 import AmenitiesRendering from "@/components/global/AmenitiesRendering";
 import EuclidText from "@/components/css-texts/EuclidText";
 
@@ -47,8 +47,8 @@ const Features = ({amenities}: Props) => {
             {/*        </Grid>*/}
             {/*    </Grid>*/}
             {/*</Grid>*/}
-            <EuclidText sx={{fontWeight:600,mb:1}} text={'This place features'}/>
-            <AmenitiesRendering />
+            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600}} text={'This Place Features'}/>
+            <AmenitiesRendering/>
         </Paper>
     )
 }

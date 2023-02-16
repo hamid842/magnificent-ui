@@ -1,9 +1,10 @@
-import {Paper, Typography} from "@mui/material";
+import {Paper} from "@mui/material";
+import EuclidText from "@/components/css-texts/EuclidText";
 
 const LocationInformation = () => {
     return (
-        <Paper elevation={3} sx={{py: 2,px:1,mb:2}}>
-            <Typography variant={'subtitle1'} sx={{fontWeight: 600, mb: 1}}>Location Information</Typography>
+        <Paper elevation={3} sx={{py: 2, px: 1, mb: 2}}>
+            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600}} text={'Location Information'}/>
             <div id="map-container-google-1"
                  className="z-depth-1-half map-container"
                  style={{height: 400}}>
