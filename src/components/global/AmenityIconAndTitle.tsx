@@ -22,7 +22,7 @@ const AmenityIconAndTitle = ({icon, title, detail = true}: Props) => {
                     </Paper>
                 </Grid>
                 :
-                <Grid item xs={3} sm={3}>
+                <Grid item xs={4} sm={4} lg={4}>
                     <Stack direction={'row'} alignItems={'center'}>
                     <span style={{fontSize: 16, color: colors.mainColor}}
                           className="material-symbols-outlined">{icon}</span>

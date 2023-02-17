@@ -73,22 +73,24 @@ const OtherAmenitiesModal = ({data}:Props) => {
                     <EuclidText align={'center'} sx={{fontSize: 16, fontWeight: 600}}
                                 text={'The other amenities this place have:'}/></DialogTitle>
                 <DialogContent dividers={scroll === 'paper'}>
-                    {othersFeatures?.map((item:any)=><Stack key={item.name}>
-                        <AmenityIconAndTitle title={item.name} icon={'tv'} />
-                    </Stack>)}
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Kitchen'}/>
+                    <Divider/>
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Bathroom'}/>
+                    <Divider/>
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Bedroom'}/>
+                    <Divider/>
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Others'}/>
+                    <Divider/>
+                    {/*{othersFeatures?.map((item:any)=><Grid container key={item.name}>*/}
+                    {/*    <AmenityIconAndTitle title={item.name} icon={'tv'} />*/}
+                    {/*</Grid>)}*/}
                     {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Kitchen'}/>*/}
                     {/*<Divider/>*/}
-                    {/*<Grid container my={1} spacing={1}>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Refrigerator'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Coffee/tee Maker'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'}*/}
-                    {/*                         title={'Washing Machine'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Microwave'}/>*/}
-                    {/*</Grid>*/}
+                    <Grid container my={1} spacing={1}>
+                        {othersFeatures?.map((item:any)=>
+                            <AmenityIconAndTitle key={item.name} title={item.name} icon={item.icon ? item.icon : 'tv'} />
+                        )}
+                    </Grid>
                     {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bathroom'}/>*/}
                     {/*<Divider/>*/}
                     {/*<Grid container my={1} spacing={1}>*/}
