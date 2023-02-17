@@ -1,11 +1,13 @@
-import {Slider} from "@mui/material";
+import {Box, Slider} from "@mui/material";
 import {styled} from "@mui/material/styles";
+import {useState} from "react";
+import SwitzerText from "@/components/css-texts/SwitzerText";
 
 
 const ReSlider = styled(Slider)({
     color: 'black',
-    marginTop:10,
-    marginBottom:10,
+    marginTop: 10,
+    marginBottom: 10,
     height: 5,
     '& .MuiSlider-track': {
         border: 'none',
@@ -32,7 +34,7 @@ const ReSlider = styled(Slider)({
         backgroundColor: '#52af77',
         transformOrigin: 'bottom left',
         transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
-        '&:before': { display: 'none' },
+        '&:before': {display: 'none'},
         '&.MuiSlider-valueLabelOpen': {
             transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
         },
@@ -42,9 +44,25 @@ const ReSlider = styled(Slider)({
     },
 });
 
-const RentSlider = ()=>{
-    return(
-        <ReSlider min={0} max={10} />
+const RentSlider = () => {
+    const [sliderValue, setSliderValue] = useState(0)
+
+    const handleChangeSlider = (event: Event, newValue: number | number[]) => {
+        setSliderValue(newValue as number);
+    };
+
+    return (
+        <>
+            <Box>
+                <SwitzerText sx={{mt: 2}} text={'You could earn'}/>
+                <SwitzerText align={'center'} text={'1,200 AED'}/>
+            </Box>
+            <Box>
+                <SwitzerText sx={{mt: 2}} text={`${sliderValue} nights at an estimated ${sliderValue * 1200} AED a
+                    night`}/>
+            </Box>
+            <ReSlider min={0} max={10} value={sliderValue} onChange={handleChangeSlider}/>
+        </>
     )
 }
 export default RentSlider;

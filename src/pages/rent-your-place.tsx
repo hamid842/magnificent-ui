@@ -13,24 +13,18 @@ import {useRouter} from "next/router";
 import {ReactElement} from "react";
 import Layout from "@/components/global/Layout";
 import AppContainer from "@/components/global/AppContainer";
+import EuclidText from "@/components/css-texts/EuclidText";
 
 const RentYourPlace = () => {
     const router = useRouter()
+
     return (
         <>
             <AppContainer>
                 <Grid container spacing={5} pl={5} mt={10}>
                     <Grid item xs={12} sm={6} lg={5}>
                         <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
-                            <Typography variant={'h4'} sx={{fontWeight: 600, mt: 12}}>Rent it !</Typography>
-                            <Box>
-                                <Typography sx={{mt: 2}}>You could earn</Typography>
-                                <Typography align={'center'}>$1.200 USD</Typography>
-                            </Box>
-                            <Box>
-                                <Typography sx={{mt: 2}}>7 nights at an estimated $218</Typography>
-                                <Typography align={'center'}>USD a night</Typography>
-                            </Box>
+                            <EuclidText variant={'h4'} sx={{fontWeight: 600, mt: 12}} text={'Rent it !'} />
                             <RentSlider/>
                         </Stack>
                         <Box mt={5}>
