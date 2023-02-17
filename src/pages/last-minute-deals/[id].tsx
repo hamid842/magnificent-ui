@@ -39,7 +39,7 @@ type LastMinuteDealsProps = {
 };
 
 //============================================================================================
-const BASE_URL: string = "http://localhost:1337/";
+const BASE_URL: string = "http://45.61.55.150:1337/";
 const DATE_FORMAT = "YYYY-MM-DD";
 
 type TCalendarDay = { date: string; isAvailable: 0 | 1 };
