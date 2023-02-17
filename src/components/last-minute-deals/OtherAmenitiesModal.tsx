@@ -1,16 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 // Material-ui
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogProps,
-    DialogTitle,
-    Divider,
-    Grid,
-    Stack, Typography
-} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle, Divider, Grid} from "@mui/material";
 // Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
 import colors from "@/assets/colors";
@@ -20,23 +10,22 @@ import AmenityIconAndTitle from "@/components/global/AmenityIconAndTitle";
 import {IAmenitiesAttributes} from "@/utils/property-type";
 
 
-
 type Props = {
-    data?:IAmenitiesAttributes[]
+    data?: IAmenitiesAttributes[]
 }
 
-const OtherAmenitiesModal = ({data}:Props) => {
+const OtherAmenitiesModal = ({data}: Props) => {
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState<DialogProps['scroll']>('body');
 
 
-    const kitchenFeatures = data?.filter((el:any)=>el.category === 'kitchen')
-    const bathFeatures = data?.filter((el:any)=>el.category === 'bath')
-    const bedroomFeatures = data?.filter((el:any)=>el.category === 'bedroom')
-    const lobbyFeatures = data?.filter((el:any)=>el.category === 'lobby')
-    const parkingFeatures = data?.filter((el:any)=>el.category === 'parking')
-    const outdoorFeatures = data?.filter((el:any)=>el.category === 'outdoor')
-    const othersFeatures = data?.filter((el:any)=>el.category === null)
+    const kitchenFeatures = data?.filter((el: any) => el.category === 'kitchen')
+    const bathFeatures = data?.filter((el: any) => el.category === 'bath')
+    const bedroomFeatures = data?.filter((el: any) => el.category === 'bedroom')
+    const lobbyFeatures = data?.filter((el: any) => el.category === 'lobby')
+    const parkingFeatures = data?.filter((el: any) => el.category === 'parking')
+    const outdoorFeatures = data?.filter((el: any) => el.category === 'outdoor')
+    const othersFeatures = data?.filter((el: any) => el.category === null)
 
     console.log(othersFeatures)
     const handleClickOpen = () => {
@@ -79,43 +68,15 @@ const OtherAmenitiesModal = ({data}:Props) => {
                     <Divider/>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Bedroom'}/>
                     <Divider/>
+                    <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Facilities'}/>
+                    <Divider/>
                     <SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Others'}/>
                     <Divider/>
-                    {/*{othersFeatures?.map((item:any)=><Grid container key={item.name}>*/}
-                    {/*    <AmenityIconAndTitle title={item.name} icon={'tv'} />*/}
-                    {/*</Grid>)}*/}
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Kitchen'}/>*/}
-                    {/*<Divider/>*/}
                     <Grid container my={1} spacing={1}>
-                        {othersFeatures?.map((item:any)=>
-                            <AmenityIconAndTitle key={item.name} title={item.name} icon={item.icon ? item.icon : 'tv'} />
+                        {othersFeatures?.map((item: any) =>
+                            <AmenityIconAndTitle key={item.name} title={item.name} icon={item.icon ? item.icon : 'tv'}/>
                         )}
                     </Grid>
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bathroom'}/>*/}
-                    {/*<Divider/>*/}
-                    {/*<Grid container my={1} spacing={1}>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>*/}
-                    {/*</Grid>*/}
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14}} text={'Bedroom'}/>*/}
-                    {/*<Divider/>*/}
-                    {/*<Grid container my={1} spacing={1}>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>*/}
-                    {/*</Grid>*/}
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Parking and Facilities'}/>*/}
-                    {/*<Divider/>*/}
-                    {/*<Grid container my={1} spacing={1}>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Wifi'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'TV'}/>*/}
-                    {/*    <AmenityIconAndTitle icon={'kitchen'} title={'Elevator'}/>*/}
-                    {/*</Grid>*/}
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Lobby'}/>*/}
-                    {/*<Divider/>*/}
-                    {/*<SwitzerText sx={{fontWeight: 600, fontSize: 14, mt: 1}} text={'Outdoor'}/>*/}
-                    {/*<Divider/>*/}
                 </DialogContent>
                 <DialogActions>
                     <Button sx={{textTransform: 'none', color: colors.mainColor, fontWeight: 600, fontSize: 14}}

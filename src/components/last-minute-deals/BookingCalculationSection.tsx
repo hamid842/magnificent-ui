@@ -30,7 +30,7 @@ const commaSeparate = (input: number): string => {
     return parts.join(".");
 }
 
-const BASE_URL: string = 'http://localhost:1337/api';
+const BASE_URL: string = 'http://45.61.55.150:1337/api';
 const DATE_FORMAT = 'YYYY-MM-DD';
 
 export type TPrice = {
