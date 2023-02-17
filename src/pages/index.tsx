@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 // Material-ui
 import {Box, Grid} from "@mui/material";
 // Project imports
-import {IProperty} from "@/utils/property-type";
+import {IProperty, IReview} from "@/utils/property-type";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
 import ActivityList from "@/components/home/ActivityList";
 import SearchDestination from "@/components/global/SearchDestination";
@@ -32,18 +32,23 @@ const query = qs.stringify({
 export async function getServerSideProps() {
     const {data} = await instance.get(`/properties?${query}`)
     const properties = data.data;
+    // TODO: Remove limit later (when horizontal scrolling is added)
+    const reviewsResponse = await instance.get(`/reviews?filters[inHomePage][$eq]=true&pagination[limit]=3`);
+    const reviews = reviewsResponse.data.data;
     return {
         props: {
-            properties
+            properties,
+            reviews
         }
     }
 }
 
 type HomePageProps = {
-    properties: IProperty[]
+    properties: IProperty[],
+    reviews: IReview[]
 }
 
-const HomePage = ({properties}: HomePageProps) => {
+const HomePage = ({properties, reviews}: HomePageProps) => {
     const router = useRouter();
 
 
@@ -81,7 +86,7 @@ const HomePage = ({properties}: HomePageProps) => {
                 </Grid>
                 <ActivityList/>
                 <RentPlaceSection/>
-                <ReviewsSection/>
+                { (reviews && reviews.length) && <ReviewsSection reviews={reviews} />}
             </AppContainer>
         </>
     )

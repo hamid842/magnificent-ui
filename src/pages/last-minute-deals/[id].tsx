@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const property = response.data?.data;
   return {
     props: {
-      property,
+      property
     },
   };
 };
@@ -119,7 +119,7 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
           <Explanation explanation={attributes.explanation} />
           <LocationInformation />
           <AccessibleInformation />
-          <ReviewsSectionLastMin />
+          <ReviewsSectionLastMin reviews={property.attributes.reviews.data}/>
         </Grid>
         <Grid item xs={12} sm={4.5} lg={4.5}>
           <BookingCalculationSection

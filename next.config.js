@@ -14,6 +14,12 @@ const nextConfig = {
         hostname: 'hostaway-platform.s3.us-west-2.amazonaws.com',
         port: '',
         pathname: '/listing/**'
+      },
+      {// TODO: Remove in production
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/images/**'
       }
     ]
   }

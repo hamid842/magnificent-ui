@@ -5,14 +5,19 @@ import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // Project imports
-import profileImage from '../../../public/profile.png';
+// import profileImage from '../../../public/profile.png';
 import TitleSeparator from "@/components/global/TitleSeparator";
-import dictionaries from '../../../dictionaries/en.json';
+// import dictionaries from '../../../dictionaries/en.json';
 import SwitzerText from "@/components/css-texts/SwitzerText";
+import { IReview } from "@/utils/property-type";
 
 //=========================|| Reviews Section ||=========================
 
-const ReviewsSection = () => {
+type TProps = {
+    reviews: IReview[]
+};
+
+const ReviewsSection = ({reviews}: TProps) => {
     return (
         <Box>
             <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'}/>
@@ -30,40 +35,34 @@ const ReviewsSection = () => {
                 }}>
                     <KeyboardArrowLeftIcon sx={{color: 'white'}}/>
                 </Box>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                <Grid container wrap='nowrap' spacing={3} sx={{ overflow: 'hidden' }}>
+                { reviews && reviews.map((review: IReview) => {
+                    return(
+                    <Grid key={review.id} item xs={12} sm={6} md={4} lg={4} m={1}>
                         <Paper elevation={5} sx={{borderRadius: 3}}>
                             <Stack direction={'column'} alignItems={'center'} p={2}>
-                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                       style={{borderRadius: 50}}/>
-                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
-                                             text={dictionaries.homePage.reviews}/>
-                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
+                                <Image 
+                                    src={review.attributes.userPhoto} 
+                                    alt={'Profile'} 
+                                    width={50} 
+                                    height={50}
+                                    style={{borderRadius: 50}}/>
+                                <SwitzerText 
+                                    text={review.attributes.text}
+                                    variant={'caption'} 
+                                    pt={1} 
+                                    sx={{textOverflow: 'ellipsis'}}/>
+                                <Typography 
+                                    variant={'caption'} 
+                                    pt={1}>
+                                    <b>
+                                        {review.attributes.userName}
+                                    </b>
+                                </Typography>
                             </Stack>
                         </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                        <Paper elevation={5} sx={{borderRadius: 3}}>
-                            <Stack direction={'column'} alignItems={'center'} p={2}>
-                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                       style={{borderRadius: 50}}/>
-                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
-                                             text={dictionaries.homePage.reviews}/>
-                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
-                            </Stack>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                        <Paper elevation={5} sx={{borderRadius: 3}}>
-                            <Stack direction={'column'} alignItems={'center'} p={2}>
-                                <Image src={profileImage} alt={'Profile'} width={50} height={50}
-                                       style={{borderRadius: 50}}/>
-                                <SwitzerText variant={'caption'} pt={1} sx={{textAlign: 'justify'}}
-                                             text={dictionaries.homePage.reviews}/>
-                                <Typography variant={'caption'} pt={1}><b>John Doe</b>, Publisher</Typography>
-                            </Stack>
-                        </Paper>
-                    </Grid>
+                    </Grid>);
+                }) }
                 </Grid>
                 <Box sx={{
                     display: 'flex',

@@ -96,6 +96,7 @@ export interface IPropertyAttributes {
     amenities: IAmenities;
     bed_types: IBedTypes;
     geolocation: IGeolocation;
+    reviews: { data: IReview[] };
 }
 
 export interface IProperty {
@@ -115,3 +116,16 @@ export interface PropertyType {
     attributes:IPropertyTypeAttributes
 }
 
+export interface IReview {
+    id: number,
+    attributes: {
+        text: string,
+        rating: number,
+        userName: string,
+        createdAt: string,
+        updatedAt: string,
+        publishedAt: string,
+        userPhoto: string,
+        inHomePage: boolean
+    }
+}
