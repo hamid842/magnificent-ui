@@ -33,7 +33,7 @@ export async function getServerSideProps() {
     const {data} = await instance.get(`/properties?${query}`)
     const properties = data.data;
     // TODO: Remove limit later (when horizontal scrolling is added)
-    const reviewsResponse = await instance.get(`/reviews?filters[inHomePage][$eq]=true&pagination[limit]=10`);
+    const reviewsResponse = await instance.get(`/reviews?filters[inHomePage][$eq]=true&pagination[limit]=3`);
     const reviews = reviewsResponse.data.data;
     return {
         props: {
