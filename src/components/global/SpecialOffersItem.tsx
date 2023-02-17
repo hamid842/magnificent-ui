@@ -47,9 +47,9 @@ const SpecialOffersItem = ({data}: Props) => {
                         height: '100%',
                         borderRadius: 10,
                     }}/>
-                <Box sx={favoriteIconStyles}>
-                    <AppIcon name={'favorite'}/>
-                </Box>
+                {/*<Box sx={favoriteIconStyles}>*/}
+                {/*    <AppIcon name={'favorite'}/>*/}
+                {/*</Box>*/}
                 <Box sx={{
                     position: 'absolute',
                     backgroundColor: 'white',

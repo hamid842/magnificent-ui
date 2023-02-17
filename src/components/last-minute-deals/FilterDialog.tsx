@@ -20,7 +20,7 @@ const FilterDialog = () => {
 
     return (
         <div style={{marginRight:10}}>
-            <Button variant={"text"} sx={{color: "#A47C30", textTransform: 'none'}}
+            <Button disabled variant={"text"} sx={{color: "#A47C30", textTransform: 'none'}}
                     startIcon={<TuneIcon/>} onClick={handleClickOpen}>Filter</Button>
             <Dialog
                 open={open}

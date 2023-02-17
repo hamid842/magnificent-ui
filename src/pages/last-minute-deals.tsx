@@ -64,7 +64,7 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
 
 
     return (
-        <Box mt={15}>
+        <Box mt={16}>
             <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Last Minute Deals'}/>
             <SearchDestinationLastMin position={'relative'}/>
             <AppContainer>
