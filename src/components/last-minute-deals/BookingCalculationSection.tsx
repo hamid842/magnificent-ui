@@ -113,7 +113,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
 
     useEffect(() => {
         if (!startDate || !endDate) return;
-        const priceRequestURL: URL = new URL(`/properties/${propertyId}/price`, BASE_URL);
+        const priceRequestURL: URL = new URL(`/api/properties/${propertyId}/price`, BASE_URL);
         priceRequestURL.searchParams.set('guestCount', String(guestCount));
         priceRequestURL.searchParams.set('startDate', startDate.format(DATE_FORMAT));
         priceRequestURL.searchParams.set('endDate', endDate.format(DATE_FORMAT));
