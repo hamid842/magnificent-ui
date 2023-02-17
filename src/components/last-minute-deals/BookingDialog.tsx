@@ -23,6 +23,7 @@ import {instance} from "@/config/axiosConfig";
 import AppButton from "@/components/global/AppButton";
 import {AuthContext} from "../../../context/contexts";
 import AuthWrapper from "@/auth/AuthWrapper";
+import SwitchBtnForBooking from "@/components/last-minute-deals/SwitchBtnForBooking";
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
@@ -72,7 +73,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
     })
 
     // Is the user booking the property for himself?
-    const [isForMe, setForMe] = useState<boolean>(true);
+    const [isForMe, setForMe] = useState<boolean>(false);
     // When the user Clicks 'For Me', auto-fill the guest data
     useEffect(() => {
         if (!isForMe) return;
@@ -230,43 +231,44 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                             </Grid>
                         </Grid>
                         <Stack sx={{ mt: 2}} direction='column' alignItems='center' justifyContent='center'>
-                            <ToggleButton
-                                value="check"
-                                selected={isForMe}
-                                onChange={() => { setForMe((prev) => !prev); }}
-                                >
-                                {/* <CheckIcon /> */}
-                                For Me?
-                            </ToggleButton>
+                            {/*<ToggleButton*/}
+                            {/*    value="check"*/}
+                            {/*    selected={isForMe}*/}
+                            {/*    onChange={() => { setForMe((prev) => !prev); }}*/}
+                            {/*    >*/}
+                            {/*    /!* <CheckIcon /> *!/*/}
+                            {/*    For Me?*/}
+                            {/*</ToggleButton>*/}
+                            <SwitchBtnForBooking checked={isForMe} onChange={(event:ChangeEvent<HTMLInputElement>)=>setForMe(event.target.checked)}/>
                         </Stack>
                         <Grid container p={2} spacing={2}>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField 
-                                    disabled={isForMe}
-                                    label={'Guest Full Name'} 
-                                    id={'fullName'} 
+                                <AppTextField
+                                    disabled={!isForMe}
+                                    label={'Guest Full Name'}
+                                    id={'fullName'}
                                     value={guest.fullName}
                                     onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField 
-                                    disabled={isForMe}
-                                    label={'Email'} 
-                                    id={'email'} 
+                                <AppTextField
+                                    disabled={!isForMe}
+                                    label={'Email'}
+                                    id={'email'}
                                     value={guest.email}
                                     onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField 
-                                    disabled={isForMe}
-                                    label={'Phone Number'} 
-                                    id={'phoneNumber'} 
+                                <AppTextField
+                                    disabled={!isForMe}
+                                    label={'Phone Number'}
+                                    id={'phoneNumber'}
                                     value={guest.phoneNumber}
                                     onChange={handleChangeGuest}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6}>
-                                <AppTextField 
-                                    label={'Additional Info'} 
+                                <AppTextField
+                                    label={'Additional Info'}
                                     id={'additionalInfo'}
                                     value={guest.additionalInfo}
                                     onChange={handleChangeGuest} multiline/>

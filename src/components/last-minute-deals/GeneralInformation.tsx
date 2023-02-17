@@ -11,8 +11,8 @@ type Props = {
 const GeneralInformation = ({data}: Props) => {
     return (
         <Paper elevation={3} sx={{p: 2, my: 2, borderRadius: 2}}>
-            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600}} text={'General Information'} />
-            <Grid container spacing={5}>
+            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600 , pb:1}} text={'General Information'} />
+            <Grid container spacing={3} >
                 <Grid item xs={12} sm={6} lg={6}>
                     <GeneralInfoTitleAndValue title={'Published Date'}
                                               value={dayjs(data.attributes.publishedAt).format("DD MMMM YYYY")}/>

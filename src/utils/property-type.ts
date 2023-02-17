@@ -25,6 +25,8 @@ export interface IAmenitiesAttributes {
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
+    category:string;
+    icon:string;
 }
 
 export interface IAmenitiesData {
