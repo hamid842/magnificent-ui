@@ -83,7 +83,7 @@ const BlogItem = ({ blogData }: BlogItemProps) => {
             )}
           </Box>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6} p={1}>
+        <Grid item xs={12} sm={12} md={6} lg={6} p={1} sx={{position:'relative'}}>
           <Stack alignItems={"center"}>
             <EuclidText
               textAlign={"center"}
@@ -100,10 +100,10 @@ const BlogItem = ({ blogData }: BlogItemProps) => {
                 variant={"caption"}
                 sx={{ fontSize: 10, textAlign: "justify" }}
               >
-                {attributes.summary.substring(
+                {attributes.summary.length > 100 ?  attributes.summary.substring(
                   0,
-                  attributes.summary.length - 200
-                )}
+                  200
+                ).concat('...') : attributes.summary}
               </Typography>
             </Box>
           </Stack>
@@ -112,6 +112,9 @@ const BlogItem = ({ blogData }: BlogItemProps) => {
               color: colors.mainColor,
               textTransform: "none",
               fontSize: 12,
+                position:'absolute',
+                bottom:10,
+                right:5
             }}
           >
             Read more
