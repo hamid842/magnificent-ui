@@ -3,15 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 // Material-ui
 import {Box, Divider, Grid, Stack} from "@mui/material";
-import {
-    EmailOutlined,
-    Facebook,
-    Instagram,
-    LinkedIn,
-    LocalPhoneOutlined,
-    LocationCityOutlined,
-    WhatsApp
-} from "@mui/icons-material";
+import {Facebook, Instagram, LinkedIn, WhatsApp} from '@mui/icons-material'
+
 // Project imports
 import logo from "../../../public/main-logo.png";
 import grayLogo from "../../../public/png1.png"
@@ -22,6 +15,7 @@ import SwitzerText from "@/components/css-texts/SwitzerText";
 import dictionaries from '../../../dictionaries/en.json'
 import EuclidText from "@/components/css-texts/EuclidText";
 import {switzerFont} from "@/assets/fonts";
+import AppIcon from "@/components/global/AppIcon";
 
 //===========================|| Footer ||==============================
 
@@ -37,10 +31,12 @@ const AppFooter = () => {
         textDecoration: 'none',
         color: 'white',
         paddingTop: 5,
-        fontSize: 12
+        fontSize: 12,
+        paddingLeft:5
     }
     return (
-        <Box sx={{backgroundColor: colors.footerBgColor, position: 'relative', overflow: 'hidden'}} mt={10} pt={4} pb={1}>
+        <Box sx={{backgroundColor: colors.footerBgColor, position: 'relative', overflow: 'hidden'}} mt={10} pt={4}
+             pb={1}>
             <Box>
                 <Image src={grayLogo} alt={"Logo"} width={250} height={150}
                        style={{position: 'absolute', bottom: -20, right: -30, zIndex: 1}}/>
@@ -101,18 +97,18 @@ const AppFooter = () => {
                             <EuclidText sx={footerTitleStyle} text={'Contact Details'}/>
                             <Box my={2}>
                                 <Stack direction={'row'} alignItems={'center'}>
-                                    <LocationCityOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
-                                    <SwitzerText sx={{color: 'white', fontSize: 10}}
+                                    <AppIcon name={'location_city'} color={'#fff'}/>
+                                    <SwitzerText sx={{color: 'white', fontSize: 10,pl:1}}
                                                  text={'Business Bay, OPUS by Omniyat, Dubai, UAE'}/>
                                 </Stack>
                                 <Stack direction={'row'} alignItems={'center'} py={1}>
-                                    <LocalPhoneOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
+                                    <AppIcon name={'call'} color={'#fff'}/>
                                     <Link href={'tel:045547294'}
                                           style={linkStyles}>(04) 554
                                         7294</Link>
                                 </Stack>
                                 <Stack direction={'row'} alignItems={'center'} className={switzerFont.className}>
-                                    <EmailOutlined fontSize={'small'} sx={{mr: 1, color: 'white'}}/>
+                                    <AppIcon name={'mail'} color={'#fff'}/>
                                     <Link href={`mailto:${process.env.NEXT_PUBLIC_MAIL_ADDRESS}`}
                                           style={linkStyles}>info@magnificent.ae</Link>
                                 </Stack>

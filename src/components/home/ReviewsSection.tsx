@@ -10,6 +10,7 @@ import TitleSeparator from "@/components/global/TitleSeparator";
 // import dictionaries from '../../../dictionaries/en.json';
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import { IReview } from "@/utils/property-type";
+import AppIcon from "@/components/global/AppIcon";
 
 //=========================|| Reviews Section ||=========================
 
@@ -33,7 +34,7 @@ const ReviewsSection = ({reviews}: TProps) => {
                     border: 'none',
                     mx:2
                 }}>
-                    <KeyboardArrowLeftIcon sx={{color: 'white'}}/>
+                    <AppIcon name={'navigate_before'} color={'#fff'}/>
                 </Box>
                 <Grid container wrap='nowrap' spacing={3} sx={{ overflow: 'hidden' }}>
                 { reviews && reviews.map((review: IReview) => {
@@ -75,7 +76,7 @@ const ReviewsSection = ({reviews}: TProps) => {
                     border: 'none',
                     mx:2
                 }}>
-                    <KeyboardArrowRightIcon sx={{color: 'white'}}/>
+                    <AppIcon name={'navigate_next'} color={'#fff'}/>
                 </Box>
             </Stack>
         </Box>

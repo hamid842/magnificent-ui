@@ -1,13 +1,12 @@
 // Next.js
 import {useRouter} from "next/router";
 // Material-ui
-import {AppBar, Box, Grid, IconButton, TextField} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import {CalendarTodayOutlined, PeopleAlt} from "@mui/icons-material";
+import {Box, Grid, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 // Project imports
 import colors from '../../assets/colors'
 import AppButton from "@/components/global/AppButton";
+import AppIcon from "@/components/global/AppIcon";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -50,7 +49,7 @@ const SearchDestinationLastMin = ({position}: Props) => {
             <Grid container alignItems={'center'}>
                 <Grid item xs={5}>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <CalendarTodayOutlined sx={{color: colors.mainColor, my: 0.5}}/>
+                        <AppIcon name={'calendar_today'}/>
                         <CssTextField
                             label="When"
                             variant="filled"
@@ -61,7 +60,7 @@ const SearchDestinationLastMin = ({position}: Props) => {
                 </Grid>
                 <Grid item xs={7}>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <PeopleAlt sx={{color: colors.mainColor, my: 0.5}}/>
+                        <AppIcon name={'person'}/>
                         <CssTextField
                             label="Guests"
                             variant="filled"
@@ -69,7 +68,7 @@ const SearchDestinationLastMin = ({position}: Props) => {
                                 disableUnderline: true,
                             }}
                         />
-                        <AppButton label={'Search'} />
+                        <AppButton label={'Search'}/>
                     </Box>
                 </Grid>
             </Grid>

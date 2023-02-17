@@ -1,9 +1,6 @@
 // Material-ui
 import {Box, Stack, Typography} from "@mui/material";
 // Next.js
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import SellIcon from '@mui/icons-material/Sell';
 // Project imports
 import {IProperty} from "@/utils/property-type";
 import colors from "@/assets/colors";
@@ -11,6 +8,7 @@ import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import ImageWithHoverZoom from "@/components/global/ZoomableImage";
 import SpecialOffersIconDetails from "@/components/global/SpecialOffersIconDetails";
+import AppIcon from "@/components/global/AppIcon";
 
 type Props = {
     data: IProperty
@@ -33,8 +31,6 @@ const SpecialOffersItem = ({data}: Props) => {
         height: 30,
         borderRadius: 25
     }
-    const detailsStyles = {color: 'gray', paddingLeft: 0.5}
-    const iconsStyle = {color: colors.mainColor}
 
     return (
         <>
@@ -52,7 +48,7 @@ const SpecialOffersItem = ({data}: Props) => {
                         borderRadius: 10,
                     }}/>
                 <Box sx={favoriteIconStyles}>
-                    <FavoriteBorderOutlinedIcon sx={iconsStyle}/>
+                    <AppIcon name={'favorite'}/>
                 </Box>
                 <Box sx={{
                     position: 'absolute',
@@ -64,8 +60,8 @@ const SpecialOffersItem = ({data}: Props) => {
                     borderRadius: 1
                 }}>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
-                        <StarOutlinedIcon sx={iconsStyle}/>
-                        <SwitzerText text={'4.8'} />
+                        <AppIcon name={'star'}/>
+                        <SwitzerText text={'4.8'}/>
                     </Stack>
                 </Box>
             </Box>
@@ -74,9 +70,10 @@ const SpecialOffersItem = ({data}: Props) => {
                 <EuclidText text={attributes.Title} sx={{fontWeight: 600, fontSize: 14}}/>
                 <SwitzerText variant={'body2'} sx={{color: 'gray'}}
                              text={`${attributes.bedroomsNumber} Bedroom/s Combined Lodge`}/>
-                {/* <SwitzerText variant={'subtitle1'} text={'28 October - 1 November'}/> */}
-                <Typography variant={'subtitle1'} sx={{color: colors.mainColor, paddingTop: 1}}>
-                    <SellIcon fontSize={'medium'} sx={{pt: 1}}/>{attributes.price} AED/ per night</Typography>
+                <Stack direction={'row'} alignItems={'center'} pt={1}>
+                    <Typography variant={'subtitle1'} sx={{color: colors.mainColor}}>
+                        <AppIcon name={'sell'}/>{attributes.price} AED/ per night</Typography>
+                </Stack>
             </Box>
 
             <SpecialOffersIconDetails bedsNumber={attributes.bedsNumber} squareMeters={attributes.squareMeters}/>

@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 // Material ui
 import { Grid, Stack, Typography } from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { SellOutlined } from "@mui/icons-material";
 // Third party
 import moment from "moment";
 import axios from "axios";
@@ -24,6 +22,7 @@ import colors from "@/assets/colors";
 import { ReactElement } from "react-markdown/lib/react-markdown";
 import Layout from "@/components/global/Layout";
 import ReviewsSectionLastMin from "@/components/last-minute-deals/ReviewsSectionLastMin";
+import AppIcon from "@/components/global/AppIcon";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const response = await instance(`/properties/${query.id}?populate=*`);
@@ -98,13 +97,11 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
       </Typography>
       <Stack direction={"row"} justifyContent={"space-between"} pb={2}>
         <Stack direction={"row"} alignItems={"center"}>
-          <LocationOnIcon sx={{ color: colors.mainColor }} fontSize={"large"} />
+          <AppIcon name={'location_on'} />
           <Typography variant={"caption"}>UAE, Dubai</Typography>
         </Stack>
         <Stack direction={"row"} alignItems={"center"}>
-          <SellOutlined
-            fontSize={"small"}
-            sx={{ color: colors.mainColor, ml: 1 }}
+          <AppIcon name={'sell'}
           />
           <Typography variant={"subtitle1"} sx={{ fontWeight: 600 }}>
             {attributes.price} AED / night

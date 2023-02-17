@@ -3,6 +3,7 @@ import AccessibleSlider from "@/components/last-minute-deals/AccessibleSlider";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "../css-texts/SwitzerText";
 import colors from "@/assets/colors";
+import NearByPlaces from "@/components/global/NearByPlaces";
 
 const AccessibleInformation = () => {
   return (
@@ -12,155 +13,18 @@ const AccessibleInformation = () => {
         sx={{ fontWeight: 600 }}
         text={"Location and accessible information"}
       />
-      <Grid container spacing={6}>
+      <Grid container spacing={1} my={1}>
         <Grid item xs={12} sm={6} lg={6}>
-          <Stack direction={"row"} alignItems={"center"}>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"Dubai Mall"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              local_taxi
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_bus
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_walk
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12 }}
-              text={"< 20 min"}
-            />
-          </Stack>
-
-          <Stack direction={"row"} py={2}>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"Metro"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              local_taxi
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_bus
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_walk
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12 }}
-              text={"< 20 min"}
-            />
-          </Stack>
+            <NearByPlaces locationName={'Mall'} taxiDistance={'<20 min'} busDistance={'<20 min'} walkingDistance={'<20 min'} />
+            </Grid>
+          <Grid item xs={12} sm={6} lg={6}>
+            <NearByPlaces locationName={'Metro'} taxiDistance={'<20 min'} busDistance={'<20 min'} walkingDistance={'<20 min'} />
         </Grid>
         <Grid item xs={12} sm={6} lg={6}>
-          <Stack direction={"row"} alignItems={"center"}>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"Resturant"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              local_taxi
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_bus
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_walk
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12 }}
-              text={"< 20 min"}
-            />
-          </Stack>
-          <Stack direction={"row"} py={2}>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"Beach Walk"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              local_taxi
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_bus
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12, marginRight: 1 }}
-              text={"< 20 min"}
-            />
-            <span
-              style={{ fontSize: 16, color: colors.mainColor }}
-              className="material-symbols-outlined"
-            >
-              directions_walk
-            </span>
-            <SwitzerText
-              sx={{ marginLeft: 1, fontSize: 12 }}
-              text={"< 20 min"}
-            />
-          </Stack>
+            <NearByPlaces locationName={'Airport'} taxiDistance={'<20 min'} busDistance={'<20 min'} walkingDistance={'<20 min'} />
+        </Grid>
+          <Grid item xs={12} sm={6} lg={6}>
+            <NearByPlaces locationName={'Beach'} taxiDistance={'<20 min'} busDistance={'<20 min'} walkingDistance={'<20 min'} />
         </Grid>
       </Grid>
     </Paper>
