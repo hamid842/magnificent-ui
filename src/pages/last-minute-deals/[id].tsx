@@ -87,7 +87,7 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
     (async () => {
       setBlockedDates(await getBlockedDates(property.id));
     })();
-  }, []);
+  }, [property.id]);
   //============================================================================================
 
   return (
@@ -116,7 +116,7 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
           <Explanation explanation={attributes.explanation} />
           <LocationInformation />
           <AccessibleInformation />
-          <ReviewsSectionLastMin reviews={property.attributes.reviews.data}/>
+          <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data}/>
         </Grid>
         <Grid item xs={12} sm={4.5} lg={4.5}>
           <BookingCalculationSection

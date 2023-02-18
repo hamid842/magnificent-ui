@@ -17,7 +17,7 @@ const AmenityIconAndTitle = ({icon, title, detail = true}: Props) => {
                         <Stack direction={'row'} alignItems={'center'}>
                     <span style={{fontSize: 16, color: colors.mainColor}}
                           className="material-symbols-outlined">{icon}</span>
-                            <SwitzerText sx={{marginLeft: 1, fontSize: 12}} text={title}/>
+                            <SwitzerText sx={{marginLeft: 0.5, fontSize: 12}} text={title}/>
                         </Stack>
                     </Paper>
                 </Grid>
