@@ -1,3 +1,5 @@
+export const DATE_FORMAT = "YYYY-MM-DD";
+
 export interface IGeneralInformation {
 }
 

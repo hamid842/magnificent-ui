@@ -1,5 +1,5 @@
 import {ChangeEvent, FC, useContext, useEffect, useState} from 'react';
-import {IProperty} from "@/utils/property-type";
+import {DATE_FORMAT, IProperty} from "@/utils/property-type";
 import 'react-dates/initialize';
 import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
@@ -12,6 +12,7 @@ import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/last-minute-deals/BookingDialog";
 import {AuthContext} from "../../../context/contexts";
+import { instance } from '@/config/axiosConfig';
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -29,9 +30,6 @@ const commaSeparate = (input: number): string => {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 }
-
-const BASE_URL: string = 'http://45.61.55.150:1337/api';
-const DATE_FORMAT = 'YYYY-MM-DD';
 
 export type TPrice = {
     totalPrice: number,
@@ -113,15 +111,21 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
 
     useEffect(() => {
         if (!startDate || !endDate) return;
-        const priceRequestURL: URL = new URL(`/api/properties/${propertyId}/price`, BASE_URL);
-        priceRequestURL.searchParams.set('guestCount', String(guestCount));
-        priceRequestURL.searchParams.set('startDate', startDate.format(DATE_FORMAT));
-        priceRequestURL.searchParams.set('endDate', endDate.format(DATE_FORMAT));
-        if (couponName && couponName.trim()) priceRequestURL.searchParams.set('couponName', couponName);
 
         (async () => {
             try {
-                const result = await axios.get(priceRequestURL.toString());
+                const reqParams: any = {
+                    guestCount: guestCount,
+                    startDate: startDate.format(DATE_FORMAT),
+                    endDate: endDate.format(DATE_FORMAT)
+                };
+
+                if (couponName && couponName.trim()) reqParams.couponName = couponName;
+
+                const result = await instance.get(`/properties/${propertyId}/price`, {
+                    params: reqParams
+                });
+                
                 const {data} = result;
                 if (data) {
                     const price: TPrice = {

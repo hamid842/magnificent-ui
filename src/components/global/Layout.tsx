@@ -12,8 +12,9 @@ export default function Layout({children}: { children: React.ReactNode }) {
         <>
             <Head>
                 <title>Magnificent</title>
-                <link rel="shortcut icon" href="/public/favicon.ico" />
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                <link rel="shortcut icon" href="/public/favicon.ico"/>
+                <link rel="stylesheet"
+                      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
             </Head>
             <style jsx global>{`
               *,
@@ -29,10 +30,15 @@ export default function Layout({children}: { children: React.ReactNode }) {
                 overflow-x: hidden;
                 background-color: #FEFDF8;
               }
+              @media print {
+                @page {
+                  size: A4;
+                }
+              }
             `}</style>
             <Header/>
-            <div style={{minHeight:'100vh'}}>{children}</div>
-            <AppFooter />
+            <div style={{minHeight: '100vh'}}>{children}</div>
+            <AppFooter/>
         </>
     )
 }

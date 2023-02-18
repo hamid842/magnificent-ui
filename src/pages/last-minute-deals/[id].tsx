@@ -17,7 +17,7 @@ import AccessibleInformation from "@/components/last-minute-deals/AccessibleInfo
 import LocationInformation from "@/components/last-minute-deals/LocationInformation";
 import AppContainer from "@/components/global/AppContainer";
 import { instance } from "@/config/axiosConfig";
-import { IProperty } from "@/utils/property-type";
+import { DATE_FORMAT, IProperty } from "@/utils/property-type";
 import colors from "@/assets/colors";
 import { ReactElement } from "react-markdown/lib/react-markdown";
 import Layout from "@/components/global/Layout";
@@ -39,8 +39,6 @@ type LastMinuteDealsProps = {
 };
 
 //============================================================================================
-const BASE_URL: string = "http://45.61.55.150:1337/";
-const DATE_FORMAT = "YYYY-MM-DD";
 
 type TCalendarDay = { date: string; isAvailable: 0 | 1 };
 
@@ -54,17 +52,16 @@ const getBlockedDates = async (propertyId: string): Promise<string[]> => {
   const startDate: moment.Moment = moment(new Date()); // Now
   const endDate: moment.Moment = moment(new Date()).add(1, "year"); // Next Year
   //------------------------------------------------------------------------------------
-  const priceRequestURL: URL = new URL(
-    `/api/properties/${propertyId}/calendar`,
-    BASE_URL
-  );
-  priceRequestURL.searchParams.set("startDate", startDate.format(DATE_FORMAT));
-  priceRequestURL.searchParams.set("endDate", endDate.format(DATE_FORMAT));
-  // Just get the calendar dates which are blocked (not available)
-  priceRequestURL.searchParams.set("onlyBlocked", "true");
 
   try {
-    const result = await axios.get(priceRequestURL.toString());
+    const reqData = {
+      startDate: startDate.format(DATE_FORMAT),
+      endDate: endDate.format(DATE_FORMAT),
+      onlyBlocked: true // Just get the calendar dates which are blocked (not available)
+    };
+    const result = await instance.get(`/properties/${propertyId}/calendar`, {
+      params: reqData
+    });
     const { data } = result;
     if (data) {
       // NOTE: Because we are just getting blocked dates from API, we can add all of them to 'blockedDates' array
@@ -87,7 +84,7 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
     (async () => {
       setBlockedDates(await getBlockedDates(property.id));
     })();
-  }, []);
+  }, [property.id]);
   //============================================================================================
 
   return (
@@ -116,7 +113,7 @@ const LivingSpaceItem = ({ property }: LastMinuteDealsProps) => {
           <Explanation explanation={attributes.explanation} />
           <LocationInformation />
           <AccessibleInformation />
-          <ReviewsSectionLastMin reviews={property.attributes.reviews.data}/>
+          <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data}/>
         </Grid>
         <Grid item xs={12} sm={4.5} lg={4.5}>
           <BookingCalculationSection
