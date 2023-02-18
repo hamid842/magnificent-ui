@@ -21,7 +21,7 @@ type TProps = {
 const ReviewsSection = ({reviews}: TProps) => {
     return (
         <Box>
-            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'}/>
+            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'} mb={5}/>
             <Stack direction={'row'} sx={{width: '100%', height: 250, pb: 10}} alignItems={'center'}>
                 <Box sx={{
                     display: 'flex',

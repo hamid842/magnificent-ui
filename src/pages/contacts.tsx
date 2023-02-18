@@ -1,7 +1,7 @@
 // Next.js
 import Image from "next/image";
 // Material ui
-import {Grid, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 // Project imports
 import homePagePicture from "../../public/home-page-pic.png";
 import manager from "../../public/general-manager.jpg";
@@ -11,28 +11,19 @@ import officer from "../../public/officer.jpg";
 import sales from "../../public/sales.jpg";
 import {ReactElement} from "react";
 import Layout from "@/components/global/Layout";
+import AppContainer from "@/components/global/AppContainer";
+import colors from "@/assets/colors";
+import rentImage from "../../public/8/8-2-1.jpg";
 
 //=========================|| Contact us ||===========================
 
 const Contacts = () => {
     return (
-        <>
-            {/*<Box sx={{textAlign: 'center', position: 'relative'}}>*/}
-            {/*    <Image*/}
-            {/*        src={homePagePicture}*/}
-            {/*        alt={'Pic'}*/}
-            {/*        sizes="90vw"*/}
-            {/*        style={{*/}
-            {/*            width: '100%',*/}
-            {/*            height: 250*/}
-            {/*        }}/>*/}
-            {/*    <Typography variant={'h3'} sx={{position: 'absolute', bottom: 30, left: 40, color: 'white'}}>Contact*/}
-            {/*        Us</Typography>*/}
-            {/*</Box>*/}
-            <Grid container px={20} py={10} spacing={5} pt={20}>
-                <Grid item xs={12} sm={12} lg={8}>
+        <AppContainer>
+            <Grid container spacing={2} mt={20}>
+                <Grid item xs={12} sm={6} md={6} lg={6}>
                     <Typography variant={"h4"} sx={{fontWeight: 700}}>
-                        About Us
+                        Contact Us
                     </Typography>
                     <Typography sx={{textAlign: "justify"}}>
                         <p>
@@ -44,7 +35,6 @@ const Contacts = () => {
                             elegantly designed with unrivaled amenities and impeccable service
                             to exceed the expectations of even the most discerning guests.
                         </p>
-                        <p></p>
                         <p>
                             Reinventing luxury is what we do here at ‘Magnificent properties’;
                             we know how to make high-end chic home rentals work as exciting
@@ -52,20 +42,33 @@ const Contacts = () => {
                         </p>
                     </Typography>
                 </Grid>
-                <Grid item xs={12} sm={12} lg={4}>
-                    <Image
-                        src={homePagePicture}
-                        alt={"Pic"}
-                        style={{
-                            width: "100%",
-                            height: "50vh",
-                            boxShadow:
-                                "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                        }}
-                    />
+                <Grid item xs={12} sm={6} md={6} lg={6}>
+                    <Box sx={{
+                        p: 2,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: colors.mainColor,
+                        borderTopLeftRadius: 50,
+                        boxShadow: 'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
+                    }}>
+                        <Box sx={{
+                            width: '100%',
+                            height: '100%',
+                            borderTopLeftRadius: 50,
+                        }}>
+                            <Image src={homePagePicture} alt={"Pic"} width={400}
+                                   style={{
+                                       background: "transparent",
+                                       borderTopLeftRadius: 50,
+                                       borderBottomRightRadius: 50,
+                                       width: '100%',
+                                       height:'100%'
+                                   }}/>
+                        </Box>
+                    </Box>
                 </Grid>
             </Grid>
-            <Grid container px={20} py={10} spacing={5}>
+            <Grid container spacing={2} mt={5}>
                 <Grid item xs={12} sm={12} lg={12}>
                     <Typography
                         variant={"h4"}
@@ -165,7 +168,8 @@ const Contacts = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </>
+        </AppContainer>
+
     );
 };
 export default Contacts;
