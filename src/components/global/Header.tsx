@@ -19,16 +19,24 @@ import {
 import {styled} from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 // project imports
+import {Person} from "@mui/icons-material";
 import logo from "../../../public/main-logo.png";
 import colors from '../../assets/colors'
 import {euclidFont, switzerFont} from "@/assets/fonts";
 import AuthWrapper from "@/auth/AuthWrapper";
 import {AuthContext} from "../../../context/contexts";
-import {Person} from "@mui/icons-material";
 
-const pages = [
+const menuPages = [
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
-    {label: 'Blog', path: '/blogs'},
+    {label: 'Blogs', path: '/blogs'},
+    {label: 'About us', path: '/about'},
+    {label: 'Contacts', path: '/contacts'}
+];
+
+const navPages = [
+    {label: 'Home', path: "/"},
+    {label: 'Last Minute Deals', path: "/last-minute-deals"},
+    {label: 'Blogs', path: '/blogs'},
     {label: 'About us', path: '/about'},
     {label: 'Contacts', path: '/contacts'}
 ];
@@ -73,10 +81,8 @@ export default function Header() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (e: any) => {
+    const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-        router.push(e.target.value).then(() => {
-        });
     };
 
     const handleCloseUserMenu = () => {
@@ -130,8 +136,8 @@ export default function Header() {
                         open={Boolean(anchorElNav)}
                         onClose={handleCloseNavMenu}
                     >
-                        {pages.map((page) => (
-                            <MenuItem key={page.label} value={page.path} onClick={handleCloseNavMenu}>
+                        {navPages.map((page) => (
+                            <MenuItem key={page.label} value={page.path} onClick={() => router.push(page.path)}>
                                 <Typography textAlign="center" sx={{fontSize: 18}}>{page.label}</Typography>
                             </MenuItem>
                         ))}
@@ -142,12 +148,12 @@ export default function Header() {
                     ml: 2,
                     display: {xs: 'none', md: 'flex'}
                 }}>
-                    {pages.map((page) => (
+                    {menuPages.map((page) => (
                         <Button
                             key={page.label}
                             size={'small'}
                             value={page.path}
-                            onClick={handleCloseNavMenu}
+                            onClick={() => router.push(page.path)}
                             className={switzerFont.className}
                             sx={menuItemsStyles}
                         >
@@ -155,16 +161,16 @@ export default function Header() {
                         </Button>
                     ))}
                 </Box>
-                {/* ========================= || Setting (when click on header image) || ====================== */}
+                {/* ========================= || Setting (when click on header avatar) || ====================== */}
                 <Box sx={{flexGrow: 0, mr: 2}}>
                     <Stack direction={'row'}>
                         <ColorButton size={'small'} variant={'contained'} className={euclidFont.className}
-                                     sx={{textTransform: 'none', borderRadius: 25, fontSize: 14,mr:1}}
+                                     sx={{textTransform: 'none', borderRadius: 25, fontSize: 14, mr: 1}}
                                      onClick={() => router.push('/rent-your-place')}
                         >Rent Your Place</ColorButton>
 
-                        <Avatar onClick={handleOpenUserMenu} aria-haspopup={true} sx={{cursor:'pointer'}}>
-                            <Person />
+                        <Avatar onClick={handleOpenUserMenu} aria-haspopup={true} sx={{cursor: 'pointer'}}>
+                            <Person/>
                         </Avatar>
                     </Stack>
                     <Menu
@@ -188,9 +194,6 @@ export default function Header() {
                         </MenuItem> : <>
                             <Button>Logout</Button>
                         </>}
-                        {/*<MenuItem onClick={handleCloseUserMenu}>*/}
-                        {/*    <RegisterDialog/>*/}
-                        {/*</MenuItem>*/}
                     </Menu>
                 </Box>
             </Toolbar>

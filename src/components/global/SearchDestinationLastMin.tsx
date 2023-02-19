@@ -1,5 +1,4 @@
 // Next.js
-import {useRouter} from "next/router";
 // Material-ui
 import {Box, Grid, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
@@ -28,13 +27,12 @@ type Props = {
 //======================|| Search Component ||===========================
 
 const SearchDestinationLastMin = ({position}: Props) => {
-    const router = useRouter()
     return (
         <Box
             sx={{
                 position,
                 bottom: 20,
-                width: 500,
+                width: {xs: 380, sm: 500, lg: 600},
                 height: 45,
                 background: 'white',
                 borderRadius: 25,

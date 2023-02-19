@@ -39,7 +39,7 @@ const SearchDestination = ({position}: Props) => {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 25,
-            bottom: 80,
+            bottom: 70,
             left: '50%',
             transform: 'translate(-50%,-50%)',
             width: {xs: 380, sm: 500, lg: 600},

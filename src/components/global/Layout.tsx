@@ -1,13 +1,14 @@
-import React from "react";
+import {ReactNode} from "react";
 // Next.js
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 // Project imports
-import Header from '@/components/global/Header'
-import AppFooter from "./AppFooter";
+const Header = dynamic(() => import('./Header'))
+const AppFooter = dynamic(() => import('./AppFooter'))
 
 //======================|| Main Layout ||===========================
 
-export default function Layout({children}: { children: React.ReactNode }) {
+export default function Layout({children}: { children: ReactNode }) {
     return (
         <>
             <Head>
@@ -31,6 +32,17 @@ export default function Layout({children}: { children: React.ReactNode }) {
                 overflow-x: hidden;
                 background-color: #FEFDF8;
               }
+
+              #nprogress .bar {
+                background: #B6923E !important;
+                height: 4px !important;
+              }
+
+              #nprogress .peg {
+                box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
+              }
+
+
               @media print {
                 @page {
                   size: A4;

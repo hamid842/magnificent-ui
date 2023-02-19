@@ -100,7 +100,7 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
                     })}
 
                 </Grid>
-                <Stack alignItems={'center'} pb={8}>
+                <Stack alignItems={'center'} pb={3}>
                     <Pagination shape="rounded" onChange={paginationHandler} count={2}/>
                 </Stack>
             </AppContainer>

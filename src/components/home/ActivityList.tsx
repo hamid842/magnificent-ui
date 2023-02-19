@@ -31,9 +31,10 @@ const ActivityList = () => {
                     <Grid container spacing={1} pt={2}>
                         <Grid item xs={12} sm={4} lg={4}>
                             <Box sx={{
-                                width: '100%',
+                                width: {xs: '50%', sm: '60%', md: '100%', lg: '100%'},
                                 height: 180,
                                 p: 1,
+                                m: 'auto',
                                 backgroundColor: colors.yellow,
                                 borderTopLeftRadius: 6,
                                 borderTopRightRadius: 50,
@@ -55,8 +56,9 @@ const ActivityList = () => {
                         <Grid item xs={12} sm={4} lg={4}>
                             <Box sx={{
                                 p: 1,
-                                width: '100%',
-                                height: 250,
+                                m: 'auto',
+                                width: {xs: '50%', sm: '60%', md: '100%', lg: '100%'},
+                                height: {xs: 250, sm: 250, md: 250, lg: 250},
                                 backgroundColor: '#000000',
                                 borderTopRightRadius: 6,
                                 borderTopLeftRadius: 6,
@@ -78,9 +80,10 @@ const ActivityList = () => {
                         </Grid>
                         <Grid item xs={12} sm={4} lg={4}>
                             <Box sx={{
-                                width: '100%',
+                                width: {xs: '50%', sm: '60%', md: '100%', lg: '100%'},
                                 height: 180,
                                 p: 1,
+                                m: 'auto',
                                 backgroundColor: colors.brown,
                                 borderTopRightRadius: 6,
                                 borderTopLeftRadius: 50,

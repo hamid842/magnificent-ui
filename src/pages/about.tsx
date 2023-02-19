@@ -1,6 +1,6 @@
 // Next.js
-// noinspection JSUnusedGlobalSymbols
 // Material ui
+// noinspection JSUnusedGlobalSymbols
 import {Grid, Paper, Stack, Typography} from "@mui/material";
 import AddchartIcon from '@mui/icons-material/Addchart';
 import CameraOutdoorIcon from '@mui/icons-material/CameraOutdoor';
@@ -43,23 +43,11 @@ const About = () => {
 
     return (
         <>
-            {/*<Box sx={{textAlign: 'center', position: 'relative'}}>*/}
-            {/*    <Image*/}
-            {/*        src={homePagePicture}*/}
-            {/*        alt={'Pic'}*/}
-            {/*        sizes="90vw"*/}
-            {/*        style={{*/}
-            {/*            width: '100%',*/}
-            {/*            height: 250*/}
-            {/*        }}/>*/}
-            {/*    <EuclidText variant={'h3'} sx={{position: 'absolute', bottom: 30, left: 40, color: 'white'}}*/}
-            {/*                text={'About Us'}/>*/}
-            {/*</Box>*/}
             <AppContainer>
                 <TitleSeparator separatorTitle={'Your Trusted Property Manager'}
                                 title={'Why Homeowners Choose Magnificent Properties?'} pt={20}/>
                 <Grid container spacing={2}>
-                    <Grid item xs={6} sm={2} md={4} lg={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
@@ -70,7 +58,7 @@ const About = () => {
                             </Stack>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={2} md={4} lg={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'} justifyContent={'space-around'}>
                                 <CameraOutdoorIcon sx={iconStyles}/>
@@ -80,7 +68,7 @@ const About = () => {
                             </Stack>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={2} md={4} lg={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'} justifyContent={'space-around'}>
                                 <OtherHousesRoundedIcon sx={iconStyles}/>
@@ -140,61 +128,73 @@ const About = () => {
                 </Grid>
                 <TitleSeparator separatorTitle={'Holiday Homes in Dubai'} title={'Embrace The Grandeur'}/>
                 <Grid container spacing={2}>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'ENJOY MORE SPACE'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Why book a room when you can enjoy full kitchens, laundry, pools, yards and more?'} sx={contentStyle}/>
+                                <EuclidText text={'ENJOY MORE SPACE'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Why book a room when you can enjoy full kitchens, laundry, pools, yards and more?'}
+                                             sx={contentStyle}/>
                             </Stack>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'LUXURIOUS ACCOMMODATIONS'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Fully furnished and well-outfitted by high-end designers, our homes exude luxury and opulence.'} sx={contentStyle}/>
-                            </Stack>
-
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
-                        <Paper elevation={3} sx={paperStyles}>
-                            <Stack direction={'column'} alignItems={'center'}>
-                                <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'LIVE LIKE A LOCAL'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Enjoy local neighborhoods and experience shopping, food, entertainment and much more.'} sx={contentStyle}/>
+                                <EuclidText text={'LUXURIOUS ACCOMMODATIONS'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Fully furnished and well-outfitted by high-end designers, our homes exude luxury and opulence.'}
+                                             sx={contentStyle}/>
                             </Stack>
 
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'WE’RE SECURE'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Our holiday homes are located in secured and private communities with 24/7 security surveillance.'} sx={contentStyle}/>
+                                <EuclidText text={'LIVE LIKE A LOCAL'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Enjoy local neighborhoods and experience shopping, food, entertainment and much more.'}
+                                             sx={contentStyle}/>
                             </Stack>
 
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'A HOME AWAY FROM HOME'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Warmth and comfort of a fully-furnished home, with all the amenities of a 5-star hotel.'} sx={contentStyle}/>
+                                <EuclidText text={'WE’RE SECURE'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Our holiday homes are located in secured and private communities with 24/7 security surveillance.'}
+                                             sx={contentStyle}/>
                             </Stack>
 
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={4} lg={4}>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
                         <Paper elevation={3} sx={paperStyles}>
                             <Stack direction={'column'} alignItems={'center'}>
                                 <AddchartIcon sx={iconStyles}/>
-                                <EuclidText text={'PRIME LOCATION'} sx={{fontWeight:700}}/>
-                                <SwitzerText align={'center'} text={'Live in thriving Downtown Dubai and get to be in the midst of all the action and entertainment.'} sx={contentStyle}/>
+                                <EuclidText text={'A HOME AWAY FROM HOME'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Warmth and comfort of a fully-furnished home, with all the amenities of a 5-star hotel.'}
+                                             sx={contentStyle}/>
+                            </Stack>
+
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4} lg={4}>
+                        <Paper elevation={3} sx={paperStyles}>
+                            <Stack direction={'column'} alignItems={'center'}>
+                                <AddchartIcon sx={iconStyles}/>
+                                <EuclidText text={'PRIME LOCATION'} sx={{fontWeight: 700}}/>
+                                <SwitzerText align={'center'}
+                                             text={'Live in thriving Downtown Dubai and get to be in the midst of all the action and entertainment.'}
+                                             sx={contentStyle}/>
                             </Stack>
 
                         </Paper>

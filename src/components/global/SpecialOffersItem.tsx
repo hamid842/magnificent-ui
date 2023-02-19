@@ -39,17 +39,14 @@ const SpecialOffersItem = ({data}: Props) => {
                     alt={'Pic'}
                     sizes={'100%'}
                     src={attributes.images[0].url}
-                    width={100}
-                    height={140}
+                    width={200}
+                    height={200}
                     style={{
                         width: '100%',
                         transition: '0.3s all ease-in-out',
                         height: '100%',
                         borderRadius: 10,
                     }}/>
-                {/*<Box sx={favoriteIconStyles}>*/}
-                {/*    <AppIcon name={'favorite'}/>*/}
-                {/*</Box>*/}
                 <Box sx={{
                     position: 'absolute',
                     backgroundColor: 'white',

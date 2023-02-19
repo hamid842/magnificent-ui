@@ -11,6 +11,7 @@ import TitleSeparator from "@/components/global/TitleSeparator";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import { IReview } from "@/utils/property-type";
 import AppIcon from "@/components/global/AppIcon";
+import colors from "@/assets/colors";
 
 //=========================|| Reviews Section ||=========================
 
@@ -21,8 +22,8 @@ type TProps = {
 const ReviewsSection = ({reviews}: TProps) => {
     return (
         <Box>
-            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'} mb={5}/>
-            <Stack direction={'row'} sx={{width: '100%', height: 250, pb: 10}} alignItems={'center'}>
+            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'} mb={3}/>
+            <Stack direction={'row'} sx={{width:'100%', pb: 5}} alignItems={'center'}>
                 <Box sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -30,17 +31,17 @@ const ReviewsSection = ({reviews}: TProps) => {
                     width: 30,
                     height: 30,
                     borderRadius: 1,
-                    backgroundColor: "#A47C30",
+                    backgroundColor: colors.mainColor,
                     border: 'none',
                     mx:2
                 }}>
                     <AppIcon name={'navigate_before'} color={'#fff'}/>
                 </Box>
-                <Grid container wrap='nowrap' spacing={3} sx={{ overflow: 'hidden' }}>
+                <Grid container spacing={2}>
                 { reviews && reviews.map((review: IReview) => {
                     return(
-                    <Grid key={review.id} item xs={12} sm={6} md={4} lg={4} m={1}>
-                        <Paper elevation={5} sx={{borderRadius: 3}}>
+                    <Grid key={review.id} item xs={12} sm={6} md={4} lg={4}>
+                        <Paper elevation={3} sx={{borderRadius: 3}}>
                             <Stack direction={'column'} alignItems={'center'} p={2}>
                                 <Image 
                                     src={review.attributes.userPhoto} 

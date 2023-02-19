@@ -126,10 +126,10 @@ const AppFooter = () => {
                         </Grid>
                     </Grid>
                     <Divider variant={'middle'} sx={{height: 1, width: '100%', backgroundColor: colors.mainColor}}/>
-                    <Stack direction={'row'} justifyContent={'center'}>
+                    <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
                         <PoppinsText variant={'caption'} py={1} color={'white'}
                                      text={`Copyright ${new Date().getFullYear()}`}/>
-                        <PoppinsText variant={'caption'} py={1} sx={{color: colors.mainColor}}
+                        <PoppinsText variant={'caption'} py={1} color={'#B6923E !important'}
                                      text={', Magnificent Property Management.'}/>
                     </Stack>
                 </AppContainer>
