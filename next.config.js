@@ -15,6 +15,12 @@ const nextConfig = {
         port: '',
         pathname: '/listing/**'
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.leonardo.ai',
+        port: '',
+        pathname: '/users/2dc5dbea-cfc5-4a04-a311-747595418e49/generations/**'
+      },
       {// TODO: Remove in production
         protocol: 'http',
         hostname: 'localhost',
