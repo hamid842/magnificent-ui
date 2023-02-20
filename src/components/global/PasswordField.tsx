@@ -1,15 +1,24 @@
-import {MouseEvent, useState} from "react";
-import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,FormControlProps, FormHelperText} from "@mui/material";
+import {ChangeEvent, MouseEvent, useState} from "react";
+import {
+    FormControl,
+    FormControlProps,
+    FormHelperText,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput
+} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type PasswordFieldProps = {
-    label:string,
+    label: string,
     value?: string,
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
     helperText?: string
 }
 
-const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
+const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
+    const {label, helperText, onChange, value} = props
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -19,7 +28,7 @@ const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
     };
     return (
         <FormControl size={'small'} fullWidth variant="outlined" {...props}>
-            <InputLabel htmlFor="outlined-adornment-password">{props.label}</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
             <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
@@ -35,13 +44,13 @@ const PasswordField = (props:(PasswordFieldProps & FormControlProps))=>{
                         </IconButton>
                     </InputAdornment>
                 }
-                label={props.label}
-                onChange={props.onChange}
-                value={props.value}
+                label={label}
+                onChange={onChange}
+                value={value}
             />
-            { !!props.helperText && (
+            {!!helperText && (
                 <FormHelperText error>
-                    {props.helperText}
+                    {helperText}
                 </FormHelperText>
             )}
         </FormControl>

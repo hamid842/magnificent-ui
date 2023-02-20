@@ -12,7 +12,7 @@ const AmenityIconAndTitle = ({icon, title, detail = true}: Props) => {
     return (
         <>
             {!detail ?
-                <Grid item xs={2.4}>
+                <Grid item xs={6} sm={4} md={2.4} lg={2.4}>
                     <Paper sx={{p: 0.5, height: 40, display: 'flex', alignItems: 'center'}}>
                         <Stack direction={'row'} alignItems={'center'}>
                     <span style={{fontSize: 16, color: colors.mainColor}}

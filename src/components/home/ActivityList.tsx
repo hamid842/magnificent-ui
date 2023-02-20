@@ -32,7 +32,7 @@ const ActivityList = () => {
                         <Grid item xs={12} sm={4} lg={4}>
                             <Box sx={{
                                 width: {xs: '50%', sm: '60%', md: '100%', lg: '100%'},
-                                height: 180,
+                                height: 170,
                                 p: 1,
                                 m: 'auto',
                                 backgroundColor: colors.yellow,
@@ -43,7 +43,7 @@ const ActivityList = () => {
                             }}>
                                 <Image src={activityOne} alt={"Pic"} style={{
                                     width: '100%',
-                                    height: 130,
+                                    height: 120,
                                     borderTopLeftRadius: 5,
                                     borderTopRightRadius: 46,
                                     borderBottomLeftRadius: 46
@@ -81,7 +81,7 @@ const ActivityList = () => {
                         <Grid item xs={12} sm={4} lg={4}>
                             <Box sx={{
                                 width: {xs: '50%', sm: '60%', md: '100%', lg: '100%'},
-                                height: 180,
+                                height: 170,
                                 p: 1,
                                 m: 'auto',
                                 backgroundColor: colors.brown,
@@ -92,7 +92,7 @@ const ActivityList = () => {
                             }}>
                                 <Image src={activityThree} alt={"Pic"} style={{
                                     width: '100%',
-                                    height: 130,
+                                    height: 120,
                                     borderTopRightRadius: 5,
                                     borderTopLeftRadius: 46,
                                     borderBottomRightRadius: 46
@@ -114,14 +114,24 @@ const ActivityList = () => {
                         borderBottomRightRadius: 50,
                         mt: 5,
                         boxShadow: 'rgb(0 0 0 / 25%) 0 14px 45px, rgb(0 0 0 / 22%) 0 10px 18px',
+
                     }}>
                         <Box sx={{
+                            p: '1px',
                             width: '100%',
                             height: '100%',
+                            background: `linear-gradient(to left, ${colors.mainColor},${colors.elementsBg})`,
                             borderBottomRightRadius: 50,
-                            border: `1px solid ${colors.mainColor}`
                         }}>
-                            <TitleSeparator separatorTitle={'Welcome to'} title={'Magnificent'} sx={{color: 'white'}}/>
+                            <Box sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderBottomRightRadius: 50,
+                                backgroundColor: colors.elementsBg,
+                            }}>
+                                <TitleSeparator separatorTitle={'Welcome to'} title={'Magnificent'}
+                                                sx={{color: 'white'}}/>
+                            </Box>
                         </Box>
                     </Box>
                 </Grid>

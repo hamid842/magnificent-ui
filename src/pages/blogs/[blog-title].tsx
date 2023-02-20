@@ -42,11 +42,12 @@ const BlogTitle = ({blogPosts}: BlogProps) => {
     const IMAGE_WIDTH = 500;
     const IMAGE_HEIGHT = 500;
     const imageStyles = {width: '100%', height: 'auto'}
+
     return (
         <AppContainer>
             <Stack mt={20} alignItems={'center'}>
-                <EuclidText variant={'h5'} align={'center'} text={attributes.title} sx={{fontWeight: 700, mb:3}}/>
-                <Box sx={{width:'100%'}}>
+                <EuclidText variant={'h5'} align={'center'} text={attributes.title} sx={{fontWeight: 700, mb: 3}}/>
+                <Box sx={{width: '100%'}}>
                     {router.query.id === '1' &&
                         <Image src={blogOneImage} alt={'Pic'} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
                                style={imageStyles}/>}
@@ -73,4 +74,4 @@ const BlogTitle = ({blogPosts}: BlogProps) => {
 }
 export default BlogTitle;
 
-BlogTitle.getLayout = (page:ReactElement) => <Layout>{page}</Layout>
+BlogTitle.getLayout = (page: ReactElement) => <Layout>{page}</Layout>

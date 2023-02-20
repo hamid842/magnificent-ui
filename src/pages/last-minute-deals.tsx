@@ -17,7 +17,6 @@ import Contacts from "@/pages/contacts";
 import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-    console.log("==============", query)
     const page = query.page || 1;
     const response = await instance(`/properties?populate=*&pagination[page]=${page}&pagination[pageSize]=9`)
     const properties = response.data?.data;
