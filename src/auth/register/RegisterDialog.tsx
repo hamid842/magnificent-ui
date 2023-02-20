@@ -98,7 +98,7 @@ const {setUser} = useContext(AuthContext)
 
     // -----------------------------------------------------------------------------------
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>, id: EForm) => {
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, id: EForm) => {
         const value = e.target.value;
         setForm((prevForm) => {
             if (id === EForm.AGREE) {

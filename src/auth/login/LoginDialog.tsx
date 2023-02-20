@@ -55,14 +55,14 @@ const prettyMessage = (input: string): string => {
 }
 
 type LoginDialogProps = {
-    setValue:Dispatch<SetStateAction<number>>
-    setOpen:Dispatch<SetStateAction<boolean>>
+    setValue: Dispatch<SetStateAction<number>>
+    setOpen: Dispatch<SetStateAction<boolean>>
 }
 
 
-const LoginDialog = ({setValue,setOpen}:LoginDialogProps) => {
+const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
 
-    const { setUser} = useContext(AuthContext)
+    const {setUser} = useContext(AuthContext)
     const [formError, setFormError] = useState<TFormError>({});
     // -----------------------------------------------------------------------------------
     const [form, setForm] = useState<TForm>({
@@ -72,7 +72,7 @@ const LoginDialog = ({setValue,setOpen}:LoginDialogProps) => {
 
     // -----------------------------------------------------------------------------------
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>, id: EForm) => {
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, id: EForm) => {
         const value = e.target.value;
         setForm((prevForm) => {
             return {
@@ -127,7 +127,8 @@ const LoginDialog = ({setValue,setOpen}:LoginDialogProps) => {
     return (
         <>
             {/* Title */}
-            <EuclidText variant={'h5'} text={'Login'} sx={{fontWeight: 700,textAlign:'center'}} color={colors.navMenuColor}/>
+            <EuclidText variant={'h5'} text={'Login'} sx={{fontWeight: 700, textAlign: 'center'}}
+                        color={colors.navMenuColor}/>
             {/* ------------------------------------------------------------------------------------- */}
             {/* Login Form */}
             <form onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -175,34 +176,34 @@ const LoginDialog = ({setValue,setOpen}:LoginDialogProps) => {
             {/* ------------------------------------------------------------------------------------- */}
             {/* Forgot Password */}
             <Stack alignItems={'center'}>
-            <Button
-                sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}}>
-                Forgot password?
-            </Button>
-            {/* ------------------------------------------------------------------------------------- */}
-            <Divider orientation={'vertical'} sx={{height: 20}}/>
-            {/* ------------------------------------------------------------------------------------- */}
-            {/* OR */}
-            <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
-            {/* ------------------------------------------------------------------------------------- */}
-            {/* Register */}
-            <Stack
-                direction={'row'}
-                alignItems={'center'}>
-                {/* Title */}
-                <SwitzerText
-                    text={"Don't have an account?"}
-                    sx={{fontSize: 10}}/>
-                {/* Register Button */}
-                <Button sx={{
-                    color: colors.mainColor,
-                    textTransform: 'none',
-                    fontSize: 10,
-                    fontWeight: 600
-                }} onClick={()=>setValue(1)}>
-                    Register
+                <Button
+                    sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}}>
+                    Forgot password?
                 </Button>
-            </Stack>
+                {/* ------------------------------------------------------------------------------------- */}
+                <Divider orientation={'vertical'} sx={{height: 20}}/>
+                {/* ------------------------------------------------------------------------------------- */}
+                {/* OR */}
+                <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
+                {/* ------------------------------------------------------------------------------------- */}
+                {/* Register */}
+                <Stack
+                    direction={'row'}
+                    alignItems={'center'}>
+                    {/* Title */}
+                    <SwitzerText
+                        text={"Don't have an account?"}
+                        sx={{fontSize: 10}}/>
+                    {/* Register Button */}
+                    <Button sx={{
+                        color: colors.mainColor,
+                        textTransform: 'none',
+                        fontSize: 10,
+                        fontWeight: 600
+                    }} onClick={() => setValue(1)}>
+                        Register
+                    </Button>
+                </Stack>
             </Stack>
         </>
     );
