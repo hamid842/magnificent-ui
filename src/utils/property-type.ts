@@ -133,3 +133,8 @@ export interface IReview {
         inHomePage: boolean
     }
 }
+
+export interface IAllPropertyTypes {
+    id:number;
+    name:string
+}

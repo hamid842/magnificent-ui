@@ -26,13 +26,6 @@ import {euclidFont, switzerFont} from "@/assets/fonts";
 import AuthWrapper from "@/auth/AuthWrapper";
 import {AuthContext} from "../../../context/contexts";
 
-const menuPages = [
-    {label: 'Last Minute Deals', path: "/last-minute-deals"},
-    {label: 'Blogs', path: '/blogs'},
-    {label: 'About us', path: '/about'},
-    {label: 'Contacts', path: '/contacts'}
-];
-
 const navPages = [
     {label: 'Home', path: "/"},
     {label: 'Last Minute Deals', path: "/last-minute-deals"},
@@ -148,7 +141,7 @@ export default function Header() {
                     ml: 2,
                     display: {xs: 'none', md: 'flex'}
                 }}>
-                    {menuPages.map((page) => (
+                    {navPages.map((page) => (
                         <Button
                             key={page.label}
                             size={'small'}

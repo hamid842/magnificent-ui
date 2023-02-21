@@ -1,34 +1,30 @@
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {SelectChangeEvent} from "@mui/material";
 import {ReactNode} from "react";
+import {FormControl, FormHelperText, InputLabel, Select, SelectProps} from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 type Props = {
     inputLabel: string,
+    helperText?: any,
     id?: string,
-    value: string,
-    onChange: (event: SelectChangeEvent) => void,
-    children:ReactNode
+    children: ReactNode
 }
 
-const SelectField = ({inputLabel, id, value, onChange, children}: Props) => {
+const SelectField = (props: (Props & SelectProps)) => {
+    const {inputLabel, id, helperText, children} = props
     return (
-        <FormControl fullWidth size={'small'} >
-            <InputLabel id="select-field">{inputLabel}</InputLabel>
+        <FormControl fullWidth size={'small'}>
+            <InputLabel id={id}>{inputLabel}</InputLabel>
             <Select
-                labelId="select-field"
+                {...props}
+                labelId={id}
                 id={id}
                 name={id}
-                value={value}
                 label={inputLabel}
-                onChange={onChange}
                 IconComponent={KeyboardArrowDownIcon}
             >
                 {children}
             </Select>
+            <FormHelperText error>{helperText}</FormHelperText>
         </FormControl>
     );
 }

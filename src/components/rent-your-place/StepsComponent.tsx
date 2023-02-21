@@ -1,6 +1,4 @@
 import {ReactElement, useState} from "react";
-import Box from '@mui/material/Box';
-import Stack from "@mui/material/Stack";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -13,7 +11,7 @@ import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import FirstStep from "@/components/rent-your-place/first-step/FirstStep";
 import SecondStep from "@/components/rent-your-place/second-step/SecondStep";
 import ThirdStep from "@/components/rent-your-place/third-step/ThirdStep";
-import {Button} from "@mui/material";
+import AppContainer from "@/components/global/AppContainer";
 
 const steps = ["Step 1", "Step 2", "Step 3"]
 
@@ -76,17 +74,10 @@ function ColorLibStepIcon(props: StepIconProps) {
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = useState(0);
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
     return (
-        <Box px={10}>
-            <Stepper activeStep={activeStep} connector={<ColorLibConnector/>} sx={{width: 400, margin: '0 auto 15px'}}>
+        <AppContainer>
+            <Stepper activeStep={activeStep} connector={<ColorLibConnector/>}
+                     sx={{width: {xs: 250, sm: 400, md: 500, lg: 500}, margin: '0 auto 30px'}}>
                 {steps.map(step =>
                     <Step key={step}>
                         <StepLabel StepIconComponent={ColorLibStepIcon}></StepLabel>
@@ -96,45 +87,6 @@ export default function HorizontalLinearStepper() {
             {activeStep === 0 && <FirstStep/>}
             {activeStep === 1 && <SecondStep/>}
             {activeStep === 2 && <ThirdStep/>}
-            <Stack direction={'row'} alignItems={'center'} justifyContent={'space-around'}>
-                <Button
-                    variant={'outlined'}
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    sx={{
-                        my:2,
-                        textTransform: 'capitalize',
-                        backgroundColor: activeStep === 0 ? 'gray' : '#A47C30',
-                        display: activeStep === 0 ? 'none' : 'normal',
-                        color: 'white',
-                        width: 80,
-                        height: 25,
-                        border: 'none',
-                        '&:hover': {
-                            border: 'none',
-                            backgroundColor: '#A47C30',
-                        }
-                    }}
-                >
-                    Back
-                </Button>
-                <Button variant={'outlined'} onClick={handleNext}
-                        sx={{
-                            my: 2,
-                            textTransform: 'capitalize',
-                            backgroundColor: '#A47C30',
-                            color: 'white',
-                            width: 80,
-                            height: 25,
-                            border: 'none',
-                            '&:hover': {
-                                border: 'none',
-                                backgroundColor: '#A47C30',
-                            }
-                        }}>
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-            </Stack>
-        </Box>
+        </AppContainer>
     );
 }
