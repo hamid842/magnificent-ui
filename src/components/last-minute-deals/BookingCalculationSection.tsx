@@ -1,18 +1,20 @@
-import {ChangeEvent, FC, useContext, useEffect, useState} from 'react';
-import {DATE_FORMAT, IProperty} from "@/utils/property-type";
+import {ChangeEvent, FC, useEffect, useState} from 'react';
+// Material ui
+import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography, useMediaQuery} from "@mui/material";
+import {useTheme} from '@mui/material/styles';
+import {CalendarMonthRounded} from "@mui/icons-material";
+// Third party
 import 'react-dates/initialize';
-import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
 import 'react-dates/lib/css/_datepicker.css';
 import {DateRangePicker} from 'react-dates';
-import {CalendarMonthRounded} from "@mui/icons-material";
-import axios from 'axios';
 import moment from 'moment';
+// Project imports
 import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/last-minute-deals/BookingDialog";
-import {AuthContext} from "../../../context/contexts";
-import { instance } from '@/config/axiosConfig';
+import {instance} from '@/config/axiosConfig';
+import {DATE_FORMAT, IProperty} from "@/utils/property-type";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -48,10 +50,10 @@ type Props = {
 };
 
 const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
+    const theme = useTheme();
+    const sm = useMediaQuery(theme.breakpoints.down('sm'))
     const {id: propertyId} = property;
-    const {minNights, maxNights, personCapacity} = property.attributes;
-
-    const {user} = useContext(AuthContext)
+    const {minNights} = property.attributes;
 
     // TODO: Q: Can we book for more than personCapacity?
     //=======================================================================================================================================
@@ -125,7 +127,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                 const result = await instance.get(`/properties/${propertyId}/price`, {
                     params: reqParams
                 });
-                
+
                 const {data} = result;
                 if (data) {
                     const price: TPrice = {
@@ -149,13 +151,13 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
             }
         })();
 
-    }, [startDate, endDate, guestCount, couponName]);
+    }, [startDate, endDate, guestCount, couponName, propertyId]);
 
     //=======================================================================================================================================
 
     return (
         <>
-            <Paper sx={{p: 1, minHeight: 340, height: 'auto', borderRadius: 2, position: 'sticky', top: 10}}>
+            <Paper sx={{p: 1, minHeight: 340, height: 'auto', borderRadius: 2, position: 'sticky', top: 10,zIndex:1000}}>
                 <Stack direction={'column'} alignItems={'center'}>
                     <EuclidText variant={'subtitle2'} p={2} text={'Booking Calculation'}/>
                     {/* Date Picker-------------------------------------------------------------------------------------- */}
@@ -165,7 +167,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         showClearDates
                         hideKeyboardShortcutsPanel
                         minimumNights={minNights || 1}
-                        orientation={'horizontal'}
+                        orientation={sm ? 'vertical' : 'horizontal'}
                         customInputIcon={
                             <CalendarMonthRounded
                                 fontSize={'small'}
@@ -202,6 +204,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            sx={{zIndex:0}}
                         />
                     </Box>
                     {/* Coupon Name Input------------------------------------------------------------------------------ */}
@@ -239,18 +242,19 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                                     </InputAdornment>,
                             }}
                             sx={{
-                                my: 1
+                                my: 1,
+                                zIndex:0
                             }}
                         />
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
-                    <Box sx={{width: '100%',my:1}}>
+                    <Box sx={{width: '100%', my: 1}}>
                         <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
-                                       price={price} guestCount={guestCount} />
+                                       price={price} guestCount={guestCount}/>
                     </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
-                        {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'} sx={{my:1}}
+                        {!price && <Stack alignItems={'center'}><SwitzerText variant={'caption'} sx={{my: 1}}
                                                                              text={'Select dates to see the price'}/></Stack>}
                         {
                             price && price.components?.map((item) => {

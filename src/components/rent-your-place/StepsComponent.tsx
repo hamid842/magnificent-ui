@@ -12,6 +12,8 @@ import FirstStep from "@/components/rent-your-place/first-step/FirstStep";
 import SecondStep from "@/components/rent-your-place/second-step/SecondStep";
 import ThirdStep from "@/components/rent-your-place/third-step/ThirdStep";
 import AppContainer from "@/components/global/AppContainer";
+import {useFormik} from "formik";
+import * as yup from "yup";
 
 const steps = ["Step 1", "Step 2", "Step 3"]
 
@@ -71,8 +73,61 @@ function ColorLibStepIcon(props: StepIconProps) {
     );
 }
 
+const validationSchema = yup.object().shape({
+    Title: yup.string().required('Title is required'),
+    property_type: yup.number().required('Type is required'),
+    explanation: yup.string(),
+    squareMeters: yup.number(),
+    price: yup.number().required('Price is required'),
+    minNights: yup.number().required('Minimum Nights is required'),
+    maxNights: yup.number().required('Maximum Nights is required'),
+    personCapacity: yup.number(),
+    bedroomsNumber: yup.number().required('Bedrooms number is required'),
+    bedsNumber: yup.number().required('Beds number is required'),
+    bathroomsNumber: yup.number().required('Bathrooms number is required'),
+    contact: yup.object().shape({
+        contactName: yup.string().required('Name is required'),
+        contactSurName: yup.string().required('Sur name is required'),
+        contactPhone1: yup.string().required('Phone No. is required'),
+        contactPhone2: yup.string(),
+        contactEmail: yup.string().required('Email is required'),
+        contactAddress: yup.string().required('Address is required')
+    }),
+});
+
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = useState(0);
+
+    const formik = useFormik({
+        initialValues: {
+            Title: '',
+            property_type: '',
+            explanation: '',
+            squareMeters: "",
+            price: "",
+            bedroomsNumber: "",
+            bedsNumber: "",
+            bathroomsNumber: "",
+            personCapacity: "",
+            minNights: "",
+            maxNights: "",
+            contact: {
+                contactName: "",
+                contactSurName: "",
+                contactPhone1: "",
+                contactPhone2: "",
+                contactEmail: "",
+                contactAddress: ""
+            },
+            amenities:[],
+            generalInformation:{}
+        },
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            localStorage.setItem('rentItem',JSON.stringify(values))
+            setActiveStep(prev => prev + 1);
+        },
+    })
 
     return (
         <AppContainer>
@@ -84,9 +139,9 @@ export default function HorizontalLinearStepper() {
                     </Step>
                 )}
             </Stepper>
-            {activeStep === 0 && <FirstStep/>}
-            {activeStep === 1 && <SecondStep/>}
-            {activeStep === 2 && <ThirdStep/>}
+            {activeStep === 0 && <FirstStep formik={formik} />}
+            {activeStep === 1 && <SecondStep formik={formik} setActiveStep={setActiveStep}/>}
+            {activeStep === 2 && <ThirdStep />}
         </AppContainer>
     );
 }

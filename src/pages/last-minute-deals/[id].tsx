@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 // Next.js
 import {GetServerSideProps} from "next";
 // Material ui
-import {Grid, Stack, Typography} from "@mui/material";
+import {Box, Grid, Stack, Typography, useMediaQuery} from "@mui/material";
 // Third party
 import moment from "moment";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import {ReactElement} from "react-markdown/lib/react-markdown";
 // Project imports
 import AppCarousel from "@/components/last-minute-deals/Carousel";
 import GeneralInformation from "@/components/last-minute-deals/GeneralInformation";
@@ -17,10 +17,11 @@ import LocationInformation from "@/components/last-minute-deals/LocationInformat
 import AppContainer from "@/components/global/AppContainer";
 import {instance} from "@/config/axiosConfig";
 import {DATE_FORMAT, IProperty} from "@/utils/property-type";
-import {ReactElement} from "react-markdown/lib/react-markdown";
 import Layout from "@/components/global/Layout";
 import ReviewsSectionLastMin from "@/components/last-minute-deals/ReviewsSectionLastMin";
 import AppIcon from "@/components/global/AppIcon";
+import {useTheme} from "@mui/material/styles";
+import AppButton from "@/components/global/AppButton";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const response = await instance(`/properties/${query.id}?populate=*`);
@@ -73,6 +74,9 @@ const getBlockedDates = async (propertyId: string): Promise<string[]> => {
 //============================================================================================
 
 const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
+    const theme = useTheme();
+    const ref = useRef<HTMLInputElement>(null)
+    const sm = useMediaQuery(theme.breakpoints.down('sm'))
     const {attributes} = property;
 
     //============================================================================================
@@ -87,39 +91,49 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 
     return (
         <AppContainer>
-            <Typography variant={"h6"} sx={{mt: 20}}>
-                {attributes?.Title}
-            </Typography>
-            <Stack direction={"row"} justifyContent={"space-between"} pb={2}>
-                <Stack direction={"row"} alignItems={"center"}>
-                    <AppIcon name={'location_on'}/>
-                    <Typography variant={"caption"}>UAE, Dubai</Typography>
+            <Box sx={{position: 'relative'}}>
+                <Typography variant={"h6"} sx={{mt: 20}}>
+                    {attributes?.Title}
+                </Typography>
+                <Stack direction={"row"} justifyContent={"space-between"} pb={2}>
+                    <Stack direction={"row"} alignItems={"center"}>
+                        <AppIcon name={'location_on'}/>
+                        <Typography variant={"caption"}>UAE, Dubai</Typography>
+                    </Stack>
+                    <Stack direction={"row"} alignItems={"center"}>
+                        <AppIcon name={'sell'}
+                        />
+                        <Typography variant={"subtitle1"} sx={{fontWeight: 600}}>
+                            {attributes.price} AED / night
+                        </Typography>
+                    </Stack>
                 </Stack>
-                <Stack direction={"row"} alignItems={"center"}>
-                    <AppIcon name={'sell'}
-                    />
-                    <Typography variant={"subtitle1"} sx={{fontWeight: 600}}>
-                        {attributes.price} AED / night
-                    </Typography>
-                </Stack>
-            </Stack>
-            <Grid container spacing={1}>
-                <Grid item xs={12} sm={7.5} lg={7.5}>
-                    <AppCarousel images={attributes?.images}/>
-                    <GeneralInformation data={property}/>
-                    <Features amenities={property.attributes.amenities}/>
-                    <Explanation explanation={attributes.explanation}/>
-                    <LocationInformation/>
-                    <AccessibleInformation/>
-                    <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data} />
+                <Grid container spacing={1}>
+                    <Grid item xs={12} sm={7.5} lg={7.5}>
+                        <AppCarousel images={attributes?.images}/>
+                        <GeneralInformation data={property}/>
+                        <Features amenities={property.attributes.amenities}/>
+                        <Explanation explanation={attributes.explanation}/>
+                        <LocationInformation/>
+                        <AccessibleInformation/>
+                        <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data}/>
+                    </Grid>
+                    <Grid item xs={12} sm={4.5} lg={4.5} ref={ref} id={'booking'}>
+                        <BookingCalculationSection
+                            property={property}
+                            blockedDates={blockedDates}
+                        />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={4.5} lg={4.5}>
-                    <BookingCalculationSection
-                        property={property}
-                        blockedDates={blockedDates}
+                {sm && <Stack alignItems={'center'} sx={{position: 'sticky', bottom: 10}}>
+                    <AppButton
+                        label={'Book Now'}
+                        onClick={() => {
+                            ref.current?.scrollIntoView({behavior: 'smooth'})
+                        }}
                     />
-                </Grid>
-            </Grid>
+                </Stack>}
+            </Box>
         </AppContainer>
     );
 };

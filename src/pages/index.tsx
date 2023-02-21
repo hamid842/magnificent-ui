@@ -9,7 +9,6 @@ import {Box, Grid} from "@mui/material";
 import {IProperty, IReview} from "@/utils/property-type";
 import homePagePicture from '../../public/home-page.png';
 import {instance} from "@/config/axiosConfig";
-
 const Layout = dynamic(() => import("@/components/global/Layout"))
 const AppButton = dynamic(() => import("@/components/global/AppButton"))
 const AppLoading = dynamic(() => import("@/components/global/AppLoading"))
@@ -36,7 +35,7 @@ export async function getServerSideProps() {
     const {data} = await instance.get(`/properties?${query}`)
     const properties = data.data;
     // TODO: Remove limit later (when horizontal scrolling is added)
-    const reviewsResponse = await instance.get(`/reviews?filters[inHomePage][$eq]=true&pagination[limit]=3`);
+    const reviewsResponse = await instance.get(`/reviews?filters[inHomePage][$eq]=true&pagination[limit]=10`);
     const reviews = reviewsResponse.data.data;
     return {
         props: {

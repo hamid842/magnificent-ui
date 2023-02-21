@@ -10,12 +10,12 @@ type Props = {
 }
 
 const SelectField = (props: (Props & SelectProps)) => {
-    const {inputLabel, id, helperText, children} = props
+    const {inputLabel, id, helperText, children,...rest} = props
     return (
         <FormControl fullWidth size={'small'}>
             <InputLabel id={id}>{inputLabel}</InputLabel>
             <Select
-                {...props}
+                {...rest}
                 labelId={id}
                 id={id}
                 name={id}

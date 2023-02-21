@@ -1,18 +1,17 @@
 import {TextField, TextFieldProps} from "@mui/material";
-import {FormikErrors} from "formik";
 
 type Props = {
-    errorMsg:any
+    errorMsg?: any
 }
 
 const AppTextField = (props: (Props & TextFieldProps)) => {
-    const {errorMsg} = props
+    const {errorMsg, ...rest} = props
     return (
-        <TextField {...props}
+        <TextField {...rest}
                    fullWidth
                    variant={'outlined'}
                    size={'small'}
-                   helperText={<small style={{color:'red'}}>{errorMsg}</small>}
+                   helperText={<small style={{color: 'red'}}>{errorMsg}</small>}
         />
     )
 }

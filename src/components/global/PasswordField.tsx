@@ -18,7 +18,7 @@ type PasswordFieldProps = {
 }
 
 const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
-    const {label, helperText, onChange, value} = props
+    const {label, helperText, onChange, value,...rest} = props
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -27,7 +27,7 @@ const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
         event.preventDefault();
     };
     return (
-        <FormControl size={'small'} fullWidth variant="outlined" {...props}>
+        <FormControl size={'small'} fullWidth variant="outlined" {...rest}>
             <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
             <OutlinedInput
                 id="outlined-adornment-password"

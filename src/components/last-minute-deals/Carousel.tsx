@@ -6,6 +6,7 @@ import {Box, IconButton} from "@mui/material";
 import {ArrowBackIosNew, ArrowForwardIos} from "@mui/icons-material";
 // Third Party
 import {Carousel} from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 // Project imports
 import colors from "@/assets/colors";
 import {IImageType} from "@/utils/property-type";

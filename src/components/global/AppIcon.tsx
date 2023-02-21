@@ -1,6 +1,6 @@
 type AppIconProps = {
     name: string,
-    color?:string
+    color?:string,
 }
 
 const AppIcon = ({name,color='#B6923E'}: AppIconProps) => {

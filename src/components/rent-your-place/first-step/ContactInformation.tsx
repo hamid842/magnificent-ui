@@ -35,6 +35,17 @@ const ContactInformation = ({formik}: Props) => {
                         errorMsg={getIn(touched, 'contact.contactSurName') && getIn(errors, 'contact.contactSurName')}
                     />
                 </Grid>
+                <Grid item xs={12} sm={6} lg={6}>
+                    <AppTextField
+                        required
+                        label={'Email'}
+                        id={'contact.contactEmail'}
+                        value={values.contact.contactEmail}
+                        onChange={handleChange}
+                        error={Boolean(getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail'))}
+                        errorMsg={getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail')}
+                    />
+                </Grid>
 
                 <Grid item xs={12} sm={6} lg={6}>
                     <AppTextField
@@ -55,17 +66,6 @@ const ContactInformation = ({formik}: Props) => {
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactPhone2') && getIn(errors, 'contact.contactPhone2'))}
                         errorMsg={getIn(touched, 'contact.contactPhone2') && getIn(errors, 'contact.contactPhone2')}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={12} lg={12}>
-                    <AppTextField
-                        required
-                        label={'Email'}
-                        id={'contact.contactEmail'}
-                        value={values.contact.contactEmail}
-                        onChange={handleChange}
-                        error={Boolean(getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail'))}
-                        errorMsg={getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail')}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>

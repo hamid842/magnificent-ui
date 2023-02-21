@@ -1,6 +1,7 @@
 import {Grid, Paper, Stack} from "@mui/material";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import colors from "@/assets/colors";
+import AppIcon from "@/components/global/AppIcon";
 
 type Props = {
     icon: string,
@@ -12,12 +13,11 @@ const AmenityIconAndTitle = ({icon, title, detail = true}: Props) => {
     return (
         <>
             {!detail ?
-                <Grid item xs={6} sm={4} md={2.4} lg={2.4}>
-                    <Paper sx={{p: 0.5, height: 40, display: 'flex', alignItems: 'center'}}>
+                <Grid item xs={6} sm={4} md={3} lg={3}>
+                    <Paper elevation={1} sx={{p: 0.5, height: 40, display: 'flex', alignItems: 'center'}}>
                         <Stack direction={'row'} alignItems={'center'}>
-                    <span style={{fontSize: 16, color: colors.mainColor}}
-                          className="material-symbols-outlined">{icon}</span>
-                            <SwitzerText sx={{marginLeft: 0.5, fontSize: 12}} text={title}/>
+                            <AppIcon name={icon} />
+                            <SwitzerText sx={{marginLeft: 0.5, fontSize: '0.6rem' }} text={title}/>
                         </Stack>
                     </Paper>
                 </Grid>

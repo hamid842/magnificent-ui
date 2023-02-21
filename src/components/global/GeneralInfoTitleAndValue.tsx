@@ -9,12 +9,12 @@ type Props = {
 const GeneralInfoTitleAndValue = ({title, value}: Props) => {
     return (
         <Grid container spacing={1}>
-            <Grid item xs={6} sm={6} lg={6}>
-                <SwitzerText variant={'caption'} sx={{fontSize: 14}} text={title}/>
+            <Grid item xs={6}>
+                <SwitzerText variant={'caption'} sx={{fontSize: 12}} text={title}/>
             </Grid>
-            <Grid item xs={6} sm={6} lg={6}>
+            <Grid item xs={6}>
                 <SwitzerText variant={'caption'}
-                             sx={{fontWeight: 600, fontSize: 14}} text={value}/>
+                             sx={{fontWeight: 600, fontSize: 12}} text={value}/>
             </Grid>
         </Grid>
     )

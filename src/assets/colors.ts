@@ -1,4 +1,4 @@
-export default {
+const colors =  {
     mainColor: '#B6923E',
     //https://flatuicolors.com/palette/au
     navMenuColor: '#313942',
@@ -8,3 +8,4 @@ export default {
     bodyBackground:'#FEFDF8',
     elementsBg:'#363533'
 }
+export default colors;

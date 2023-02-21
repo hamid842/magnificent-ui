@@ -52,7 +52,7 @@ const ReviewsSlider = ({reviews,slidesToShow}:ReviewsSliderProps)=>{
         speed: 1000,
         autoplaySpeed: 2000,
         arrows: true,
-        slidesToShow: slidesToShow || xs ? 1 : 2,
+        slidesToShow: slidesToShow || xs ? 1 : 3,
         slidesToScroll: 1,
         nextArrow: <SampleNextArrow/>,
         prevArrow: <SamplePrevArrow/>
@@ -60,7 +60,7 @@ const ReviewsSlider = ({reviews,slidesToShow}:ReviewsSliderProps)=>{
     return (
         <Slider {...settings}>
             {reviews && reviews.map((review: IReview) =>
-                <Box key={review.id} p={1}>
+                <Box key={review.id} p={1} px={3}>
                     <Paper elevation={3}
                            sx={{borderRadius: 3, height: {xs: 250, sm: 220, md: 250, lg: 250}}}>
                         <Stack direction={'column'} alignItems={'center'} p={2}>

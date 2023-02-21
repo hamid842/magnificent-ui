@@ -3,8 +3,13 @@ import {Checkbox, FormControlLabel, FormGroup, Grid, Paper, Stack, Typography} f
 import {IAllAmenityType} from "@/utils/amenity-type";
 import EuclidText from "@/components/css-texts/EuclidText";
 import {instance as axios} from "@/config/axiosConfig";
+import {FormikProps} from "formik";
 
-const AdvertiseFeatures = () => {
+type Props = {
+    formik: FormikProps<any>
+}
+
+const AdvertiseFeatures = ({formik}:Props) => {
     const [amenities, setAmenities] = useState<IAllAmenityType[]>([]);
 
     useEffect(() => {
@@ -28,23 +33,29 @@ const AdvertiseFeatures = () => {
         }))
         , [amenities])
 
+    const {handleChange} = formik
+
     return (
         <Paper elevation={3} sx={{p: 1, my: 1}}>
             <Typography variant={'subtitle1'} sx={{fontWeight: 600, mb: 1}}>Advertise Features</Typography>
-            <Grid container>
-                {features.length ? features?.map((feature) =>
-                    <Grid item xs={12} sm={3} lg={3} key={feature.id} sx={{height: 20}}>
-                        <FormGroup>
-                            <FormControlLabel control={<Checkbox size={'small'}/>} label={feature.name} sx={{
-                                '& .MuiSvgIcon-root': {fontSize: 12}, "& .MuiFormControlLabel-label": {
-                                    fontSize: 10
-                                }
-                            }}/>
-                        </FormGroup>
-                    </Grid>
-                ) : <Stack alignItems={'center'}><EuclidText align={'center'} text={'Something went wrong!'}/></Stack>
-                }
-            </Grid>
+            <div id="checkbox-group"></div>
+            <div role="group" aria-labelledby="checkbox-group">
+                <Grid container>
+                    {features.length ? features?.map((feature) =>
+                        <Grid item xs={12} sm={3} lg={3} key={feature.id} sx={{height: 20}}>
+                            <FormGroup>
+                                <FormControlLabel control={<Checkbox size={'small'} name={'amenities'} value={feature.id} onChange={handleChange}/>} label={feature.name} sx={{
+                                    '& .MuiSvgIcon-root': {fontSize: 12}, "& .MuiFormControlLabel-label": {
+                                        fontSize: 10
+                                    }
+                                }}/>
+                            </FormGroup>
+                        </Grid>
+                    ) : <Stack alignItems={'center'}><EuclidText align={'center'}
+                                                                 text={'Something went wrong!'}/></Stack>
+                    }
+                </Grid>
+            </div>
         </Paper>
     )
 }

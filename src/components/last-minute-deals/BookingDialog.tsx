@@ -2,9 +2,8 @@ import {ChangeEvent, forwardRef, ReactElement, Ref, useContext, useEffect, useSt
 // Next.js
 import Image from "next/image";
 // Material ui
-import {AppBar, Button, Dialog, Grid, IconButton, Paper, Stack, ToggleButton, Toolbar, Typography} from '@mui/material';
+import {AppBar, Dialog, Grid, IconButton, Paper, Stack, Toolbar, Typography} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import PaymentIcon from '@mui/icons-material/Payment';
 import Slide from '@mui/material/Slide';
 import {TransitionProps} from '@mui/material/transitions';
 // Third Party
@@ -64,7 +63,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
     const {attributes} = property
     const {user} = useContext(AuthContext);
     const [openPayDialog, setOpenPayDialog] = useState(false);
-    const [payLoading,setPayLoading] = useState(false)
+    const [payLoading, setPayLoading] = useState(false)
     const [guest, setGuest] = useState({
         fullName: "",
         email: "",
@@ -74,7 +73,6 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
 
     // Is the user booking the property for himself?
     const [isForMe, setForMe] = useState<boolean>(false);
-    // When the user Clicks 'For Me', auto-fill the guest data
     useEffect(() => {
         if (!isForMe) return;
         if (!user) return;
@@ -86,7 +84,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                 additionalInfo: prevGuest.additionalInfo
             }
         });
-    }, [isForMe]);
+    }, [isForMe, user]);
 
     const handleChangeGuest = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
@@ -111,7 +109,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
         return numberOfNights
     }
 
-    const handlePay = ()=>{
+    const handlePay = () => {
         setOpenPayDialog(true);
         if (!arrivalDate || !departureDate || !property || !guestCount || !user) return;
 
@@ -151,13 +149,13 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                 'Content-Type': 'application/json',
             }
         })
-        .then(response=>{
-            console.log(response);
-            if (response.status === 200) {
-                setPayLoading(false)
-                window.open(response.data.stripeUrl, '__self');
-            }
-        }).catch(error=>{
+            .then(response => {
+                console.log(response);
+                if (response.status === 200) {
+                    setPayLoading(false)
+                    window.open(response.data.stripeUrl, '__self');
+                }
+            }).catch(error => {
             setPayLoading(false);
             console.log(error)
         })
@@ -166,17 +164,8 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
     return (
         <Stack alignItems={'center'}>
             <AppButton
-              label={'Book Now'}
-                sx={{
-                    backgroundColor: colors.mainColor,
-                    textTransform: 'capitalize',
-                    color: 'white',
-                    border: 'none',
-                    '&:hover': {
-                        backgroundColor: colors.mainColor,
-                        border: 'none'
-                    }
-                }} onClick={handleClickOpen}/>
+                label={'Book Now'}
+                onClick={handleClickOpen}/>
 
             <Dialog
                 fullScreen
@@ -192,17 +181,17 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                             onClick={handleClose}
                             aria-label="close"
                         >
-                            <CloseIcon />
+                            <CloseIcon/>
                         </IconButton>
-                        <Typography sx={{color:'#333333',ml: 2, flex: 1}} variant="h6" component="div">
+                        <Typography sx={{color: '#333333', ml: 2, flex: 1}} variant="h6" component="div">
                             Booking Details
                         </Typography>
-                        { user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false}/>}
+                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false}/>}
                     </Toolbar>
                 </AppBar>
                 {/* ====================== Dialog Content =======================*/}
                 <AppContainer>
-                    <Paper elevation={3} sx={{px: 2,pt:1, width: '100%', height: '100%', mt: 2}}>
+                    <Paper elevation={3} sx={{px: 2, pt: 1, width: '100%', height: '100%', mt: 2}}>
                         <Stack direction={'column'} alignItems={'center'} my={1}>
                             <EuclidText variant={'h5'} sx={{fontWeight: 700}}
                                         text={'Reservation Information'}/>
@@ -230,7 +219,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                                                                                              value={item.total}/>)}
                             </Grid>
                         </Grid>
-                        <Stack sx={{ mt: 2}} direction='column' alignItems='center' justifyContent='center'>
+                        <Stack sx={{mt: 2}} direction='column' alignItems='center' justifyContent='center'>
                             {/*<ToggleButton*/}
                             {/*    value="check"*/}
                             {/*    selected={isForMe}*/}
@@ -239,7 +228,8 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
                             {/*    /!* <CheckIcon /> *!/*/}
                             {/*    For Me?*/}
                             {/*</ToggleButton>*/}
-                            <SwitchBtnForBooking checked={isForMe} onChange={(event:ChangeEvent<HTMLInputElement>)=>setForMe(event.target.checked)}/>
+                            <SwitchBtnForBooking checked={isForMe}
+                                                 onChange={(event: ChangeEvent<HTMLInputElement>) => setForMe(event.target.checked)}/>
                         </Stack>
                         <Grid container p={2} spacing={2}>
                             <Grid item xs={12} sm={6} lg={6}>

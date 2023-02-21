@@ -25,7 +25,7 @@ const RentYourPlace = () => {
     <>
       <AppContainer>
         <Grid container spacing={3} mt={15}>
-          <Grid item xs={12} sm={6} lg={5}>
+          <Grid item xs={12} sm={6} lg={6}>
             <Stack
               direction={"column"}
               alignItems={"center"}
@@ -33,16 +33,16 @@ const RentYourPlace = () => {
             >
               <EuclidText
                 variant={"h4"}
-                sx={{ fontWeight: 600, mt: 12 }}
+                sx={{ fontWeight: 600, mt: 3 }}
                 text={"Rent it !"}
               />
               <RentSlider />
             </Stack>
-            <Box mt={5}>
+            <Box mt={3}>
               <OurPartnership />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={6} lg={7}>
+          <Grid item xs={12} sm={6} lg={6}>
             <Box
               sx={{
                 p: 2,
@@ -81,7 +81,7 @@ const RentYourPlace = () => {
             </Box>
           </Grid>
         </Grid>
-        <Grid container spacing={2} my={5}>
+        <Grid container spacing={2} my={3}>
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Image
               src={rentMiddleImage}
@@ -151,7 +151,7 @@ const RentYourPlace = () => {
             </ColorButton>
           </Grid>
         </Grid>
-        <Stack direction={"row"} justifyContent={"space-between"} pb={5}>
+        <Stack direction={"row"} justifyContent={"space-between"} py={5}>
           <Stack
             direction={"column"}
             alignItems={"center"}
