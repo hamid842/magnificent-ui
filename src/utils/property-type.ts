@@ -138,3 +138,5 @@ export interface IAllPropertyTypes {
     id:number;
     name:string
 }
+
+export type TCalendarDay = { date: string; isAvailable: 0 | 1; minimumStay: number };

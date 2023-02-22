@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {ChangeEvent, FC, useCallback, useEffect, useState} from 'react';
 // Material ui
 import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography, useMediaQuery} from "@mui/material";
 import {useTheme} from '@mui/material/styles';
@@ -14,7 +14,7 @@ import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/last-minute-deals/BookingDialog";
 import {instance} from '@/config/axiosConfig';
-import {DATE_FORMAT, IProperty} from "@/utils/property-type";
+import {DATE_FORMAT, IProperty, TCalendarDay} from "@/utils/property-type";
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -46,10 +46,10 @@ export type TPrice = {
 
 type Props = {
     property: IProperty,
-    blockedDates: string[]
+    calendar: TCalendarDay[]
 };
 
-const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
+const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'))
     const {id: propertyId} = property;
@@ -102,9 +102,31 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
      * This function will be passed to date-picker to check for each day's availability
      * @returns is the day blocked?
      */
-    const isDayBlocked = (day: moment.Moment) => {
-        return blockedDates.some(blockedDate => day.isSame(blockedDate, 'day'));
+    const isDayBlocked = (day: moment.Moment): boolean => {
+        return calendar.some((calDay: TCalendarDay) => { 
+            return day.isSame(calDay.date, 'day') && !calDay.isAvailable;
+        });
     }
+
+    //=======================================================================================================================================
+
+    const [minStay, setMinStay] = useState<number>(property.attributes.minNights);
+
+    // When the startDate state changes (user selects an start date)
+    useEffect(() => {
+        if (!startDate) return;
+        // Loop through the calendar to find the selected date and retrieve its minimumStay attribute
+        calendar.every((calDay) => {
+            if (startDate.isSame(calDay.date, 'day')) {
+                // Found the selected date
+                setMinStay(calDay.minimumStay);
+                console.log(calDay.minimumStay);
+                return false; // break the loop
+            }
+            return true; // Continue the loop
+        });
+    }, [calendar, startDate]);
+
     //=======================================================================================================================================
     //=======================================================================================================================================
 
@@ -154,6 +176,57 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
     }, [startDate, endDate, guestCount, couponName, propertyId]);
 
     //=======================================================================================================================================
+    /**
+     * We need a mechanism to block users from selecting blocked dates inside a range:
+     * Example:
+     *      -User selects: 10
+     *      -But, 14, 15, are blocked
+     *      -Without the below logic:
+     *          -The user can select 10 -> 20  - 14 and 15 will be selected
+     *      -We must make every date after 14, outside of the selection range (not possible to select)
+     *      -So, the user can at most select: 10, 11, 12, 13
+     */
+
+
+    const [firstBlockedDate, setFirstBlockedDate] = useState<moment.Moment | null>(null);
+    
+    // Returns the first blocked date after the selected startDate
+    const findFirstBlockedDate = (startDate: moment.Moment | null) => {
+        // If the user hasn't selected any startDate, clear firstBlockedDate, which will make all dates selectable
+        if (!startDate) return setFirstBlockedDate(null);
+
+        calendar.every((calDay) => {
+            // If this calDay is after the startDate and is not available:
+            if (startDate.isBefore(calDay.date, 'day') && !calDay.isAvailable) {
+                // Set the state
+                setFirstBlockedDate(moment(calDay.date));
+                return false; // break the loop
+            }
+            return true; // continue looping
+        });
+    };
+
+
+    // Every time user selects a startDate, find the first blocked date to make every day after it, outside range
+    useEffect(() => {
+        findFirstBlockedDate(startDate);
+    }, [startDate]);
+
+
+    // This function determines whether a day is selectable in the range or not
+    // Note: using useCallback to redefine the function every time the firstBlockedDate value changes
+    const isOutsideRange = useCallback<(day: moment.Moment) => boolean>((day: moment.Moment) => {
+        // if in the past
+        if (day.isSameOrBefore(new Date(), 'day')) return true;
+        // If a firstBlockedDate was found (which means the user has selected a startDate)
+        if (firstBlockedDate)
+            // If this day (in datepicker) is after the firstBlockedDate: make it unselectable
+            if (day.isSameOrAfter(firstBlockedDate, 'day')) return true;
+        // Everthing else is selectable
+        return false;
+    }, [firstBlockedDate]);
+
+    //=======================================================================================================================================
 
     return (
         <>
@@ -166,7 +239,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         small
                         showClearDates
                         hideKeyboardShortcutsPanel
-                        minimumNights={minNights || 1}
+                        minimumNights={minStay > 1 ? minStay : 0} // If only one day is available the user  should be able to select the same day
                         orientation={sm ? 'vertical' : 'horizontal'}
                         customInputIcon={
                             <CalendarMonthRounded
@@ -189,6 +262,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         onDatesChange={onDateChange}
                         onFocusChange={onFocusChange}
                         isDayBlocked={isDayBlocked}
+                        isOutsideRange={isOutsideRange}
                     />
                     {/* Guest Count Input------------------------------------------------------------------------------- */}
                     <Box sx={{width: '100%', pt: 2, pb: 1}}>

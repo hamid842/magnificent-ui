@@ -16,7 +16,7 @@ import AccessibleInformation from "@/components/last-minute-deals/AccessibleInfo
 import LocationInformation from "@/components/last-minute-deals/LocationInformation";
 import AppContainer from "@/components/global/AppContainer";
 import {instance} from "@/config/axiosConfig";
-import {DATE_FORMAT, IProperty} from "@/utils/property-type";
+import {DATE_FORMAT, IProperty, TCalendarDay} from "@/utils/property-type";
 import Layout from "@/components/global/Layout";
 import ReviewsSectionLastMin from "@/components/last-minute-deals/ReviewsSectionLastMin";
 import AppIcon from "@/components/global/AppIcon";
@@ -39,14 +39,12 @@ type LastMinuteDealsProps = {
 
 //============================================================================================
 
-type TCalendarDay = { date: string; isAvailable: 0 | 1 };
-
 /**
- * This function retrieves the list of dates on which the property is not available
- * @returns an array of dates on which the property is not available
+ * This function retrieves a list of calendar dates for the property with extra information
+ * @returns an array of TCalendarDay objects for every day of the selected range of dates
  */
-const getBlockedDates = async (propertyId: string): Promise<string[]> => {
-    let blockedDates: string[] = [];
+const getCalendar = async (propertyId: string): Promise<TCalendarDay[]> => {
+    let calendar: TCalendarDay[] = [];
     // Get calendar data
     const startDate: moment.Moment = moment(new Date()); // Now
     const endDate: moment.Moment = moment(new Date()).add(1, "year"); // Next Year
@@ -56,20 +54,19 @@ const getBlockedDates = async (propertyId: string): Promise<string[]> => {
         const reqData = {
             startDate: startDate.format(DATE_FORMAT),
             endDate: endDate.format(DATE_FORMAT),
-            onlyBlocked: true // Just get the calendar dates which are blocked (not available)
+            // onlyBlocked: true // Just get the calendar dates which are blocked (not available)
         };
         const result = await instance.get(`/properties/${propertyId}/calendar`, {
             params: reqData
         });
         const {data} = result;
         if (data) {
-            // NOTE: Because we are just getting blocked dates from API, we can add all of them to 'blockedDates' array
-            blockedDates = data.map((item: TCalendarDay) => item.date);
+            calendar = data;
         }
     } catch (error) {
         console.log(`[ERROR: while retrieving calendar details] ->\n ${error}`);
     }
-    return blockedDates;
+    return calendar;
 };
 //============================================================================================
 
@@ -81,10 +78,10 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
 
     //============================================================================================
     // TODO: The current procedure of handling calendar and blockedDates must change
-    const [blockedDates, setBlockedDates] = useState<string[]>([]);
+    const [calendar, setCalendar] = useState<TCalendarDay[]>([]);
     useEffect(() => {
         (async () => {
-            setBlockedDates(await getBlockedDates(property.id));
+            setCalendar(await getCalendar(property.id));
         })();
     }, [property.id]);
     //============================================================================================
@@ -121,7 +118,7 @@ const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
                     <Grid item xs={12} sm={4.5} lg={4.5} ref={ref} id={'booking'}>
                         <BookingCalculationSection
                             property={property}
-                            blockedDates={blockedDates}
+                            calendar={calendar}
                         />
                     </Grid>
                 </Grid>
