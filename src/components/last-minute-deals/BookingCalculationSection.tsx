@@ -16,6 +16,20 @@ import BookingDialog from "@/components/last-minute-deals/BookingDialog";
 import {instance} from '@/config/axiosConfig';
 import {DATE_FORMAT, IProperty, TCalendarDay} from "@/utils/property-type";
 
+/**
+ * Must match 'field' attribute of the server error on the host side 
+ * to determine which field doesn't the error belong to
+ */
+enum EFields {
+    DATE = 'datepicker',
+    GUEST = 'guestscount',
+    COUPON = 'couponname'
+}
+
+type TFormError = {
+    couponname?: string,
+}
+
 // Capitalize every word
 const capitalize = (input: string): string => {
     const words = input.split(" ");
@@ -130,48 +144,79 @@ const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
     //=======================================================================================================================================
     //=======================================================================================================================================
 
+    const [formError, setFormError] = useState<TFormError>({});
+
+    //=======================================================================================================================================
+    //=======================================================================================================================================
+
+    // Disable Book Now button when there's a problem with the form
+
+    const [bookEnabled, setBookEnabled] = useState<boolean>(false);
+
+    useEffect(() => {
+        // Disable book now button when required fields are empty or there's a form error
+        if (!startDate || !endDate || !guestCount || formError.couponname) {
+            setBookEnabled(false);
+        } else {
+            setBookEnabled(true);
+        }
+    }, [startDate, endDate, guestCount, formError.couponname]);
+
+    //=======================================================================================================================================
+    //=======================================================================================================================================
+
     // To keep track of pricing details (updated through the API call to the backend)
     const [price, setPrice] = useState<TPrice | null>(null);
 
     useEffect(() => {
-        if (!startDate || !endDate) return;
+        //----------------------------------------
+        if (!startDate || !endDate) return setPrice(null);
+        //----------------------------------------
+        // Clear form errors
+        setFormError({});
+        //----------------------------------------
+        const reqParams: any = {
+            guestCount: guestCount,
+            startDate: startDate.format(DATE_FORMAT),
+            endDate: endDate.format(DATE_FORMAT)
+        };
+        if (couponName && couponName.trim()) reqParams.couponName = couponName;
 
-        (async () => {
-            try {
-                const reqParams: any = {
-                    guestCount: guestCount,
-                    startDate: startDate.format(DATE_FORMAT),
-                    endDate: endDate.format(DATE_FORMAT)
-                };
-
-                if (couponName && couponName.trim()) reqParams.couponName = couponName;
-
-                const result = await instance.get(`/properties/${propertyId}/price`, {
-                    params: reqParams
+        instance.get(`/properties/${propertyId}/price`, {
+            params: reqParams
+        }).then((result) => {
+            const {data} = result;
+            if (!data) return;
+            const price: TPrice = {
+                totalPrice: data.totalPrice,
+                components: []
+            };
+            for (const component of data.components) {
+                price.components?.push({
+                    type: component.type,
+                    name: component.name,
+                    title: component.title,
+                    value: component.value,
+                    total: component.total
                 });
-
-                const {data} = result;
-                if (data) {
-                    const price: TPrice = {
-                        totalPrice: data.totalPrice,
-                        components: []
-                    };
-                    for (const component of data.components) {
-                        price.components?.push({
-                            type: component.type,
-                            name: component.name,
-                            title: component.title,
-                            value: component.value,
-                            total: component.total
-                        });
-                    }
-                    // Set state
-                    setPrice(price);
-                }
-            } catch (error) {
-                console.log(`[ERROR: while retrieving pricing details] ->\n ${error}`);
             }
-        })();
+            // Set state
+            setPrice(price);
+        }).catch((error) => {
+            const errorData = error.response.data.error.details;
+            console.log(`[ERROR: while retrieving pricing details] ->\n ${error}`);
+            // If there's an error that should be displayed on a field
+            if (errorData && errorData.field && errorData.message) {
+                setFormError((prev) => {
+                    return {
+                        ...prev,
+                        [errorData.field]: errorData.message
+                    }
+                })
+            }
+            // Clear Prices
+            setPrice(null);
+        });
 
     }, [startDate, endDate, guestCount, couponName, propertyId]);
 
@@ -292,6 +337,8 @@ const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
                             size={'small'}
                             label="Coupon name"
                             variant="outlined"
+                            error={!!formError.couponname}
+                            helperText={formError.couponname || ''}
                             InputProps={{
                                 endAdornment:
                                     <InputAdornment
@@ -323,8 +370,13 @@ const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
                     <Box sx={{width: '100%', my: 1}}>
-                        <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
-                                       price={price} guestCount={guestCount}/>
+                        <BookingDialog
+                            buttonEnabled={bookEnabled}
+                            property={property} 
+                            arrivalDate={startDate} 
+                            departureDate={endDate}
+                            price={price} 
+                            guestCount={guestCount}/>
                     </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>

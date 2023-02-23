@@ -40,7 +40,8 @@ type BookingDialogProps = {
     arrivalDate?: moment.Moment | null,
     departureDate?: moment.Moment | null,
     guestCount: number,
-    price: TPrice | null
+    price: TPrice | null,
+    buttonEnabled?: boolean
 }
 
 // The request data sent tto host to create a booking
@@ -59,7 +60,7 @@ type TBookingRequest = {
     additionalInformation?: string,
 };
 
-const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}: BookingDialogProps) => {
+const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price, buttonEnabled}: BookingDialogProps) => {
     const {attributes} = property
     const {user} = useContext(AuthContext);
     const [openPayDialog, setOpenPayDialog] = useState(false);
@@ -164,6 +165,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price}
     return (
         <Stack alignItems={'center'}>
             <AppButton
+                disabled={buttonEnabled ? false : true}
                 label={'Book Now'}
                 onClick={handleClickOpen}/>
 
