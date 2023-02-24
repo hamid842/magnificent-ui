@@ -14,7 +14,7 @@ type TProps = {
 const ReviewsSection = ({reviews}: TProps) => {
     return (
         <Box p={3}>
-            <TitleSeparator separatorTitle={'Your Feedback'} title={'Reviews'} mb={2}/>
+            <TitleSeparator separatorTitle={'Your Feedback'} title={'Our Real Reviews'} mb={2}/>
             <ReviewsSlider reviews={reviews} slidesToShow={0}/>
         </Box>
     )

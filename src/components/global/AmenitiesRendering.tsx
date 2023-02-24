@@ -1,7 +1,7 @@
 import {IAmenitiesData} from "@/utils/property-type";
 import {Grid} from "@mui/material";
 import AmenityIconAndTitle from "@/components/global/AmenityIconAndTitle";
-import OtherAmenitiesModal from "@/components/last-minute-deals/OtherAmenitiesModal";
+import OtherAmenitiesModal from "@/components/our-homes/OtherAmenitiesModal";
 
 type AmenitiesRenderingProps = {
     amenitiesList?: IAmenitiesData[];

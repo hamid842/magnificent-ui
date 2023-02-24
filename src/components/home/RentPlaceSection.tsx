@@ -17,7 +17,7 @@ const RentPlaceSection = () => {
     const router = useRouter();
     return (
         <Box>
-            <TitleSeparator separatorTitle={'With us'} title={'Rent Your Place'}/>
+            <TitleSeparator separatorTitle={'With us'} title={'Calculate your income'}/>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} lg={6}>
                     <Box sx={{
@@ -49,7 +49,7 @@ const RentPlaceSection = () => {
                     <Stack alignItems={'center'}>
 
                         <AppButton label={'See more'}
-                                   onClick={() => router.push('/rent-your-place')}/>
+                                   onClick={() => router.push('/our-homes')}/>
                     </Stack>
                 </Grid>
             </Grid>

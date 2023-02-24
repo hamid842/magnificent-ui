@@ -28,10 +28,10 @@ import {AuthContext} from "../../../context/contexts";
 
 const navPages = [
     {label: 'Home', path: "/"},
-    {label: 'Last Minute Deals', path: "/last-minute-deals"},
+    {label: 'Our Homes', path: "/our-homes"},
     {label: 'Blogs', path: '/blogs'},
     {label: 'About us', path: '/about'},
-    {label: 'Contacts', path: '/contacts'}
+    {label: 'Contact Us', path: '/contact-us'}
 ];
 
 export const ColorButton = styled(Button)<ButtonProps>({

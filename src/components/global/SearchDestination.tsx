@@ -80,7 +80,7 @@ const SearchDestination = ({position}: Props) => {
                                     disableUnderline: true,
                                 }}
                             />
-                            <AppButton label={'Search'} onClick={() => router.push('/last-minute-deals')}/>
+                            <AppButton label={'Search'} onClick={() => router.push('/our-homes')}/>
                         </Box>
                     </Grid>
                 </Grid>

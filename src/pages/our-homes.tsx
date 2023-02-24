@@ -5,15 +5,15 @@ import {Router, useRouter} from "next/router";
 import {Box, Grid, Pagination, Stack, Typography} from "@mui/material";
 // Project imports
 import SearchDestinationLastMin from "@/components/global/SearchDestinationLastMin";
-import FilterDialog from "@/components/last-minute-deals/FilterDialog";
-import SortByDropdown from "@/components/last-minute-deals/SortByDropdown";
+import FilterDialog from "@/components/our-homes/FilterDialog";
+import SortByDropdown from "@/components/our-homes/SortByDropdown";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
 import EuclidText from "@/components/css-texts/EuclidText";
 import {IProperty} from "@/utils/property-type";
 import {instance} from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
 import {GetServerSideProps} from "next";
-import Contacts from "@/pages/contacts";
+import ContactUs from "@/pages/contact-us";
 import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
@@ -33,7 +33,7 @@ type LastMinuteDealsProps = {
 
 //======================|| Last Minute Deals ||============================
 
-const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
+const OurHomes = ({properties}: LastMinuteDealsProps) => {
     const [isLoading, setLoading] = useState(false);
     const startLoading = () => setLoading(true);
     const stopLoading = () => setLoading(false);
@@ -64,7 +64,7 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
 
     return (
         <Box mt={16}>
-            <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Last Minute Deals'}/>
+            <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Our Homes'}/>
             <SearchDestinationLastMin position={'relative'}/>
             <AppContainer>
                 <Grid container justifyContent={'space-between'}>
@@ -106,6 +106,6 @@ const LastMinuteDeals = ({properties}: LastMinuteDealsProps) => {
         </Box>
     )
 }
-export default LastMinuteDeals;
+export default OurHomes;
 
-LastMinuteDeals.getLayout = (page:ReactElement)=><Layout>{page}</Layout>
+OurHomes.getLayout = (page:ReactElement)=><Layout>{page}</Layout>

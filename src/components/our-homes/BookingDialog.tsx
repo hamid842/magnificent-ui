@@ -17,12 +17,12 @@ import SpecialOffersIconDetails from "@/components/global/SpecialOffersIconDetai
 import BookingDetailsTitleAndValue from "@/components/global/BookingDetailsTitleAndValue";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import AppTextField from "@/components/global/AppTextField";
-import {TPrice} from "@/components/last-minute-deals/BookingCalculationSection";
+import {TPrice} from "@/components/our-homes/BookingCalculationSection";
 import {instance} from "@/config/axiosConfig";
 import AppButton from "@/components/global/AppButton";
 import {AuthContext} from "../../../context/contexts";
 import AuthWrapper from "@/auth/AuthWrapper";
-import SwitchBtnForBooking from "@/components/last-minute-deals/SwitchBtnForBooking";
+import SwitchBtnForBooking from "@/components/our-homes/SwitchBtnForBooking";
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 

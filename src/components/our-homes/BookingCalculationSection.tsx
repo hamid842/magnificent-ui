@@ -12,7 +12,7 @@ import moment from 'moment';
 import colors from "@/assets/colors";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
-import BookingDialog from "@/components/last-minute-deals/BookingDialog";
+import BookingDialog from "@/components/our-homes/BookingDialog";
 import {instance} from '@/config/axiosConfig';
 import {DATE_FORMAT, IProperty} from "@/utils/property-type";
 

@@ -145,7 +145,7 @@ const RentYourPlace = () => {
               size={"small"}
               variant={"contained"}
               sx={{ borderRadius: 25, m: 1, textTransform: "capitalize" }}
-              onClick={() => router.push("/rent-your-place/form")}
+              onClick={() => router.push("/our-homes/form")}
             >
               Rent your place
             </ColorButton>

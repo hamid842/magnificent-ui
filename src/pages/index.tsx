@@ -84,7 +84,7 @@ const HomePage = ({properties, reviews}: HomePageProps) => {
                             })}
                             <Grid item xs={12} sm={12} lg={12} sx={{textAlign: 'center'}}>
                                 <AppButton label={'See more'}
-                                           onClick={() => router.push('/last-minute-deals')}/>
+                                           onClick={() => router.push('/our-homes')}/>
                             </Grid>
                         </Grid>
                     </Suspense>}

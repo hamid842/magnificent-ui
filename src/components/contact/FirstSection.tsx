@@ -9,7 +9,7 @@ import homePagePicture from "../../../public/home-page-pic.png";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import dictionaries from '../../../dictionaries/en.json';
 
-//======================|| Contacts Page First Section ||========================
+//======================|| ContactUs Page First Section ||========================
 
 const FirstSection = () => {
     return (

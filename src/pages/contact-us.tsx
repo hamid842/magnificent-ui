@@ -17,7 +17,7 @@ import ZoomableImage from "@/components/global/ZoomableImage";
 
 //=========================|| Contact us ||===========================
 
-const Contacts = () => {
+const ContactUs = () => {
     return (
         <AppContainer>
             <FirstSection/>
@@ -47,7 +47,7 @@ const Contacts = () => {
                                         "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
                                 }}
                             />
-                            <Typography sx={{fontWeight: 600}}>Ehsan Pakroo</Typography>
+                            <Typography sx={{fontWeight: 600}} mt={2}>Ehsan Pakroo</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
                                 General Manager
                             </Typography>
@@ -65,7 +65,7 @@ const Contacts = () => {
                                         "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
                                 }}
                             />
-                            <Typography sx={{fontWeight: 600}}>
+                            <Typography sx={{fontWeight: 600}} mt={2}>
                                 Caitlin Camilleri
                             </Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
@@ -85,7 +85,7 @@ const Contacts = () => {
                                         "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
                                 }}
                             />
-                            <Typography sx={{fontWeight: 600}}>Mahmoud Habib</Typography>
+                            <Typography sx={{fontWeight: 600}} mt={2}>Mahmoud Habib</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
                                 Chief Accountant
                             </Typography>
@@ -103,9 +103,9 @@ const Contacts = () => {
                                         "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
                                 }}
                             />
-                            <Typography sx={{fontWeight: 600}}>Manish Mohan</Typography>
+                            <Typography sx={{fontWeight: 600}} mt={2}>Manish Mohan</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
-                                Excellence Specialist
+                                Operations & Excellence Manager
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
@@ -121,11 +121,11 @@ const Contacts = () => {
                                         "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
                                 }}
                             />
-                            <Typography sx={{fontWeight: 600}}>
+                            <Typography sx={{fontWeight: 600}} mt={2}>
                                 JHarish Allakonda
                             </Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
-                                Public Relation Officer
+                                Guest Relation Associate
                             </Typography>
                         </Grid>
                     </Grid>
@@ -134,6 +134,6 @@ const Contacts = () => {
         </AppContainer>
     );
 };
-export default Contacts;
+export default ContactUs;
 
-Contacts.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+ContactUs.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

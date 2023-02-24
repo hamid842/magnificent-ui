@@ -1,5 +1,5 @@
 import { Grid, Paper, Stack, Typography } from "@mui/material";
-import AccessibleSlider from "@/components/last-minute-deals/AccessibleSlider";
+import AccessibleSlider from "@/components/our-homes/AccessibleSlider";
 import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "../css-texts/SwitzerText";
 import colors from "@/assets/colors";
