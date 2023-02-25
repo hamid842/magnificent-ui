@@ -3,7 +3,7 @@
 import {Box, Grid, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 // Project imports
-import colors from '../../assets/colors'
+import colors from '@/assets/colors'
 import AppButton from "@/components/global/AppButton";
 import AppIcon from "@/components/global/AppIcon";
 

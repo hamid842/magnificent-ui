@@ -62,7 +62,7 @@ const ReviewsSlider = ({reviews,slidesToShow}:ReviewsSliderProps)=>{
             {reviews && reviews.map((review: IReview) =>
                 <Box key={review.id} p={1} px={3}>
                     <Paper elevation={3}
-                           sx={{borderRadius: 3, height: {xs: 250, sm: 220, md: 270, lg: 270}}}>
+                           sx={{borderRadius: 3, height: {xs: 300, sm: 380, md: 290, lg: 270}}}>
                         <Stack direction={'column'} alignItems={'center'} p={2}>
                             <Image
                                 src={review.attributes.userPhoto}

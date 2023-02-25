@@ -7,16 +7,16 @@ import { useRouter } from "next/router";
 // Project imports
 import OurPartnership from "@/components/global/OurPartnership";
 import RentSlider from "@/components/rent-your-place/RentSlider";
-import rentMiddleImage from "../../public/rent-page-middle.png";
-import travelPic from "../../public/ship.png";
-import cityPic from "../../public/city.png";
-import islandPic from "../../public/beach.png";
-import explorePic from "../../public/explore.png";
 import { ColorButton } from "@/components/global/Header";
 import Layout from "@/components/global/Layout";
 import AppContainer from "@/components/global/AppContainer";
 import EuclidText from "@/components/css-texts/EuclidText";
+import RentImageList from "@/components/rent-your-place/RentImageList";
 import colors from "@/assets/colors";
+import travelPic from "../../public/rent-place/ship.png";
+import cityPic from "../../public/rent-place/city.png";
+import islandPic from "../../public/rent-place/beach.png";
+import explorePic from "../../public/rent-place/explore.png";
 
 const RentYourPlace = () => {
   const router = useRouter();
@@ -81,17 +81,12 @@ const RentYourPlace = () => {
             </Box>
           </Grid>
         </Grid>
-        <Grid container spacing={2} my={3}>
+        <Grid container spacing={3} my={3}>
           <Grid item xs={12} sm={6} md={6} lg={6}>
-            <Image
-              src={rentMiddleImage}
-              width={400}
-              height={400}
-              alt={"Rent"}
-            />
+            <RentImageList />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={6}>
-            <Typography variant={"caption"} sx={{ fontWeight: 600 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6} mt={2}>
+            <Typography variant={"caption"} sx={{ fontWeight: 600}}>
               Rent your place
             </Typography>
             <Typography variant={"h6"} sx={{ fontWeight: 700, marginY: 2 }}>

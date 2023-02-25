@@ -1,4 +1,8 @@
 import {ReactNode, useState} from "react";
+// Next.js
+import {useRouter} from "next/router";
+import Image from "next/image";
+// Material ui
 import {CSSObject, styled, Theme, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -15,10 +19,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import {BookmarkAdd, Favorite, Inbox, Logout, Notifications, Person} from '@mui/icons-material';
-import Image from "next/image";
-import logo from '../../../public/png5.png'
+// Project imports
 import AppButton from "@/components/global/AppButton";
-import {useRouter} from "next/router";
+import logo from '../../../public/dashboard/png5.png'
 
 const drawerWidth = 180;
 

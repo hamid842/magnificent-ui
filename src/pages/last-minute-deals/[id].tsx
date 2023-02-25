@@ -74,69 +74,95 @@ const getBlockedDates = async (propertyId: string): Promise<string[]> => {
 //============================================================================================
 
 const LivingSpaceItem = ({property}: LastMinuteDealsProps) => {
-    const theme = useTheme();
-    const ref = useRef<HTMLInputElement>(null)
-    const sm = useMediaQuery(theme.breakpoints.down('sm'))
-    const {attributes} = property;
+        const theme = useTheme();
+        const ref = useRef<HTMLInputElement>(null)
+        const containerRef = useRef<HTMLDivElement>(null)
+        const sm = useMediaQuery(theme.breakpoints.down('sm'))
+        const [showBtn, setShowBtn] = useState(true)
+        const {attributes} = property;
 
-    //============================================================================================
-    // TODO: The current procedure of handling calendar and blockedDates must change
-    const [blockedDates, setBlockedDates] = useState<string[]>([]);
-    useEffect(() => {
-        (async () => {
-            setBlockedDates(await getBlockedDates(property.id));
-        })();
-    }, [property.id]);
-    //============================================================================================
+        //============================================================================================
+        // TODO: The current procedure of handling calendar and blockedDates must change
+        const [blockedDates, setBlockedDates] = useState<string[]>([]);
+        useEffect(() => {
+            (async () => {
+                setBlockedDates(await getBlockedDates(property.id));
+            })();
+        }, [property.id]);
+        //============================================================================================
+        const isBottom = (el: any) => {
+            return el.getBoundingClientRect().bottom <= window.innerHeight;
+        }
 
-    return (
-        <AppContainer>
-            <Box sx={{position: 'relative'}}>
-                <Typography variant={"h6"} sx={{mt: 20}}>
-                    {attributes?.Title}
-                </Typography>
-                <Stack direction={"row"} justifyContent={"space-between"} pb={2}>
-                    <Stack direction={"row"} alignItems={"center"}>
-                        <AppIcon name={'location_on'}/>
-                        <Typography variant={"caption"}>UAE, Dubai</Typography>
+        const trackScrolling = () => {
+            const wrappedElement = document.getElementById('container');
+            if (isBottom(wrappedElement)) {
+                setShowBtn(false)
+            } else {
+                setShowBtn(true)
+            }
+        };
+
+        useEffect(() => {
+            document.addEventListener('scroll', trackScrolling)
+            return () =>
+                document.removeEventListener('scroll', trackScrolling);
+        }, [trackScrolling]);
+
+
+        return (
+            <AppContainer>
+                <Box sx={{position: 'relative'}} ref={containerRef} id={'container'}>
+                    <Typography variant={"h6"} sx={{mt: 20}}>
+                        {attributes?.Title}
+                    </Typography>
+                    <Stack direction={"row"} justifyContent={"space-between"} pb={2}>
+                        <Stack direction={"row"} alignItems={"center"}>
+                            <AppIcon name={'location_on'}/>
+                            <Typography variant={"caption"}>UAE, Dubai</Typography>
+                        </Stack>
+                        <Stack direction={"row"} alignItems={"center"}>
+                            <AppIcon name={'sell'}
+                            />
+                            <Typography variant={"subtitle1"} sx={{fontWeight: 600}}>
+                                {attributes.price} AED / night
+                            </Typography>
+                        </Stack>
                     </Stack>
-                    <Stack direction={"row"} alignItems={"center"}>
-                        <AppIcon name={'sell'}
-                        />
-                        <Typography variant={"subtitle1"} sx={{fontWeight: 600}}>
-                            {attributes.price} AED / night
-                        </Typography>
-                    </Stack>
-                </Stack>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={7.5} lg={7.5}>
-                        <AppCarousel images={attributes?.images}/>
-                        <GeneralInformation data={property}/>
-                        <Features amenities={property.attributes.amenities}/>
-                        <Explanation explanation={attributes.explanation}/>
-                        <LocationInformation/>
-                        <AccessibleInformation/>
-                        <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data}/>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={7.5} lg={7.5}>
+                            <AppCarousel images={attributes?.images}/>
+                            <GeneralInformation data={property}/>
+                            <Features amenities={property.attributes.amenities}/>
+                            <Explanation explanation={attributes.explanation}/>
+                            <LocationInformation/>
+                            <AccessibleInformation/>
+                            <ReviewsSectionLastMin propertyReviews={property.attributes.reviews.data}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4.5} lg={4.5} ref={ref} id={'booking'}>
+                            <BookingCalculationSection
+                                property={property}
+                                blockedDates={blockedDates}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={4.5} lg={4.5} ref={ref} id={'booking'}>
-                        <BookingCalculationSection
-                            property={property}
-                            blockedDates={blockedDates}
+                    {sm && <Stack alignItems={'center'} sx={{
+                        position: 'sticky',
+                        bottom: 10,
+                        display: showBtn ? 'normal' : 'none'
+                    }}>
+                        <AppButton
+                            label={'Book Now'}
+                            onClick={() => {
+                                ref.current?.scrollIntoView({behavior: 'smooth'})
+                            }}
                         />
-                    </Grid>
-                </Grid>
-                {sm && <Stack alignItems={'center'} sx={{position: 'sticky', bottom: 10}}>
-                    <AppButton
-                        label={'Book Now'}
-                        onClick={() => {
-                            ref.current?.scrollIntoView({behavior: 'smooth'})
-                        }}
-                    />
-                </Stack>}
-            </Box>
-        </AppContainer>
-    );
-};
+                    </Stack>}
+                </Box>
+            </AppContainer>
+        );
+    }
+;
 export default LivingSpaceItem;
 
 LivingSpaceItem.getLayout = (page: ReactElement) => <Layout> {page}</Layout>;

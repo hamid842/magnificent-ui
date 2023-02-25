@@ -8,7 +8,7 @@ import {AppRegistration, Login} from "@mui/icons-material";
 // Project imports
 import colors from "@/assets/colors";
 import Image from "next/image";
-import logo from "../../public/png5.png";
+import logo from "../../public/dashboard/png5.png";
 import LoginDialog from "@/auth/login/LoginDialog";
 import RegisterDialog from "@/auth/register/RegisterDialog";
 // Third Party

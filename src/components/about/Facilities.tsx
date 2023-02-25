@@ -1,6 +1,6 @@
 import {Box, Button, Grid, Typography} from "@mui/material";
 import Image from "next/image";
-import homePagePicture from "../../../public/home-page-pic.png";
+import homePagePicture from "../../../public/home/home-page.png";
 import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
 import FacilitiesItem from "@/components/about/FacilitiesItem";
 import WineBarIcon from '@mui/icons-material/WineBar';

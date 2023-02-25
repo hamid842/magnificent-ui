@@ -1,4 +1,5 @@
 import {TextField, TextFieldProps} from "@mui/material";
+import {memo} from "react";
 
 type Props = {
     errorMsg?: any
@@ -15,4 +16,4 @@ const AppTextField = (props: (Props & TextFieldProps)) => {
         />
     )
 }
-export default AppTextField;
+export default memo(AppTextField);

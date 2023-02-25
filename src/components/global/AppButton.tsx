@@ -1,3 +1,4 @@
+import {memo} from "react";
 import {styled} from "@mui/material/styles";
 import {Button, ButtonProps} from "@mui/material";
 import colors from "@/assets/colors";
@@ -23,4 +24,4 @@ const AppButton = (props:(AppButtonProps & ButtonProps))=>{
     )
 }
 
-export default AppButton;
+export default memo(AppButton);

@@ -1,12 +1,12 @@
-import EuclidText from "@/components/css-texts/EuclidText";
-import SwitzerText from "@/components/css-texts/SwitzerText";
-import dictionaries from "../../../dictionaries/en.json";
-import {Box, Collapse, Stack, Typography} from "@mui/material";
-import {switzerFont} from "@/assets/fonts";
-import colors from "@/assets/colors";
 import {useState} from "react";
+import {Box, Collapse, Stack, Typography} from "@mui/material";
 import OurServiceItems from "@/components/contact/OurServiceItem";
 import OurServiceTopic from "@/components/contact/OurServiceTopic";
+import EuclidText from "@/components/css-texts/EuclidText";
+import SwitzerText from "@/components/css-texts/SwitzerText";
+import {switzerFont} from "@/assets/fonts";
+import colors from "@/assets/colors";
+import dictionaries from "../../../dictionaries/en.json";
 
 const SecondSection = () => {
     const [collapse, setCollapse] = useState<boolean>(false)
@@ -15,7 +15,7 @@ const SecondSection = () => {
 
     return (
         <>
-            <EuclidText variant={'h4'} sx={{fontWeight: 700, mt: 3}} text={'We Make Property Ownership Simple'}/>
+            <EuclidText align={'center'} variant={'h4'} sx={{fontWeight: 700, mt:5}} text={'We Make Property Ownership Simple'}/>
             <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.ownership}/>
             <EuclidText align={"center"} variant={'h4'} sx={{fontWeight: 700, mt: 3, mb: 1}} text={'Our Services'}/>
             <Typography className={switzerFont.className}><strong>Find the Luxurious Properties for Rent With

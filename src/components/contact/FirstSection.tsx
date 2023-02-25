@@ -4,16 +4,16 @@ import Image from "next/image";
 import {Box, Grid} from "@mui/material";
 // Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
-import colors from "@/assets/colors";
-import homePagePicture from "../../../public/home-page-pic.png";
 import SwitzerText from "@/components/css-texts/SwitzerText";
+import colors from "@/assets/colors";
+import homePagePicture from "../../../public/home/home-page.png";
 import dictionaries from '../../../dictionaries/en.json';
 
 //======================|| ContactUs Page First Section ||========================
 
 const FirstSection = () => {
     return (
-        <Grid container spacing={2} mt={20}>
+        <Grid container spacing={3} mt={20}>
             <Grid item xs={12} sm={6} md={6} lg={6}>
                 <EuclidText variant={'h4'} sx={{fontWeight: 700}} text={'We are here to assist !'}/>
                 <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.assistFirstPar}/>
@@ -44,7 +44,7 @@ const FirstSection = () => {
                             width={400}
                             style={{
                                 background: "transparent",
-                                borderTopLeftRadius: 50,
+                                borderTopLeftRadius: 40,
                                 borderBottomRightRadius: 50,
                                 width: "100%",
                                 height: "100%",

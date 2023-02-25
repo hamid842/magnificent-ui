@@ -18,11 +18,11 @@ import {
 } from "@mui/material";
 import {styled} from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-// project imports
 import {Person} from "@mui/icons-material";
-import logo from "../../../public/main-logo.png";
-import colors from '../../assets/colors'
+// project imports
+import logo from "../../../public/header/main-logo.png";
 import {euclidFont, switzerFont} from "@/assets/fonts";
+import colors from '@/assets/colors'
 import AuthWrapper from "@/auth/AuthWrapper";
 import {AuthContext} from "../../../context/contexts";
 
@@ -158,9 +158,9 @@ export default function Header() {
                 <Box sx={{flexGrow: 0, mr: 2}}>
                     <Stack direction={'row'}>
                         <ColorButton size={'small'} variant={'contained'} className={euclidFont.className}
-                                     sx={{textTransform: 'none', borderRadius: 25, fontSize: 14, mr: 1}}
+                                     sx={{textTransform: 'none', borderRadius: 25, fontSize: 12, mr: 1}}
                                      onClick={() => router.push('/rent-your-place')}
-                        >Rent Your Place</ColorButton>
+                        >Calculate your income</ColorButton>
 
                         <Avatar onClick={handleOpenUserMenu} aria-haspopup={true} sx={{cursor: 'pointer'}}>
                             <Person/>

@@ -4,7 +4,6 @@ import {Router, useRouter} from "next/router";
 // Material ui
 import {Box, Grid, Pagination, Stack, Typography} from "@mui/material";
 // Project imports
-import SearchDestinationLastMin from "@/components/global/SearchDestinationLastMin";
 import FilterDialog from "@/components/our-homes/FilterDialog";
 import SortByDropdown from "@/components/our-homes/SortByDropdown";
 import SpecialOffersItem from "@/components/global/SpecialOffersItem";
@@ -13,7 +12,6 @@ import {IProperty} from "@/utils/property-type";
 import {instance} from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
 import {GetServerSideProps} from "next";
-import ContactUs from "@/pages/contact-us";
 import Layout from "@/components/global/Layout";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
@@ -64,17 +62,11 @@ const OurHomes = ({properties}: LastMinuteDealsProps) => {
 
     return (
         <Box mt={16}>
-            <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 10}} text={'Our Homes'}/>
-            <SearchDestinationLastMin position={'relative'}/>
+            <EuclidText variant={'h4'} align={'center'} sx={{fontWeight: 700, mb: 5}} text={'Our Homes'}/>
+            {/*<SearchDestinationLastMin position={'relative'}/>*/}
             <AppContainer>
                 <Grid container justifyContent={'space-between'}>
                     <Grid item xs={6} sm={6} lg={6}>
-                        {/*<Button variant={"outlined"} sx={{*/}
-                        {/*    border: "solid 1px #A47C30",*/}
-                        {/*    color: colors.mainColor,*/}
-                        {/*    borderRadius: 2,*/}
-                        {/*    textTransform: 'none'*/}
-                        {/*}}>Show on map</Button>*/}
                     </Grid>
                     <Grid item xs={6} sm={6} lg={6}>
                         <Stack direction={'row'} alignItems={'center'} justifyContent={'flex-end'}>
@@ -108,4 +100,4 @@ const OurHomes = ({properties}: LastMinuteDealsProps) => {
 }
 export default OurHomes;
 
-OurHomes.getLayout = (page:ReactElement)=><Layout>{page}</Layout>
+OurHomes.getLayout = (page: ReactElement) => <Layout>{page}</Layout>

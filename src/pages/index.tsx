@@ -7,8 +7,9 @@ import dynamic from "next/dynamic";
 import {Box, Grid} from "@mui/material";
 // Project imports
 import {IProperty, IReview} from "@/utils/property-type";
-import homePagePicture from '../../public/home-page.png';
+import homePagePicture from '../../public/home/home-page.png';
 import {instance} from "@/config/axiosConfig";
+
 const Layout = dynamic(() => import("@/components/global/Layout"))
 const AppButton = dynamic(() => import("@/components/global/AppButton"))
 const AppLoading = dynamic(() => import("@/components/global/AppLoading"))
@@ -77,7 +78,11 @@ const HomePage = ({properties, reviews}: HomePageProps) => {
                         <Grid container spacing={3}>
                             {properties?.map((property: IProperty) => {
                                 return (
-                                    <Grid key={property.id} item xs={12} sm={6} md={4} lg={4}>
+                                    <Grid key={property.id} item xs={12} sm={6} md={4} lg={4}
+                                          onClick={() => router.push({
+                                              pathname: `/last-minute-deals/${property.id}`,
+                                              query: {propertyId: JSON.stringify(property.id)}
+                                          }, `/last-minute-deals/${property.id}`)} sx={{cursor: 'pointer'}}>
                                         <SpecialOffersItem data={property}/>
                                     </Grid>
                                 )

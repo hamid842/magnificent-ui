@@ -2,23 +2,23 @@ import {ReactElement} from "react";
 // Next.js
 import {GetServerSideProps} from "next";
 import {useRouter} from "next/router";
+import Image from "next/image";
 // Material ui
 import {Box, Stack} from "@mui/material";
 // Third party
 import ReactMarkdown from "react-markdown";
 // Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
-import {switzerFont} from "@/assets/fonts";
 import AppContainer from "@/components/global/AppContainer";
-import {IBlogPostsData} from "@/utils/blog-post-type";
-import {instance} from "@/config/axiosConfig";
-import Image from "next/image";
-import blogOneImage from "../../../public/Blogs/11/02.jpg";
-import blogTwoImage from "../../../public/Blogs/11/3-b.jpg";
-import blogThreeImage from "../../../public/Blogs/11/4-b.jpg";
-import blogFourImage from "../../../public/Blogs/11/04-1170x280.jpg";
-import blogFiveImage from "../../../public/Blogs/11/1-b.jpg";
 import Layout from "@/components/global/Layout";
+import {instance} from "@/config/axiosConfig";
+import {IBlogPostsData} from "@/utils/blog-post-type";
+import {switzerFont} from "@/assets/fonts";
+import blogOneImage from "../../../public/Blogs/02.jpg";
+import blogTwoImage from "../../../public/Blogs/3-b.jpg";
+import blogThreeImage from "../../../public/Blogs/4-b.jpg";
+import blogFourImage from "../../../public/Blogs/04-1170x280.jpg";
+import blogFiveImage from "../../../public/Blogs/1-b.jpg";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
     const {data} = await instance.get(`/blog-posts/${query.id}`)

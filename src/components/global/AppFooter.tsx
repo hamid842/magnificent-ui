@@ -5,20 +5,21 @@ import Image from "next/image";
 import {Box, Divider, Grid, Stack} from "@mui/material";
 
 // Project imports
-import logo from "../../../public/main-logo.png";
-import grayLogo from "../../../public/png1.png"
 import AppContainer from "@/components/global/AppContainer";
-import colors from "@/assets/colors";
 import PoppinsText from "@/components/css-texts/PoppinsText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
-import dictionaries from '../../../dictionaries/en.json'
 import EuclidText from "@/components/css-texts/EuclidText";
-import {switzerFont} from "@/assets/fonts";
 import AppIcon from "@/components/global/AppIcon";
-import whatsappIcon from '../../../public/whatsapp.png';
-import facebookIcon from '../../../public/facebook.png';
-import instagramIcon from '../../../public/instagram.png';
-import linkedInIcon from '../../../public/linkedin.png';
+// assets
+import colors from "@/assets/colors";
+import {switzerFont} from "@/assets/fonts";
+import dictionaries from '../../../dictionaries/en.json'
+import grayLogo from "../../../public/footer/png1.png"
+import logo from "../../../public/header/main-logo.png";
+import whatsappIcon from '../../../public/footer/whatsapp.png';
+import facebookIcon from '../../../public/footer/facebook.png';
+import instagramIcon from '../../../public/footer/instagram.png';
+import linkedInIcon from '../../../public/footer/linkedin.png';
 
 //===========================|| Footer ||==============================
 
@@ -47,7 +48,7 @@ const AppFooter = () => {
                 <Image src={grayLogo} alt={"Logo"} width={250} height={150}
                        style={{position: 'absolute', bottom: -20, right: -30, zIndex: 1}}/>
             </Box>
-            <Box sx={{position: 'relative', zIndex: 1000}} pt={5}>
+            <Box sx={{position: 'relative', zIndex: 1000}} pt={3}>
                 <AppContainer>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
@@ -68,8 +69,8 @@ const AppFooter = () => {
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} lg={3}>
-                            <EuclidText ml={{lg: 6}} sx={footerTitleStyle} text={'Quick Links'}/>
-                            <Box my={2} ml={{lg: 6}}>
+                            <EuclidText ml={{md:6,lg: 6}} sx={footerTitleStyle} text={'Quick Links'}/>
+                            <Box my={2} ml={{md:6,lg: 6}}>
                                 <Stack className={switzerFont.className}>
                                     <Link href={'/about'} style={linkStyles}>About
                                         Us</Link>
@@ -85,8 +86,8 @@ const AppFooter = () => {
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} lg={3}>
-                            <EuclidText ml={{lg: 2}} sx={footerTitleStyle} text={'Information'}/>
-                            <Box my={2} ml={{lg: 2}}>
+                            <EuclidText ml={{md:2,lg: 2}} sx={footerTitleStyle} text={'Information'}/>
+                            <Box my={2} ml={{md:2,lg: 2}}>
                                 <Stack className={switzerFont.className}>
                                     <Link href={'/about'} style={linkStyles}>Terms
                                         and conditions</Link>
@@ -138,8 +139,8 @@ const AppFooter = () => {
                                 </Stack>
                             </Box>
                         </Grid>
-                    </Grid>
                     <Divider variant={'middle'} sx={{height: 1, width: '100%', backgroundColor: colors.mainColor}}/>
+                    </Grid>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
                         <PoppinsText variant={'caption'} py={1} color={'white'}
                                      text={`Copyright ${new Date().getFullYear()}`}/>

@@ -1,9 +1,9 @@
-import {Stack, Typography} from "@mui/material";
 import Image from "next/image";
-import travelLogo from "../../../public/traveloka.png";
-import ticketLogo from "../../../public/ticket.png";
-import airbnbLogo from "../../../public/airbnb.png";
-import tripLogo from "../../../public/trip.png";
+import {Stack, Typography} from "@mui/material";
+import travelLogo from "../../../public/our-partnership/traveloka.png";
+import ticketLogo from "../../../public/our-partnership/ticket.png";
+import airbnbLogo from "../../../public/our-partnership/airbnb.png";
+import tripLogo from "../../../public/our-partnership/trip.png";
 
 const OurPartnership = () => {
     return (

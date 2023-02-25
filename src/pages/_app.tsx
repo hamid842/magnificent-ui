@@ -1,13 +1,16 @@
 import type {ReactElement, ReactNode} from 'react'
 import {useEffect, useState} from "react";
+// Next.js
 import type {NextPage} from 'next'
 import type {AppProps} from 'next/app'
 import {useRouter} from "next/router";
+// Third party
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+// Project imports
 import {AuthContext, TUser} from '../../context/contexts';
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({showSpinner: false});
 
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

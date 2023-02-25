@@ -4,12 +4,12 @@ import {useRouter} from "next/router";
 // Material-ui
 import {Box, Grid, Stack} from "@mui/material";
 // Project imports
-import rentImage from '../../../public/8/8-2-1.jpg'
 import TitleSeparator from "@/components/global/TitleSeparator";
-import dictionaries from '../../../dictionaries/en.json';
 import AppButton from "@/components/global/AppButton";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import colors from "@/assets/colors";
+import dictionaries from '../../../dictionaries/en.json';
+import rentImage from '../../../public/home/rent.jpg'
 
 //======================|| Rent Your Place Section ||==========================
 
@@ -17,7 +17,7 @@ const RentPlaceSection = () => {
     const router = useRouter();
     return (
         <Box>
-            <TitleSeparator separatorTitle={'With us'} title={'Calculate your income'}/>
+            <TitleSeparator separatorTitle={'With us'} title={'Rent your place'}/>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} lg={6}>
                     <Box sx={{
@@ -44,12 +44,12 @@ const RentPlaceSection = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
-                    <SwitzerText sx={{textAlign: 'justify', mb: 2}}
+                    <SwitzerText sx={{textAlign: 'justify', mb: 3}}
                                  text={`${dictionaries.homePage.rentExplanation}`}/>
                     <Stack alignItems={'center'}>
 
                         <AppButton label={'See more'}
-                                   onClick={() => router.push('/our-homes')}/>
+                                   onClick={() => router.push('/rent-your-place')}/>
                     </Stack>
                 </Grid>
             </Grid>

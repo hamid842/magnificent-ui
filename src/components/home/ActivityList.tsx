@@ -3,13 +3,13 @@ import Image from "next/image";
 // Material-ui
 import {Box, Grid, Stack, Typography} from "@mui/material";
 // Project imports
-import activityOne from '../../../public/activity-1.png'
-import activityTwo from '../../../public/activity-2.png'
-import activityThree from '../../../public/activity-3.png'
 import OurPartnership from "@/components/global/OurPartnership";
 import TitleSeparator from "@/components/global/TitleSeparator";
-import colors from '../../assets/colors'
 import SwitzerText from "@/components/css-texts/SwitzerText";
+import activityOne from '../../../public/home/activity-1.png'
+import activityTwo from '../../../public/home/activity-2.png'
+import activityThree from '../../../public/home/activity-3.png'
+import colors from '../../assets/colors'
 
 //======================|| Activities Section ||========================
 

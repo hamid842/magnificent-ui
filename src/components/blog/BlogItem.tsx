@@ -1,13 +1,16 @@
 import Image from "next/image";
+// Material ui
 import {Box, Button, Grid, Paper, Typography, useMediaQuery} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
+// Project imports
 import {IBlogPostsData} from "@/utils/blog-post-type";
 import EuclidText from "@/components/css-texts/EuclidText";
-import blogOneImage from "../../../public/Blogs/11/02-S.jpg";
-import blogTwoImage from "../../../public/Blogs/11/3-b.jpg";
-import blogThreeImage from "../../../public/Blogs/11/4-b.jpg";
-import blogFourImage from "../../../public/Blogs/11/04-S.jpg";
-import blogImageFive from "../../../public/Blogs/11/1-b.jpg";
+// assets
+import blogOneImage from "../../../public/Blogs/02-S.jpg";
+import blogTwoImage from "../../../public/Blogs/3-b.jpg";
+import blogThreeImage from "../../../public/Blogs/4-b.jpg";
+import blogFourImage from "../../../public/Blogs/04-S.jpg";
+import blogImageFive from "../../../public/Blogs/1-b.jpg";
 import colors from "@/assets/colors";
 
 type BlogItemProps = {
@@ -22,7 +25,7 @@ const theme = useTheme()
     const IMAGE_HEIGHT = 200;
     const imageLargeStyles = {
         width: "100%",
-        height: 220,
+        height: 210,
         borderBottomLeftRadius: 6,
         borderTopLeftRadius: 6,
     };
@@ -39,7 +42,7 @@ const theme = useTheme()
                 position: "relative",
                 width: "100%",
                 borderRadius: 2,
-                height: {xs: 420, sm: 410, md: 220, lg: 220},
+                height: {xs: 420, sm: 410, md: 210, lg: 220},
             }}
         >
             <Grid container>

@@ -1,3 +1,5 @@
+import {memo} from "react";
+
 type AppIconProps = {
     name: string,
     color?:string,
@@ -18,4 +20,4 @@ const AppIcon = ({name,color='#B6923E'}: AppIconProps) => {
         </>
     )
 }
-export default AppIcon;
+export default memo(AppIcon);

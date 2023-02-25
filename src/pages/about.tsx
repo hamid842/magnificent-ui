@@ -1,22 +1,23 @@
+import {ReactElement} from "react";
 // Next.js
+import dynamic from "next/dynamic";
 // Material ui
-// noinspection JSUnusedGlobalSymbols
 import {Grid, Paper, Stack, Typography} from "@mui/material";
-import AddchartIcon from '@mui/icons-material/Addchart';
+import AddchartIcon from '@mui/icons-material/AddChart';
 import CameraOutdoorIcon from '@mui/icons-material/CameraOutdoor';
 import OtherHousesRoundedIcon from '@mui/icons-material/OtherHousesRounded';
-// Project imports
-import EuclidText from "@/components/css-texts/EuclidText";
-import AppContainer from "@/components/global/AppContainer";
-import SwitzerText from "@/components/css-texts/SwitzerText";
-import dictionaries from '../../dictionaries/en.json';
-import TitleSeparator from "@/components/global/TitleSeparator";
-import colors from "@/assets/colors";
-import {ReactElement} from "react";
-import Layout from "@/components/global/Layout";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+// Project imports
+import colors from "@/assets/colors";
+import dictionaries from '../../dictionaries/en.json';
+
+const EuclidText = dynamic(() => import("@/components/css-texts/EuclidText"))
+const AppContainer = dynamic(() => import("@/components/global/AppContainer"))
+const SwitzerText = dynamic(() => import("@/components/css-texts/SwitzerText"))
+const Layout = dynamic(() => import("@/components/global/Layout"))
+const TitleSeparator = dynamic(() => import("@/components/global/TitleSeparator"))
 
 //=========================|| About us ||===========================
 

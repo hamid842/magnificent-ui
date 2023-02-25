@@ -1,23 +1,34 @@
+import {ReactElement} from "react";
 // Next.js
-import Image from "next/image";
+import dynamic from "next/dynamic";
 // Material ui
 import {Grid, Typography} from "@mui/material";
 // Project imports
-import manager from "../../public/general-manager.jpg";
-import specialist from "../../public/specialist.jpg";
-import chief from "../../public/chief.jpg";
-import officer from "../../public/officer.jpg";
-import sales from "../../public/sales.jpg";
-import {ReactElement} from "react";
-import Layout from "@/components/global/Layout";
-import AppContainer from "@/components/global/AppContainer";
-import FirstSection from "@/components/contact/FirstSection";
-import SecondSection from "@/components/contact/SecondSection";
-import ZoomableImage from "@/components/global/ZoomableImage";
+import manager from "../../public/contact-us/general-manager.jpg";
+import specialist from "../../public/contact-us/specialist.jpg";
+import chief from "../../public/contact-us/chief.jpg";
+import officer from "../../public/contact-us/officer.jpg";
+import sales from "../../public/contact-us/sales.jpg";
+
+const Layout = dynamic(() => import("@/components/global/Layout"))
+const AppContainer = dynamic(() => import("@/components/global/AppContainer"))
+const FirstSection = dynamic(() => import("@/components/contact/FirstSection"))
+const SecondSection = dynamic(() => import("@/components/contact/SecondSection"))
+const ZoomableImage = dynamic(() => import("@/components/global/ZoomableImage"))
 
 //=========================|| Contact us ||===========================
 
 const ContactUs = () => {
+
+    const imageStyles = {
+        width: "100%",
+        height: "auto",
+        borderRadius: 5,
+        boxShadow:
+            "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
+    }
+
+    const boxHeight = {xs: 400, sm: 350, md: 220, lg: 230}
     return (
         <AppContainer>
             <FirstSection/>
@@ -33,19 +44,14 @@ const ContactUs = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>
-                    <Grid container spacing={1.5    }>
+                    <Grid container spacing={1.5}>
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
                             <ZoomableImage
                                 src={manager}
-                                boxHeight={{xs:220,sm:220,md:220,lg:230}}
+                                boxHeight={boxHeight}
                                 alt={"Pic"}
                                 sizes="90vw"
-                                style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    boxShadow:
-                                        "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                                }}
+                                style={imageStyles}
                             />
                             <Typography sx={{fontWeight: 600}} mt={2}>Ehsan Pakroo</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
@@ -55,15 +61,10 @@ const ContactUs = () => {
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
                             <ZoomableImage
                                 src={sales}
-                                boxHeight={{xs:220,sm:220,md:220,lg:230}}
+                                boxHeight={boxHeight}
                                 alt={"Pic"}
                                 sizes="90vw"
-                                style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    boxShadow:
-                                        "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                                }}
+                                style={imageStyles}
                             />
                             <Typography sx={{fontWeight: 600}} mt={2}>
                                 Caitlin Camilleri
@@ -75,15 +76,10 @@ const ContactUs = () => {
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
                             <ZoomableImage
                                 src={chief}
-                                boxHeight={{xs:220,sm:220,md:220,lg:230}}
+                                boxHeight={boxHeight}
                                 alt={"Pic"}
                                 sizes="90vw"
-                                style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    boxShadow:
-                                        "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                                }}
+                                style={imageStyles}
                             />
                             <Typography sx={{fontWeight: 600}} mt={2}>Mahmoud Habib</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
@@ -93,15 +89,10 @@ const ContactUs = () => {
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
                             <ZoomableImage
                                 src={officer}
-                                boxHeight={{xs:220,sm:220,md:220,lg:230}}
+                                boxHeight={boxHeight}
                                 alt={"Pic"}
                                 sizes="90vw"
-                                style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    boxShadow:
-                                        "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                                }}
+                                style={imageStyles}
                             />
                             <Typography sx={{fontWeight: 600}} mt={2}>Manish Mohan</Typography>
                             <Typography variant={"caption"} sx={{color: "gray"}}>
@@ -111,15 +102,10 @@ const ContactUs = () => {
                         <Grid item xs={12} sm={4} md={2.4} lg={2.4}>
                             <ZoomableImage
                                 src={specialist}
-                                boxHeight={{xs:220,sm:220,md:220,lg:230}}
+                                boxHeight={boxHeight}
                                 alt={"Pic"}
                                 sizes="90vw"
-                                style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    boxShadow:
-                                        "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
-                                }}
+                                style={imageStyles}
                             />
                             <Typography sx={{fontWeight: 600}} mt={2}>
                                 JHarish Allakonda
