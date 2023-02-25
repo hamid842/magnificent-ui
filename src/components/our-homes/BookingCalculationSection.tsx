@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {ChangeEvent, FC, useCallback, useEffect, useState} from 'react';
 // Material ui
 import {Box, Button, Divider, InputAdornment, Paper, Stack, TextField, Typography, useMediaQuery} from "@mui/material";
 import {useTheme} from '@mui/material/styles';
@@ -14,7 +14,21 @@ import EuclidText from "@/components/css-texts/EuclidText";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import BookingDialog from "@/components/our-homes/BookingDialog";
 import {instance} from '@/config/axiosConfig';
-import {DATE_FORMAT, IProperty} from "@/utils/property-type";
+import {DATE_FORMAT, IProperty, TCalendarDay} from "@/utils/property-type";
+
+/**
+ * Must match 'field' attribute of the server error on the host side 
+ * to determine which field doesn't the error belong to
+ */
+enum EFields {
+    DATE = 'datepicker',
+    GUEST = 'guestscount',
+    COUPON = 'couponname'
+}
+
+type TFormError = {
+    couponname?: string,
+}
 
 // Capitalize every word
 const capitalize = (input: string): string => {
@@ -46,10 +60,10 @@ export type TPrice = {
 
 type Props = {
     property: IProperty,
-    blockedDates: string[]
+    calendar: TCalendarDay[]
 };
 
-const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
+const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'))
     const {id: propertyId} = property;
@@ -102,9 +116,52 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
      * This function will be passed to date-picker to check for each day's availability
      * @returns is the day blocked?
      */
-    const isDayBlocked = (day: moment.Moment) => {
-        return blockedDates.some(blockedDate => day.isSame(blockedDate, 'day'));
+    const isDayBlocked = (day: moment.Moment): boolean => {
+        return calendar.some((calDay: TCalendarDay) => { 
+            return day.isSame(calDay.date, 'day') && !calDay.isAvailable;
+        });
     }
+
+    //=======================================================================================================================================
+
+    const [minStay, setMinStay] = useState<number>(property.attributes.minNights);
+
+    // When the startDate state changes (user selects an start date)
+    useEffect(() => {
+        if (!startDate) return;
+        // Loop through the calendar to find the selected date and retrieve its minimumStay attribute
+        calendar.every((calDay) => {
+            if (startDate.isSame(calDay.date, 'day')) {
+                // Found the selected date
+                setMinStay(calDay.minimumStay);
+                console.log(calDay.minimumStay);
+                return false; // break the loop
+            }
+            return true; // Continue the loop
+        });
+    }, [calendar, startDate]);
+
+    //=======================================================================================================================================
+    //=======================================================================================================================================
+
+    const [formError, setFormError] = useState<TFormError>({});
+
+    //=======================================================================================================================================
+    //=======================================================================================================================================
+
+    // Disable Book Now button when there's a problem with the form
+
+    const [bookEnabled, setBookEnabled] = useState<boolean>(false);
+
+    useEffect(() => {
+        // Disable book now button when required fields are empty or there's a form error
+        if (!startDate || !endDate || !guestCount || formError.couponname) {
+            setBookEnabled(false);
+        } else {
+            setBookEnabled(true);
+        }
+    }, [startDate, endDate, guestCount, formError.couponname]);
+
     //=======================================================================================================================================
     //=======================================================================================================================================
 
@@ -112,46 +169,107 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
     const [price, setPrice] = useState<TPrice | null>(null);
 
     useEffect(() => {
-        if (!startDate || !endDate) return;
+        //----------------------------------------
+        if (!startDate || !endDate) return setPrice(null);
+        //----------------------------------------
+        // Clear form errors
+        setFormError({});
+        //----------------------------------------
+        const reqParams: any = {
+            guestCount: guestCount,
+            startDate: startDate.format(DATE_FORMAT),
+            endDate: endDate.format(DATE_FORMAT)
+        };
+        if (couponName && couponName.trim()) reqParams.couponName = couponName;
 
-        (async () => {
-            try {
-                const reqParams: any = {
-                    guestCount: guestCount,
-                    startDate: startDate.format(DATE_FORMAT),
-                    endDate: endDate.format(DATE_FORMAT)
-                };
-
-                if (couponName && couponName.trim()) reqParams.couponName = couponName;
-
-                const result = await instance.get(`/properties/${propertyId}/price`, {
-                    params: reqParams
+        instance.get(`/properties/${propertyId}/price`, {
+            params: reqParams
+        }).then((result) => {
+            const {data} = result;
+            if (!data) return;
+            const price: TPrice = {
+                totalPrice: data.totalPrice,
+                components: []
+            };
+            for (const component of data.components) {
+                price.components?.push({
+                    type: component.type,
+                    name: component.name,
+                    title: component.title,
+                    value: component.value,
+                    total: component.total
                 });
-
-                const {data} = result;
-                if (data) {
-                    const price: TPrice = {
-                        totalPrice: data.totalPrice,
-                        components: []
-                    };
-                    for (const component of data.components) {
-                        price.components?.push({
-                            type: component.type,
-                            name: component.name,
-                            title: component.title,
-                            value: component.value,
-                            total: component.total
-                        });
-                    }
-                    // Set state
-                    setPrice(price);
-                }
-            } catch (error) {
-                console.log(`[ERROR: while retrieving pricing details] ->\n ${error}`);
             }
-        })();
+            // Set state
+            setPrice(price);
+        }).catch((error) => {
+            const errorData = error.response.data.error.details;
+            console.log(`[ERROR: while retrieving pricing details] ->\n ${error}`);
+            // If there's an error that should be displayed on a field
+            if (errorData && errorData.field && errorData.message) {
+                setFormError((prev) => {
+                    return {
+                        ...prev,
+                        [errorData.field]: errorData.message
+                    }
+                })
+            }
+            // Clear Prices
+            setPrice(null);
+        });
 
     }, [startDate, endDate, guestCount, couponName, propertyId]);
+
+    //=======================================================================================================================================
+    /**
+     * We need a mechanism to block users from selecting blocked dates inside a range:
+     * Example:
+     *      -User selects: 10
+     *      -But, 14, 15, are blocked
+     *      -Without the below logic:
+     *          -The user can select 10 -> 20  - 14 and 15 will be selected
+     *      -We must make every date after 14, outside of the selection range (not possible to select)
+     *      -So, the user can at most select: 10, 11, 12, 13
+     */
+
+
+    const [firstBlockedDate, setFirstBlockedDate] = useState<moment.Moment | null>(null);
+    
+    // Returns the first blocked date after the selected startDate
+    const findFirstBlockedDate = (startDate: moment.Moment | null) => {
+        // If the user hasn't selected any startDate, clear firstBlockedDate, which will make all dates selectable
+        if (!startDate) return setFirstBlockedDate(null);
+
+        calendar.every((calDay) => {
+            // If this calDay is after the startDate and is not available:
+            if (startDate.isBefore(calDay.date, 'day') && !calDay.isAvailable) {
+                // Set the state
+                setFirstBlockedDate(moment(calDay.date));
+                return false; // break the loop
+            }
+            return true; // continue looping
+        });
+    };
+
+
+    // Every time user selects a startDate, find the first blocked date to make every day after it, outside range
+    useEffect(() => {
+        findFirstBlockedDate(startDate);
+    }, [startDate]);
+
+
+    // This function determines whether a day is selectable in the range or not
+    // Note: using useCallback to redefine the function every time the firstBlockedDate value changes
+    const isOutsideRange = useCallback<(day: moment.Moment) => boolean>((day: moment.Moment) => {
+        // if in the past
+        if (day.isSameOrBefore(new Date(), 'day')) return true;
+        // If a firstBlockedDate was found (which means the user has selected a startDate)
+        if (firstBlockedDate)
+            // If this day (in datepicker) is after the firstBlockedDate: make it unselectable
+            if (day.isSameOrAfter(firstBlockedDate, 'day')) return true;
+        // Everthing else is selectable
+        return false;
+    }, [firstBlockedDate]);
 
     //=======================================================================================================================================
 
@@ -166,7 +284,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         small
                         showClearDates
                         hideKeyboardShortcutsPanel
-                        minimumNights={minNights || 1}
+                        minimumNights={minStay > 1 ? minStay : 0} // If only one day is available the user  should be able to select the same day
                         orientation={sm ? 'vertical' : 'horizontal'}
                         customInputIcon={
                             <CalendarMonthRounded
@@ -189,6 +307,7 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                         onDatesChange={onDateChange}
                         onFocusChange={onFocusChange}
                         isDayBlocked={isDayBlocked}
+                        isOutsideRange={isOutsideRange}
                     />
                     {/* Guest Count Input------------------------------------------------------------------------------- */}
                     <Box sx={{width: '100%', pt: 2, pb: 1}}>
@@ -218,6 +337,8 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                             size={'small'}
                             label="Coupon name"
                             variant="outlined"
+                            error={!!formError.couponname}
+                            helperText={formError.couponname || ''}
                             InputProps={{
                                 endAdornment:
                                     <InputAdornment
@@ -249,8 +370,13 @@ const BookingCalculationSection: FC<Props> = ({property, blockedDates}) => {
                     </Box>
                     {/* Book Now Button------------------------------------------------------------------------------------ */}
                     <Box sx={{width: '100%', my: 1}}>
-                        <BookingDialog property={property} arrivalDate={startDate} departureDate={endDate}
-                                       price={price} guestCount={guestCount}/>
+                        <BookingDialog
+                            buttonEnabled={bookEnabled}
+                            property={property} 
+                            arrivalDate={startDate} 
+                            departureDate={endDate}
+                            price={price} 
+                            guestCount={guestCount}/>
                     </Box>
                     {/* Price Details-------------------------------------------------------------------------------------  */}
                     <Box sx={{width: 1}}>
