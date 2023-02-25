@@ -17,12 +17,37 @@ import travelPic from "../../public/rent-place/ship.png";
 import cityPic from "../../public/rent-place/city.png";
 import islandPic from "../../public/rent-place/beach.png";
 import explorePic from "../../public/rent-place/explore.png";
+import { NextSeo } from "next-seo";
 
 const RentYourPlace = () => {
   const router = useRouter();
 
   return (
     <>
+      <NextSeo
+        title="Best Luxury Vacation Rental Homes in Downtown Dubai | Property Management Companies- Magnificent."
+        description="View our listings of luxury vacation apartment rentals and luxury vacation rental homes in downtown dubai. Book apartments and luxury holiday homes for your stay in downtown dubai - magnificent"
+        canonical="https://magnificent.ae/"
+        openGraph={{
+          locale: "en_US",
+          type: "article",
+          title:
+            "Best Luxury Vacation Rental Homes in Downtown Dubai | Property Management Companies- Magnificent.",
+          description:
+            "View our listings of luxury vacation apartment rentals and luxury vacation rental homes in downtown dubai. Book apartments and luxury holiday homes for your stay in downtown dubai - magnificent",
+          url: "https://magnificent.ae/list-your-home/",
+          site_name: "Magnificent Holiday",
+          article: {
+            modifiedTime: "2023-01-07T09:01:41+00:00",
+          },
+        }}
+        twitter={{
+          cardType: "summary_large_image",
+          //   label1: 'Est. reading time',
+          //   data1: '22 minutes',
+        }}
+      />
+
       <AppContainer>
         <Grid container spacing={3} mt={15}>
           <Grid item xs={12} sm={6} lg={6}>
@@ -86,7 +111,7 @@ const RentYourPlace = () => {
             <RentImageList />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6} mt={2}>
-            <Typography variant={"caption"} sx={{ fontWeight: 600}}>
+            <Typography variant={"caption"} sx={{ fontWeight: 600 }}>
               Rent your place
             </Typography>
             <Typography variant={"h6"} sx={{ fontWeight: 700, marginY: 2 }}>
