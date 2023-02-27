@@ -17,13 +17,15 @@ const OtherAmenitiesModal = ({data}: Props) => {
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState<DialogProps["scroll"]>("body");
 
-    const kitchenFeatures = data?.filter((el: any) => el.category === "kitchen");
-    const bathFeatures = data?.filter((el: any) => el.category === "bath");
-    const bedroomFeatures = data?.filter((el: any) => el.category === "bedroom");
-    const lobbyFeatures = data?.filter((el: any) => el.category === "lobby");
-    const parkingFeatures = data?.filter((el: any) => el.category === "parking");
-    const outdoorFeatures = data?.filter((el: any) => el.category === "outdoor");
-    const othersFeatures = data?.filter((el: any) => el.category === null);
+    const kitchenFeatures = data?.filter((el: any) => el.category === "Kitchen");
+    const bathFeatures = data?.filter((el: any) => el.category === "Bathroom");
+    const bedroomFeatures = data?.filter((el: any) => el.category === "Bedroom");
+    const facilitiesFeatures = data?.filter((el: any) => el.category === "Facilities");
+    const othersFeatures = data?.filter((el: any) => el.category === "Others");
+    // const lobbyFeatures = data?.filter((el: any) => el.category === "lobby");
+    // const parkingFeatures = data?.filter((el: any) => el.category === "parking");
+    // const outdoorFeatures = data?.filter((el: any) => el.category === "outdoor");
+    // const othersFeatures = data?.filter((el: any) => el.category === null);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -120,7 +122,15 @@ const OtherAmenitiesModal = ({data}: Props) => {
                         text={"Facilities"}
                     />
                     <Divider/>
-
+                    <Grid container my={1} spacing={1}>
+                        {facilitiesFeatures?.map((item: any) => (
+                            <AmenityIconAndTitle
+                                key={item.name}
+                                title={item.name}
+                                icon={item.icon ? item.icon : "tv"}
+                            />
+                        ))}
+                    </Grid>
                     <SwitzerText
                         sx={{fontWeight: 600, fontSize: 14, mt: 1}}
                         text={"Others"}
