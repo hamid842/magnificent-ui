@@ -2,17 +2,19 @@ import {memo} from "react";
 
 type AppIconProps = {
     name: string,
-    color?:string,
+    color?: string,
+    size?: number
 }
 
-const AppIcon = ({name,color='#B6923E'}: AppIconProps) => {
+const AppIcon = ({name, color = '#B6923E', size = 2}: AppIconProps) => {
     return (
         <>
             <span className="material-symbols-outlined">{name}</span>
             <style jsx>
                 {`
                   .material-symbols-outlined {
-                    color: ${color}
+                    color: ${color};
+                    font-size: ${size}rem !important;
                   }
                 `}
 

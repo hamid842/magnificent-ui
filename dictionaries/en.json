@@ -4,7 +4,13 @@
   },
   "homePage": {
     "rentExplanation": "Magnificent Property management provides high-end services and solutions to homeowners who wish to make the most of their luxury vacation real estate investment. From styling, listing, price optimization, booking, to meet and greet, check-out, housekeeping and maintenance; we offer a stress-free approach to short term rental, where we take care of the nitty-gritty details and you enjoy the profits. We promise you peace of mind, professional management and more money in your pocket when you partner with us. It’s a win-win for everybody involved.",
-    "reviews": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!"
+    "reviews": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet expedita facere harum illum magnam magni maiores nihil nulla quis quod, reprehenderit repudiandae sequi veniam voluptas!",
+    "nextSeo": {
+      "title": "Best Property Management Company in Downtown Dubai | Luxury Rental Holiday Homes - Magnificent.",
+      "desc": "Magnificent is the best property management company in downtown Dubai. Book apartments and vacation holiday homes rental for your stay in downtown Dubai.",
+      "openGraphTitle": "Best Property Management Company in Downtown Dubai | Luxury Rental Holiday Homes - Magnificent.",
+      "openGraphDesc": "Magnificent is the best property management company in downtown Dubai. Book apartments and vacation holiday homes rental for your stay in downtown Dubai."
+    }
   },
   "lastMin": {
     "rentExplanation": "Magnificent Property management provides high-end services and solutions to homeowners who wish to make the most of their luxury vacation real estate investment. From styling, listing, price optimization, booking, to meet and greet, check-out, housekeeping and maintenance; we offer a stress-free approach to short term rental, where we take care of the nitty-gritty details and you enjoy the profits. We promise you peace of mind, professional management and more money in your pocket when you partner with us. It’s a win-win for everybody involved.",
@@ -33,6 +39,14 @@
       "enjoy": "When we say that we handle property management for you, we mean to handle everything, including maintenance, rent collection, housekeeping (even when no guests are due), cleaning, rental deeds, renewal of contracts, redressal of issues, and more. Often, these activities consume a significant amount of time for property owners, and you can save valuable time through our property management services.",
       "client": "We make routine inspections of your property and provide you with routine reports. You can access real-time updates about the activities on your properties in terms of tenancy status, maintenance, payments, etc. With our expertise in all facets of property management, we can assist you at every stage of the life cycle of your property.",
       "platform": "We understand giving your asset to any third person is a trust-based activity. For good reasons, Magnificent Property Management is counted among the best property management companies in Downtown Dubai. What sets us apart is a list of luxury holiday homes in Dubai and our commitment to creating a relationship with customers based on trust and goodwill."
+    }
+  },
+  "rentPlace": {
+    "nextSeo": {
+      "title": "Best Luxury Vacation Rental Homes in Downtown Dubai | Property Management Companies- Magnificent.",
+      "desc": "View our listings of luxury vacation apartment rentals and luxury vacation rental homes in downtown dubai. Book apartments and luxury holiday homes for your stay in downtown dubai - magnificent",
+      "openGraphTitle": "Best Luxury Vacation Rental Homes in Downtown Dubai | Property Management Companies- Magnificent.",
+      "openGraphDesc": "View our listings of luxury vacation apartment rentals and luxury vacation rental homes in downtown dubai. Book apartments and luxury holiday homes for your stay in downtown dubai - magnificent"
     }
   }
 }

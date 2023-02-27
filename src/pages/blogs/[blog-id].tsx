@@ -21,7 +21,9 @@ import blogFourImage from "../../../public/Blogs/04-1170x280.jpg";
 import blogFiveImage from "../../../public/Blogs/1-b.jpg";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-    const {data} = await instance.get(`/blog-posts/${query.id}`)
+    console.log(query)
+    const id = query.id || query['blog-id'];
+    const {data} = await instance.get(`/blog-posts/${id}`)
     const blogPosts = data.data
     return {
         props: {
@@ -36,7 +38,7 @@ type BlogProps = {
 
 //=======================|| Each Blogs Post Page ||=======================
 
-const BlogTitle = ({blogPosts}: BlogProps) => {
+const BlogId = ({blogPosts}: BlogProps) => {
     const router = useRouter();
     const {attributes} = blogPosts
     const IMAGE_WIDTH = 500;
@@ -72,6 +74,6 @@ const BlogTitle = ({blogPosts}: BlogProps) => {
         </AppContainer>
     )
 }
-export default BlogTitle;
+export default BlogId;
 
-BlogTitle.getLayout = (page: ReactElement) => <Layout>{page}</Layout>
+BlogId.getLayout = (page: ReactElement) => <Layout>{page}</Layout>
