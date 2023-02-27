@@ -2,6 +2,7 @@ import { Box, Slider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import SwitzerText from "@/components/css-texts/SwitzerText";
+import colors from "@/assets/colors";
 
 const ReSlider = styled(Slider)({
   color: "black",
@@ -17,7 +18,7 @@ const ReSlider = styled(Slider)({
   "& .MuiSlider-thumb": {
     height: 30,
     width: 30,
-    backgroundColor: "#FEBE1E",
+    backgroundColor: colors.mainColor,
     "&:before": {
       display: "none",
     },

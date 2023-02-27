@@ -1,16 +1,27 @@
 import {Box, Stack, Typography} from "@mui/material";
-import AppIcon from "@/components/global/AppIcon";
 import colors from "@/assets/colors";
+import Image, {StaticImageData} from "next/image";
+import EuclidText from "@/components/css-texts/EuclidText";
 
 type RentPlaceFlowItemProps = {
-    num:number
+    num: number,
+    iconSource: string | StaticImageData ,
+    title: string,
+    subtitle: string
 }
 
-const RentPlaceFlowItem = ({num}:RentPlaceFlowItemProps) => {
+const RentPlaceFlowItem = ({num, iconSource, title, subtitle}: RentPlaceFlowItemProps) => {
+    const ICON_WIDTH =60;
+    const ICON_HEIGHT =60;
+    const titleStyles = {
+        fontWeight:600,
+        fontSize:14
+    }
     return (
         <Stack direction={'column'} alignItems={'center'}>
-            <AppIcon name={'home'} size={3}/>
-            <Typography my={1}>This is a long text</Typography>
+            <Image alt={'Icon'} src={iconSource} width={ICON_WIDTH} height={ICON_HEIGHT}/>
+            <EuclidText mt={1} text={title} sx={titleStyles}/>
+            <EuclidText mb={1} text={subtitle} sx={titleStyles}/>
             <Box sx={{
                 backgroundColor: colors.mainColor,
                 width: 50,
@@ -18,7 +29,8 @@ const RentPlaceFlowItem = ({num}:RentPlaceFlowItemProps) => {
                 borderRadius: 25,
                 color: 'white',
                 display: 'grid',
-                placeItems: 'center'
+                placeItems: 'center',
+                zIndex:1
             }}>{num}</Box>
         </Stack>
     )

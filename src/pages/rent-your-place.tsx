@@ -1,4 +1,4 @@
-import {ReactElement} from "react";
+import {ReactElement, Suspense} from "react";
 // Material ui
 // Next.js
 import dynamic from "next/dynamic";
@@ -6,12 +6,11 @@ import dynamic from "next/dynamic";
 import {NextSeo} from "next-seo";
 // Project imports
 import dictionaries from '../../dictionaries/en.json';
+import AppLoading from "@/components/global/AppLoading";
 
 const Layout = dynamic(() => import("@/components/global/Layout"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 const RentFirstSection = dynamic(() => import("@/components/rent-your-place/RentFirstSection"));
-const RentSecondSection = dynamic(() => import("@/components/rent-your-place/RentSecondSection"));
-const RentLastSection = dynamic(() => import("@/components/rent-your-place/RentLastSection"));
 const RentPlaceFlow = dynamic(() => import("@/components/rent-your-place/RentPlaceFlow"));
 
 const RentYourPlace = () => {
@@ -40,10 +39,10 @@ const RentYourPlace = () => {
                 }}
             />
             <AppContainer>
-                <RentFirstSection/>
-                <RentSecondSection/>
-                <RentPlaceFlow/>
-                <RentLastSection/>
+                <Suspense fallback={<AppLoading/>}>
+                    <RentFirstSection/>
+                    <RentPlaceFlow/>
+                </Suspense>
             </AppContainer>
         </>
     );

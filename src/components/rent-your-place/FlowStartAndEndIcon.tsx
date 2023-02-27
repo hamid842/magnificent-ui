@@ -11,27 +11,27 @@ const FlowStartAndEndIcon = ({iconName}:Props)=>{
         <Box sx={{
             '&::after': {
                 content: '""',
-                width: 'calc(100% - 100px)',
+                width: 'calc(100% - 120px)',
                 height: '1px',
                 borderTop: `1px dashed ${colors.mainColor}`,
                 position: 'absolute',
                 left: '50%',
                 bottom: 12,
                 transform: 'translateX(-50%)',
-                zIndex: 0
+                zIndex: 2
             }
         }}>
             <Box sx={{
-                width: 50,
-                height: 50,
+                width: 60,
+                height: 60,
                 borderRadius: 3,
-                border: `1px dotted ${colors.mainColor}`,
+                border: `1px dashed ${colors.mainColor}`,
                 display: 'grid',
                 placeItems: 'center',
                 position: 'absolute',
                 left: 0,
                 bottom: 0,
-                transform: 'translateY(12px)'
+                transform: 'translateY(15px)'
             }}>
                 <AppIcon name={iconName}/>
             </Box>

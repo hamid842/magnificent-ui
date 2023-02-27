@@ -6,7 +6,7 @@ type AppIconProps = {
     size?: number
 }
 
-const AppIcon = ({name, color = '#B6923E', size = 2}: AppIconProps) => {
+const AppIcon = ({name, color = '#B6923E !important', size = 2}: AppIconProps) => {
     return (
         <>
             <span className="material-symbols-outlined">{name}</span>
@@ -14,7 +14,7 @@ const AppIcon = ({name, color = '#B6923E', size = 2}: AppIconProps) => {
                 {`
                   .material-symbols-outlined {
                     color: ${color};
-                    font-size: ${size}rem !important;
+                    font-size: ${size}rem;
                   }
                 `}
 
