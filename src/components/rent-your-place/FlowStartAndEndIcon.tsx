@@ -1,12 +1,12 @@
-import colors from "@/assets/colors";
 import {Box} from "@mui/material";
 import AppIcon from "@/components/global/AppIcon";
+import colors from "@/assets/colors";
 
 type Props = {
-    iconName:string
+    iconName: string
 }
 
-const FlowStartAndEndIcon = ({iconName}:Props)=>{
+const FlowStartAndEndIcon = ({iconName}: Props) => {
     return (
         <Box sx={{
             '&::after': {
