@@ -2,16 +2,10 @@
 import Image from "next/image";
 
 import { Box, ImageList, ImageListItem } from "@mui/material";
-// import listOne from "../../../public/rent-place/list-1.jpeg";
-// import listTwo from "../../../public/rent-place/list-2.png";
-// import listThree from "../../../public/rent-place/list-3.png";
-import listFour from "../../../public/rent-place/list-4.png";
-import listFive from "../../../public/rent-place/list-5.png";
-import listSix from "../../../public/rent-place/list-6.png";
-import listSeven from "../../../public/rent-place/list-7.png";
-// import listEight from "../../../public/rent-place/list-8.png";
-// import listNine from "../../../public/rent-place/list-9.jpg";
-// import listTen from "../../../public/rent-place/list-10.png";
+import listFour from "../../../public/rent-place/list-1.jpeg";
+import listFive from "../../../public/rent-place/list-2.jpeg";
+import listSix from "../../../public/rent-place/list-3.jpeg";
+import listSeven from "../../../public/rent-place/list-4.jpeg";
 
 const RentImageList = () => {
   return (
@@ -21,8 +15,8 @@ const RentImageList = () => {
           <ImageListItem key={item.img}>
             <Image
               src={item.img}
-              width={100}
-              height={100}
+              width={800}
+              height={600}
               alt={item.title}
               style={{ width: "100%", height: "auto", borderRadius: 5 }}
             />
@@ -37,42 +31,18 @@ export default RentImageList;
 const itemData = [
   {
     img: listFive,
-    title: "Blinds",
+    title: "One",
   },
   {
     img: listSix,
-    title: "Chairs",
+    title: "Two",
   },
   {
     img: listFour,
-    title: "Kitchen",
+    title: "Three",
   },
   {
     img: listSeven,
-    title: "Laptop",
+    title: "Four",
   },
-  //   {
-  //     img: listOne,
-  //     title: "Bed",
-  //   },
-  //   {
-  //     img: listTwo,
-  //     title: "Books",
-  //   },
-  //   {
-  //     img: listThree,
-  //     title: "Sink",
-  //   },
-  //   {
-  //     img: listEight,
-  //     title: "Doors",
-  //   },
-  //   {
-  //     img: listNine,
-  //     title: "Doors",
-  //   },
-  //   {
-  //     img: listTen,
-  //     title: "Doors",
-  //   },
 ];
