@@ -21,7 +21,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactName}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactName') && getIn(errors, 'contact.contactName'))}
-                        errorMsg={getIn(touched, 'contact.contactName') && getIn(errors, 'contact.contactName')}
+                        helperText={getIn(touched, 'contact.contactName') && getIn(errors, 'contact.contactName')}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} lg={3}>
@@ -32,7 +32,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactSurName}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactSurName') && getIn(errors, 'contact.contactSurName'))}
-                        errorMsg={getIn(touched, 'contact.contactSurName') && getIn(errors, 'contact.contactSurName')}
+                        helperText={getIn(touched, 'contact.contactSurName') && getIn(errors, 'contact.contactSurName')}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
@@ -43,7 +43,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactEmail}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail'))}
-                        errorMsg={getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail')}
+                        helperText={getIn(touched, 'contact.contactEmail') && getIn(errors, 'contact.contactEmail')}
                     />
                 </Grid>
 
@@ -55,7 +55,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactPhone1}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactPhone1') && getIn(errors, 'contact.contactPhone1'))}
-                        errorMsg={getIn(touched, 'contact.contactPhone1') && getIn(errors, 'contact.contactPhone1')}
+                        helperText={getIn(touched, 'contact.contactPhone1') && getIn(errors, 'contact.contactPhone1')}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
@@ -65,7 +65,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactPhone2}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactPhone2') && getIn(errors, 'contact.contactPhone2'))}
-                        errorMsg={getIn(touched, 'contact.contactPhone2') && getIn(errors, 'contact.contactPhone2')}
+                        helperText={getIn(touched, 'contact.contactPhone2') && getIn(errors, 'contact.contactPhone2')}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>
@@ -76,7 +76,7 @@ const ContactInformation = ({formik}: Props) => {
                         value={values.contact.contactAddress}
                         onChange={handleChange}
                         error={Boolean(getIn(touched, 'contact.contactAddress') && getIn(errors, 'contact.contactAddress'))}
-                        errorMsg={getIn(touched, 'contact.contactAddress') && getIn(errors, 'contact.contactAddress')}
+                        helperText={getIn(touched, 'contact.contactAddress') && getIn(errors, 'contact.contactAddress')}
                     />
                 </Grid>
             </Grid>

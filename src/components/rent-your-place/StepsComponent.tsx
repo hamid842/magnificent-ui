@@ -104,7 +104,7 @@ const validationSchema = yup.object().shape({
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = useState(0);
 
-  const formik = useFormik({
+const formik = useFormik({
     initialValues: {
       Title: "",
       property_type: "",

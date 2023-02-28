@@ -188,7 +188,7 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price,
                         <Typography sx={{color: '#333333', ml: 2, flex: 1}} variant="h6" component="div">
                             Booking Details
                         </Typography>
-                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false}/>}
+                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false} label={'Pay Now'}/>}
                     </Toolbar>
                 </AppBar>
                 {/* ====================== Dialog Content =======================*/}

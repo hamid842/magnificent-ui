@@ -267,7 +267,7 @@ const BookingCalculationSection: FC<Props> = ({property, calendar}) => {
         if (firstBlockedDate)
             // If this day (in datepicker) is after the firstBlockedDate: make it unselectable
             if (day.isSameOrAfter(firstBlockedDate, 'day')) return true;
-        // Everthing else is selectable
+        // Everything else is selectable
         return false;
     }, [firstBlockedDate]);
 

@@ -94,11 +94,12 @@ function TabPanel(props: TabPanelProps) {
 }
 
 type AuthWrapperProps = {
-    isHeader: boolean
+    isHeader: boolean,
+    label:string
 }
 
 
-const AuthWrapper = ({isHeader}: AuthWrapperProps) => {
+const AuthWrapper = ({isHeader,label}: AuthWrapperProps) => {
     const theme = useTheme();
     const {user} = useContext(AuthContext)
     const [open, setOpen] = useState(false);
@@ -124,7 +125,7 @@ const AuthWrapper = ({isHeader}: AuthWrapperProps) => {
     return (
         <div>
             {!user && !isHeader && <AppButton
-                label={'Pay Now'}
+                label={label}
                 sx={{
                     backgroundColor: "#A47C30",
                     textTransform: 'capitalize',
