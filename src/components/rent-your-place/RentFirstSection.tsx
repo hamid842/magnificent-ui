@@ -32,7 +32,7 @@ const RentFirstSection = () => {
           />
           <RentSlider />
         </Stack>
-        <Box mt={3}>
+        <Box mt={8}>
           <OurPartnership />
         </Box>
       </Grid>
