@@ -150,7 +150,7 @@ const SecondStep = ({ formik, setActiveStep }: Props) => {
         </Grid>
       </Paper>
       {/* <AdvertiseFeatures formik={formik}/> */}
-      <Stack direction={"row"} justifyContent={"space-between"} mt={3}>
+      <Stack direction={"row"} justifyContent={"space-between"} my={3}>
         <AppButton
           label={"Back"}
           onClick={() => setActiveStep((prev) => prev - 1)}

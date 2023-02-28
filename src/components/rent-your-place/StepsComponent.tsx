@@ -16,6 +16,7 @@ import ThirdStep from "@/components/rent-your-place/third-step/ThirdStep";
 import AppContainer from "@/components/global/AppContainer";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import Layout from "../global/Layout";
 
 const steps = ["Step 1", "Step 2", "Step 3"];
 

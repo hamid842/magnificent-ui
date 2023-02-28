@@ -31,7 +31,7 @@ const ContactUs = () => {
     boxShadow: "rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px",
   };
 
-  const boxHeight = { xs: 400, sm: 350, md: 220, lg: 230 };
+  const boxHeight = { xs: 400, sm: 350, md: 330, lg: 330 };
   return (
     <>
       <NextSeo
@@ -141,7 +141,7 @@ const ContactUs = () => {
                   style={imageStyles}
                 />
                 <Typography sx={{ fontWeight: 600 }} mt={2}>
-                  JHarish Allakonda
+                  Harish Allakonda
                 </Typography>
                 <Typography variant={"caption"} sx={{ color: "gray" }}>
                   Guest Relation Associate

@@ -32,7 +32,7 @@ const FirstStep = ({ formik }: Props) => {
             xs={12}
             sm={12}
             lg={12}
-            sx={{ textAlign: "center", marginBottom: 10 }}
+            sx={{ textAlign: "center", marginBottom: 3 }}
           >
             <AppButton type={"submit"} label={"Next"} />
           </Grid>
