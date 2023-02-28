@@ -2,12 +2,15 @@
 import {useRouter} from "next/router";
 // Material-ui
 import {Box, Grid, TextField} from "@mui/material";
-import {PeopleAlt} from "@mui/icons-material";
 import {styled} from "@mui/material/styles";
 // Project imports
 import colors from '@/assets/colors'
 import AppButton from "@/components/global/AppButton";
 import AppIcon from "@/components/global/AppIcon";
+import {LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers";
+import {Dayjs} from "dayjs";
+import {useState} from "react";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -15,6 +18,7 @@ const CssTextField = styled(TextField)({
         background: 'transparent'
     },
     '& .MuiFilledInput-root': {
+        outline: 'none !important',
         background: 'transparent',
         '&:hover': {
             background: 'transparent'
@@ -30,6 +34,12 @@ type Props = {
 
 const SearchDestination = ({position}: Props) => {
     const router = useRouter()
+    const [value, setValue] = useState<Dayjs | null>(null);
+
+    const handleChange = (newValue: Dayjs | null) => {
+        setValue(newValue);
+    };
+
     return (
         <Box sx={{
             position,
@@ -60,19 +70,23 @@ const SearchDestination = ({position}: Props) => {
                 }}>
                 <Grid container alignItems={'center'}>
                     <Grid item xs={5}>
-                        <Box sx={{display: 'flex', alignItems: 'center'}}>
-                            <AppIcon name={'calendar_today'}/>
-                            <CssTextField
-                                label="When"
-                                variant="filled"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}/>
-                        </Box>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                <AppIcon name={'calendar_today'}/>
+                                <MobileDatePicker
+                                    label={'When'}
+                                    onChange={handleChange}
+                                    value={value}
+                                    InputProps={{disableUnderline: true}}
+                                    renderInput={
+                                        (params) => <CssTextField {...params} variant="filled"/>}
+                                />
+                            </Box>
+                        </LocalizationProvider>
                     </Grid>
                     <Grid item xs={7}>
                         <Box sx={{display: 'flex', alignItems: 'center'}}>
-                            <AppIcon name={'person'} />
+                            <AppIcon name={'person'}/>
                             <CssTextField
                                 label="Guests"
                                 variant="filled"

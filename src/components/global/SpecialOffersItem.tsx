@@ -84,7 +84,7 @@ const SpecialOffersItem = ({ data }: Props) => {
             text={`${attributes.bedroomsNumber} Bedroom/s Combined Lodge`}
           />
         </Grid>
-        <Grid item xs={12} mt={"auto"}>
+        <Grid item xs={12}>
           <Stack direction={"row"} alignItems={"center"} pt={1}>
             <AppIcon name={"sell"} />
             <Typography
@@ -95,7 +95,7 @@ const SpecialOffersItem = ({ data }: Props) => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xs={12} mt={"auto"}>
+        <Grid item xs={12}>
           <SpecialOffersIconDetails
             bedsNumber={attributes.bedsNumber}
             squareMeters={attributes.squareMeters}

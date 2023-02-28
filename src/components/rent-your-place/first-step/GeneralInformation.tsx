@@ -1,12 +1,15 @@
-import {Grid, MenuItem, Paper, Typography} from "@mui/material";
+import {useEffect, useMemo, useState} from "react";
+// Material ui
+import {Grid, MenuItem, Paper} from "@mui/material";
+// Third party
+import {FormikProps} from "formik";
+// Project imports
+import {IAllPropertyTypes} from "@/utils/property-type";
+import {IAllAmenityType} from "@/utils/amenity-type";
+import {instance as axios} from "@/config/axiosConfig";
+import EuclidText from "@/components/css-texts/EuclidText";
 import AppTextField from "@/components/global/AppTextField";
 import SelectField from "@/components/global/SelectField";
-import {useEffect, useMemo, useState} from "react";
-import {IAllPropertyTypes} from "@/utils/property-type";
-import {instance as axios} from "@/config/axiosConfig";
-import {FormikProps} from "formik";
-import {IAllAmenityType} from "@/utils/amenity-type";
-import EuclidText from "@/components/css-texts/EuclidText";
 
 type Props = {
     formik: FormikProps<any>
@@ -44,7 +47,7 @@ const GeneralInformation = ({formik}: Props) => {
 
     return (
         <Paper elevation={3} sx={{py: 2, px: 1, mb: 2}}>
-            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600, mb: 1}} text={'General Information'} />
+            <EuclidText variant={'subtitle1'} sx={{fontWeight: 600, mb: 1}} text={'General Information'}/>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
                     <AppTextField
