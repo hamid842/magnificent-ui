@@ -55,15 +55,16 @@ const RentSlider = () => {
     <>
       <Box>
         <SwitzerText sx={{ mt: 2 }} text={"You could earn"} />
-        <SwitzerText align={"center"} text={"12,000 AED"} />
+        <SwitzerText align={"center"} text={"18,000 AED"} />
       </Box>
       <Box>
         <SwitzerText
           sx={{ mt: 2 }}
           text={`${sliderValue} nights at an estimated ${
-            sliderValue * 1200
-          } AED per night`}
+            sliderValue * 1800
+          } AED per night for 3 BR in Down Town, Dubai`}
         />
+        <SwitzerText align={"center"} text={"Have it at 1800 AED per night"} />
       </Box>
       <ReSlider
         min={0}
