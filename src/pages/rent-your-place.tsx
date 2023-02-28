@@ -46,8 +46,8 @@ const RentYourPlace = () => {
       <AppContainer>
         <Suspense fallback={<AppLoading />}>
           <RentFirstSection />
-          <RentPlaceFlow />
           <RentPlaceForm />
+          <RentPlaceFlow />
         </Suspense>
       </AppContainer>
     </>
