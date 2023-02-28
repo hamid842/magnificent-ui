@@ -6,11 +6,11 @@ import { Typography } from "@mui/material";
 const RentPlaceForm = () => {
   return (
     <>
-      <Typography variant={"h6"} sx={{ mt: 20 }}></Typography>
+      <Typography variant={"h6"} sx={{ mt: 10 }}></Typography>
       <StepsComponent />
     </>
   );
 };
 export default RentPlaceForm;
 
-RentPlaceForm.getLayout = (page: ReactElement) => <Layout> {page}</Layout>;
+

@@ -21,7 +21,6 @@ import blogFourImage from "../../../public/Blogs/04-1170x280.jpg";
 import blogFiveImage from "../../../public/Blogs/1-b.jpg";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-    console.log(query)
     const id = query.id || query['blog-id'];
     const {data} = await instance.get(`/blog-posts/${id}`)
     const blogPosts = data.data

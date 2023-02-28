@@ -136,7 +136,7 @@ export default function HorizontalLinearStepper() {
   });
 
   return (
-    <AppContainer>
+    <>
       <Stepper
         activeStep={activeStep}
         connector={<ColorLibConnector />}
@@ -156,6 +156,6 @@ export default function HorizontalLinearStepper() {
         <SecondStep formik={formik} setActiveStep={setActiveStep} />
       )}
       {activeStep === 2 && <ThirdStep />}
-    </AppContainer>
+    </>
   );
 }
