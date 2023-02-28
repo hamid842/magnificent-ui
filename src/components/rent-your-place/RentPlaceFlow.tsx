@@ -27,7 +27,7 @@ const RentPlaceFlow = () => {
   const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Paper elevation={3} sx={{ px: 2, py: 5, borderRadius: 3 }}>
+    <Paper elevation={3} sx={{ px: 2, py: 5, borderRadius: 3,mt:5 }}>
       <EuclidText
         sx={{ fontWeight: 700, textAlign: "center", fontSize: 20 }}
         text={"Convert Your Property Investment"}
