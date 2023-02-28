@@ -1,5 +1,4 @@
-import { Box, Grid, Paper, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import {Box, createTheme, Grid, Paper, useMediaQuery} from "@mui/material";
 
 import colors from "@/assets/colors";
 import RentPlaceFlowItem from "@/components/rent-your-place/RentPlaceFlowItem";
@@ -23,7 +22,7 @@ import XsBeforeElement from "@/components/rent-your-place/XsBeforeElement";
 import XsAfterElement from "@/components/rent-your-place/XsAfterElement";
 
 const RentPlaceFlow = () => {
-  const theme = useTheme();
+  const theme = createTheme();
   const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (

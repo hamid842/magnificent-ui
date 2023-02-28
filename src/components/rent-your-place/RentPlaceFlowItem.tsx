@@ -1,9 +1,7 @@
-import { Box, Stack, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import {Box, createTheme, Stack, useMediaQuery} from "@mui/material";
 import colors from "@/assets/colors";
 import Image, { StaticImageData } from "next/image";
 import EuclidText from "@/components/css-texts/EuclidText";
-import XsBeforeElement from "@/components/rent-your-place/XsBeforeElement";
 
 type RentPlaceFlowItemProps = {
   num: number;
@@ -18,7 +16,7 @@ const RentPlaceFlowItem = ({
   title,
   subtitle,
 }: RentPlaceFlowItemProps) => {
-  const theme = useTheme();
+  const theme = createTheme();
   const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
   const ICON_WIDTH = 60;

@@ -44,7 +44,7 @@ const SearchDestination = ({ position }: Props) => {
     <Box
       sx={{
         position,
-        p: 3.2,
+        p: {xs:2,sm:3,md:3,lg:3},
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -53,8 +53,8 @@ const SearchDestination = ({ position }: Props) => {
         bottom: 70,
         left: "50%",
         transform: "translate(-50%,-50%)",
-        width: { xs: 380, sm: 500, lg: 600 },
-        height: 100,
+        width: { xs: 350, sm: 500, lg: 600 },
+        height: 90,
         backgroundColor: "rgba(11,11,14,0.5)",
       }}
     >

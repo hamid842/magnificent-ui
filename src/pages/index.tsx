@@ -99,10 +99,10 @@ const HomePage = ({ properties, reviews }: HomePageProps) => {
         <Image
           src={homePagePicture}
           alt={"Pic"}
-          sizes="90vw"
+          sizes="100vw"
           priority
           style={{
-            width: "100%",
+            width: "100vw",
             height: "100vh",
             objectFit: "cover",
           }}

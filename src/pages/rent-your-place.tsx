@@ -14,14 +14,11 @@ import RentForm from "@/components/rent-your-place-1/RentForm";
 
 const Layout = dynamic(() => import("@/components/global/Layout"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
-const RentFirstSection = dynamic(
-    () => import("@/components/rent-your-place/RentFirstSection")
-);
+
 const RentPlaceFlow = dynamic(
     () => import("@/components/rent-your-place/RentPlaceFlow")
 );
 
-const RentPlaceForm = dynamic(() => import("@/pages/our-homes/form"));
 
 const RentYourPlace = () => {
     return (

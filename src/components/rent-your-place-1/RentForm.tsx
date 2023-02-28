@@ -6,7 +6,7 @@ import * as yup from "yup";
 import {getIn, useFormik} from "formik";
 import PropertyTypeSelectField from "@/components/global/PropertyTypeSelectField";
 import {instance as axios} from "@/config/axiosConfig";
-import {useContext, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {AuthContext} from "../../../context/contexts";
 import dynamic from "next/dynamic";
 
@@ -30,6 +30,7 @@ const validationSchema = yup.object().shape({
 });
 
 const RentForm = () => {
+    const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const {user} = useContext(AuthContext);
 
@@ -62,26 +63,31 @@ const RentForm = () => {
     });
 
     const handleCreate = async () => {
-        setLoading(true)
-        await axios
-            .post("/new-properties", {data: {...formik.values}})
-            .then((res) => {
-                if (res.status === 201) {
-                    console.log(res);
-                    setLoading(false)
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoading(false);
-            });
+        const { value } = formRef.current?.myInput;
+        console.log("handler 1", value);
+        if (formRef.current) {
+            setLoading(true)
+            await axios
+                .post("/new-properties", {data: {...formik.values}})
+                .then((res) => {
+                    if (res.status === 201) {
+                        console.log(res);
+                        setLoading(false);
+                        formRef.current?.reset();
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setLoading(false);
+                });
+        }
     };
 
     const {values, handleChange, touched, errors} = formik
 
     return (
         <Paper elevation={3} sx={{p: 2, height: '100%'}}>
-            <form autoComplete={"off"} noValidate onSubmit={formik.handleSubmit}>
+            <form autoComplete={"off"} noValidate onSubmit={formik.handleSubmit} ref={formRef}>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={12} lg={12}>
                         <EuclidText align={'center'} my={0.5} text={'Find out if your property meets our criteria'}

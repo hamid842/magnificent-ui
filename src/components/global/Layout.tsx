@@ -21,11 +21,13 @@ export default function Layout({children}: { children: ReactNode }) {
                 box-sizing: border-box;
               }
 
-              body {
+              html,body {
                 margin: 0;
                 padding: 0;
+                width: 100vw;
+                box-sizing: border-box;
                 color: #333;
-                overflow-x: hidden;
+                overflow-x: hidden ;
                 background-color: #FEFDF8;
               }
 
