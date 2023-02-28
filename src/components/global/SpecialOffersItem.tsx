@@ -54,7 +54,7 @@ const SpecialOffersItem = ({ data }: Props) => {
             position: "absolute",
             backgroundColor: "white",
             width: 55,
-            height: 30,
+            height: 35,
             top: 10,
             left: 10,
             borderRadius: 1,

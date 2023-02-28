@@ -2,10 +2,10 @@
 import Image from "next/image";
 
 import { Box, ImageList, ImageListItem } from "@mui/material";
-import listFour from "../../../public/rent-place/list-1.jpeg";
-import listFive from "../../../public/rent-place/list-2.jpeg";
-import listSix from "../../../public/rent-place/list-3.jpeg";
-import listSeven from "../../../public/rent-place/list-4.jpeg";
+import listOne from "../../../public/rent-place/list-1.jpeg";
+import listTwo from "../../../public/rent-place/list-2.jpeg";
+import listThree from "../../../public/rent-place/list-3.jpeg";
+import listFour from "../../../public/rent-place/list-4.jpeg";
 
 const RentImageList = () => {
   return (
@@ -30,19 +30,19 @@ export default RentImageList;
 
 const itemData = [
   {
-    img: listFive,
+    img: listTwo,
     title: "One",
   },
-  // {
-  //   img: listSix,
-  //   title: "Two",
-  // },
   {
-    img: listFour,
+    img: listThree,
     title: "Three",
   },
-  // {
-  //   img: listSeven,
-  //   title: "Four",
-  // },
+  {
+    img: listFour,
+    title: "Two",
+  },
+  {
+    img: listOne,
+    title: "Four",
+  },
 ];
