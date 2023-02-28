@@ -128,10 +128,10 @@ const OurHomes = ({ properties }: LastMinuteDealsProps) => {
                     onClick={() =>
                       router.push(
                         {
-                          pathname: `/last-minute-deals/${property.id}`,
+                          pathname: `/our-homes/${property.id}`,
                           query: { propertyId: JSON.stringify(property.id) },
                         },
-                        `/last-minute-deals/${property.id}`
+                        `/our-homes/${property.id}`
                       )
                     }
                     sx={{ cursor: "pointer" }}
