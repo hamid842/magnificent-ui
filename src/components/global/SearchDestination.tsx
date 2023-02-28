@@ -77,7 +77,7 @@ const SearchDestination = ({ position }: Props) => {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <AppIcon name={"calendar_today"} />
                 <MobileDatePicker
-                  // label={'When'}
+                  label={"When"}
                   onChange={handleChange}
                   showToolbar={false}
                   disablePast={true}
