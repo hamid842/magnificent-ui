@@ -28,11 +28,11 @@ const RentFirstSection = () => {
           <EuclidText
             variant={"h4"}
             sx={{ fontWeight: 600, mt: 3 }}
-            text={"Rent it !"}
+            text={"Rent your property out with us !"}
           />
           <RentSlider />
         </Stack>
-        <Box mt={8}>
+        <Box mt={5}>
           <OurPartnership />
         </Box>
       </Grid>

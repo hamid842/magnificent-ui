@@ -33,16 +33,16 @@ const itemData = [
     img: listFive,
     title: "One",
   },
-  {
-    img: listSix,
-    title: "Two",
-  },
+  // {
+  //   img: listSix,
+  //   title: "Two",
+  // },
   {
     img: listFour,
     title: "Three",
   },
-  {
-    img: listSeven,
-    title: "Four",
-  },
+  // {
+  //   img: listSeven,
+  //   title: "Four",
+  // },
 ];
