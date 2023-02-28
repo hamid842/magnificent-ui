@@ -208,7 +208,7 @@ export default function Header() {
           >
             {!user ? (
               <MenuItem onClick={handleCloseUserMenu}>
-                <AuthWrapper isHeader={true} />
+                <AuthWrapper isHeader={true} label={'Login'}/>
               </MenuItem>
             ) : (
               <>
