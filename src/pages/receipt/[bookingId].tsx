@@ -8,7 +8,7 @@ import {AxiosError, AxiosResponse} from "axios";
 import {useReactToPrint} from "react-to-print";
 // Project imports
 import AppContainer from "@/components/global/AppContainer";
-import Layout from "@/components/global/Layout";
+import Layout from "@/components/layout/Layout";
 import {instance as axios} from "@/config/axiosConfig";
 import {IBooking, IPriceComponent} from "@/utils/booking-type";
 import EuclidText from "@/components/css-texts/EuclidText";

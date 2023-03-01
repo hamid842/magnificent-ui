@@ -12,7 +12,7 @@ import RentSlider from "@/components/rent-your-place/RentSlider";
 import OurPartnership from "@/components/global/OurPartnership";
 import RentForm from "@/components/rent-your-place-1/RentForm";
 
-const Layout = dynamic(() => import("@/components/global/Layout"));
+const Layout = dynamic(() => import("@/components/layout/Layout"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 
 const RentPlaceFlow = dynamic(

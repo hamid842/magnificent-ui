@@ -7,7 +7,7 @@ import {NextSeo} from "next-seo";
 import dictionaries from "../../dictionaries/en.json";
 import AppLoading from "@/components/global/AppLoading";
 
-const Layout = dynamic(() => import("@/components/global/Layout"));
+const Layout = dynamic(() => import("@/components/layout/Layout"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 const RentFirstSection = dynamic(
     () => import("@/components/rent-your-place/RentFirstSection")

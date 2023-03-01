@@ -9,7 +9,7 @@ import {Grid} from "@mui/material";
 import {instance} from "@/config/axiosConfig";
 import {IBlogPostsData} from "@/utils/blog-post-type";
 
-const Layout = dynamic(() => import("@/components/global/Layout"))
+const Layout = dynamic(() => import("@/components/layout/Layout"))
 const BlogItem = dynamic(() => import("@/components/blog/BlogItem"))
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"))
 const TitleSeparator = dynamic(() => import("@/components/global/TitleSeparator"))

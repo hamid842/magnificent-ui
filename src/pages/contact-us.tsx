@@ -11,7 +11,7 @@ import officer from "../../public/contact-us/officer.jpg";
 import sales from "../../public/contact-us/sales.jpg";
 import { NextSeo } from "next-seo";
 
-const Layout = dynamic(() => import("@/components/global/Layout"));
+const Layout = dynamic(() => import("@/components/layout/Layout"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 const FirstSection = dynamic(() => import("@/components/contact/FirstSection"));
 const SecondSection = dynamic(

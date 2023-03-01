@@ -12,7 +12,7 @@ import { instance } from "@/config/axiosConfig";
 import { NextSeo } from "next-seo";
 import dictionaries from "../../dictionaries/en.json";
 
-const Layout = dynamic(() => import("@/components/global/Layout"));
+const Layout = dynamic(() => import("@/components/layout/Layout"));
 const AppButton = dynamic(() => import("@/components/global/AppButton"));
 const AppLoading = dynamic(() => import("@/components/global/AppLoading"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));

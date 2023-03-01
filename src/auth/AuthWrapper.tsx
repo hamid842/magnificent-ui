@@ -1,7 +1,18 @@
 import * as React from "react";
 import {forwardRef, memo, ReactElement, ReactNode, Ref, SyntheticEvent, useContext, useState} from "react";
 // Material ui
-import {Box, Button, Dialog, Slide, Stack, Tab, TabProps, Tabs} from '@mui/material';
+import {
+    Box,
+    Dialog,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Slide,
+    Stack,
+    Tab,
+    TabProps,
+    Tabs
+} from '@mui/material';
 import {TransitionProps} from '@mui/material/transitions';
 import {styled, useTheme} from "@mui/material/styles";
 import {AppRegistration, Login} from "@mui/icons-material";
@@ -15,6 +26,7 @@ import RegisterDialog from "@/auth/register/RegisterDialog";
 import SwipeableViews from 'react-swipeable-views';
 import {AuthContext} from "../../context/contexts";
 import AppButton from "@/components/global/AppButton";
+import AppIcon from "@/components/global/AppIcon";
 
 const Transition = forwardRef(function Transition(
     props: TransitionProps & {
@@ -95,11 +107,11 @@ function TabPanel(props: TabPanelProps) {
 
 type AuthWrapperProps = {
     isHeader: boolean,
-    label:string
+    label: string
 }
 
 
-const AuthWrapper = ({isHeader,label}: AuthWrapperProps) => {
+const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
     const theme = useTheme();
     const {user} = useContext(AuthContext)
     const [open, setOpen] = useState(false);
@@ -137,13 +149,15 @@ const AuthWrapper = ({isHeader,label}: AuthWrapperProps) => {
                         border: 'none'
                     }
                 }} onClick={handleClickOpen}/>
-              }
+            }
             {
-                isHeader && <Button size={'small'} onClick={handleClickOpen}
-                                    sx={{textTransform: 'none', height: 15, color: colors.navMenuColor}}
-                                    startIcon={<Login/>}>
-                    Login
-                </Button>
+                isHeader &&
+                <ListItemButton onClick={handleClickOpen}>
+                    <ListItemIcon>
+                        <AppIcon name={'login'}/>
+                    </ListItemIcon>
+                    <ListItemText primary={'Sign in'}/>
+                </ListItemButton>
             }
 
             <Dialog
@@ -167,8 +181,12 @@ const AuthWrapper = ({isHeader,label}: AuthWrapperProps) => {
                         index={value}
                         onChangeIndex={handleChangeIndex}
                     >
-                        <TabPanel index={0} value={value}><LoginDialog setValue={setValue} setOpen={setOpen}/></TabPanel>
-                        <TabPanel index={1} value={value}><RegisterDialog setValue={setValue} setOpen={setOpen}/></TabPanel>
+                        <TabPanel index={0} value={value}>
+                            <LoginDialog setValue={setValue} setOpen={setOpen}/>
+                        </TabPanel>
+                        <TabPanel index={1} value={value}>
+                            <RegisterDialog setValue={setValue} setOpen={setOpen}/>
+                        </TabPanel>
                     </SwipeableViews>
                 </Stack>
             </Dialog>

@@ -17,7 +17,7 @@ import { NextSeo } from "next-seo";
 const EuclidText = dynamic(() => import("@/components/css-texts/EuclidText"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 const SwitzerText = dynamic(() => import("@/components/css-texts/SwitzerText"));
-const Layout = dynamic(() => import("@/components/global/Layout"));
+const Layout = dynamic(() => import("@/components/layout/Layout"));
 const TitleSeparator = dynamic(
   () => import("@/components/global/TitleSeparator")
 );

@@ -17,7 +17,7 @@ import LocationInformation from "@/components/our-homes/LocationInformation";
 import AppContainer from "@/components/global/AppContainer";
 import {instance} from "@/config/axiosConfig";
 import {DATE_FORMAT, IProperty, TCalendarDay} from "@/utils/property-type";
-import Layout from "@/components/global/Layout";
+import Layout from "@/components/layout/Layout";
 import ReviewsSectionLastMin from "@/components/our-homes/ReviewsSectionLastMin";
 import AppIcon from "@/components/global/AppIcon";
 import {useTheme} from "@mui/material/styles";

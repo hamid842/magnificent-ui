@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 // Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
 import AppContainer from "@/components/global/AppContainer";
-import Layout from "@/components/global/Layout";
+import Layout from "@/components/layout/Layout";
 import {instance} from "@/config/axiosConfig";
 import {IBlogPostsData} from "@/utils/blog-post-type";
 import {switzerFont} from "@/assets/fonts";

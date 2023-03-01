@@ -12,7 +12,7 @@ import { IProperty } from "@/utils/property-type";
 import { instance } from "@/config/axiosConfig";
 import AppContainer from "@/components/global/AppContainer";
 import { GetServerSideProps } from "next";
-import Layout from "@/components/global/Layout";
+import Layout from "@/components/layout/Layout";
 import { NextSeo } from "next-seo";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {

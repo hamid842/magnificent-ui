@@ -13,13 +13,8 @@ export type TUser = {
     updatedAt: string,
 };
 
-export type TUserContext = {
-    user: TUser | undefined,
-    setUser:(user: TUser) => void
-};
-
-const AuthContext = createContext<TUserContext>({
-    user: undefined,
-    setUser: (user: TUser) => {}
+const AuthContext = createContext({
+    user: {},
+    setUser: (user:any) => {}
 })
 export {AuthContext}

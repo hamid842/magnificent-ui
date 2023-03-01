@@ -1,24 +1,22 @@
-import {ChangeEvent, MouseEvent, useState} from "react";
+import {MouseEvent, useState} from "react";
 import {
     FormControl,
-    FormControlProps,
     FormHelperText,
     IconButton,
     InputAdornment,
     InputLabel,
-    OutlinedInput
+    OutlinedInput,
+    OutlinedInputProps
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type PasswordFieldProps = {
-    label: string,
-    value?: string,
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
-    helperText?: string
+    helperText?: string | false,
+    id:string
 }
 
-const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
-    const {label, helperText, onChange, value,...rest} = props
+const PasswordField = (props: (PasswordFieldProps & OutlinedInputProps)) => {
+    const {helperText,id, ...rest} = props
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -27,10 +25,11 @@ const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
         event.preventDefault();
     };
     return (
-        <FormControl size={'small'} fullWidth variant="outlined" {...rest}>
-            <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
+        <FormControl size={'small'} fullWidth variant="outlined">
+            <InputLabel htmlFor={id}>Password</InputLabel>
             <OutlinedInput
-                id="outlined-adornment-password"
+                {...rest}
+                name={id}
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position="end">
@@ -44,9 +43,6 @@ const PasswordField = (props: (PasswordFieldProps & FormControlProps)) => {
                         </IconButton>
                     </InputAdornment>
                 }
-                label={label}
-                onChange={onChange}
-                value={value}
             />
             {!!helperText && (
                 <FormHelperText error>
