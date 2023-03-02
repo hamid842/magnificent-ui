@@ -42,7 +42,6 @@ const RentForm = () => {
             squareMeters: "",
             price: "",
             bedroomsNumber: "",
-            bedsNumber: "",
             bathroomsNumber: "",
             contact: {
                 contactName: "",
@@ -52,8 +51,6 @@ const RentForm = () => {
                 contactEmail: "",
                 contactAddress: "",
             },
-            amenities: [],
-            generalInformation: {},
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
