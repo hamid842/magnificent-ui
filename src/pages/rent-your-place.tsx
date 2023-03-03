@@ -6,13 +6,10 @@ import {NextSeo} from "next-seo";
 // Project imports
 import dictionaries from "../../dictionaries/en.json";
 import AppLoading from "@/components/global/AppLoading";
-import {Box, Grid, Stack} from "@mui/material";
-import EuclidText from "@/components/css-texts/EuclidText";
-import RentSlider from "@/components/rent-your-place/RentSlider";
-import OurPartnership from "@/components/global/OurPartnership";
-import RentForm from "@/components/rent-your-place-1/RentForm";
+import RentSecondSection from "@/components/rent-your-place-1/RentSecondSection";
 
 const Layout = dynamic(() => import("@/components/layout/Layout"));
+const RentFirstSection = dynamic(() => import("@/components/rent-your-place-1/RentFirstSection"));
 const AppContainer = dynamic(() => import("@/components/global/AppContainer"));
 
 const RentPlaceFlow = dynamic(
@@ -45,29 +42,9 @@ const RentYourPlace = () => {
                 }}
             />
             <AppContainer>
-                <Grid container spacing={3} mt={15}>
-                    <Grid item xs={12} sm={6} lg={6}>
-                        <Stack
-                            direction={"column"}
-                            alignItems={"center"}
-                            justifyContent={"space-between"}
-                        >
-                            <EuclidText
-                                variant={"h4"}
-                                sx={{fontWeight: 600, mt: 3}}
-                                text={"Rent your property out with us !"}
-                            />
-                            <RentSlider/>
-                        </Stack>
-                        <Box mt={5}>
-                            <OurPartnership/>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={6} lg={6}>
-                        <RentForm/>
-                    </Grid>
-                </Grid>
                 <Suspense fallback={<AppLoading/>}>
+                    <RentFirstSection/>
+                    <RentSecondSection />
                     <RentPlaceFlow/>
                 </Suspense>
             </AppContainer>
