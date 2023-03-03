@@ -11,6 +11,7 @@ import homePagePicture from "../../public/home/home-page.png";
 import { instance } from "@/config/axiosConfig";
 import { NextSeo } from "next-seo";
 import dictionaries from "../../dictionaries/en.json";
+import SectionFour from "@/components/home/SectionFour";
 
 const Layout = dynamic(() => import("@/components/layout/Layout"));
 const AppButton = dynamic(() => import("@/components/global/AppButton"));
@@ -29,6 +30,7 @@ const SearchDestination = dynamic(
   () => import("@/components/global/SearchDestination")
 );
 const ActivityList = dynamic(() => import("@/components/home/ActivityList"));
+const SectionThree = dynamic(() => import("@/components/home/SectionThree"));
 const SpecialOffersItem = dynamic(
   () => import("@/components/global/SpecialOffersItem")
 );
@@ -147,6 +149,8 @@ const HomePage = ({ properties, reviews }: HomePageProps) => {
             </Grid>
           </Suspense>
         }
+        <SectionThree />
+          <SectionFour />
         <ActivityList />
         <RentPlaceSection />
         {reviews && reviews.length && <ReviewsSection reviews={reviews} />}

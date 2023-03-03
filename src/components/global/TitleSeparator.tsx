@@ -9,7 +9,7 @@ type TitleSeparatorProps = {
 const TitleSeparator = (props: (TitleSeparatorProps & BoxProps)) => {
     const {separatorTitle, title,...rest} = props
     return (
-        <Box py={8} sx={{width: '100%'}} {...rest}>
+        <Box pt={12} pb={4} sx={{width: '100%'}} {...rest}>
             <Typography align={'center'} variant={'h4'} className={satisfyFont.className}>{separatorTitle}</Typography>
             <Typography align={'center'} variant={'h4'} className={euclidFont.className}
                         sx={{fontWeight: 700}}>{title}</Typography>

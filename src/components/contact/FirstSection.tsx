@@ -15,16 +15,16 @@ const FirstSection = () => {
     return (
         <Grid container spacing={3} mt={20}>
             <Grid item xs={12} sm={6} md={6} lg={6}>
-                <EuclidText variant={'h4'} sx={{fontWeight: 700}} text={'We are here to assist !'}/>
-                <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.assistFirstPar}/>
-                <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.assistSecondPar}/>
+                <EuclidText variant={'h5'} sx={{fontWeight: 700}} text={dictionaries.contact.section1.title}/>
+                <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.section1.content1}/>
+                <SwitzerText sx={{textAlign: 'justify', mt: 1}} text={dictionaries.contact.section1.content2}/>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box
                     sx={{
                         p: 2,
                         width: "100%",
-                        height: "100%",
+                        height: "85%",
                         backgroundColor: colors.mainColor,
                         borderTopLeftRadius: 50,
                         boxShadow:

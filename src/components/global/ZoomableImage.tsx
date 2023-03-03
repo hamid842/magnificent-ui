@@ -23,7 +23,7 @@ const ImageWithHoverZoom = (props: (ImageWithHoverZoomProps & ImageProps)) => {
             margin: '0 auto',
             borderRadius: radius,
             boxShadow: 'rgb(0 0 0 / 25%) 0 14px 40px, rgb(0 0 0 / 22%) 0 10px 18px',
-            '& :hover': {transform: 'scale(1.1)'}
+            '& :hover': {transform: 'scale(1.1)',borderRadius:radius}
         }}>
             <Image {...rest} alt={'Pic'}/>
         </Box>
