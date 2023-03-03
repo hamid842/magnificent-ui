@@ -1,16 +1,16 @@
+import {useRef, useState} from "react";
+// Material ui
 import {CircularProgress, Grid, Paper, Stack} from "@mui/material";
-import EuclidText from "@/components/css-texts/EuclidText";
-import AppTextField from "@/components/global/AppTextField";
-import AppButton from "@/components/global/AppButton";
+// Third party
 import * as yup from "yup";
 import {getIn, useFormik} from "formik";
+// Project import
+import AppTextField from "@/components/global/AppTextField";
 import PropertyTypeSelectField from "@/components/global/PropertyTypeSelectField";
+import AppButton from "@/components/global/AppButton";
+import EuclidText from "@/components/css-texts/EuclidText";
 import {instance as axios} from "@/config/axiosConfig";
-import {useContext, useRef, useState} from "react";
-import {AuthContext} from "../../../context/contexts";
-import dynamic from "next/dynamic";
 
-const AuthWrapper = dynamic(() => import('@/auth/AuthWrapper'))
 
 const validationSchema = yup.object().shape({
     Title: yup.string().required("Title is required"),
@@ -29,11 +29,11 @@ const validationSchema = yup.object().shape({
     }),
 });
 
+//====================|| Rent Place Form ||====================
+
 const RentForm = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    const {user} = useContext(AuthContext);
-
 
     const formik = useFormik({
         initialValues: {
@@ -60,7 +60,7 @@ const RentForm = () => {
     });
 
     const handleCreate = async () => {
-        const { value } = formRef.current?.myInput;
+        const {value} = formRef.current?.myInput;
         console.log("handler 1", value);
         if (formRef.current) {
             setLoading(true)
@@ -207,9 +207,8 @@ const RentForm = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} lg={12}>
                         <Stack alignItems={'center'} mt={1}>
-                            {user ? <AppButton type={'submit'} label={'Submit'} startIcon={loading &&
-                                    <CircularProgress color={'inherit'} size={'15px'}/>}/> :
-                                <AuthWrapper isHeader={false} label={'Submit'}/>}
+                            <AppButton type={'submit'} label={'Submit'} startIcon={loading &&
+                                <CircularProgress color={'inherit'} size={'15px'}/>}/>
                         </Stack>
                     </Grid>
                 </Grid>
