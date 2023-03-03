@@ -41,9 +41,49 @@
     "reviews": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Ad, architecto delectus ducimus esse eveniet !"
   },
   "aboutUs": {
+    "p1": "You will enjoy living in a well-maintained home and value our dependable, hands-on services, enhancing turnover and creating consistent returns.",
+    "p2": "Property management professionals at Magnificent have the tools required to oversee each stage of your assets' lifecycle and raise the value of your residential properties by providing suitable and high-quality solutions at each level.",
+    "nextSeo": {
+      "title": "Know More About Magnificent | Best Property Management Companies in Downtown Dubai",
+      "desc": "Magnificent is one of the most valuable &amp; trustable property management companies providing luxury vacation rentals management services in downtown dubai",
+      "openGraphTitle": "Know More About Magnificent | Best Property Management Companies in Downtown Dubai",
+      "openGraphDesc": "Magnificent is one of the most valuable &amp; trustable property management companies providing luxury vacation rentals management services in downtown dubai"
+    },
     "income": "Leverage our local market expertise and tried and tested strategies to increase your rental income X4 times without lifting a finger.",
     "safe": "Property listing, refurbishing, thorough guest screening, worry-free maintenance, and immaculate cleaning; we take care of it all.",
-    "flexible": "Back in town? Want to use the vacation house yourself? Just let us know and we will make sure it is all yours!"
+    "flexible": "Back in town? Want to use the vacation house yourself? Just let us know and we will make sure it is all yours!",
+    "section3": {
+      "title1": "Hundreds of Properties to Choose",
+      "text1": "You will find a plethora of options on our website to choose from. We have the highest number of living spaces available across Downtown.",
+      "title2": "Easy to Move In",
+      "text2": "Our team is available 24x7 to help you move in and find your way around the vacation home rentals Dubai, which ensures that you don’t feel like an intruder",
+      "title3": "Best Prices",
+      "text3": "Magnificent Properties provide vacation home rentals Dubai with luxurious facilities and services at highly competitive prices to give you the best experiences.",
+      "title4": "Easily Find What You Are Looking for ",
+      "text4": "To filter the results, fill in details like check-in date, check-out date, city, and several guests to get more relevant results. We have beautiful luxury holiday homes in all locations of Dubai city, especially Downtown.",
+      "title5": "Make an Informed Decision",
+      "text5": "We provided additional information for each property, including the number of rooms, beds, guest capacity, amenities provided, and more."
+    },
+    "section4": {
+      "title1": "Best Price Guarantee",
+      "text1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at consectetur consequatur corporis, cum dolorum et ex illo illum, in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi voluptatum!",
+      "title2": "Customer Service 24h/7d",
+      "text2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at consectetur consequatur corporis, cum dolorum et ex illo illum, in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi voluptatum!",
+      "title3": "Customer Service 24h/7d",
+      "text3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at consectetur consequatur corporis, cum dolorum et ex illo illum, in, obcaecati odio quaerat quisquam rem velit. Ex reprehenderit sequi voluptatum!"
+    },
+    "section5": {
+      "content": "Magnificent Properties also assist you in enjoying a stress-free income with our turn-key property Management Services. From finding and managing your tenant relationships to managing maintenance requests, our experts are always here to assist you. With our experienced team, you can be assured that your property is safe and earn the rent without stressing as a landlord.",
+      "title1": "1.  Significant Increase in Your Income",
+      "text1": "Our innovative and focused team can help you increase income on luxury holiday homes in Downtown Dubai by up to four times. We achieve this through better visibility (we use professional photography that shall do full justice to your luxury holiday homes in Downtown Dubai), better occupancy rates, and higher rents. Magnificent Property Management brings out the true magnificence of your properties and is also the go-to vacation home rental in Dubai for countless customers.",
+      "title2": "2. Enjoy While We Handle Everything",
+      "text2": "When we say that we handle property management for you, we mean to handle everything, including maintenance, rent collection, housekeeping (even when no guests are due), cleaning, rental deeds, renewal of contracts, redressal of issues, and more. Often, these activities consume significant time for property owners, and you can save valuable time through our property management services.",
+      "title3": "3. We Put Our Clients First",
+      "text3": "We make routine inspections of your property and provide you with routine reports. You can access real-time updates about the activities on your properties in terms of tenancy status, maintenance, payments, etc. With our expertise in all facets of property management, we can assist you at every stage of the life cycle of your property."
+    },
+    "lastSection": {
+      "text": "We understand giving your asset to any third person is a trust-based activity. For good reasons, Magnificent Property Management is counted among the best property management companies in Downtown Dubai. What sets us apart is a list of luxury holiday homes in Dubai and our commitment to creating a relationship with customers based on trust and goodwill."
+    }
   },
   "contact": {
     "nextSeo": {
@@ -55,7 +95,7 @@
     "section1": {
       "title": "We're a Globally Leading Short Term Rental Property Manager",
       "content1": "Magnificent is a Property Management company with considerable experience in the tourism and hospitality industries, as well as Dubai Rentals, that provides onsite Short Term Rental management for urban and leisure houses. For many years, we have managed Short-Term Rentals in Dubai with the purpose of providing alternative accommodation options for Dubai tourists and corporate travelers. Before being added to our inventory, our Dubai Holiday Houses must pass a series of assessments to guarantee that luxury criteria are reached. We keep our Dubai Furnished apartments and Dubai holiday villas in good condition by doing rigorous service and supply checks to ensure a comfortable holiday experience.",
-   "content2": "Magnificent brings a new and trustworthy perspective to the UAE real estate industry. We take pride in giving our clients everything they need to make buying a home as stress-free as possible."
+      "content2": "Magnificent brings a new and trustworthy perspective to the UAE real estate industry. We take pride in giving our clients everything they need to make buying a home as stress-free as possible."
     },
     "ourIndividuality": {
       "title1": "24/7 customer support",
