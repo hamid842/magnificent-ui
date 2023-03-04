@@ -15,6 +15,7 @@ import {AuthContext} from "../../../context/contexts";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
+import ForgotPassDialog from "@/auth/login/ForgotPassDialog";
 
 const validationSchema = yup.object().shape({
     identifier: yup.string().required("Username/email is required"),
@@ -57,6 +58,10 @@ const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
         },
     });
 
+    const handleForgotPass = ()=>{
+
+    }
+
     const {values, handleChange, touched, errors} = formik
 
     return (
@@ -97,20 +102,19 @@ const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
                 </Box>
             </form>
             <Stack alignItems={'center'}>
-                <Button
-                    sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}}>
-                    Forgot password?
-                </Button>
+                {/*<Button*/}
+                {/*    sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}} onClick={handleForgotPass}>*/}
+                {/*    Forgot password?*/}
+                {/*</Button>*/}
+                <ForgotPassDialog />
                 <Divider orientation={'vertical'} sx={{height: 20}}/>
                 <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
                 <Stack
                     direction={'row'}
                     alignItems={'center'}>
-                    {/* Title */}
                     <SwitzerText
                         text={"Don't have an account?"}
                         sx={{fontSize: 10}}/>
-                    {/* Register Button */}
                     <Button sx={{
                         color: colors.mainColor,
                         textTransform: 'none',

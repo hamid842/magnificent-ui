@@ -28,7 +28,7 @@ import {AuthContext} from "../../context/contexts";
 import AppButton from "@/components/global/AppButton";
 import AppIcon from "@/components/global/AppIcon";
 
-const Transition = forwardRef(function Transition(
+export const Transition = forwardRef(function Transition(
     props: TransitionProps & {
         children: ReactElement<any, any>;
     },

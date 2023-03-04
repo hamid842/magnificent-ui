@@ -3,15 +3,14 @@ import {useState} from "react";
 import {
     Backdrop,
     Box,
-    Divider,
+    CircularProgress,
     Fade,
     Grid,
     ListItemButton,
     ListItemIcon,
     ListItemText,
     Modal,
-    Paper,
-    CircularProgress
+    Paper
 } from "@mui/material";
 // Project imports
 import AppIcon from "@/components/global/AppIcon";
@@ -24,8 +23,9 @@ import PasswordField from "@/components/global/PasswordField";
 import AppButton from "@/components/global/AppButton";
 
 const validationSchema = yup.object().shape({
+    currentPassword: yup.string().required("Current Password is required"),
     password: yup.string().required("Password is required"),
-    confirmPass: yup.string().required("Confirm Password is required"),
+    passwordConfirmation: yup.string().required("Confirmation Password is required"),
 });
 
 const style = {
@@ -36,7 +36,7 @@ const style = {
     width: 400,
     bgcolor: 'background.paper',
     boxShadow: 24,
-    p:2,
+    p: 2,
 };
 
 //====================|| Reset Password Modal ||=====================
@@ -48,17 +48,23 @@ const ResetPassModal = () => {
 
     const formik = useFormik({
         initialValues: {
+            currentPassword: "",
             password: "",
-            confirmPass: "",
+            passwordConfirmation: "",
         },
         validationSchema,
         onSubmit: async (values) => {
             setLoading(true)
-            await axios.post('/reset-pass', values).then(res => {
+            const token = localStorage.getItem('JWT');
+            await axios.post('/auth/change-password', {data: {...values}}, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(res => {
                 if (res.status === 200) {
                     setLoading(false);
                     setOpen(false);
-                    toast.success(`Updated Successfully.`);
+                    toast.success(`Password Updated Successfully.`);
                 }
             }).catch(err => {
                 console.log(err.response);
@@ -77,7 +83,7 @@ const ResetPassModal = () => {
         <div>
             <ListItemButton onClick={handleOpen}>
                 <ListItemIcon>
-                    <AppIcon name={'lock'}/>
+                    <AppIcon name={'lock'} size={1.5}/>
                 </ListItemIcon>
                 <ListItemText primary={'Reset Password'}/>
             </ListItemButton>
@@ -96,13 +102,24 @@ const ResetPassModal = () => {
             >
                 <Fade in={open}>
                     <Paper sx={style}>
-                            <EuclidText align={'center'} text={'Reset Password'} sx={{fontWeight: 600,mb:1}}/>
-                            <form autoComplete={"off"} noValidate onSubmit={handleSubmit}>
+                        <EuclidText align={'center'} text={'Reset Password'} sx={{fontWeight: 600, mb: 1}}/>
+                        <form autoComplete={"off"} noValidate onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <PasswordField
                                         required
-                                        label={'Password'}
+                                        label={'Current Password'}
+                                        id={'currentPassword'}
+                                        value={values.currentPassword}
+                                        onChange={handleChange}
+                                        error={touched.currentPassword && Boolean(errors.currentPassword)}
+                                        helperText={touched.currentPassword && errors.currentPassword}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <PasswordField
+                                        required
+                                        label={'New Password'}
                                         id={'password'}
                                         value={values.password}
                                         onChange={handleChange}
@@ -114,11 +131,11 @@ const ResetPassModal = () => {
                                     <PasswordField
                                         required
                                         label={'Confirm Password'}
-                                        id={'confirmPass'}
-                                        value={values.confirmPass}
+                                        id={'passwordConfirmation'}
+                                        value={values.passwordConfirmation}
                                         onChange={handleChange}
-                                        error={touched.confirmPass && Boolean(errors.confirmPass)}
-                                        helperText={touched.confirmPass && errors.confirmPass}
+                                        error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
+                                        helperText={touched.passwordConfirmation && errors.passwordConfirmation}
                                     />
                                 </Grid>
                                 <Box sx={{width: 120, m: '10px auto'}}>
@@ -130,7 +147,7 @@ const ResetPassModal = () => {
                                     />
                                 </Box>
                             </Grid>
-                            </form>
+                        </form>
                     </Paper>
                 </Fade>
             </Modal>

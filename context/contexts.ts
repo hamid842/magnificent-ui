@@ -13,8 +13,21 @@ export type TUser = {
     updatedAt: string,
 };
 
+const user = {
+    id: 0,
+    username: "",
+    email: "",
+    fullName: "",
+    phoneNumber: "",
+    blocked: false,
+    confirmed: false,
+    provider: "",
+    createdAt: "",
+    updatedAt: "",
+}
+
 const AuthContext = createContext({
-    user: {},
+    user,
     setUser: (user:any) => {}
 })
 export {AuthContext}

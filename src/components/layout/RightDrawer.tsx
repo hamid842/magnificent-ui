@@ -81,7 +81,7 @@ const RightDrawer = () => {
                 <ListItem disablePadding>
                     <ListItemButton onClick={()=>setUser({})}>
                         <ListItemIcon>
-                            <AppIcon name={'logout'}/>
+                            <AppIcon name={'logout'} size={1.5}/>
                         </ListItemIcon>
                         <ListItemText primary={'Sign out'}/>
                     </ListItemButton>
@@ -92,7 +92,7 @@ const RightDrawer = () => {
                 <Divider sx={{width: '100%', mt: 1}}/>
                 {dashboardPages.map(page => <ListItemButton key={page.label} onClick={() => router.push(page.path)}>
                     <ListItemIcon>
-                        <AppIcon name={page.icon}/>
+                        <AppIcon name={page.icon} size={1.5}/>
                     </ListItemIcon>
                     <ListItemText primary={page.label}/>
                 </ListItemButton>)}
@@ -118,7 +118,7 @@ const RightDrawer = () => {
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 200},
                 }}
             >
-                {user ? authList('right') : userList('right')}
+                {user.username ? authList('right') : userList('right')}
             </Drawer>
         </>
     );
