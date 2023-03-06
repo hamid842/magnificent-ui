@@ -48,9 +48,9 @@ const About = () => {
             <link rel="canonical" href=""/>
             <AppContainer>
                 <AboutFirstSection/>
-                <AboutSecondSection/>
+                {/*<AboutSecondSection/>*/}
                 <AboutThirdSection/>
-                <AboutFourthSection/>
+                {/*<AboutFourthSection/>*/}
                 <AboutFifthSection/>
                 <AboutSixSection/>
                 <AboutLastSection />

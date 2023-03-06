@@ -8,8 +8,8 @@ const AboutLastSection = () => {
     return (
         <>
             <TitleSeparator
-                separatorTitle={""}
-                title={"Magnificent Property Management - A Trustworthy Platform"}
+                separatorTitle={"Magnificent Property"}
+                title={"Management - A Trustworthy Platform"}
             />
             <SwitzerText textAlign={'justify'} text={dictionaries.aboutUs.lastSection.text}/>
             <Typography className={switzerFont.className}>Are you also seeking the <strong>best property management

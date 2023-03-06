@@ -7,8 +7,8 @@ const AboutFirstSection = () => {
     return (
         <>
             <TitleSeparator
-                separatorTitle={"Your Trusted Property Manager"}
-                title={"We Make Property Ownership Simple"}
+                separatorTitle={"We Make "}
+                title={"Property Ownership Simple"}
                 pt={20}
             />
             <Box className={switzerFont.className} textAlign={'justify'}>

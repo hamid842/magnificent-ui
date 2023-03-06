@@ -36,7 +36,7 @@ const OurIndividuality = ()=>{
                     <Template iconName={'fingerprint'} title={dictionaries.contact.ourIndividuality.title2} content={dictionaries.contact.ourIndividuality.content2}/>
                 </Grid>
                 <Grid item xs>
-                    <SwitzerText px={5} align={'center'} textAlign={'justify'} mt={1} text={dictionaries.contact.ourIndividuality.explanation} />
+                    <SwitzerText textAlign={'justify'} mt={1} text={dictionaries.contact.ourIndividuality.explanation} />
                 </Grid>
 
             </Grid>
