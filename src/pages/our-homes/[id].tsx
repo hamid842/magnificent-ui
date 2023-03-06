@@ -24,7 +24,8 @@ import {useTheme} from "@mui/material/styles";
 import AppButton from "@/components/global/AppButton";
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-    const response = await instance(`/properties/${query.id}?populate=*`);
+    const id = query.id || query.propertyId;
+    const response = await instance(`/properties/${id}?populate=*`);
     const property = response.data?.data;
     return {
         props: {

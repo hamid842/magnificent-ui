@@ -16,38 +16,38 @@ const AmenitiesRendering = ({amenitiesList}: AmenitiesRenderingProps) => {
 
     return (
         <Grid container spacing={0.5} my={1} xs={12} sx={{textAlign: "right"}}>
-            <AmenityIconAndTitle icon={"wifi"} title={"Wifi"} detail={false}/>
+            <AmenityIconAndTitle iconName={"wifi"} title={"Wifi"} detail={false}/>
             <AmenityIconAndTitle
-                icon={"location_city"}
+                iconName={"location_city"}
                 title={"City Views"}
                 detail={false}
             />
-            <AmenityIconAndTitle icon={"yard"} title={"Garden"} detail={false}/>
+            <AmenityIconAndTitle iconName={"yard"} title={"Garden"} detail={false}/>
             <AmenityIconAndTitle
-                icon={"mode_fan"}
+                iconName={"mode_fan"}
                 title={"Air conditioning"}
                 detail={false}
             />
             <AmenityIconAndTitle
-                icon={"countertops"}
+                iconName={"countertops"}
                 title={"Kitchen"}
                 detail={false}
             />
             <AmenityIconAndTitle
-                icon={"pool"}
+                iconName={"pool"}
                 title={"Swimming pool"}
                 detail={false}
             />
-            <AmenityIconAndTitle icon={"exercise"} title={"Gym"} detail={false}/>
-            <AmenityIconAndTitle icon={"hot_tub"} title={"Hot tub"} detail={false}/>
+            <AmenityIconAndTitle iconName={"exercise"} title={"Gym"} detail={false}/>
+            <AmenityIconAndTitle iconName={"hot_tub"} title={"Hot tub"} detail={false}/>
             <AmenityIconAndTitle
-                icon={"local_parking"}
+                iconName={"local_parking"}
                 title={"Free parking"}
                 detail={false}
             />
-            <AmenityIconAndTitle icon={"cleaning_services"} title={"Cleaning Service"} detail={false}/>
-            <AmenityIconAndTitle icon={"local_laundry_service"} title={"Laundry"} detail={false}/>
-            <AmenityIconAndTitle icon={"balcony"} title={"Balcony"} detail={false}/>
+            <AmenityIconAndTitle iconName={"cleaning_services"} title={"Cleaning Service"} detail={false}/>
+            <AmenityIconAndTitle iconName={"local_laundry_service"} title={"Laundry"} detail={false}/>
+            <AmenityIconAndTitle iconName={"balcony"} title={"Balcony"} detail={false}/>
             <Grid item xs={12} sx={{textAlign: "right"}}>
                 <OtherAmenitiesModal data={mappedAmenities}/>
             </Grid>

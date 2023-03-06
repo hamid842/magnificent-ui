@@ -22,10 +22,6 @@ const OtherAmenitiesModal = ({data}: Props) => {
     const bedroomFeatures = data?.filter((el: any) => el.category === "Bedroom");
     const facilitiesFeatures = data?.filter((el: any) => el.category === "Facilities");
     const othersFeatures = data?.filter((el: any) => el.category === "Others");
-    // const lobbyFeatures = data?.filter((el: any) => el.category === "lobby");
-    // const parkingFeatures = data?.filter((el: any) => el.category === "parking");
-    // const outdoorFeatures = data?.filter((el: any) => el.category === "outdoor");
-    // const othersFeatures = data?.filter((el: any) => el.category === null);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -45,6 +41,8 @@ const OtherAmenitiesModal = ({data}: Props) => {
             }
         }
     }, [open]);
+
+
 
     return (
         <div>
@@ -85,7 +83,7 @@ const OtherAmenitiesModal = ({data}: Props) => {
                             <AmenityIconAndTitle
                                 key={item.name}
                                 title={item.name}
-                                icon={item.icon ? item.icon : "tv"}
+                                iconName={item.icon ? item.icon : "done"}
                             />
                         ))}
                     </Grid>
@@ -99,7 +97,7 @@ const OtherAmenitiesModal = ({data}: Props) => {
                             <AmenityIconAndTitle
                                 key={item.name}
                                 title={item.name}
-                                icon={item.icon ? item.icon : "tv"}
+                                iconName={item.icon ? item.icon : "done"}
                             />
                         ))}
                     </Grid>
@@ -113,7 +111,7 @@ const OtherAmenitiesModal = ({data}: Props) => {
                             <AmenityIconAndTitle
                                 key={item.name}
                                 title={item.name}
-                                icon={item.icon ? item.icon : "tv"}
+                                iconName={item.icon ? item.icon : "done"}
                             />
                         ))}
                     </Grid>
@@ -127,7 +125,7 @@ const OtherAmenitiesModal = ({data}: Props) => {
                             <AmenityIconAndTitle
                                 key={item.name}
                                 title={item.name}
-                                icon={item.icon ? item.icon : "tv"}
+                                iconName={item.icon ? item.icon : "done"}
                             />
                         ))}
                     </Grid>
@@ -141,7 +139,7 @@ const OtherAmenitiesModal = ({data}: Props) => {
                             <AmenityIconAndTitle
                                 key={item.name}
                                 title={item.name}
-                                icon={item.icon ? item.icon : "tv"}
+                                iconName={item.icon ? item.icon : "done"}
                             />
                         ))}
                     </Grid>
