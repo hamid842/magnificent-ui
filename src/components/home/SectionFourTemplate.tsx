@@ -11,11 +11,11 @@ type SectionFourTemplateProps = {
 
 const SectionFourTemplate = ({iconName,title,content}:SectionFourTemplateProps)=>{
     return (
-        <Paper elevation={3} sx={{height: '100%',p:1}}>
+        <Paper elevation={3} sx={{height:{xs:160,sm:230,md:210},p:1}}>
         <Stack direction={'column'} alignItems={'center'}>
             <AppIcon name={iconName} size={2}/>
             <EuclidText align={'center'} text={title} fontWeight={600} my={1}/>
-            <SwitzerText variant={'caption'} align={'center'} text={content} textAlign={'justify'}/>
+            <SwitzerText variant={'caption'} align={'center'} text={content} textAlign={'center'}/>
         </Stack>
         </Paper>
         )
