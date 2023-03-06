@@ -12,7 +12,7 @@ type TemplateProps = {
 
 const Template = ({iconName, title, content}: TemplateProps) => {
     return (
-        <Paper elevation={3} sx={{p: 2,pt:3, height: {xs:200,sm:220,md:270}}}>
+        <Paper elevation={3} sx={{p: 2,pt:3, height: {xs:200,sm:220,md:250}}}>
             <Stack direction={'column'} alignItems={'center'}>
                 <AppIcon name={iconName}/>
                 <EuclidText align={'center'} text={title} fontWeight={600} textTransform={'uppercase'} my={1}/>

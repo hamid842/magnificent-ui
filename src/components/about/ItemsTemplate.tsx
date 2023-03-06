@@ -11,7 +11,7 @@ type ItemsTemplateProps = {
 
 const ItemsTemplate = ({iconName, title, content}: ItemsTemplateProps) => {
     return (
-        <Paper elevation={3} sx={{p: 2,pt:3, height: {xs:230,sm:250,md:270}}}>
+        <Paper elevation={3} sx={{p: 2,pt:3, height: {xs:230,sm:250,md:260}}}>
             <Stack direction={'column'} alignItems={'center'}>
                 <AppIcon name={iconName} />
                 <EuclidText align={'center'} text={title} fontWeight={600} my={1}/>
