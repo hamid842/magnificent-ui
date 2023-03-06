@@ -23,6 +23,7 @@ const FirstSection = () => {
                 <Box
                     sx={{
                         p: 2,
+                        mt:2,
                         width: "100%",
                         height: "85%",
                         backgroundColor: colors.mainColor,

@@ -24,7 +24,7 @@ import LoginDialog from "@/auth/login/LoginDialog";
 import RegisterDialog from "@/auth/register/RegisterDialog";
 // Third Party
 import SwipeableViews from 'react-swipeable-views';
-import {AuthContext} from "../../context/AuthContext";
+import { useUser} from "../../context/AuthContext";
 import AppButton from "@/components/global/AppButton";
 import AppIcon from "@/components/global/AppIcon";
 
@@ -113,7 +113,8 @@ type AuthWrapperProps = {
 
 const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
     const theme = useTheme();
-    const {user} = useContext(AuthContext)
+    // const {user} = useContext(AuthContext)
+    const user = useUser();
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(0);
 

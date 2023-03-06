@@ -8,7 +8,7 @@ const AboutThirdSection = ()=>{
         <>
             <TitleSeparator
                 separatorTitle={"Reasons to rent"}
-                title={"Reasons to Rent Vacation Homes from Magnificent"}
+                title={"Vacation Homes from Magnificent"}
                 pt={10}
             />
             <Grid container spacing={2}>

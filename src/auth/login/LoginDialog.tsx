@@ -11,7 +11,7 @@ import SwitzerText from "@/components/css-texts/SwitzerText";
 import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
-import {AuthContext} from "../../../context/AuthContext";
+import { useUpdateUser} from "../../../context/AuthContext";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
@@ -30,11 +30,10 @@ type LoginDialogProps = {
 
 
 const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
-    const {user,setUser} = useContext(AuthContext)
-
+    // const {user,setUser} = useContext(AuthContext)
+const updateUser = useUpdateUser();
     const [loading, setLoading] = useState(false);
 
-    console.log(user)
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +46,7 @@ const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
             await axios.post('/auth/local', values).then(res => {
                 if (res.status === 200) {
                     const {jwt, user} = res.data;
-                    setUser(user);
+                    updateUser(user);
                     setLoading(false);
                     localStorage.setItem('JWT', jwt);
                     setOpen(false);

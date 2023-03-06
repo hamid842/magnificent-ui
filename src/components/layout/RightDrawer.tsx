@@ -9,7 +9,7 @@ import {Person} from "@mui/icons-material";
 import logo from '../../../public/dashboard/png5.png'
 import {navPages} from "@/components/layout/Header";
 import AppIcon from "@/components/global/AppIcon";
-import {AuthContext, initialUser, TUser} from "../../../context/AuthContext";
+import { initialUser, TUser, useUpdateUser, useUser} from "../../../context/AuthContext";
 import ResetPassModal from "@/components/layout/ResetPassModal";
 import AuthWrapper from "@/auth/AuthWrapper";
 
@@ -27,6 +27,8 @@ export const dashboardPages = [
 const RightDrawer = () => {
     const router = useRouter();
     // const {user,setUser} = useContext(AuthContext);
+    const user = useUser();
+    const updateUser = useUpdateUser();
     const [state, setState] = useState({
         top: false,
         left: false,
@@ -100,8 +102,6 @@ const RightDrawer = () => {
     );
 
     return (
-        <AuthContext.Consumer>
-            {({user,setUser}) => (
                 <>
                     <Avatar
                         onClick={toggleDrawer('right', true)}
@@ -119,12 +119,10 @@ const RightDrawer = () => {
                             '& .MuiDrawer-paper': {boxSizing: 'border-box', width: 200},
                         }}
                     >
-                        {user.username ? authList('right', setUser) : userList('right')}
+                        {user.username ? authList('right', updateUser) : userList('right')}
                     </Drawer>
                 </>
-            )
-            }
-        </AuthContext.Consumer>
+
     );
 }
 export default RightDrawer;

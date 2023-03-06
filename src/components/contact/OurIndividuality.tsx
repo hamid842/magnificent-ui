@@ -12,7 +12,7 @@ type TemplateProps = {
 }
 
 const Template = ({iconName,title,content}:TemplateProps)=>{
-    return <Paper sx={{p:2,height:'100%'}}>
+    return <Paper elevation={3} sx={{p:2,height:'100%'}}>
         <Stack direction={'column'} alignItems={'center'}>
             <AppIcon name={iconName}/>
             <EuclidText align={'center'} text={title} fontWeight={600} my={1}/>
@@ -24,7 +24,7 @@ const Template = ({iconName,title,content}:TemplateProps)=>{
 const OurIndividuality = ()=>{
     return (
         <>
-            <TitleSeparator separatorTitle={'Our'} title={'Individuality'} />
+            <TitleSeparator separatorTitle={''} title={'Our Individuality'} />
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={3} md={3} lg={3}>
                     <Template iconName={'support_agent'} title={dictionaries.contact.ourIndividuality.title1} content={dictionaries.contact.ourIndividuality.content1}/>

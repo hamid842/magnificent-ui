@@ -13,7 +13,7 @@ const AboutFifthSection = ()=>{
         <>
             <TitleSeparator
                 separatorTitle={"Reasons to Invest"}
-                title={"Reasons to Invest in Our Property Management Services"}
+                title={"in Our Property Management Services"}
             />
             <Box textAlign={'justify'}>
             <SwitzerText text={dictionaries.aboutUs.section5.content}/>

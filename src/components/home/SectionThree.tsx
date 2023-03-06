@@ -13,12 +13,12 @@ const SectionThree = () => {
                                       content={dictionaries.homePage.section3.text1}/>
                 </Grid>
                 <Grid item xs={12} sm={4} lg={4}>
-                    <HomePageTemplate iconName={'diversity_3'} title={dictionaries.homePage.section3.title2}
-                                      content={dictionaries.homePage.section3.text2}/>
-                </Grid>
-                <Grid item xs={12} sm={4} lg={4}>
                     <HomePageTemplate iconName={'bubble_chart'} title={dictionaries.homePage.section3.title3}
                                       content={dictionaries.homePage.section3.text3}/>
+                </Grid>
+                <Grid item xs={12} sm={4} lg={4}>
+                    <HomePageTemplate iconName={'diversity_3'} title={dictionaries.homePage.section3.title2}
+                                      content={dictionaries.homePage.section3.text2}/>
                 </Grid>
             </Grid>
         </>
