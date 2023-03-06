@@ -24,6 +24,8 @@ const AboutThirdSection = ()=>{
                     <ItemsTemplate iconName={'payments'} title={dictionaries.aboutUs.section3.title3}
                                    content={dictionaries.aboutUs.section3.text3}/>
                 </Grid>
+            </Grid>
+            <Grid container spacing={2} mt={0.5} justifyContent={'center'}>
                 <Grid item xs={12} sm={6} md={4} lg={4}>
                     <ItemsTemplate iconName={'screen_search_desktop'} title={dictionaries.aboutUs.section3.title4}
                                    content={dictionaries.aboutUs.section3.text4}/>

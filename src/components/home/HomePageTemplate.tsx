@@ -33,9 +33,9 @@ const HomePageTemplate = ({iconName, title, content}: HomePageTemplateProps) => 
         //             backgroundColor: colors.elementsBg,
         //             p: 1
         //         }}>
-        <Paper elevation={3} sx={{p:1,height: {xs:210,sm:260,md:210}}}>
+        <Paper elevation={3} sx={{p:1,pt:2,height: {xs:210,sm:260,md:210}}}>
             <Stack direction={'column'} alignItems={'center'}>
-                <AppIcon name={iconName} size={3}/>
+                <AppIcon name={iconName} />
                 <EuclidText align={'center'} text={title} fontWeight={600} my={1}/>
                 <SwitzerText variant={'caption'} text={content}  textAlign={'center'}/>
             </Stack>

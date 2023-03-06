@@ -12,11 +12,11 @@ type TemplateProps = {
 
 const Template = ({iconName, title, content}: TemplateProps) => {
     return (
-        <Paper elevation={3} sx={{p: 2, height: '100%'}}>
+        <Paper elevation={3} sx={{p: 2,pt:3, height: {xs:200,sm:220,md:270}}}>
             <Stack direction={'column'} alignItems={'center'}>
-                <AppIcon name={iconName} size={4}/>
+                <AppIcon name={iconName}/>
                 <EuclidText align={'center'} text={title} fontWeight={600} textTransform={'uppercase'} my={1}/>
-                <SwitzerText variant={'caption'} text={content} textAlign={'justify'}/>
+                <SwitzerText variant={'caption'} text={content} textAlign={'center'}/>
             </Stack>
         </Paper>
     )
