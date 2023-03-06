@@ -20,7 +20,7 @@ import AppTextField from "@/components/global/AppTextField";
 import {TPrice} from "@/components/our-homes/BookingCalculationSection";
 import {instance} from "@/config/axiosConfig";
 import AppButton from "@/components/global/AppButton";
-import {AuthContext} from "../../../context/contexts";
+import {AuthContext} from "../../../context/AuthContext";
 import AuthWrapper from "@/auth/AuthWrapper";
 import SwitchBtnForBooking from "@/components/our-homes/SwitchBtnForBooking";
 

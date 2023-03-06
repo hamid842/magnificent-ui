@@ -11,7 +11,7 @@ import SwitzerText from "@/components/css-texts/SwitzerText";
 import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
-import {AuthContext} from "../../../context/contexts";
+import {AuthContext} from "../../../context/AuthContext";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
@@ -30,8 +30,11 @@ type LoginDialogProps = {
 
 
 const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
-    const {setUser} = useContext(AuthContext)
+    const {user,setUser} = useContext(AuthContext)
+
     const [loading, setLoading] = useState(false);
+
+    console.log(user)
 
     const formik = useFormik({
         initialValues: {
@@ -51,7 +54,6 @@ const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
                     toast.success(`You logged in as ${values.identifier}`);
                 }
             }).catch(err => {
-                console.log(err.response);
                 setLoading(false);
                 toast.error(`Error: ${err?.response?.data?.error?.message}`)
             })

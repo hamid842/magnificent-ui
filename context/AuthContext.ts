@@ -12,8 +12,8 @@ export type TUser = {
     createdAt: string,
     updatedAt: string,
 };
-
-const user = {
+//
+export const initialUser = {
     id: 0,
     username: "",
     email: "",
@@ -26,8 +26,9 @@ const user = {
     updatedAt: "",
 }
 
+
 const AuthContext = createContext({
-    user,
-    setUser: (user:any) => {}
+    user: initialUser,
+    setUser: (user: TUser) => {}
 })
 export {AuthContext}

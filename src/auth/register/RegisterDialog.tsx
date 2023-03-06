@@ -12,7 +12,7 @@ import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
 import {AxiosResponse, isAxiosError} from 'axios';
-import {AuthContext} from "../../../context/contexts";
+import {AuthContext} from "../../../context/AuthContext";
 
 type TAxiosErrorResponse = {
     status: number,

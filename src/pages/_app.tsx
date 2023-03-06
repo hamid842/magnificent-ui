@@ -9,7 +9,7 @@ import 'nprogress/nprogress.css';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // Project imports
-import {AuthContext, TUser} from '../../context/contexts';
+import {AuthContext, initialUser} from '../../context/AuthContext';
 import {useNProgress} from "@/hooks/use-nprogress";
 
 NProgress.configure({showSpinner: false});
@@ -24,9 +24,11 @@ type AppPropsWithLayout = AppProps & {
 
 export default function Magnificent({Component, pageProps}: AppPropsWithLayout) {
     useNProgress();
-    const [user, setUser] = useState<TUser>()
+    const [user, setUser] = useState(initialUser)
 
     const getLayout = Component.getLayout ?? ((page) => page)
+
+
     return getLayout(
         <AuthContext.Provider value={{user, setUser}}>
             <Component {...pageProps} />

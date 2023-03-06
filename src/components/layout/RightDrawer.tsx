@@ -1,4 +1,4 @@
-import {KeyboardEvent, MouseEvent, useContext, useState} from 'react';
+import {KeyboardEvent, MouseEvent, useState} from 'react';
 import {useRouter} from "next/router";
 // Next.js
 import Image from "next/image";
@@ -9,7 +9,7 @@ import {Person} from "@mui/icons-material";
 import logo from '../../../public/dashboard/png5.png'
 import {navPages} from "@/components/layout/Header";
 import AppIcon from "@/components/global/AppIcon";
-import {AuthContext} from "../../../context/contexts";
+import {AuthContext, initialUser, TUser} from "../../../context/AuthContext";
 import ResetPassModal from "@/components/layout/ResetPassModal";
 import AuthWrapper from "@/auth/AuthWrapper";
 
@@ -26,8 +26,7 @@ export const dashboardPages = [
 
 const RightDrawer = () => {
     const router = useRouter();
-    const {user,setUser} = useContext(AuthContext);
-    console.log("User:",user);
+    // const {user,setUser} = useContext(AuthContext);
     const [state, setState] = useState({
         top: false,
         left: false,
@@ -55,7 +54,7 @@ const RightDrawer = () => {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Image src={logo} alt={""} width={120} height={25} style={{margin:'10px 40px'}}/>
+            <Image src={logo} alt={""} width={120} height={25} style={{margin: '10px 40px'}}/>
             <Divider sx={{width: '100%', mt: 1}}/>
             <List>
                 <ListItem disablePadding>
@@ -68,18 +67,18 @@ const RightDrawer = () => {
             </List>
         </Box>
     );
-    const authList = (anchor: Anchor) => (
+    const authList = (anchor: Anchor, setUser: (user: TUser) => void) => (
         <Box
             sx={{width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250}}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Image src={logo} alt={""} width={120} height={25} style={{margin:'10px 40px'}}/>
+            <Image src={logo} alt={""} width={120} height={25} style={{margin: '10px 40px'}}/>
             <Divider sx={{width: '100%', mt: 1}}/>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={()=>setUser({})}>
+                    <ListItemButton onClick={() => setUser(initialUser)}>
                         <ListItemIcon>
                             <AppIcon name={'logout'} size={1.5}/>
                         </ListItemIcon>
@@ -101,26 +100,31 @@ const RightDrawer = () => {
     );
 
     return (
-        <>
-            <Avatar
-                onClick={toggleDrawer('right', true)}
-                aria-haspopup={true}
-                sx={{cursor: "pointer"}}
-            >
-                <Person/>
-            </Avatar>
-            <Drawer
-                keepMounted
-                anchor={'right'}
-                open={state['right']}
-                onClose={toggleDrawer('right', false)}
-                sx={{
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 200},
-                }}
-            >
-                {user.username ? authList('right') : userList('right')}
-            </Drawer>
-        </>
+        <AuthContext.Consumer>
+            {({user,setUser}) => (
+                <>
+                    <Avatar
+                        onClick={toggleDrawer('right', true)}
+                        aria-haspopup={true}
+                        sx={{cursor: "pointer"}}
+                    >
+                        <Person/>
+                    </Avatar>
+                    <Drawer
+                        keepMounted
+                        anchor={'right'}
+                        open={state['right']}
+                        onClose={toggleDrawer('right', false)}
+                        sx={{
+                            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: 200},
+                        }}
+                    >
+                        {user.username ? authList('right', setUser) : userList('right')}
+                    </Drawer>
+                </>
+            )
+            }
+        </AuthContext.Consumer>
     );
 }
 export default RightDrawer;
