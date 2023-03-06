@@ -1,4 +1,4 @@
-import {ChangeEvent, forwardRef, ReactElement, Ref, useContext, useEffect, useState} from "react";
+import {ChangeEvent, forwardRef, ReactElement, Ref, useEffect, useState} from "react";
 // Next.js
 import Image from "next/image";
 // Material ui
@@ -20,9 +20,9 @@ import AppTextField from "@/components/global/AppTextField";
 import {TPrice} from "@/components/our-homes/BookingCalculationSection";
 import {instance} from "@/config/axiosConfig";
 import AppButton from "@/components/global/AppButton";
-import {AuthContext} from "../../../context/AuthContext";
 import AuthWrapper from "@/auth/AuthWrapper";
 import SwitchBtnForBooking from "@/components/our-homes/SwitchBtnForBooking";
+import {useUser} from "../../../context/AuthContext";
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
@@ -60,9 +60,16 @@ type TBookingRequest = {
     additionalInformation?: string,
 };
 
-const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price, buttonEnabled}: BookingDialogProps) => {
+const BookingDialog = ({
+                           property,
+                           arrivalDate,
+                           departureDate,
+                           guestCount,
+                           price,
+                           buttonEnabled
+                       }: BookingDialogProps) => {
     const {attributes} = property
-    const {user} = useContext(AuthContext);
+    const user = useUser();
     const [openPayDialog, setOpenPayDialog] = useState(false);
     const [payLoading, setPayLoading] = useState(false)
     const [guest, setGuest] = useState({
@@ -188,7 +195,8 @@ const BookingDialog = ({property, arrivalDate, departureDate, guestCount, price,
                         <Typography sx={{color: '#333333', ml: 2, flex: 1}} variant="h6" component="div">
                             Booking Details
                         </Typography>
-                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> : <AuthWrapper isHeader={false} label={'Pay Now'}/>}
+                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> :
+                            <AuthWrapper isHeader={false} label={'Pay Now'}/>}
                     </Toolbar>
                 </AppBar>
                 {/* ====================== Dialog Content =======================*/}

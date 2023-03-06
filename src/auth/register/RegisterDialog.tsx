@@ -1,4 +1,4 @@
-import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useContext, useState} from 'react';
+import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState} from 'react';
 // Material ui
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import {Box, Button, Checkbox, FormControlLabel, FormGroup, Stack} from "@mui/material";
@@ -12,7 +12,7 @@ import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
 import {AxiosResponse, isAxiosError} from 'axios';
-import {AuthContext} from "../../../context/AuthContext";
+import {useUpdateUser} from "../../../context/AuthContext";
 
 type TAxiosErrorResponse = {
     status: number,
@@ -80,8 +80,8 @@ type RegisterDialogProps = {
     setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const RegisterDialog = ({setValue,setOpen}: RegisterDialogProps) => {
-const {setUser} = useContext(AuthContext)
+const RegisterDialog = ({setValue, setOpen}: RegisterDialogProps) => {
+    const updateUser = useUpdateUser();
     const [formError, setFormError] = useState<TFormError>({});
 
     // -----------------------------------------------------------------------------------
@@ -140,12 +140,12 @@ const {setUser} = useContext(AuthContext)
         };
         axios.post('/auth/local/register', postData)
             .then((response: AxiosResponse) => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     const {data} = response;
                     // console.log(JSON.stringify(data, null, 2));
                     // TODO: Save JWT in local storage
                     localStorage.setItem('JWT', data['jwt']);
-                    setUser(data.user);
+                    updateUser(data.user);
                     setOpen(false);
                 }
             })
