@@ -1,5 +1,4 @@
 import type {ReactElement, ReactNode} from 'react'
-import {useState} from "react";
 // Next.js
 import type {NextPage} from 'next'
 import type {AppProps} from 'next/app'
@@ -8,12 +7,12 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {DevTools} from 'jotai-devtools'
 // Project imports
-
 import {useNProgress} from "@/hooks/use-nprogress";
-import AuthProvider from "../../context/AuthContext";
 
 NProgress.configure({showSpinner: false});
+
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -31,9 +30,10 @@ export default function Magnificent({Component, pageProps}: AppPropsWithLayout) 
 
 
     return getLayout(
-        <AuthProvider>
+        <>
+            <DevTools/>
             <Component {...pageProps} />
             <ToastContainer/>
-        </AuthProvider>
+        </>
     )
 }

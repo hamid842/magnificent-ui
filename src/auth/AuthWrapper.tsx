@@ -1,5 +1,5 @@
 import * as React from "react";
-import {forwardRef, memo, ReactElement, ReactNode, Ref, SyntheticEvent, useContext, useState} from "react";
+import {forwardRef, memo, ReactElement, ReactNode, Ref, SyntheticEvent, useState} from "react";
 // Material ui
 import {
     Box,
@@ -24,9 +24,10 @@ import LoginDialog from "@/auth/login/LoginDialog";
 import RegisterDialog from "@/auth/register/RegisterDialog";
 // Third Party
 import SwipeableViews from 'react-swipeable-views';
-import { useUser} from "../../context/AuthContext";
 import AppButton from "@/components/global/AppButton";
 import AppIcon from "@/components/global/AppIcon";
+import {useAtom} from "jotai";
+import {loggedInUser} from "../../store";
 
 export const Transition = forwardRef(function Transition(
     props: TransitionProps & {
@@ -113,8 +114,7 @@ type AuthWrapperProps = {
 
 const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
     const theme = useTheme();
-    // const {user} = useContext(AuthContext)
-    const user = useUser();
+    const [user,] = useAtom(loggedInUser);
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(0);
 
@@ -124,8 +124,6 @@ const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
 
     const handleClose = () => {
         setOpen(false);
-        // setOpenLoginDialog(false);
-        // setOpenRegisterDialog(false);
     };
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -137,7 +135,7 @@ const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
     };
     return (
         <div>
-            {!user && !isHeader && <AppButton
+            {!user.username && !isHeader && <AppButton
                 label={label}
                 sx={{
                     backgroundColor: "#A47C30",
@@ -149,7 +147,7 @@ const AuthWrapper = ({isHeader, label}: AuthWrapperProps) => {
                         backgroundColor: "#A47C30",
                         border: 'none'
                     }
-                }} onClick={handleClickOpen}/>
+                }} onClick={handleClickOpen} />
             }
             {
                 isHeader &&

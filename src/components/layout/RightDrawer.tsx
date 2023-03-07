@@ -5,13 +5,15 @@ import Image from "next/image";
 // Material ui
 import {Avatar, Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 import {Person} from "@mui/icons-material";
-// Assets
+// Third party
+import {useAtom} from "jotai";
+// Project imports
 import logo from '../../../public/dashboard/png5.png'
 import {navPages} from "@/components/layout/Header";
 import AppIcon from "@/components/global/AppIcon";
-import { initialUser, TUser, useUpdateUser, useUser} from "../../../context/AuthContext";
 import ResetPassModal from "@/components/layout/ResetPassModal";
 import AuthWrapper from "@/auth/AuthWrapper";
+import {cachedUser, initialUser, loggedInUser} from "../../../store";
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -26,9 +28,10 @@ export const dashboardPages = [
 
 const RightDrawer = () => {
     const router = useRouter();
-    // const {user,setUser} = useContext(AuthContext);
-    const user = useUser();
-    const updateUser = useUpdateUser();
+    const [user, setUser] = useAtom(loggedInUser);
+    const cachedLoggedInUser = useAtom(cachedUser)
+    console.log(cachedLoggedInUser);
+
     const [state, setState] = useState({
         top: false,
         left: false,
@@ -48,6 +51,11 @@ const RightDrawer = () => {
                 }
                 setState({...state, [anchor]: open});
             };
+
+    const handleSignOut = () => {
+        setUser(initialUser);
+        localStorage.clear();
+    }
 
     const userList = (anchor: Anchor) => (
         <Box
@@ -69,7 +77,7 @@ const RightDrawer = () => {
             </List>
         </Box>
     );
-    const authList = (anchor: Anchor, setUser: (user: TUser) => void) => (
+    const authList = (anchor: Anchor) => (
         <Box
             sx={{width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250}}
             role="presentation"
@@ -80,7 +88,7 @@ const RightDrawer = () => {
             <Divider sx={{width: '100%', mt: 1}}/>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={() => setUser(initialUser)}>
+                    <ListItemButton onClick={handleSignOut}>
                         <ListItemIcon>
                             <AppIcon name={'logout'} size={1.5}/>
                         </ListItemIcon>
@@ -102,26 +110,26 @@ const RightDrawer = () => {
     );
 
     return (
-                <>
-                    <Avatar
-                        onClick={toggleDrawer('right', true)}
-                        aria-haspopup={true}
-                        sx={{cursor: "pointer"}}
-                    >
-                        <Person/>
-                    </Avatar>
-                    <Drawer
-                        keepMounted
-                        anchor={'right'}
-                        open={state['right']}
-                        onClose={toggleDrawer('right', false)}
-                        sx={{
-                            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: 200},
-                        }}
-                    >
-                        {user.username ? authList('right', updateUser) : userList('right')}
-                    </Drawer>
-                </>
+        <>
+            <Avatar
+                onClick={toggleDrawer('right', true)}
+                aria-haspopup={true}
+                sx={{cursor: "pointer"}}
+            >
+                <Person/>
+            </Avatar>
+            <Drawer
+                keepMounted
+                anchor={'right'}
+                open={state['right']}
+                onClose={toggleDrawer('right', false)}
+                sx={{
+                    '& .MuiDrawer-paper': {boxSizing: 'border-box', width: 200},
+                }}
+            >
+                {user.username || cachedLoggedInUser[0]?.username ? authList('right') : userList('right')}
+            </Drawer>
+        </>
 
     );
 }

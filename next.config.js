@@ -28,7 +28,8 @@ const nextConfig = {
         pathname: '/images/**'
       }
     ]
-  }
+  },
+  transpilePackages: ['jotai-devtools']
 }
 
 module.exports = nextConfig

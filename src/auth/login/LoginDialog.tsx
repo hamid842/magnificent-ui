@@ -1,7 +1,12 @@
-import {Dispatch, SetStateAction, useContext, useState} from 'react';
+import {Dispatch, SetStateAction, useState} from 'react';
 // Material ui
 import {Box, Button, CircularProgress, Divider, Stack} from "@mui/material";
 import LoginIcon from '@mui/icons-material/Login';
+// Third party
+import * as yup from "yup";
+import {useFormik} from "formik";
+import {toast} from "react-toastify";
+import ForgotPassDialog from "@/auth/login/ForgotPassDialog";
 // Project imports
 import EuclidText from "@/components/css-texts/EuclidText";
 import AppTextField from "@/components/global/AppTextField";
@@ -10,12 +15,8 @@ import AppButton from "@/components/global/AppButton";
 import SwitzerText from "@/components/css-texts/SwitzerText";
 import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
-// Third party
-import { useUpdateUser} from "../../../context/AuthContext";
-import * as yup from "yup";
-import {useFormik} from "formik";
-import {toast} from "react-toastify";
-import ForgotPassDialog from "@/auth/login/ForgotPassDialog";
+import {loggedInUser} from "../../../store";
+import {useAtom} from "jotai";
 
 const validationSchema = yup.object().shape({
     identifier: yup.string().required("Username/email is required"),
@@ -30,8 +31,8 @@ type LoginDialogProps = {
 
 
 const LoginDialog = ({setValue, setOpen}: LoginDialogProps) => {
-    // const {user,setUser} = useContext(AuthContext)
-const updateUser = useUpdateUser();
+
+    const [, setUser] = useAtom(loggedInUser);
     const [loading, setLoading] = useState(false);
 
 
@@ -46,7 +47,7 @@ const updateUser = useUpdateUser();
             await axios.post('/auth/local', values).then(res => {
                 if (res.status === 200) {
                     const {jwt, user} = res.data;
-                    updateUser(user);
+                    setUser(user);
                     setLoading(false);
                     localStorage.setItem('JWT', jwt);
                     setOpen(false);
@@ -58,10 +59,6 @@ const updateUser = useUpdateUser();
             })
         },
     });
-
-    const handleForgotPass = ()=>{
-
-    }
 
     const {values, handleChange, touched, errors} = formik
 
@@ -107,7 +104,7 @@ const updateUser = useUpdateUser();
                 {/*    sx={{color: colors.navMenuColor, textTransform: 'none', fontSize: 10}} onClick={handleForgotPass}>*/}
                 {/*    Forgot password?*/}
                 {/*</Button>*/}
-                <ForgotPassDialog />
+                <ForgotPassDialog/>
                 <Divider orientation={'vertical'} sx={{height: 20}}/>
                 <EuclidText text={"Or"} sx={{mt: 0.5, fontSize: 10}}/>
                 <Stack

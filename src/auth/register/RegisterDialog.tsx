@@ -12,7 +12,8 @@ import PasswordField from "@/components/global/PasswordField";
 import {instance as axios} from "@/config/axiosConfig";
 // Third party
 import {AxiosResponse, isAxiosError} from 'axios';
-import {useUpdateUser} from "../../../context/AuthContext";
+import {useAtom} from "jotai";
+import {loggedInUser} from "../../../store";
 
 type TAxiosErrorResponse = {
     status: number,
@@ -81,11 +82,8 @@ type RegisterDialogProps = {
 }
 
 const RegisterDialog = ({setValue, setOpen}: RegisterDialogProps) => {
-    const updateUser = useUpdateUser();
     const [formError, setFormError] = useState<TFormError>({});
-
-    // -----------------------------------------------------------------------------------
-
+    const [user, setUser] = useAtom(loggedInUser);
     const [form, setForm] = useState<TForm>({
         username: '',
         fullName: '',
@@ -95,8 +93,6 @@ const RegisterDialog = ({setValue, setOpen}: RegisterDialogProps) => {
         password_confirm: '',
         agree: false
     });
-
-    // -----------------------------------------------------------------------------------
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, id: EForm) => {
         const value = e.target.value;
@@ -145,7 +141,7 @@ const RegisterDialog = ({setValue, setOpen}: RegisterDialogProps) => {
                     // console.log(JSON.stringify(data, null, 2));
                     // TODO: Save JWT in local storage
                     localStorage.setItem('JWT', data['jwt']);
-                    updateUser(data.user);
+                    setUser(data.user);
                     setOpen(false);
                 }
             })

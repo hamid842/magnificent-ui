@@ -2,7 +2,7 @@ import {ChangeEvent, forwardRef, ReactElement, Ref, useEffect, useState} from "r
 // Next.js
 import Image from "next/image";
 // Material ui
-import {AppBar, Dialog, Grid, IconButton, Paper, Stack, Toolbar, Typography} from '@mui/material';
+import {AppBar, Backdrop, Dialog, Grid, IconButton, Paper, Stack, Toolbar, Typography} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import {TransitionProps} from '@mui/material/transitions';
@@ -22,7 +22,8 @@ import {instance} from "@/config/axiosConfig";
 import AppButton from "@/components/global/AppButton";
 import AuthWrapper from "@/auth/AuthWrapper";
 import SwitchBtnForBooking from "@/components/our-homes/SwitchBtnForBooking";
-import {useUser} from "../../../context/AuthContext";
+import {useAtom} from "jotai";
+import {cachedUser, loggedInUser} from "../../../store";
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
@@ -69,7 +70,8 @@ const BookingDialog = ({
                            buttonEnabled
                        }: BookingDialogProps) => {
     const {attributes} = property
-    const user = useUser();
+    const [user,] = useAtom(loggedInUser);
+    const cachedLoggedInUser = useAtom(cachedUser);
     const [openPayDialog, setOpenPayDialog] = useState(false);
     const [payLoading, setPayLoading] = useState(false)
     const [guest, setGuest] = useState({
@@ -83,7 +85,7 @@ const BookingDialog = ({
     const [isForMe, setForMe] = useState<boolean>(false);
     useEffect(() => {
         if (!isForMe) return;
-        if (!user) return;
+        if (!user.username || !cachedLoggedInUser[0].username) return;
         setGuest((prevGuest) => {
             return {
                 fullName: user.fullName,
@@ -92,7 +94,7 @@ const BookingDialog = ({
                 additionalInfo: prevGuest.additionalInfo
             }
         });
-    }, [isForMe, user]);
+    }, [cachedLoggedInUser, isForMe, user]);
 
     const handleChangeGuest = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
@@ -161,7 +163,7 @@ const BookingDialog = ({
                 console.log(response);
                 if (response.status === 200) {
                     setPayLoading(false)
-                    window.open(response.data.stripeUrl, '__self');
+                    window.open(response?.data?.stripeUrl, '__self');
                 }
             }).catch(error => {
             setPayLoading(false);
@@ -172,7 +174,7 @@ const BookingDialog = ({
     return (
         <Stack alignItems={'center'}>
             <AppButton
-                disabled={buttonEnabled ? false : true}
+                disabled={!buttonEnabled}
                 label={'Book Now'}
                 onClick={handleClickOpen}/>
 
@@ -182,6 +184,7 @@ const BookingDialog = ({
                 onClose={handleClose}
                 TransitionComponent={Transition}
             >
+                <Backdrop open={payLoading}/>
                 {/* Dialog Header*/}
                 <AppBar sx={{position: 'relative', backgroundColor: 'white'}}>
                     <Toolbar>
@@ -195,7 +198,8 @@ const BookingDialog = ({
                         <Typography sx={{color: '#333333', ml: 2, flex: 1}} variant="h6" component="div">
                             Booking Details
                         </Typography>
-                        {user ? <AppButton label={'Pay Now'} onClick={handlePay}/> :
+                        {user.username || cachedLoggedInUser[0]?.username ?
+                            <AppButton label={'Pay Now'} onClick={handlePay}/> :
                             <AuthWrapper isHeader={false} label={'Pay Now'}/>}
                     </Toolbar>
                 </AppBar>
@@ -230,14 +234,6 @@ const BookingDialog = ({
                             </Grid>
                         </Grid>
                         <Stack sx={{mt: 2}} direction='column' alignItems='center' justifyContent='center'>
-                            {/*<ToggleButton*/}
-                            {/*    value="check"*/}
-                            {/*    selected={isForMe}*/}
-                            {/*    onChange={() => { setForMe((prev) => !prev); }}*/}
-                            {/*    >*/}
-                            {/*    /!* <CheckIcon /> *!/*/}
-                            {/*    For Me?*/}
-                            {/*</ToggleButton>*/}
                             <SwitchBtnForBooking checked={isForMe}
                                                  onChange={(event: ChangeEvent<HTMLInputElement>) => setForMe(event.target.checked)}/>
                         </Stack>
